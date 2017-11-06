@@ -130,6 +130,10 @@
 		7AA2BD4B1FAB002D00864753 /* BTCollectionViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 7AA2BD4A1FAB002D00864753 /* BTCollectionViewModel.m */; };
 		7AA2BD4E1FAB003E00864753 /* BTPhotoViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 7AA2BD4D1FAB003E00864753 /* BTPhotoViewModel.m */; };
 		7AA2BD511FAB005300864753 /* BTMeViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 7AA2BD501FAB005300864753 /* BTMeViewModel.m */; };
+		7AA2BD571FAFFD3900864753 /* BTSpreadTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = 7AA2BD561FAFFD3900864753 /* BTSpreadTableView.m */; };
+		7AA2BD5A1FAFFDEE00864753 /* UILabel+MLTKit.m in Sources */ = {isa = PBXBuildFile; fileRef = 7AA2BD591FAFFDEE00864753 /* UILabel+MLTKit.m */; };
+		7AA2BD5D1FAFFE4D00864753 /* UIColor+MLTKit.m in Sources */ = {isa = PBXBuildFile; fileRef = 7AA2BD5C1FAFFE4D00864753 /* UIColor+MLTKit.m */; };
+		7AA2BD601FB005B300864753 /* BTRecomendUserTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 7AA2BD5F1FB005B300864753 /* BTRecomendUserTableViewCell.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -405,6 +409,14 @@
 		7AA2BD4D1FAB003E00864753 /* BTPhotoViewModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BTPhotoViewModel.m; sourceTree = "<group>"; };
 		7AA2BD4F1FAB005300864753 /* BTMeViewModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BTMeViewModel.h; sourceTree = "<group>"; };
 		7AA2BD501FAB005300864753 /* BTMeViewModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BTMeViewModel.m; sourceTree = "<group>"; };
+		7AA2BD551FAFFD3900864753 /* BTSpreadTableView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BTSpreadTableView.h; sourceTree = "<group>"; };
+		7AA2BD561FAFFD3900864753 /* BTSpreadTableView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BTSpreadTableView.m; sourceTree = "<group>"; };
+		7AA2BD581FAFFDEE00864753 /* UILabel+MLTKit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UILabel+MLTKit.h"; sourceTree = "<group>"; };
+		7AA2BD591FAFFDEE00864753 /* UILabel+MLTKit.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UILabel+MLTKit.m"; sourceTree = "<group>"; };
+		7AA2BD5B1FAFFE4D00864753 /* UIColor+MLTKit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIColor+MLTKit.h"; sourceTree = "<group>"; };
+		7AA2BD5C1FAFFE4D00864753 /* UIColor+MLTKit.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIColor+MLTKit.m"; sourceTree = "<group>"; };
+		7AA2BD5E1FB005B300864753 /* BTRecomendUserTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BTRecomendUserTableViewCell.h; sourceTree = "<group>"; };
+		7AA2BD5F1FB005B300864753 /* BTRecomendUserTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BTRecomendUserTableViewCell.m; sourceTree = "<group>"; };
 		F2068EBEC2B2F928846BAA88 /* libPods-BestToday.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-BestToday.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		F975E1829CF425B2C69D560E /* Pods-BestToday.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BestToday.release.xcconfig"; path = "Pods/Target Support Files/Pods-BestToday/Pods-BestToday.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -727,6 +739,8 @@
 				7AA2BBB31FAAB4CC00864753 /* UIButton+Font.m */,
 				7AA2BBB41FAAB4CC00864753 /* UIButton+MLTKit.h */,
 				7AA2BBB51FAAB4CC00864753 /* UIButton+MLTKit.m */,
+				7AA2BD581FAFFDEE00864753 /* UILabel+MLTKit.h */,
+				7AA2BD591FAFFDEE00864753 /* UILabel+MLTKit.m */,
 				7AA2BBB61FAAB4CC00864753 /* UIFont+runtime.h */,
 				7AA2BBB71FAAB4CC00864753 /* UIFont+runtime.m */,
 				7AA2BBB81FAAB4CC00864753 /* UIImage+Image.h */,
@@ -743,6 +757,8 @@
 				7AA2BBC31FAAB4CC00864753 /* UIView+MLTMasonry.m */,
 				7AA2BBC41FAAB4CC00864753 /* UIView+MLTSnapshot.h */,
 				7AA2BBC51FAAB4CC00864753 /* UIView+MLTSnapshot.m */,
+				7AA2BD5B1FAFFE4D00864753 /* UIColor+MLTKit.h */,
+				7AA2BD5C1FAFFE4D00864753 /* UIColor+MLTKit.m */,
 			);
 			path = UIView;
 			sourceTree = "<group>";
@@ -1167,6 +1183,8 @@
 			children = (
 				7AA2BD071FAAFE1300864753 /* BTHomePageTableViewCell.h */,
 				7AA2BD081FAAFE1300864753 /* BTHomePageTableViewCell.m */,
+				7AA2BD5E1FB005B300864753 /* BTRecomendUserTableViewCell.h */,
+				7AA2BD5F1FB005B300864753 /* BTRecomendUserTableViewCell.m */,
 			);
 			path = cell;
 			sourceTree = "<group>";
@@ -1192,6 +1210,8 @@
 		7AA2BCF21FAAFD0800864753 /* view */ = {
 			isa = PBXGroup;
 			children = (
+				7AA2BD551FAFFD3900864753 /* BTSpreadTableView.h */,
+				7AA2BD561FAFFD3900864753 /* BTSpreadTableView.m */,
 				7AA2BD101FAAFE5600864753 /* BTHomePageView.h */,
 				7AA2BD111FAAFE5600864753 /* BTHomePageView.m */,
 			);
@@ -1608,18 +1628,22 @@
 				7AA2BCDD1FAAC31F00864753 /* NetworkHelper.m in Sources */,
 				7AA2BCB61FAAC07400864753 /* NSDate+YU.m in Sources */,
 				7AA2BD301FAAFF3C00864753 /* BTPhotoEntity.m in Sources */,
+				7AA2BD571FAFFD3900864753 /* BTSpreadTableView.m in Sources */,
 				7AA2BD211FAAFECE00864753 /* BTCollectionTableViewCell.m in Sources */,
 				7AA2BC2E1FAAB4CC00864753 /* MLTRefreshHeader.m in Sources */,
 				7AA2BD3C1FAAFF8900864753 /* BTMeEntity.m in Sources */,
 				7AA2BD271FAAFEFD00864753 /* BTCollectionService.m in Sources */,
 				7AA2BCB71FAAC07400864753 /* NSDateFormatter+MLTKit.m in Sources */,
 				7AA2BD4E1FAB003E00864753 /* BTPhotoViewModel.m in Sources */,
+				7AA2BD601FB005B300864753 /* BTRecomendUserTableViewCell.m in Sources */,
 				7AA2BC351FAAB4CC00864753 /* MLTCollectionView.m in Sources */,
 				7AA2BD0F1FAAFE3C00864753 /* BtHomePageService.m in Sources */,
 				7AA2BC2C1FAAB4CC00864753 /* MLTIndicatorView.m in Sources */,
 				7AA2BC371FAAB4CC00864753 /* MLTPageControl.m in Sources */,
+				7AA2BD5D1FAFFE4D00864753 /* UIColor+MLTKit.m in Sources */,
 				7AA2BCB91FAAC07400864753 /* NSMutableDictionary+MLTKit.m in Sources */,
 				7AA2BD1B1FAAFE9B00864753 /* BTDiscoverService.m in Sources */,
+				7AA2BD5A1FAFFDEE00864753 /* UILabel+MLTKit.m in Sources */,
 				7AA2BCB51FAAC07400864753 /* NSCalendar+YU.m in Sources */,
 				7AA2BC251FAAB4CC00864753 /* MLTBrokenNetworkView.m in Sources */,
 				7AA2BD391FAAFF7700864753 /* BTMeTableViewCell.m in Sources */,
