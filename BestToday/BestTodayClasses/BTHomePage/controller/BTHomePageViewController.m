@@ -7,8 +7,14 @@
 //
 
 #import "BTHomePageViewController.h"
+#import "BTSpreadTableView.h"
 
-@interface BTHomePageViewController ()
+@interface BTHomePageViewController ()<LEBaseTableViewDelegate,UITableViewDataSource, UITableViewDelegate, BTSpreadTableViewDelegate>
+
+@property (nonatomic, strong)BTTableview *tableView;
+
+@property (nonatomic, strong) BTSpreadTableView *spreadTableView;
+
 
 @end
 
@@ -17,22 +23,82 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.view.backgroundColor = [UIColor whiteColor];
-    self.navigationBar.title = @"首页";
+    self.navigationBar.title = @"今日最佳";
+    [self setupTableView];
+    
 }
+
+- (void)setupTableView{
+    
+    self.tableView = [[BTTableview alloc]initWithFrame:CGRectMake(0, kNavigationBarHight, kSCREEN_WIDTH, kSCREEN_HEIGHT-kNavigationBarHight)];
+    
+//    self.tableView.delegate = self;
+//    self.tableView.dataSource = self;
+    self.tableView.estimatedRowHeight = 100;
+    
+    
+//    self.tableView.dataDelegate = self;
+    
+    self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
+    
+    [self.view addSubview:self.tableView];
+    
+    [self createTableViewHeaderView];
+    
+//    [self.tableView autoRefreshLoad];
+    
+}
+
+- (void)createTableViewHeaderView{
+    
+    UIView *headerView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, FULL_WIDTH, ScaleHeight(120))];
+    headerView.backgroundColor = kCardBackColor;
+    
+    // 调用tableView
+    if (!_spreadTableView) {
+        
+        /**
+         宽和高调换顺序
+         */
+        _spreadTableView = [[BTSpreadTableView alloc] initWithFrame:CGRectMake(0, 0, ScaleHeight(120), FULL_WIDTH) style:UITableViewStylePlain withType:BTSpreadTableViewStyleImageText];// x,y 高，宽
+        
+        _spreadTableView.backgroundColor = [UIColor yellowColor];
+        _spreadTableView.spreadDelegate = self;
+        
+    }
+    
+    [headerView addSubview:_spreadTableView];
+    
+    self.tableView.tableHeaderView = headerView;
+    
+}
+
+#pragma mark - tableViewDelegate
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
+    
+    return 2;
+}
+
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
+    
+        return 10;
+}
+
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+    
+    
+    return nil;
+}
+
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
+    
+        return 200;
+}
+
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
-
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
 
 @end
