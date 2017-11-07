@@ -161,21 +161,25 @@
     CGFloat height = font * (row + 1);
     
     
-      _labDescrp = [OpenDetailsView initWithFrame:CGRectMake(_imageAvtar.left, _labTime.bottom + 15, FULL_WIDTH - 30, height) text:testStr font:font numberOfRow:row + 1 block:^(CGFloat height) {
+    _labDescrp = [OpenDetailsView initWithFrame:CGRectMake(_imageAvtar.left, _labTime.bottom + 15, FULL_WIDTH - 30, height) text:testStr font:font numberOfRow:row + 1 block:^(CGFloat height) {
         
         _labDescrp.frame = CGRectMake(_imageAvtar.left, _labTime.bottom + 15, FULL_WIDTH - 30, height);
         
+        if (_delegate && [_delegate respondsToSelector:@selector(reloadTableView)]) {
+            
+//            _heightCell = _labDescrp.bottom + 20;
 
+            [self.delegate reloadTableView];
+        }
+        
     }];
     
     [self.contentView addSubview:_labDescrp];
 
-    
-    _heightCell = _labDescrp.bottom + 20;
+    if (_heightCell == 0) {
+        _heightCell = _labDescrp.bottom + 20;
 
-    
-    
-    
+    }
     
 }
 

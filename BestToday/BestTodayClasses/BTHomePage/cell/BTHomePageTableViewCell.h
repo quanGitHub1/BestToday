@@ -9,7 +9,16 @@
 #import <UIKit/UIKit.h>
 #import "OpenDetailsView.h"
 
+@protocol BTHomepageViewDelegate <NSObject>
+
+- (void)reloadTableView;
+
+
+@end
+
 @interface BTHomePageTableViewCell : UITableViewCell
+
+@property(nonatomic, weak) id <BTHomepageViewDelegate>delegate;
 
 @property (nonatomic, strong) UIImageView *imageAvtar; // 头像
 

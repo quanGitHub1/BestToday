@@ -11,7 +11,7 @@
 #import "BTLoginViewController.h"
 #import "BTHomePageTableViewCell.h"
 
-@interface BTHomePageViewController ()<LEBaseTableViewDelegate,UITableViewDataSource, UITableViewDelegate, BTSpreadTableViewDelegate>
+@interface BTHomePageViewController ()<LEBaseTableViewDelegate,UITableViewDataSource, UITableViewDelegate, BTSpreadTableViewDelegate, BTHomepageViewDelegate>
 
 @property (nonatomic, strong)BTTableview *tableView;
 
@@ -52,7 +52,7 @@
     
     self.tableView.delegate = self;
     self.tableView.dataSource = self;
-    self.tableView.estimatedRowHeight = 100;
+    self.tableView.estimatedRowHeight = 200;
     
     self.tableView.dataDelegate = self;
     
@@ -90,6 +90,15 @@
     
 }
 
+#pragma mark - BTHomepageViewDelegate
+
+
+- (void)reloadTableView{
+
+    [self.tableView reloadData];
+    
+}
+
 #pragma mark - tableViewDelegate
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
@@ -106,7 +115,7 @@
         return announcementCell.heightCell;
     }
     
-    return 90;
+    return 0;
     
 }
 
@@ -117,10 +126,13 @@
     
     BTHomePageTableViewCell *cell = [tableView cellForRowAtIndexPath:indexPath]; //根据indexPath准确地取出一行，而不是从cell重用队列中取出
     
+    
     if (!cell) {
         
         cell = [[BTHomePageTableViewCell alloc]initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:cellID];
         
+        cell.delegate = self;
+
         cell.selectionStyle=UITableViewCellSelectionStyleNone;
     }
     

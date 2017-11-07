@@ -149,13 +149,33 @@
 
 - (void)openBtnClick:(UIButton *)sender{
     
-    CGFloat height = [_textStr heightWithText:_textStr font:_font width:_textLabel.bounds.size.width] + _font / 2;
-    _textLabel.frame = CGRectMake(0, 0, _detaFrame.size.width, height);
-    _textLabel.text = _textStr;
+    
+    // 设置label的行间距
+    NSMutableParagraphStyle  *paragraphStyle = [[NSMutableParagraphStyle alloc] init];
+
+    [paragraphStyle  setLineSpacing:8];
+
+
+    NSMutableAttributedString  *setString;
+
+
+    setString = [[NSMutableAttributedString alloc] initWithString:_textStr];
+
+    [setString  addAttribute:NSParagraphStyleAttributeName value:paragraphStyle range:NSMakeRange(0, _textStr.length)];
+
+    
+    _textLabel.attributedText = setString;
+    
+    [_textLabel sizeToFit];
+    
+//    CGFloat height = [_textStr heightWithText:_textStr font:_font width:_textLabel.bounds.size.width] + _font / 2;
+//    _textLabel.frame = CGRectMake(0, 0, _detaFrame.size.width, height);
+//    _textLabel.text = _textStr;
     sender.hidden = YES;
     
     if (self.sendHeightBlock) {
-        self.sendHeightBlock(height);
+        
+        self.sendHeightBlock(_textLabel.height);
     }
 }
 
