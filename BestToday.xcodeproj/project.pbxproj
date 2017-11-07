@@ -134,6 +134,25 @@
 		7AA2BD5A1FAFFDEE00864753 /* UILabel+MLTKit.m in Sources */ = {isa = PBXBuildFile; fileRef = 7AA2BD591FAFFDEE00864753 /* UILabel+MLTKit.m */; };
 		7AA2BD5D1FAFFE4D00864753 /* UIColor+MLTKit.m in Sources */ = {isa = PBXBuildFile; fileRef = 7AA2BD5C1FAFFE4D00864753 /* UIColor+MLTKit.m */; };
 		7AA2BD601FB005B300864753 /* BTRecomendUserTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 7AA2BD5F1FB005B300864753 /* BTRecomendUserTableViewCell.m */; };
+		7AA2BD8C1FB1570400864753 /* libWeChatSDK.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 7AA2BD871FB1570400864753 /* libWeChatSDK.a */; };
+		7AA2BD8D1FB1570400864753 /* README.txt in Resources */ = {isa = PBXBuildFile; fileRef = 7AA2BD881FB1570400864753 /* README.txt */; };
+		7AA2BD8F1FB1573F00864753 /* CoreTelephony.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7AA2BD8E1FB1573F00864753 /* CoreTelephony.framework */; };
+		7AA2BD911FB1574600864753 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7AA2BD901FB1574600864753 /* SystemConfiguration.framework */; };
+		7AA2BD931FB1575100864753 /* libsqlite3.0.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 7AA2BD921FB1575100864753 /* libsqlite3.0.tbd */; };
+		7AA2BD951FB1575A00864753 /* libz.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 7AA2BD941FB1575A00864753 /* libz.tbd */; };
+		7AA2BD971FB1576500864753 /* libc++.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 7AA2BD961FB1576400864753 /* libc++.tbd */; };
+		7AA2BDA91FB15C4E00864753 /* GetMessageFromWXResp+responseWithTextOrMediaMessage.m in Sources */ = {isa = PBXBuildFile; fileRef = 7AA2BD9B1FB15C4E00864753 /* GetMessageFromWXResp+responseWithTextOrMediaMessage.m */; };
+		7AA2BDAA1FB15C4E00864753 /* SendMessageToWXReq+requestWithTextOrMediaMessage.m in Sources */ = {isa = PBXBuildFile; fileRef = 7AA2BD9D1FB15C4E00864753 /* SendMessageToWXReq+requestWithTextOrMediaMessage.m */; };
+		7AA2BDAB1FB15C4E00864753 /* UIAlertView+WX.m in Sources */ = {isa = PBXBuildFile; fileRef = 7AA2BD9F1FB15C4E00864753 /* UIAlertView+WX.m */; };
+		7AA2BDAC1FB15C4E00864753 /* WXMediaMessage+messageConstruct.m in Sources */ = {isa = PBXBuildFile; fileRef = 7AA2BDA11FB15C4E00864753 /* WXMediaMessage+messageConstruct.m */; };
+		7AA2BDAD1FB15C4E00864753 /* WXApiManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 7AA2BDA41FB15C4E00864753 /* WXApiManager.m */; };
+		7AA2BDAE1FB15C4E00864753 /* WXApiRequestHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 7AA2BDA61FB15C4E00864753 /* WXApiRequestHandler.m */; };
+		7AA2BDAF1FB15C4E00864753 /* WXApiResponseHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 7AA2BDA81FB15C4E00864753 /* WXApiResponseHandler.m */; };
+		7AA2BDB31FB15CE400864753 /* BTLoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7AA2BDB11FB15CE400864753 /* BTLoginViewController.m */; };
+		7AA2BDB41FB15CE400864753 /* BTLoginViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7AA2BDB21FB15CE400864753 /* BTLoginViewController.xib */; };
+		7AA2BDB71FB162F300864753 /* BTLoginService.m in Sources */ = {isa = PBXBuildFile; fileRef = 7AA2BDB61FB162F300864753 /* BTLoginService.m */; };
+		7AA2BDBA1FB1B0CA00864753 /* OpenDetailsView.m in Sources */ = {isa = PBXBuildFile; fileRef = 7AA2BDB91FB1B0CA00864753 /* OpenDetailsView.m */; };
+		7AA2BDBE1FB1B1BD00864753 /* NSString+Font.m in Sources */ = {isa = PBXBuildFile; fileRef = 7AA2BDBD1FB1B1BD00864753 /* NSString+Font.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -417,6 +436,41 @@
 		7AA2BD5C1FAFFE4D00864753 /* UIColor+MLTKit.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIColor+MLTKit.m"; sourceTree = "<group>"; };
 		7AA2BD5E1FB005B300864753 /* BTRecomendUserTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BTRecomendUserTableViewCell.h; sourceTree = "<group>"; };
 		7AA2BD5F1FB005B300864753 /* BTRecomendUserTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BTRecomendUserTableViewCell.m; sourceTree = "<group>"; };
+		7AA2BD871FB1570400864753 /* libWeChatSDK.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libWeChatSDK.a; sourceTree = "<group>"; };
+		7AA2BD881FB1570400864753 /* README.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = README.txt; sourceTree = "<group>"; };
+		7AA2BD891FB1570400864753 /* WechatAuthSDK.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WechatAuthSDK.h; sourceTree = "<group>"; };
+		7AA2BD8A1FB1570400864753 /* WXApi.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WXApi.h; sourceTree = "<group>"; };
+		7AA2BD8B1FB1570400864753 /* WXApiObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WXApiObject.h; sourceTree = "<group>"; };
+		7AA2BD8E1FB1573F00864753 /* CoreTelephony.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreTelephony.framework; path = System/Library/Frameworks/CoreTelephony.framework; sourceTree = SDKROOT; };
+		7AA2BD901FB1574600864753 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
+		7AA2BD921FB1575100864753 /* libsqlite3.0.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libsqlite3.0.tbd; path = usr/lib/libsqlite3.0.tbd; sourceTree = SDKROOT; };
+		7AA2BD941FB1575A00864753 /* libz.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libz.tbd; path = usr/lib/libz.tbd; sourceTree = SDKROOT; };
+		7AA2BD961FB1576400864753 /* libc++.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = "libc++.tbd"; path = "usr/lib/libc++.tbd"; sourceTree = SDKROOT; };
+		7AA2BD991FB15C4E00864753 /* Constant.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Constant.h; sourceTree = "<group>"; };
+		7AA2BD9A1FB15C4E00864753 /* GetMessageFromWXResp+responseWithTextOrMediaMessage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "GetMessageFromWXResp+responseWithTextOrMediaMessage.h"; sourceTree = "<group>"; };
+		7AA2BD9B1FB15C4E00864753 /* GetMessageFromWXResp+responseWithTextOrMediaMessage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "GetMessageFromWXResp+responseWithTextOrMediaMessage.m"; sourceTree = "<group>"; };
+		7AA2BD9C1FB15C4E00864753 /* SendMessageToWXReq+requestWithTextOrMediaMessage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "SendMessageToWXReq+requestWithTextOrMediaMessage.h"; sourceTree = "<group>"; };
+		7AA2BD9D1FB15C4E00864753 /* SendMessageToWXReq+requestWithTextOrMediaMessage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "SendMessageToWXReq+requestWithTextOrMediaMessage.m"; sourceTree = "<group>"; };
+		7AA2BD9E1FB15C4E00864753 /* UIAlertView+WX.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIAlertView+WX.h"; sourceTree = "<group>"; };
+		7AA2BD9F1FB15C4E00864753 /* UIAlertView+WX.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIAlertView+WX.m"; sourceTree = "<group>"; };
+		7AA2BDA01FB15C4E00864753 /* WXMediaMessage+messageConstruct.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "WXMediaMessage+messageConstruct.h"; sourceTree = "<group>"; };
+		7AA2BDA11FB15C4E00864753 /* WXMediaMessage+messageConstruct.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "WXMediaMessage+messageConstruct.m"; sourceTree = "<group>"; };
+		7AA2BDA31FB15C4E00864753 /* WXApiManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WXApiManager.h; sourceTree = "<group>"; };
+		7AA2BDA41FB15C4E00864753 /* WXApiManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WXApiManager.m; sourceTree = "<group>"; };
+		7AA2BDA51FB15C4E00864753 /* WXApiRequestHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WXApiRequestHandler.h; sourceTree = "<group>"; };
+		7AA2BDA61FB15C4E00864753 /* WXApiRequestHandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WXApiRequestHandler.m; sourceTree = "<group>"; };
+		7AA2BDA71FB15C4E00864753 /* WXApiResponseHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WXApiResponseHandler.h; sourceTree = "<group>"; };
+		7AA2BDA81FB15C4E00864753 /* WXApiResponseHandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WXApiResponseHandler.m; sourceTree = "<group>"; };
+		7AA2BDB01FB15CE400864753 /* BTLoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BTLoginViewController.h; sourceTree = "<group>"; };
+		7AA2BDB11FB15CE400864753 /* BTLoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BTLoginViewController.m; sourceTree = "<group>"; };
+		7AA2BDB21FB15CE400864753 /* BTLoginViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = BTLoginViewController.xib; sourceTree = "<group>"; };
+		7AA2BDB51FB162F300864753 /* BTLoginService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BTLoginService.h; sourceTree = "<group>"; };
+		7AA2BDB61FB162F300864753 /* BTLoginService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BTLoginService.m; sourceTree = "<group>"; };
+		7AA2BDB81FB1B0CA00864753 /* OpenDetailsView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OpenDetailsView.h; sourceTree = "<group>"; };
+		7AA2BDB91FB1B0CA00864753 /* OpenDetailsView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OpenDetailsView.m; sourceTree = "<group>"; };
+		7AA2BDBB1FB1B12300864753 /* Header.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Header.h; sourceTree = "<group>"; };
+		7AA2BDBC1FB1B1BD00864753 /* NSString+Font.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+Font.h"; sourceTree = "<group>"; };
+		7AA2BDBD1FB1B1BD00864753 /* NSString+Font.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+Font.m"; sourceTree = "<group>"; };
 		F2068EBEC2B2F928846BAA88 /* libPods-BestToday.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-BestToday.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		F975E1829CF425B2C69D560E /* Pods-BestToday.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BestToday.release.xcconfig"; path = "Pods/Target Support Files/Pods-BestToday/Pods-BestToday.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -426,8 +480,14 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				7AA2BD971FB1576500864753 /* libc++.tbd in Frameworks */,
+				7AA2BD951FB1575A00864753 /* libz.tbd in Frameworks */,
+				7AA2BD931FB1575100864753 /* libsqlite3.0.tbd in Frameworks */,
+				7AA2BD911FB1574600864753 /* SystemConfiguration.framework in Frameworks */,
+				7AA2BD8F1FB1573F00864753 /* CoreTelephony.framework in Frameworks */,
 				7AA2BC481FAABAF000864753 /* CoreLocation.framework in Frameworks */,
 				7AA2BC461FAABAE900864753 /* UIKit.framework in Frameworks */,
+				7AA2BD8C1FB1570400864753 /* libWeChatSDK.a in Frameworks */,
 				7AA2BC431FAABAD100864753 /* CoreFoundation.framework in Frameworks */,
 				7AA2BC441FAABAD100864753 /* Foundation.framework in Frameworks */,
 				4FF0E10CAF40BC06CA5E3585 /* libPods-BestToday.a in Frameworks */,
@@ -551,6 +611,9 @@
 		7AA2BB6C1FAAAF5600864753 /* BTFoundation */ = {
 			isa = PBXGroup;
 			children = (
+				7AA2BD981FB15C4E00864753 /* Helper */,
+				7AA2BDA21FB15C4E00864753 /* Control */,
+				7AA2BD861FB1570400864753 /* OpenSDK1.8.0_NoPay */,
 				7AA2BC3B1FAAB9AE00864753 /* BTMacors */,
 			);
 			path = BTFoundation;
@@ -637,6 +700,9 @@
 			children = (
 				7AA2BCEB1FAAC67700864753 /* BTMeViewController.h */,
 				7AA2BCEC1FAAC67700864753 /* BTMeViewController.m */,
+				7AA2BDB01FB15CE400864753 /* BTLoginViewController.h */,
+				7AA2BDB11FB15CE400864753 /* BTLoginViewController.m */,
+				7AA2BDB21FB15CE400864753 /* BTLoginViewController.xib */,
 			);
 			path = controller;
 			sourceTree = "<group>";
@@ -913,6 +979,8 @@
 		7AA2BC041FAAB4CC00864753 /* MLTSliderView */ = {
 			isa = PBXGroup;
 			children = (
+				7AA2BDBC1FB1B1BD00864753 /* NSString+Font.h */,
+				7AA2BDBD1FB1B1BD00864753 /* NSString+Font.m */,
 				7AA2BC051FAAB4CC00864753 /* MLTPageControl.h */,
 				7AA2BC061FAAB4CC00864753 /* MLTPageControl.m */,
 				7AA2BC071FAAB4CC00864753 /* MLTSliderView.h */,
@@ -928,6 +996,7 @@
 				7AA2BC3E1FAAB9CD00864753 /* LEFinanceNewsIphone.pch */,
 				7AA2BC3F1FAAB9CD00864753 /* Macross.h */,
 				7AA2BC401FAAB9CD00864753 /* NetURL.h */,
+				7AA2BDBB1FB1B12300864753 /* Header.h */,
 			);
 			path = BTMacors;
 			sourceTree = "<group>";
@@ -1214,6 +1283,8 @@
 				7AA2BD561FAFFD3900864753 /* BTSpreadTableView.m */,
 				7AA2BD101FAAFE5600864753 /* BTHomePageView.h */,
 				7AA2BD111FAAFE5600864753 /* BTHomePageView.m */,
+				7AA2BDB81FB1B0CA00864753 /* OpenDetailsView.h */,
+				7AA2BDB91FB1B0CA00864753 /* OpenDetailsView.m */,
 			);
 			path = view;
 			sourceTree = "<group>";
@@ -1376,6 +1447,8 @@
 			children = (
 				7AA2BD3D1FAAFF9600864753 /* BTMeService.h */,
 				7AA2BD3E1FAAFF9600864753 /* BTMeService.m */,
+				7AA2BDB51FB162F300864753 /* BTLoginService.h */,
+				7AA2BDB61FB162F300864753 /* BTLoginService.m */,
 			);
 			path = service;
 			sourceTree = "<group>";
@@ -1398,9 +1471,55 @@
 			path = viewModel;
 			sourceTree = "<group>";
 		};
+		7AA2BD861FB1570400864753 /* OpenSDK1.8.0_NoPay */ = {
+			isa = PBXGroup;
+			children = (
+				7AA2BD871FB1570400864753 /* libWeChatSDK.a */,
+				7AA2BD881FB1570400864753 /* README.txt */,
+				7AA2BD891FB1570400864753 /* WechatAuthSDK.h */,
+				7AA2BD8A1FB1570400864753 /* WXApi.h */,
+				7AA2BD8B1FB1570400864753 /* WXApiObject.h */,
+			);
+			path = OpenSDK1.8.0_NoPay;
+			sourceTree = "<group>";
+		};
+		7AA2BD981FB15C4E00864753 /* Helper */ = {
+			isa = PBXGroup;
+			children = (
+				7AA2BD991FB15C4E00864753 /* Constant.h */,
+				7AA2BD9A1FB15C4E00864753 /* GetMessageFromWXResp+responseWithTextOrMediaMessage.h */,
+				7AA2BD9B1FB15C4E00864753 /* GetMessageFromWXResp+responseWithTextOrMediaMessage.m */,
+				7AA2BD9C1FB15C4E00864753 /* SendMessageToWXReq+requestWithTextOrMediaMessage.h */,
+				7AA2BD9D1FB15C4E00864753 /* SendMessageToWXReq+requestWithTextOrMediaMessage.m */,
+				7AA2BD9E1FB15C4E00864753 /* UIAlertView+WX.h */,
+				7AA2BD9F1FB15C4E00864753 /* UIAlertView+WX.m */,
+				7AA2BDA01FB15C4E00864753 /* WXMediaMessage+messageConstruct.h */,
+				7AA2BDA11FB15C4E00864753 /* WXMediaMessage+messageConstruct.m */,
+			);
+			path = Helper;
+			sourceTree = "<group>";
+		};
+		7AA2BDA21FB15C4E00864753 /* Control */ = {
+			isa = PBXGroup;
+			children = (
+				7AA2BDA31FB15C4E00864753 /* WXApiManager.h */,
+				7AA2BDA41FB15C4E00864753 /* WXApiManager.m */,
+				7AA2BDA51FB15C4E00864753 /* WXApiRequestHandler.h */,
+				7AA2BDA61FB15C4E00864753 /* WXApiRequestHandler.m */,
+				7AA2BDA71FB15C4E00864753 /* WXApiResponseHandler.h */,
+				7AA2BDA81FB15C4E00864753 /* WXApiResponseHandler.m */,
+			);
+			path = Control;
+			sourceTree = "<group>";
+		};
 		BC4398B11687166B76DDE2B4 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				7AA2BD961FB1576400864753 /* libc++.tbd */,
+				7AA2BD941FB1575A00864753 /* libz.tbd */,
+				7AA2BD921FB1575100864753 /* libsqlite3.0.tbd */,
+				7AA2BD901FB1574600864753 /* SystemConfiguration.framework */,
+				7AA2BD8E1FB1573F00864753 /* CoreTelephony.framework */,
 				7AA2BC471FAABAF000864753 /* CoreLocation.framework */,
 				7AA2BC451FAABAE900864753 /* UIKit.framework */,
 				7AA2BC411FAABAD100864753 /* CoreFoundation.framework */,
@@ -1525,7 +1644,9 @@
 				744DF52E1FB09EA700CF8796 /* Info.plist in Resources */,
 				7AA2BB771FAAAFB100864753 /* Main.storyboard in Resources */,
 				7AA2BB751FAAAFB100864753 /* Assets.xcassets in Resources */,
+				7AA2BDB41FB15CE400864753 /* BTLoginViewController.xib in Resources */,
 				7AA2BB761FAAAFB100864753 /* LaunchScreen.storyboard in Resources */,
+				7AA2BD8D1FB1570400864753 /* README.txt in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1608,11 +1729,14 @@
 				7AA2BCE71FAAC65200864753 /* BTCollectionViewController.m in Sources */,
 				7AA2BD331FAAFF4D00864753 /* BTPhotoService.m in Sources */,
 				7AA2BB6D1FAAAF5600864753 /* AppDelegate.m in Sources */,
+				7AA2BDAF1FB15C4E00864753 /* WXApiResponseHandler.m in Sources */,
+				7AA2BDB31FB15CE400864753 /* BTLoginViewController.m in Sources */,
 				7AA2BD4B1FAB002D00864753 /* BTCollectionViewModel.m in Sources */,
 				7AA2BCED1FAAC67700864753 /* BTMeViewController.m in Sources */,
 				7AA2BC3A1FAAB4CC00864753 /* UIView+DDAddition.m in Sources */,
 				7AA2BC1F1FAAB4CC00864753 /* ChineseToPinyin.m in Sources */,
 				7AA2BCC21FAAC07400864753 /* SCFileManager.m in Sources */,
+				7AA2BDAC1FB15C4E00864753 /* WXMediaMessage+messageConstruct.m in Sources */,
 				7AA2BC171FAAB4CC00864753 /* UIFont+runtime.m in Sources */,
 				7AA2BB351FAAAE5500864753 /* main.m in Sources */,
 				7AA2BCC11FAAC07400864753 /* CFileUtil.m in Sources */,
@@ -1627,6 +1751,8 @@
 				7AA2BC1C1FAAB4CC00864753 /* UIView+MLTKit.m in Sources */,
 				7AA2BCDD1FAAC31F00864753 /* NetworkHelper.m in Sources */,
 				7AA2BCB61FAAC07400864753 /* NSDate+YU.m in Sources */,
+				7AA2BDA91FB15C4E00864753 /* GetMessageFromWXResp+responseWithTextOrMediaMessage.m in Sources */,
+				7AA2BDBA1FB1B0CA00864753 /* OpenDetailsView.m in Sources */,
 				7AA2BD301FAAFF3C00864753 /* BTPhotoEntity.m in Sources */,
 				7AA2BD571FAFFD3900864753 /* BTSpreadTableView.m in Sources */,
 				7AA2BD211FAAFECE00864753 /* BTCollectionTableViewCell.m in Sources */,
@@ -1646,7 +1772,9 @@
 				7AA2BD5A1FAFFDEE00864753 /* UILabel+MLTKit.m in Sources */,
 				7AA2BCB51FAAC07400864753 /* NSCalendar+YU.m in Sources */,
 				7AA2BC251FAAB4CC00864753 /* MLTBrokenNetworkView.m in Sources */,
+				7AA2BDAA1FB15C4E00864753 /* SendMessageToWXReq+requestWithTextOrMediaMessage.m in Sources */,
 				7AA2BD391FAAFF7700864753 /* BTMeTableViewCell.m in Sources */,
+				7AA2BDAE1FB15C4E00864753 /* WXApiRequestHandler.m in Sources */,
 				7AA2BCE11FAAC62900864753 /* BTHomePageViewController.m in Sources */,
 				7AA2BCA51FAAC07400864753 /* NSObject+LEEntity.m in Sources */,
 				7AA2BC1D1FAAB4CC00864753 /* UIView+MLTMasonry.m in Sources */,
@@ -1667,11 +1795,13 @@
 				7AA2BD241FAAFEE300864753 /* BTCollectionEntity.m in Sources */,
 				7AA2BCBE1FAAC07400864753 /* MLTTimer.m in Sources */,
 				7AA2BCDC1FAAC31F00864753 /* NetworkCache.m in Sources */,
+				7AA2BDAB1FB15C4E00864753 /* UIAlertView+WX.m in Sources */,
 				7AA2BCA91FAAC07400864753 /* MGJNavigationControllerPopShrinkOutAnimation.m in Sources */,
 				7AA2BCA81FAAC07400864753 /* MGJNavigationController.m in Sources */,
 				7AA2BD3F1FAAFF9600864753 /* BTMeService.m in Sources */,
 				7AA2BC151FAAB4CC00864753 /* UIButton+Font.m in Sources */,
 				7AA2BC211FAAB4CC00864753 /* MLTBadgeView.m in Sources */,
+				7AA2BDBE1FB1B1BD00864753 /* NSString+Font.m in Sources */,
 				7AA2BD421FAAFFA700864753 /* BTMeView.m in Sources */,
 				7AA2BC331FAAB4CC00864753 /* MLTBaseRefreshFooter.m in Sources */,
 				7AA2BCDE1FAAC31F00864753 /* NetworkImageHelper.m in Sources */,
@@ -1679,6 +1809,7 @@
 				7AA2BC361FAAB4CC00864753 /* MLTTableView.m in Sources */,
 				7AA2BC311FAAB4CC00864753 /* LECollectionView.m in Sources */,
 				7AA2BCC01FAAC07400864753 /* ShareURL.m in Sources */,
+				7AA2BDB71FB162F300864753 /* BTLoginService.m in Sources */,
 				7AA2BD091FAAFE1300864753 /* BTHomePageTableViewCell.m in Sources */,
 				7AA2BD511FAB005300864753 /* BTMeViewModel.m in Sources */,
 				7AA2BC131FAAB4CC00864753 /* NSObject+CallMethod.m in Sources */,
@@ -1690,6 +1821,7 @@
 				7AA2BC191FAAB4CC00864753 /* UIImage+Rounded.m in Sources */,
 				7AA2BC291FAAB4CC00864753 /* MLTFullImageView.m in Sources */,
 				7AA2BCB11FAAC07400864753 /* MLTUISkeletonModule.m in Sources */,
+				7AA2BDAD1FB15C4E00864753 /* WXApiManager.m in Sources */,
 				7AA2BCBA1FAAC07400864753 /* NSObject+Addition.m in Sources */,
 				7AA2BC271FAAB4CC00864753 /* MLTTableView+MLTBrokenNetwork.m in Sources */,
 				7AA2BCBC1FAAC07400864753 /* NSThread+MLTKit.m in Sources */,
@@ -1870,6 +2002,10 @@
 				GCC_PREFIX_HEADER = "$(SRCROOT)/BestToday/BTFoundation/BTMacors/LEFinanceNewsIphone.pch";
 				INFOPLIST_FILE = /Users/wangfaquan/Documents/BestToday/BestToday/Resourse/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/BestToday/BTFoundation/OpenSDK1.8.0_NoPay",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = Rabbit.BestToday;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
@@ -1885,6 +2021,10 @@
 				GCC_PREFIX_HEADER = "$(SRCROOT)/BestToday/BTFoundation/BTMacors/LEFinanceNewsIphone.pch";
 				INFOPLIST_FILE = /Users/wangfaquan/Documents/BestToday/BestToday/Resourse/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/BestToday/BTFoundation/OpenSDK1.8.0_NoPay",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = Rabbit.BestToday;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};

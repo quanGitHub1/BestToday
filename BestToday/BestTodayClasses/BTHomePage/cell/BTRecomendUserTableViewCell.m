@@ -20,17 +20,17 @@
             
             self.backgroundColor = [UIColor whiteColor];
             
-            _imagePic = [[UIImageView alloc] initWithFrame:CGRectMake(15, 15, ScaleWidth(50), ScaleHeight(50))];
+            _imagePic = [[UIImageView alloc] initWithFrame:CGRectMake(15, 13, ScaleWidth(60), ScaleHeight(60))];
             
             _imagePic.contentMode = UIViewContentModeScaleAspectFit;
             
             _imagePic.backgroundColor = [UIColor redColor];
             
-            _imagePic.layer.cornerRadius = ScaleWidth(25);
+            _imagePic.layer.cornerRadius = ScaleWidth(30);
             
             _imagePic.clipsToBounds = YES;
             
-            _labName = [UILabel mlt_labelWithText:@"" color:[UIColor mlt_colorWithHexString:@"#333333" alpha:1] align:NSTextAlignmentCenter font:[UIFont systemFontOfSize:13] bkColor:nil frame:CGRectMake(_imagePic.left, _imagePic.bottom + 10, _imagePic.width, 18)];
+            _labName = [UILabel mlt_labelWithText:@"" color:[UIColor mlt_colorWithHexString:@"#616161" alpha:1] align:NSTextAlignmentCenter font:[UIFont systemFontOfSize:13] bkColor:nil frame:CGRectMake(_imagePic.left, _imagePic.bottom + 10, _imagePic.width, 18)];
 
             _labName.text = @"罗密欧";
             
