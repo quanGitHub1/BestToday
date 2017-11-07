@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		4FF0E10CAF40BC06CA5E3585 /* libPods-BestToday.a in Frameworks */ = {isa = PBXBuildFile; fileRef = F2068EBEC2B2F928846BAA88 /* libPods-BestToday.a */; };
+		744DF52E1FB09EA700CF8796 /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 744DF52D1FB09EA700CF8796 /* Info.plist */; };
 		7AA2BB351FAAAE5500864753 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 7AA2BB341FAAAE5500864753 /* main.m */; };
 		7AA2BB4E1FAAAE5500864753 /* BestTodayTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 7AA2BB4D1FAAAE5500864753 /* BestTodayTests.m */; };
 		7AA2BB591FAAAE5500864753 /* BestTodayUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = 7AA2BB581FAAAE5500864753 /* BestTodayUITests.m */; };
@@ -16,7 +17,6 @@
 		7AA2BB751FAAAFB100864753 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 7AA2BB701FAAAFB100864753 /* Assets.xcassets */; };
 		7AA2BB761FAAAFB100864753 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7AA2BB711FAAAFB100864753 /* LaunchScreen.storyboard */; };
 		7AA2BB771FAAAFB100864753 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7AA2BB731FAAAFB100864753 /* Main.storyboard */; };
-		7AA2BB9E1FAAB3A700864753 /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 7AA2BB9D1FAAB3A700864753 /* Info.plist */; };
 		7AA2BC0E1FAAB4CC00864753 /* LECollectionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7AA2BBA21FAAB4CC00864753 /* LECollectionViewController.m */; };
 		7AA2BC0F1FAAB4CC00864753 /* BTTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7AA2BBA41FAAB4CC00864753 /* BTTableViewController.m */; };
 		7AA2BC101FAAB4CC00864753 /* BTViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7AA2BBA61FAAB4CC00864753 /* BTViewController.m */; };
@@ -155,6 +155,7 @@
 
 /* Begin PBXFileReference section */
 		3628CE6CF7DDDC7E7152EBDC /* Pods-BestToday.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BestToday.debug.xcconfig"; path = "Pods/Target Support Files/Pods-BestToday/Pods-BestToday.debug.xcconfig"; sourceTree = "<group>"; };
+		744DF52D1FB09EA700CF8796 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		7AA2BB301FAAAE5500864753 /* BestToday.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BestToday.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		7AA2BB341FAAAE5500864753 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		7AA2BB491FAAAE5500864753 /* BestTodayTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = BestTodayTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -170,7 +171,6 @@
 		7AA2BB701FAAAFB100864753 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		7AA2BB721FAAAFB100864753 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		7AA2BB741FAAAFB100864753 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
-		7AA2BB9D1FAAB3A700864753 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		7AA2BBA11FAAB4CC00864753 /* LECollectionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LECollectionViewController.h; sourceTree = "<group>"; };
 		7AA2BBA21FAAB4CC00864753 /* LECollectionViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LECollectionViewController.m; sourceTree = "<group>"; };
 		7AA2BBA31FAAB4CC00864753 /* BTTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BTTableViewController.h; sourceTree = "<group>"; };
@@ -559,7 +559,7 @@
 		7AA2BB6F1FAAAFB100864753 /* Resourse */ = {
 			isa = PBXGroup;
 			children = (
-				7AA2BB9D1FAAB3A700864753 /* Info.plist */,
+				744DF52D1FB09EA700CF8796 /* Info.plist */,
 				7AA2BB701FAAAFB100864753 /* Assets.xcassets */,
 				7AA2BB711FAAAFB100864753 /* LaunchScreen.storyboard */,
 				7AA2BB731FAAAFB100864753 /* Main.storyboard */,
@@ -1522,7 +1522,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				7AA2BB9E1FAAB3A700864753 /* Info.plist in Resources */,
+				744DF52E1FB09EA700CF8796 /* Info.plist in Resources */,
 				7AA2BB771FAAAFB100864753 /* Main.storyboard in Resources */,
 				7AA2BB751FAAAFB100864753 /* Assets.xcassets in Resources */,
 				7AA2BB761FAAAFB100864753 /* LaunchScreen.storyboard in Resources */,
@@ -1558,7 +1558,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
 			showEnvVarsInLog = 0;
 		};
 		8AD334D677B03F816E4EF663 /* [CP] Embed Pods Frameworks */ = {
@@ -1868,7 +1868,7 @@
 				DEVELOPMENT_TEAM = ML77R3AZAP;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "$(SRCROOT)/BestToday/BTFoundation/BTMacors/LEFinanceNewsIphone.pch";
-				INFOPLIST_FILE = /Users/leeco/Desktop/BestToday/BestToday/Resourse/Info.plist;
+				INFOPLIST_FILE = /Users/wangfaquan/Documents/BestToday/BestToday/Resourse/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = Rabbit.BestToday;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -1883,7 +1883,7 @@
 				DEVELOPMENT_TEAM = ML77R3AZAP;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "$(SRCROOT)/BestToday/BTFoundation/BTMacors/LEFinanceNewsIphone.pch";
-				INFOPLIST_FILE = /Users/leeco/Desktop/BestToday/BestToday/Resourse/Info.plist;
+				INFOPLIST_FILE = /Users/wangfaquan/Documents/BestToday/BestToday/Resourse/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = Rabbit.BestToday;
 				PRODUCT_NAME = "$(TARGET_NAME)";
