@@ -11,7 +11,8 @@
 
 #ifdef DEBUG    //// 测试环境
 
-
+// 用户登录
+#define BTUserLogin   @"http://doit1987.com/todayHot/app/user/wxAppUserLogin.json"
 
 #else         //////// 线上环境
 
