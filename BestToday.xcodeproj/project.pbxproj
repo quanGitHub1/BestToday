@@ -2000,7 +2000,7 @@
 				DEVELOPMENT_TEAM = ML77R3AZAP;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "$(SRCROOT)/BestToday/BTFoundation/BTMacors/LEFinanceNewsIphone.pch";
-				INFOPLIST_FILE = /Users/wangfaquan/Documents/BestToday/BestToday/Resourse/Info.plist;
+				INFOPLIST_FILE = "$(SRCROOT)/BestToday/Resourse/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
@@ -2019,7 +2019,7 @@
 				DEVELOPMENT_TEAM = ML77R3AZAP;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "$(SRCROOT)/BestToday/BTFoundation/BTMacors/LEFinanceNewsIphone.pch";
-				INFOPLIST_FILE = /Users/wangfaquan/Documents/BestToday/BestToday/Resourse/Info.plist;
+				INFOPLIST_FILE = "$(SRCROOT)/BestToday/Resourse/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
