@@ -71,6 +71,9 @@
             [_btnShare addTarget:self action:@selector(onclickBtnShare:) forControlEvents:UIControlEventTouchUpInside];
 
             
+//           _viewLine = [[UIView alloc] initWithFrame:CGRectMake(5, _labDescrp.bottom + 15, FULL_WIDTH - 10, 0.6)];
+            
+            
             [self.contentView addSubview:_imageAvtar];
             
             [self.contentView addSubview:_labName];
@@ -89,6 +92,8 @@
             
             [self.contentView addSubview:_btnShare];
             
+//            [self.contentView addSubview:_viewLine];
+
 //            [self.contentView addSubview:_labDescrp];
             
         }
@@ -116,7 +121,7 @@
     
 }
 
-- (void)makeDatacell{
+- (void)makeDatacell:(NSInteger)indexpath{
 
     _labName.text = @"罗密欧";
     
@@ -136,14 +141,14 @@
     
 //    _btnCollection.frame = CGRectMake(_labFabulous.right + 15, _imagePic.bottom + 12, iamgeCollection.size.width, iamgeCollection.size.height);
     
-    _btnCollection.frame = CGRectMake(_labFabulous.right + 15, _imagePic.bottom + 12, 20, 20);
+    _btnCollection.frame = CGRectMake(_labFabulous.right + 15, _imagePic.bottom + 12, 22, 22);
 
     
     [_btnComment setImage:iamgeInformation forState:UIControlStateNormal];
 
 //    _btnComment.frame = CGRectMake(_btnCollection.right + 24, _imagePic.bottom + 12, iamgeCollection.size.width, iamgeCollection.size.height);
     
-    _btnComment.frame = CGRectMake(_btnCollection.right + 24, _imagePic.bottom + 12, 20, 20);
+    _btnComment.frame = CGRectMake(_btnCollection.right + 24, _imagePic.bottom + 12, 22, 22);
 
 
     
@@ -151,7 +156,7 @@
 
 //    _btnShare.frame = CGRectMake(_btnComment.right + 24, _imagePic.bottom + 12, iamgeCollection.size.width, iamgeCollection.size.height);
     
-    _btnShare.frame = CGRectMake(_btnComment.right + 24, _imagePic.bottom + 12, 20, 20);
+    _btnShare.frame = CGRectMake(_btnComment.right + 24, _imagePic.bottom + 12, 22, 22);
     
     NSString *testStr = @"阿加阿达科技大厦空军啊空军打卡多久啊开始搭建啊看来大家啊看来大家啊可怜的了大家啊陆慷的杰拉德将离开饿哦我反胃啊没事卡利久里开车拉萨城看看撒加克里斯朵夫考虑是否将咖喱饭就啊哭了；飞机";
     
@@ -161,23 +166,47 @@
     CGFloat height = font * (row + 1);
     
     
-    _labDescrp = [OpenDetailsView initWithFrame:CGRectMake(_imageAvtar.left, _labTime.bottom + 15, FULL_WIDTH - 30, height) text:testStr font:font numberOfRow:row + 1 block:^(CGFloat height) {
+    _labDescrp = [OpenDetailsView initWithFrame:CGRectMake(_imageAvtar.left, _labTime.bottom + 15, FULL_WIDTH - 30, height) text:testStr font:font numberOfRow:row + 1 indexPath:indexpath block:^(CGFloat height, NSInteger indexpath) {
         
         _labDescrp.frame = CGRectMake(_imageAvtar.left, _labTime.bottom + 15, FULL_WIDTH - 30, height);
         
-        if (_delegate && [_delegate respondsToSelector:@selector(reloadTableView)]) {
+        if (_delegate && [_delegate respondsToSelector:@selector(reloadTableView:height:)]) {
             
-//            _heightCell = _labDescrp.bottom + 20;
+            _heightCell = _labDescrp.bottom + 20;
 
-            [self.delegate reloadTableView];
+            [self.delegate reloadTableView:indexpath height:_heightCell];
         }
         
     }];
     
     [self.contentView addSubview:_labDescrp];
+    
+    
+    
+    _homeCommentView = [[BTHomeCommentView alloc] initWithFrame:CGRectMake(0, _labDescrp.bottom + 15, FULL_WIDTH, 300) block:^(CGFloat height) {
+        
+//        if (_heightCell == 0) {
+//            
+//            _heightCell = height + 20;
+//            
+//        }
+
+        
+    }];
+    
+//    [_homeCommentView getCommentCellHeight];
+    
+    
+    
+    
+    _homeCommentView.backgroundColor = [UIColor redColor];
+    [self.contentView addSubview:_homeCommentView];
+
+    
 
     if (_heightCell == 0) {
-        _heightCell = _labDescrp.bottom + 20;
+        
+        _heightCell = _homeCommentView.bottom + 20;
 
     }
     

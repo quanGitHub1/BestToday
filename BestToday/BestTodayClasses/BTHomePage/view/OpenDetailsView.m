@@ -10,6 +10,7 @@
 #import "OpenDetailsView.h"
 #import "Header.h"
 #import "CoreText/CoreText.h"
+#import "BTHomeOpenHander.h"
 
 
 @interface OpenDetailsView()
@@ -18,103 +19,111 @@
 @property (nonatomic, assign) int font;
 @property (nonatomic, strong) UILabel *textLabel;
 @property (nonatomic, copy) NSString *textStr;
+@property (nonatomic, assign) NSInteger indexpath;
 
 @end
 
 @implementation OpenDetailsView
 
-+ (instancetype)initWithFrame:(CGRect)frame text:(NSString *)text font:(int)font numberOfRow:(int)row block:(void (^)(CGFloat))block{
++ (instancetype)initWithFrame:(CGRect)frame text:(NSString *)text font:(int)font numberOfRow:(int)row indexPath:(NSInteger)indexpath block:(void (^)(CGFloat, NSInteger))block{
     OpenDetailsView *detailsView = [[OpenDetailsView alloc] initWithFrame:frame];
     detailsView.detaFrame = frame;
     detailsView.textStr = text;
     detailsView.font = font;
     detailsView.sendHeightBlock = block;
-    [detailsView frame:frame text:text font:font numberOfRow:row];
+    [detailsView frame:frame text:text font:font numberOfRow:row indexpath:indexpath];
     return detailsView;
 }
 
 
-- (void)frame:(CGRect)frame text:(NSString *)text font:(int)font numberOfRow:(int)row{
+- (void)frame:(CGRect)frame text:(NSString *)text font:(int)font numberOfRow:(int)row indexpath:(NSInteger)indexpath{
     
-    CGFloat height = [text heightWithText:text font:font width:screenWidth - 20];
-    if (height > font * row) {
-        height = font * row;
-    }
-    
-    UILabel *textLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, frame.size.width, height)];
-    textLabel.backgroundColor = [UIColor whiteColor];
-    textLabel.text = text;
-    textLabel.numberOfLines = 0;
-    textLabel.font = [UIFont systemFontOfSize:font];
-    self.textLabel = textLabel;
-    textLabel.textColor = [UIColor colorWithHexString:@"#616161"];
-    [self addSubview:textLabel];
-    
-    _textArr = [self getSeparatedLinesFromLabel:textLabel];
-    
-    NSString *str = [NSString stringWithFormat:@"%@",_textArr[row - 2]];
-    int number = (int)str.length;
-    str = [str substringToIndex:number - 8];
-    
-    
-    NSString *showStr1 = [NSString stringWithFormat:@"%@...",str];
-    CGFloat width = showStr1.length * 16;
-    
-    NSString *showStr = [NSString stringWithFormat:@"%@%@%@...",_textArr[0],_textArr[1],str];
-    textLabel.text = showStr;
-    
+        CGFloat height = [text heightWithText:text font:font width:screenWidth - 20];
+        if (height > font * row) {
+            height = font * row;
+        }
+        
+        _indexpath = indexpath;
+        UILabel *textLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, frame.size.width, height)];
+        textLabel.backgroundColor = [UIColor whiteColor];
+        textLabel.text = text;
+        textLabel.numberOfLines = 0;
+        textLabel.font = [UIFont systemFontOfSize:font];
+        self.textLabel = textLabel;
+        textLabel.textColor = [UIColor colorWithHexString:@"#616161"];
+        [self addSubview:textLabel];
+        
+        _textArr = [self getSeparatedLinesFromLabel:textLabel];
+        
+        NSString *str = [NSString stringWithFormat:@"%@",_textArr[row - 2]];
+        int number = (int)str.length;
+        str = [str substringToIndex:number - 8];
+        
+        
+        NSString *showStr1 = [NSString stringWithFormat:@"%@...",str];
+        CGFloat width = showStr1.length * 16;
+        
+        NSString *showStr = [NSString stringWithFormat:@"%@%@%@...",_textArr[0],_textArr[1],str];
+        textLabel.text = showStr;
+        
         // 设置label的行间距
         NSMutableParagraphStyle  *paragraphStyle = [[NSMutableParagraphStyle alloc] init];
-    
+        
         [paragraphStyle  setLineSpacing:8];
-    
-    
+        
+        
         NSMutableAttributedString  *setString;
-    
+        
         if (showStr.length > 0) {
-    
+            
             setString = [[NSMutableAttributedString alloc] initWithString:showStr];
-    
+            
             [setString  addAttribute:NSParagraphStyleAttributeName value:paragraphStyle range:NSMakeRange(0, showStr.length)];
-    
+            
         }
         
         textLabel.attributedText = setString;
-    
-    [textLabel sizeToFit];
-  
-    
-    UIButton *openBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-    openBtn.frame = CGRectMake(width - 20, font * 3 + 8, screenWidth - width - 10, font );
-    openBtn.backgroundColor = [UIColor whiteColor];
-    [openBtn setTitle:@"更多" forState:0];
-    openBtn.titleLabel.font = [UIFont systemFontOfSize:15];
+        
+        [textLabel sizeToFit];
     
     
-    [openBtn setTitleColor:[UIColor colorWithHexString:@"#969696"] forState:UIControlStateNormal];
+    if ([[BTHomeOpenHander shareHomeOpenHander].arrydata containsObject:[NSString stringWithFormat:@"%ld",_indexpath]]) {
+        
+        // 设置label的行间距
+        NSMutableParagraphStyle  *paragraphStyle = [[NSMutableParagraphStyle alloc] init];
+        
+        [paragraphStyle  setLineSpacing:8];
+        
+        
+        NSMutableAttributedString  *setString;
+        
+        
+        setString = [[NSMutableAttributedString alloc] initWithString:_textStr];
+        
+        [setString  addAttribute:NSParagraphStyleAttributeName value:paragraphStyle range:NSMakeRange(0, _textStr.length)];
+        
+        
+        _textLabel.attributedText = setString;
+        
+        [_textLabel sizeToFit];
+        
+        return;
+
+     }
+
+
+        UIButton *openBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+        openBtn.frame = CGRectMake(width - 20, font * 3 + 8, screenWidth - width - 10, font );
+        openBtn.backgroundColor = [UIColor whiteColor];
+        [openBtn setTitle:@"更多" forState:0];
+        openBtn.titleLabel.font = [UIFont systemFontOfSize:15];
     
-    [openBtn addTarget:self action:@selector(openBtnClick:) forControlEvents:UIControlEventTouchUpInside];
-    [self addSubview:openBtn];
+        [openBtn setTitleColor:[UIColor colorWithHexString:@"#969696"] forState:UIControlStateNormal];
+        
+        [openBtn addTarget:self action:@selector(openBtnClick:) forControlEvents:UIControlEventTouchUpInside];
+        [self addSubview:openBtn];
+        
     
-    
-    
-//    // 设置label的行间距
-//    NSMutableParagraphStyle  *paragraphStyle = [[NSMutableParagraphStyle alloc] init];
-//    
-//    [paragraphStyle  setLineSpacing:8];
-//    
-//    
-//    NSMutableAttributedString  *setString;
-//    
-//    if (text.length > 0) {
-//        
-//        setString = [[NSMutableAttributedString alloc] initWithString:text];
-//        
-//        [setString  addAttribute:NSParagraphStyleAttributeName value:paragraphStyle range:NSMakeRange(0, text.length)];
-//        
-//    }
-//    
-//    textLabel.attributedText = setString;
 }
 
 
@@ -149,6 +158,9 @@
 
 - (void)openBtnClick:(UIButton *)sender{
     
+    if (![[BTHomeOpenHander shareHomeOpenHander].arrydata containsObject:[NSString stringWithFormat:@"%ld",_indexpath]]) {
+        [[BTHomeOpenHander shareHomeOpenHander].arrydata addObject:[NSString stringWithFormat:@"%ld",_indexpath]];
+    }
     
     // 设置label的行间距
     NSMutableParagraphStyle  *paragraphStyle = [[NSMutableParagraphStyle alloc] init];
@@ -171,11 +183,13 @@
 //    CGFloat height = [_textStr heightWithText:_textStr font:_font width:_textLabel.bounds.size.width] + _font / 2;
 //    _textLabel.frame = CGRectMake(0, 0, _detaFrame.size.width, height);
 //    _textLabel.text = _textStr;
+    
     sender.hidden = YES;
     
     if (self.sendHeightBlock) {
         
-        self.sendHeightBlock(_textLabel.height);
+        self.sendHeightBlock(_textLabel.height, _indexpath);
+        
     }
 }
 

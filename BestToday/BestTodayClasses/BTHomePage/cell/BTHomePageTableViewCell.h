@@ -8,10 +8,12 @@
 
 #import <UIKit/UIKit.h>
 #import "OpenDetailsView.h"
+#import "BTHomeCommentView.h"
+
 
 @protocol BTHomepageViewDelegate <NSObject>
 
-- (void)reloadTableView;
+- (void)reloadTableView:(NSInteger)indexpath height:(CGFloat)height;
 
 
 @end
@@ -40,10 +42,14 @@
 
 @property (nonatomic, strong) OpenDetailsView *labDescrp; //描述
 
+@property (nonatomic, strong) UIView *viewLine; //线
+
+@property (nonatomic, strong) BTHomeCommentView *homeCommentView;
+
 @property (nonatomic, assign) CGFloat heightCell;
 
 
-- (void)makeDatacell;
+- (void)makeDatacell:(NSInteger)indexpath ;
 
 
 @end

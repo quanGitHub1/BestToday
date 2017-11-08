@@ -9,7 +9,9 @@
 #import <UIKit/UIKit.h>
 
 @interface OpenDetailsView : UIView
-@property (nonatomic, copy) void (^sendHeightBlock)(CGFloat);
+@property (nonatomic, copy) void (^sendHeightBlock)(CGFloat, NSInteger);
+
+@property (nonatomic, strong) NSDictionary *dicData;
 
 /*
  frame  显示label大小
@@ -18,6 +20,5 @@
  row    显示文字行数
  block  点击后详情高度
  */
-+ (instancetype)initWithFrame:(CGRect)frame text:(NSString *)text font:(int)font numberOfRow:(int)row block:(void(^)(CGFloat))block;
-
++ (instancetype)initWithFrame:(CGRect)frame text:(NSString *)text font:(int)font numberOfRow:(int)row indexPath:(NSInteger)indexpath block:(void (^)(CGFloat, NSInteger))block;
 @end

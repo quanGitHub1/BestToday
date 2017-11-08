@@ -10,6 +10,7 @@
 #import "BTSpreadTableView.h"
 #import "BTLoginViewController.h"
 #import "BTHomePageTableViewCell.h"
+#import "BTHomeOpenHander.h"
 
 @interface BTHomePageViewController ()<LEBaseTableViewDelegate,UITableViewDataSource, UITableViewDelegate, BTSpreadTableViewDelegate, BTHomepageViewDelegate>
 
@@ -29,7 +30,9 @@
     self.navigationBar.title = @"今日最佳";
     
     _dicCell = [[NSMutableDictionary alloc] init];
-
+    
+    
+    [[BTHomeOpenHander shareHomeOpenHander] initDataArry];
     
     [self setupTableView];
 
@@ -93,8 +96,12 @@
 #pragma mark - BTHomepageViewDelegate
 
 
-- (void)reloadTableView{
+- (void)reloadTableView:(NSInteger)indexpath height:(CGFloat)height {
+    
+    BTHomePageTableViewCell *announcementCell = [_dicCell objectForKey:[NSString stringWithFormat:@"indexPath%ld", indexpath]];
 
+    announcementCell.heightCell = height;
+    
     [self.tableView reloadData];
     
 }
@@ -136,7 +143,7 @@
         cell.selectionStyle=UITableViewCellSelectionStyleNone;
     }
     
-    [cell makeDatacell];
+    [cell makeDatacell:indexPath.row];
     
     if (![[_dicCell allKeys] containsObject:[NSString stringWithFormat:@"indexPath%ld", indexPath.row]]) {
         
