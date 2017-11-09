@@ -7,7 +7,9 @@
 //
 
 #import "BTMeService.h"
+#import "NetworkHelper.h"
 
 @implementation BTMeService
+
 
 @end

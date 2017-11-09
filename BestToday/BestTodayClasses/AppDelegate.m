@@ -8,6 +8,8 @@
 
 #import "AppDelegate.h"
 #import "MLTUISkeletonModule.h"
+#import "WXApiManager.h"
+
 
 @interface AppDelegate ()
 
@@ -15,11 +17,30 @@
 
 @implementation AppDelegate
 
+
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     // Override point for customization after application launch.
+    
     // APP入口
     [MLTUISkeletonModule shareInstance];
+    
+    //向微信注册
+    [WXApi registerApp:@"wxd930ea5d5a258f4f" enableMTA:YES];
+    
+    //向微信注册支持的文件类型
+    UInt64 typeFlag = MMAPP_SUPPORT_TEXT | MMAPP_SUPPORT_PICTURE | MMAPP_SUPPORT_LOCATION | MMAPP_SUPPORT_VIDEO |MMAPP_SUPPORT_AUDIO | MMAPP_SUPPORT_WEBPAGE | MMAPP_SUPPORT_DOC | MMAPP_SUPPORT_DOCX | MMAPP_SUPPORT_PPT | MMAPP_SUPPORT_PPTX | MMAPP_SUPPORT_XLS | MMAPP_SUPPORT_XLSX | MMAPP_SUPPORT_PDF;
+    
+    [WXApi registerAppSupportContentFlag:typeFlag];
+
     return YES;
+}
+
+- (BOOL)application:(UIApplication *)application handleOpenURL:(NSURL *)url {
+    return  [WXApi handleOpenURL:url delegate:[WXApiManager sharedManager]];
+}
+
+- (BOOL)application:(UIApplication *)application openURL:(NSURL *)url sourceApplication:(NSString *)sourceApplication annotation:(id)annotation {
+    return [WXApi handleOpenURL:url delegate:[WXApiManager sharedManager]];
 }
 
 - (void)applicationWillResignActive:(UIApplication *)application {
@@ -27,10 +48,12 @@
     // Use this method to pause ongoing tasks, disable timers, and invalidate graphics rendering callbacks. Games should use this method to pause the game.
 }
 
+
 - (void)applicationDidEnterBackground:(UIApplication *)application {
     // Use this method to release shared resources, save user data, invalidate timers, and store enough application state information to restore your application to its current state in case it is terminated later.
     // If your application supports background execution, this method is called instead of applicationWillTerminate: when the user quits.
 }
+
 
 - (void)applicationWillEnterForeground:(UIApplication *)application {
     // Called as part of the transition from the background to the active state; here you can undo many of the changes made on entering the background.
