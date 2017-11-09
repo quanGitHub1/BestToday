@@ -213,7 +213,6 @@ static NSInteger const maxCount = 10000;
     }else{
         _noNetView.hidden = NO;
     }
-    
     dispatch_async(dispatch_get_main_queue(), ^(void){
         if ([self.dataDelegate respondsToSelector:@selector(requestDataSource)]) {
             [self.dataDelegate requestDataSource];

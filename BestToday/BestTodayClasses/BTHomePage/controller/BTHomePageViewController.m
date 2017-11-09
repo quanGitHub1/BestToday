@@ -36,7 +36,6 @@
 //    self.tableView.dataSource = self;
     self.tableView.estimatedRowHeight = 100;
     
-    
 //    self.tableView.dataDelegate = self;
     
     self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;

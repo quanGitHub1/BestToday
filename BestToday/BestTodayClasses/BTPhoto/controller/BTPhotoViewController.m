@@ -8,6 +8,8 @@
 
 #import "BTPhotoViewController.h"
 
+#import "BestToday-Swift.h"
+
 @interface BTPhotoViewController ()
 
 @end
@@ -18,6 +20,22 @@
     [super viewDidLoad];
     self.view.backgroundColor = [UIColor whiteColor];
     self.navigationBar.title = @"拍照";
+    
+    UIButton *button = [UIButton buttonWithType:UIButtonTypeCustom];
+    button.frame = CGRectMake(100, 200, 100, 100);
+    button.backgroundColor = [UIColor redColor];
+    [button setTitle:@"拍照" forState:UIControlStateNormal];
+    [button addTarget:self action:@selector(doPhoto) forControlEvents:UIControlEventTouchUpInside];
+    [self.view addSubview:button];
+    
+    
+}
+
+- (void)doPhoto{
+    
+    FusumaViewController *fusumaViewController = [[FusumaViewController alloc] init];
+    fusumaViewController.cropHeightRatio = 0.6;
+    [self.navigationController presentViewController:fusumaViewController animated:YES completion:nil];
 }
 
 - (void)didReceiveMemoryWarning {

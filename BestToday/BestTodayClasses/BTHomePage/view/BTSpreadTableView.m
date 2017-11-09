@@ -32,7 +32,6 @@
 - (id)initWithFrame:(CGRect)frame style:(UITableViewStyle)style withType:(BTSpreadTableViewStyle)type
 {
     self = [super initWithFrame:frame style:style];
-    
     if (self) {
         
         self.delegate = self;
@@ -163,12 +162,12 @@
     /**
       这个高度是横向单个cell的宽度
      */
-   
-        return ScaleHeight(80);
+    return ScaleHeight(80);
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
+    
 }
 
 - (void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView{

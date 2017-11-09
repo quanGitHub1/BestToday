@@ -134,6 +134,23 @@
 		7AA2BD5A1FAFFDEE00864753 /* UILabel+MLTKit.m in Sources */ = {isa = PBXBuildFile; fileRef = 7AA2BD591FAFFDEE00864753 /* UILabel+MLTKit.m */; };
 		7AA2BD5D1FAFFE4D00864753 /* UIColor+MLTKit.m in Sources */ = {isa = PBXBuildFile; fileRef = 7AA2BD5C1FAFFE4D00864753 /* UIColor+MLTKit.m */; };
 		7AA2BD601FB005B300864753 /* BTRecomendUserTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 7AA2BD5F1FB005B300864753 /* BTRecomendUserTableViewCell.m */; };
+		CB9EB67F1FB04D5700A97D86 /* BTDiscoverHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = CB9EB67E1FB04D5700A97D86 /* BTDiscoverHeaderView.m */; };
+		CB9EB68F1FB05DAC00A97D86 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CB9EB6811FB05DAC00A97D86 /* Assets.xcassets */; };
+		CB9EB6901FB05DAC00A97D86 /* FSAlbumView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB9EB6821FB05DAC00A97D86 /* FSAlbumView.swift */; };
+		CB9EB6911FB05DAC00A97D86 /* FSAlbumView.xib in Resources */ = {isa = PBXBuildFile; fileRef = CB9EB6831FB05DAC00A97D86 /* FSAlbumView.xib */; };
+		CB9EB6921FB05DAC00A97D86 /* FSAlbumViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB9EB6841FB05DAC00A97D86 /* FSAlbumViewCell.swift */; };
+		CB9EB6931FB05DAC00A97D86 /* FSAlbumViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = CB9EB6851FB05DAC00A97D86 /* FSAlbumViewCell.xib */; };
+		CB9EB6941FB05DAC00A97D86 /* FSCameraView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB9EB6861FB05DAC00A97D86 /* FSCameraView.swift */; };
+		CB9EB6951FB05DAC00A97D86 /* FSCameraView.xib in Resources */ = {isa = PBXBuildFile; fileRef = CB9EB6871FB05DAC00A97D86 /* FSCameraView.xib */; };
+		CB9EB6961FB05DAC00A97D86 /* FSConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB9EB6881FB05DAC00A97D86 /* FSConstants.swift */; };
+		CB9EB6971FB05DAC00A97D86 /* FSImageCropView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB9EB6891FB05DAC00A97D86 /* FSImageCropView.swift */; };
+		CB9EB6981FB05DAC00A97D86 /* FSVideoCameraView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB9EB68A1FB05DAC00A97D86 /* FSVideoCameraView.swift */; };
+		CB9EB6991FB05DAC00A97D86 /* FSVideoCameraView.xib in Resources */ = {isa = PBXBuildFile; fileRef = CB9EB68B1FB05DAC00A97D86 /* FSVideoCameraView.xib */; };
+		CB9EB69A1FB05DAC00A97D86 /* FusumaViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB9EB68C1FB05DAC00A97D86 /* FusumaViewController.swift */; };
+		CB9EB69B1FB05DAC00A97D86 /* FusumaViewController.swift.orig in Resources */ = {isa = PBXBuildFile; fileRef = CB9EB68D1FB05DAC00A97D86 /* FusumaViewController.swift.orig */; };
+		CB9EB69C1FB05DAC00A97D86 /* FusumaViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = CB9EB68E1FB05DAC00A97D86 /* FusumaViewController.xib */; };
+		CB9EB6A11FB0625800A97D86 /* PhotoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB9EB6A01FB0625800A97D86 /* PhotoView.swift */; };
+		CB9EB6A61FB1986500A97D86 /* BTDiscoverCollectionView.m in Sources */ = {isa = PBXBuildFile; fileRef = CB9EB6A51FB1986500A97D86 /* BTDiscoverCollectionView.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -417,6 +434,26 @@
 		7AA2BD5C1FAFFE4D00864753 /* UIColor+MLTKit.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIColor+MLTKit.m"; sourceTree = "<group>"; };
 		7AA2BD5E1FB005B300864753 /* BTRecomendUserTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BTRecomendUserTableViewCell.h; sourceTree = "<group>"; };
 		7AA2BD5F1FB005B300864753 /* BTRecomendUserTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BTRecomendUserTableViewCell.m; sourceTree = "<group>"; };
+		CB9EB67D1FB04D5700A97D86 /* BTDiscoverHeaderView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BTDiscoverHeaderView.h; sourceTree = "<group>"; };
+		CB9EB67E1FB04D5700A97D86 /* BTDiscoverHeaderView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BTDiscoverHeaderView.m; sourceTree = "<group>"; };
+		CB9EB6811FB05DAC00A97D86 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		CB9EB6821FB05DAC00A97D86 /* FSAlbumView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FSAlbumView.swift; sourceTree = "<group>"; };
+		CB9EB6831FB05DAC00A97D86 /* FSAlbumView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = FSAlbumView.xib; sourceTree = "<group>"; };
+		CB9EB6841FB05DAC00A97D86 /* FSAlbumViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FSAlbumViewCell.swift; sourceTree = "<group>"; };
+		CB9EB6851FB05DAC00A97D86 /* FSAlbumViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = FSAlbumViewCell.xib; sourceTree = "<group>"; };
+		CB9EB6861FB05DAC00A97D86 /* FSCameraView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FSCameraView.swift; sourceTree = "<group>"; };
+		CB9EB6871FB05DAC00A97D86 /* FSCameraView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = FSCameraView.xib; sourceTree = "<group>"; };
+		CB9EB6881FB05DAC00A97D86 /* FSConstants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FSConstants.swift; sourceTree = "<group>"; };
+		CB9EB6891FB05DAC00A97D86 /* FSImageCropView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FSImageCropView.swift; sourceTree = "<group>"; };
+		CB9EB68A1FB05DAC00A97D86 /* FSVideoCameraView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FSVideoCameraView.swift; sourceTree = "<group>"; };
+		CB9EB68B1FB05DAC00A97D86 /* FSVideoCameraView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = FSVideoCameraView.xib; sourceTree = "<group>"; };
+		CB9EB68C1FB05DAC00A97D86 /* FusumaViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FusumaViewController.swift; sourceTree = "<group>"; };
+		CB9EB68D1FB05DAC00A97D86 /* FusumaViewController.swift.orig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = FusumaViewController.swift.orig; sourceTree = "<group>"; };
+		CB9EB68E1FB05DAC00A97D86 /* FusumaViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = FusumaViewController.xib; sourceTree = "<group>"; };
+		CB9EB69F1FB060B400A97D86 /* BestToday-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "BestToday-Bridging-Header.h"; sourceTree = "<group>"; };
+		CB9EB6A01FB0625800A97D86 /* PhotoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoView.swift; sourceTree = "<group>"; };
+		CB9EB6A41FB1986500A97D86 /* BTDiscoverCollectionView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BTDiscoverCollectionView.h; sourceTree = "<group>"; };
+		CB9EB6A51FB1986500A97D86 /* BTDiscoverCollectionView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BTDiscoverCollectionView.m; sourceTree = "<group>"; };
 		F2068EBEC2B2F928846BAA88 /* libPods-BestToday.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-BestToday.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		F975E1829CF425B2C69D560E /* Pods-BestToday.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BestToday.release.xcconfig"; path = "Pods/Target Support Files/Pods-BestToday/Pods-BestToday.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -498,6 +535,7 @@
 			isa = PBXGroup;
 			children = (
 				7AA2BB341FAAAE5500864753 /* main.m */,
+				CB9EB69F1FB060B400A97D86 /* BestToday-Bridging-Header.h */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -644,6 +682,7 @@
 		7AA2BB861FAAB2D400864753 /* controller */ = {
 			isa = PBXGroup;
 			children = (
+				CB9EB6801FB05DAC00A97D86 /* BTPhoto */,
 				7AA2BCE81FAAC66700864753 /* BTPhotoViewController.h */,
 				7AA2BCE91FAAC66700864753 /* BTPhotoViewController.m */,
 			);
@@ -1250,6 +1289,10 @@
 			children = (
 				7AA2BD1C1FAAFEB100864753 /* BTDiscoverView.h */,
 				7AA2BD1D1FAAFEB100864753 /* BTDiscoverView.m */,
+				CB9EB67D1FB04D5700A97D86 /* BTDiscoverHeaderView.h */,
+				CB9EB67E1FB04D5700A97D86 /* BTDiscoverHeaderView.m */,
+				CB9EB6A41FB1986500A97D86 /* BTDiscoverCollectionView.h */,
+				CB9EB6A51FB1986500A97D86 /* BTDiscoverCollectionView.m */,
 			);
 			path = view;
 			sourceTree = "<group>";
@@ -1410,6 +1453,28 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		CB9EB6801FB05DAC00A97D86 /* BTPhoto */ = {
+			isa = PBXGroup;
+			children = (
+				CB9EB6811FB05DAC00A97D86 /* Assets.xcassets */,
+				CB9EB6821FB05DAC00A97D86 /* FSAlbumView.swift */,
+				CB9EB6831FB05DAC00A97D86 /* FSAlbumView.xib */,
+				CB9EB6841FB05DAC00A97D86 /* FSAlbumViewCell.swift */,
+				CB9EB6851FB05DAC00A97D86 /* FSAlbumViewCell.xib */,
+				CB9EB6861FB05DAC00A97D86 /* FSCameraView.swift */,
+				CB9EB6871FB05DAC00A97D86 /* FSCameraView.xib */,
+				CB9EB6881FB05DAC00A97D86 /* FSConstants.swift */,
+				CB9EB6891FB05DAC00A97D86 /* FSImageCropView.swift */,
+				CB9EB68A1FB05DAC00A97D86 /* FSVideoCameraView.swift */,
+				CB9EB68B1FB05DAC00A97D86 /* FSVideoCameraView.xib */,
+				CB9EB68C1FB05DAC00A97D86 /* FusumaViewController.swift */,
+				CB9EB68D1FB05DAC00A97D86 /* FusumaViewController.swift.orig */,
+				CB9EB68E1FB05DAC00A97D86 /* FusumaViewController.xib */,
+				CB9EB6A01FB0625800A97D86 /* PhotoView.swift */,
+			);
+			path = BTPhoto;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -1480,6 +1545,7 @@
 				TargetAttributes = {
 					7AA2BB2F1FAAAE5500864753 = {
 						CreatedOnToolsVersion = 8.3.3;
+						DevelopmentTeam = 39ZFSPP22R;
 						ProvisioningStyle = Automatic;
 					};
 					7AA2BB481FAAAE5500864753 = {
@@ -1521,10 +1587,17 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CB9EB6991FB05DAC00A97D86 /* FSVideoCameraView.xib in Resources */,
 				7AA2BB9E1FAAB3A700864753 /* Info.plist in Resources */,
+				CB9EB6911FB05DAC00A97D86 /* FSAlbumView.xib in Resources */,
 				7AA2BB771FAAAFB100864753 /* Main.storyboard in Resources */,
+				CB9EB6931FB05DAC00A97D86 /* FSAlbumViewCell.xib in Resources */,
 				7AA2BB751FAAAFB100864753 /* Assets.xcassets in Resources */,
 				7AA2BB761FAAAFB100864753 /* LaunchScreen.storyboard in Resources */,
+				CB9EB69B1FB05DAC00A97D86 /* FusumaViewController.swift.orig in Resources */,
+				CB9EB6951FB05DAC00A97D86 /* FSCameraView.xib in Resources */,
+				CB9EB69C1FB05DAC00A97D86 /* FusumaViewController.xib in Resources */,
+				CB9EB68F1FB05DAC00A97D86 /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1604,9 +1677,12 @@
 			buildActionMask = 2147483647;
 			files = (
 				7AA2BC111FAAB4CC00864753 /* UIColor+AM.m in Sources */,
+				CB9EB6981FB05DAC00A97D86 /* FSVideoCameraView.swift in Sources */,
 				7AA2BC241FAAB4CC00864753 /* MLTNormalBadgeView.m in Sources */,
 				7AA2BC2B1FAAB4CC00864753 /* MLTDotRhombusPulseAnimation.m in Sources */,
 				7AA2BD0C1FAAFE2800864753 /* BTHomePageEntity.m in Sources */,
+				CB9EB6921FB05DAC00A97D86 /* FSAlbumViewCell.swift in Sources */,
+				CB9EB6971FB05DAC00A97D86 /* FSImageCropView.swift in Sources */,
 				7AA2BB6E1FAAAF5600864753 /* ViewController.m in Sources */,
 				7AA2BC321FAAB4CC00864753 /* BTTableview.m in Sources */,
 				7AA2BCB21FAAC07400864753 /* NSArray+MLTKit.m in Sources */,
@@ -1625,9 +1701,11 @@
 				7AA2BCBF1FAAC07400864753 /* MLTUtils.m in Sources */,
 				7AA2BCAF1FAAC07400864753 /* MLTTabBarItem.m in Sources */,
 				7AA2BC2A1FAAB4CC00864753 /* MLTLoadingFooter.m in Sources */,
+				CB9EB69A1FB05DAC00A97D86 /* FusumaViewController.swift in Sources */,
 				7AA2BCAE1FAAC07400864753 /* MLTTabBarController.m in Sources */,
 				7AA2BCB01FAAC07400864753 /* MLTTabBarManager.m in Sources */,
 				7AA2BCEA1FAAC66700864753 /* BTPhotoViewController.m in Sources */,
+				CB9EB6941FB05DAC00A97D86 /* FSCameraView.swift in Sources */,
 				7AA2BCBB1FAAC07400864753 /* NSMutableSet+MLTKit.m in Sources */,
 				7AA2BC1C1FAAB4CC00864753 /* UIView+MLTKit.m in Sources */,
 				7AA2BCDD1FAAC31F00864753 /* NetworkHelper.m in Sources */,
@@ -1642,6 +1720,7 @@
 				7AA2BD4E1FAB003E00864753 /* BTPhotoViewModel.m in Sources */,
 				7AA2BD601FB005B300864753 /* BTRecomendUserTableViewCell.m in Sources */,
 				7AA2BC351FAAB4CC00864753 /* MLTCollectionView.m in Sources */,
+				CB9EB6901FB05DAC00A97D86 /* FSAlbumView.swift in Sources */,
 				7AA2BD0F1FAAFE3C00864753 /* BtHomePageService.m in Sources */,
 				7AA2BC2C1FAAB4CC00864753 /* MLTIndicatorView.m in Sources */,
 				7AA2BC371FAAB4CC00864753 /* MLTPageControl.m in Sources */,
@@ -1655,8 +1734,10 @@
 				7AA2BCE11FAAC62900864753 /* BTHomePageViewController.m in Sources */,
 				7AA2BCA51FAAC07400864753 /* NSObject+LEEntity.m in Sources */,
 				7AA2BC1D1FAAB4CC00864753 /* UIView+MLTMasonry.m in Sources */,
+				CB9EB6A11FB0625800A97D86 /* PhotoView.swift in Sources */,
 				7AA2BCAC1FAAC07400864753 /* MGJNavigationBar.m in Sources */,
 				7AA2BC0E1FAAB4CC00864753 /* LECollectionViewController.m in Sources */,
+				CB9EB67F1FB04D5700A97D86 /* BTDiscoverHeaderView.m in Sources */,
 				7AA2BCB41FAAC07400864753 /* NSBundle+MLTKit.m in Sources */,
 				7AA2BCBD1FAAC07400864753 /* NSURL+MLTKit.m in Sources */,
 				7AA2BC1E1FAAB4CC00864753 /* UIView+MLTSnapshot.m in Sources */,
@@ -1666,6 +1747,7 @@
 				7AA2BC141FAAB4CC00864753 /* NSObject+MGJKit.m in Sources */,
 				7AA2BC161FAAB4CC00864753 /* UIButton+MLTKit.m in Sources */,
 				7AA2BD2D1FAAFF2B00864753 /* BTPhotoTableViewCell.m in Sources */,
+				CB9EB6A61FB1986500A97D86 /* BTDiscoverCollectionView.m in Sources */,
 				7AA2BD1E1FAAFEB100864753 /* BTDiscoverView.m in Sources */,
 				7AA2BCA41FAAC07400864753 /* LEEntity.m in Sources */,
 				7AA2BC0F1FAAB4CC00864753 /* BTTableViewController.m in Sources */,
@@ -1701,6 +1783,7 @@
 				7AA2BC261FAAB4CC00864753 /* MLTCollectionView+MLTBrokenNetwork.m in Sources */,
 				7AA2BD481FAB001700864753 /* BTDiscoverViewModel.m in Sources */,
 				7AA2BC1B1FAAB4CC00864753 /* UIView+MLTAnimation.m in Sources */,
+				CB9EB6961FB05DAC00A97D86 /* FSConstants.swift in Sources */,
 				7AA2BC1A1FAAB4CC00864753 /* UIView+Extension.m in Sources */,
 				7AA2BCB81FAAC07400864753 /* NSDictionary+MLTKit.m in Sources */,
 				7AA2BC381FAAB4CC00864753 /* MLTSliderView.m in Sources */,
@@ -1798,6 +1881,7 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = dwarf;
+				DEFINES_MODULE = YES;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
@@ -1847,6 +1931,7 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DEFINES_MODULE = YES;
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
@@ -1870,13 +1955,15 @@
 			baseConfigurationReference = 3628CE6CF7DDDC7E7152EBDC /* Pods-BestToday.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				DEVELOPMENT_TEAM = "";
+				DEFINES_MODULE = YES;
+				DEVELOPMENT_TEAM = 39ZFSPP22R;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "$(SRCROOT)/BestToday/BTFoundation/BTMacors/LEFinanceNewsIphone.pch";
 				INFOPLIST_FILE = "$(SRCROOT)/BestToday/Resourse/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = Rabbit.BestToday;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
 			};
 			name = Debug;
 		};
@@ -1885,19 +1972,22 @@
 			baseConfigurationReference = F975E1829CF425B2C69D560E /* Pods-BestToday.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				DEVELOPMENT_TEAM = "";
+				DEFINES_MODULE = YES;
+				DEVELOPMENT_TEAM = 39ZFSPP22R;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "$(SRCROOT)/BestToday/BTFoundation/BTMacors/LEFinanceNewsIphone.pch";
 				INFOPLIST_FILE = "$(SRCROOT)/BestToday/Resourse/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = Rabbit.BestToday;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
 			};
 			name = Release;
 		};
 		7AA2BB611FAAAE5500864753 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				DEVELOPMENT_TEAM = ML77R3AZAP;
 				INFOPLIST_FILE = BestTodayTests/Info.plist;
@@ -1911,6 +2001,7 @@
 		7AA2BB621FAAAE5500864753 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				DEVELOPMENT_TEAM = ML77R3AZAP;
 				INFOPLIST_FILE = BestTodayTests/Info.plist;
@@ -1924,6 +2015,7 @@
 		7AA2BB641FAAAE5500864753 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				DEVELOPMENT_TEAM = ML77R3AZAP;
 				INFOPLIST_FILE = BestTodayUITests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
@@ -1936,6 +2028,7 @@
 		7AA2BB651FAAAE5500864753 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				DEVELOPMENT_TEAM = ML77R3AZAP;
 				INFOPLIST_FILE = BestTodayUITests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
