@@ -158,12 +158,53 @@
     
     _btnShare.frame = CGRectMake(_btnComment.right + 24, _imagePic.bottom + 12, 22, 22);
     
+    
+    NSArray *arrData = @[@"阿加阿达科技大厦空军啊空军打卡多久啊开始搭建啊看来大家啊看来大家啊可怜的", @"阿加阿达科技大厦空军啊空军打卡多久啊开始搭建啊看来大家啊看来大家啊可怜的符合双方就开始恢复健康顺利返回就开始了复活节凯撒绿肥红瘦开发和科技阿里复活节卡洛斯复活节卡什莱夫", @"小阿联军啊jlksjfklsajfl;kasfjkls;afjas;l"];
+    
+    CGFloat heightLab = 0.0;
+    
+     CGFloat heightLabTwo = 0.0;
+    
+    for (int i = 0; i < arrData.count; i++) {
+        
+        UILabel *labComment = [[UILabel alloc] initWithFrame:CGRectMake(_imageAvtar.left, heightLab + _labDescrp.bottom + 15, FULL_WIDTH - 30, 0)];
+        
+        // 设置label的行间距
+        NSMutableParagraphStyle  *paragraphStyle = [[NSMutableParagraphStyle alloc] init];
+        
+        
+        [paragraphStyle  setLineSpacing:8];
+        
+        NSMutableAttributedString  *setString;
+        
+        setString = [[NSMutableAttributedString alloc] initWithString:arrData[i]];
+        
+        [setString  addAttribute:NSParagraphStyleAttributeName value:paragraphStyle range:NSMakeRange(0, [arrData[i] length])];
+        
+        labComment.attributedText = setString;
+        
+        labComment.numberOfLines = 3;
+        
+        labComment.font = [UIFont systemFontOfSize:14];
+        
+        [labComment sizeToFit];
+        
+        heightLab += labComment.height + 10;
+        
+        if (i == arrData.count - 1) {
+            
+            heightLabTwo = heightLab + labComment.height;
+        }
+        
+    }
+    
     NSString *testStr = @"阿加阿达科技大厦空军啊空军打卡多久啊开始搭建啊看来大家啊看来大家啊可怜的了大家啊陆慷的杰拉德将离开饿哦我反胃啊没事卡利久里开车拉萨城看看撒加克里斯朵夫考虑是否将咖喱饭就啊哭了；飞机";
+    
     
     int font = 15;
     int row = 3;
     
-    CGFloat height = font * (row + 1);
+    CGFloat height = font * (row + 1) + heightLabTwo + 30;
     
     
     _labDescrp = [OpenDetailsView initWithFrame:CGRectMake(_imageAvtar.left, _labTime.bottom + 15, FULL_WIDTH - 30, height) text:testStr font:font numberOfRow:row + 1 indexPath:indexpath block:^(CGFloat height, NSInteger indexpath) {
@@ -181,35 +222,11 @@
     
     [self.contentView addSubview:_labDescrp];
     
-    
-    
-    _homeCommentView = [[BTHomeCommentView alloc] initWithFrame:CGRectMake(0, _labDescrp.bottom + 15, FULL_WIDTH, 300) block:^(CGFloat height) {
-        
-//        if (_heightCell == 0) {
-//            
-//            _heightCell = height + 20;
-//            
-//        }
-
-        
-    }];
-    
-//    [_homeCommentView getCommentCellHeight];
-    
-    
-    
-    
-    _homeCommentView.backgroundColor = [UIColor redColor];
-    [self.contentView addSubview:_homeCommentView];
-
-    
-
-    if (_heightCell == 0) {
-        
-        _heightCell = _homeCommentView.bottom + 20;
-
-    }
-    
+        if (_heightCell == 0) {
+            
+            _heightCell = _labDescrp.bottom + 10;
+            
+        }
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {
