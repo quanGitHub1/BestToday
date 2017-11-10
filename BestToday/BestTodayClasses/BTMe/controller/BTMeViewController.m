@@ -24,6 +24,11 @@
 
 @property (nonatomic, strong) UIButton *btnModify;    // 修改
 
+@property (nonatomic, strong) UILabel *labTag;    // 标签
+
+@property (nonatomic, strong) UIView *viewLine;    // 线
+
+
 
 @end
 
@@ -33,8 +38,9 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.view.backgroundColor = [UIColor whiteColor];
-    self.navigationBar.title = @"个人中心";
     
+    [self setNavgationBar];
+
    UIView *headView = [self creatHeaderView:CGRectMake(0, NAVBAR_HEIGHT, FULL_WIDTH, 200)];
     
    [self.view addSubview:headView];
@@ -43,7 +49,9 @@
 
 -(void)setNavgationBar{
 
-    
+    self.navigationBar.title = @"个人中心";
+    // 添加右上角按钮
+    [self.navigationBar setRightBarButton:[UIButton mlt_rightBarButtonWithImage:[UIImage imageNamed:@"addFriend"] highlightedImage:nil target:self action:@selector(addFriend:)forControlEvents:UIControlEventTouchUpInside]];
 }
 
 - (UIView *)creatHeaderView:(CGRect)frame{
@@ -124,6 +132,14 @@
     
     [_labDes sizeToFit];
     
+    _labTag = [UILabel mlt_labelWithText:@"#电影  美食  设计  摄影  旅行  食物派" color:[UIColor mlt_colorWithHexString:@"#969696" alpha:1] align:NSTextAlignmentLeft font:[UIFont systemFontOfSize:14] bkColor:nil frame:CGRectMake(_imageAvtar.left, _labDes.bottom + 16, FULL_WIDTH - 30, 0)];
+    
+    [_labTag sizeToFit];
+    
+    _viewLine = [[UIView alloc] initWithFrame:CGRectMake(0, _labTag.bottom + 16, FULL_WIDTH, 1)];
+    
+    _viewLine.backgroundColor = [UIColor colorWithHexString:@"#eeeeee"];
+    
     [viewHeaer addSubview:_imageAvtar];
     
     [viewHeaer addSubview:_labName];
@@ -138,7 +154,16 @@
     
     [viewHeaer addSubview:_labDes];
     
+    [viewHeaer addSubview:_labTag];
+    
+    [viewHeaer addSubview:_viewLine];
+    
     return viewHeaer;
+    
+}
+
+- (void)addFriend:(UIButton *)btn{
+    
     
 }
 

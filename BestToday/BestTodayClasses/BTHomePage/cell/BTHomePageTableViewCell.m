@@ -139,25 +139,18 @@
 
     [_btnCollection setImage:iamgeCollection forState:UIControlStateNormal];
     
-//    _btnCollection.frame = CGRectMake(_labFabulous.right + 15, _imagePic.bottom + 12, iamgeCollection.size.width, iamgeCollection.size.height);
+    _btnCollection.frame = CGRectMake(_labFabulous.right + 15, _imagePic.bottom + 12, iamgeCollection.size.width, iamgeCollection.size.height);
     
-    _btnCollection.frame = CGRectMake(_labFabulous.right + 15, _imagePic.bottom + 12, 22, 22);
-
     
     [_btnComment setImage:iamgeInformation forState:UIControlStateNormal];
 
-//    _btnComment.frame = CGRectMake(_btnCollection.right + 24, _imagePic.bottom + 12, iamgeCollection.size.width, iamgeCollection.size.height);
+    _btnComment.frame = CGRectMake(_btnCollection.right + 24, _imagePic.bottom + 12, iamgeCollection.size.width, iamgeCollection.size.height);
     
     _btnComment.frame = CGRectMake(_btnCollection.right + 24, _imagePic.bottom + 12, 22, 22);
-
-
     
     [_btnShare setImage:iamgeshare forState:UIControlStateNormal];
 
-//    _btnShare.frame = CGRectMake(_btnComment.right + 24, _imagePic.bottom + 12, iamgeCollection.size.width, iamgeCollection.size.height);
-    
-    _btnShare.frame = CGRectMake(_btnComment.right + 24, _imagePic.bottom + 12, 22, 22);
-    
+    _btnShare.frame = CGRectMake(_btnComment.right + 24, _imagePic.bottom + 12, iamgeCollection.size.width, iamgeCollection.size.height);
     
     NSArray *arrData = @[@"阿加阿达科技大厦空军啊空军打卡多久啊开始搭建啊看来大家啊看来大家啊可怜的", @"阿加阿达科技大厦空军啊空军打卡多久啊开始搭建啊看来大家啊看来大家啊可怜的符合双方就开始恢复健康顺利返回就开始了复活节凯撒绿肥红瘦开发和科技阿里复活节卡洛斯复活节卡什莱夫", @"小阿联军啊jlksjfklsajfl;kasfjkls;afjas;l"];
     

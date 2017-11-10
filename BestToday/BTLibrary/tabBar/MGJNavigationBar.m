@@ -80,9 +80,11 @@
     
     UILabel *titleLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 5, 200, _titleView.height - 10)];
     titleLabel.backgroundColor = [UIColor clearColor];
-    titleLabel.textColor = self.titleColor ? : [UIColor blackColor];
+//    titleLabel.textColor = self.titleColor ? : [UIColor blackColor];
+    
+    titleLabel.textColor = [UIColor colorWithHexString:@"#212121"];
     titleLabel.text = _title;
-    titleLabel.font = [UIFont boldSystemFontOfSize:18];
+    titleLabel.font = [UIFont systemFontOfSize:18];
     titleLabel.textAlignment = NSTextAlignmentCenter;
     titleLabel.adjustsFontSizeToFitWidth = YES;
     titleLabel.minimumScaleFactor = 14 / 18.f;
@@ -169,23 +171,11 @@
     self.containerView.bottom = self.height;
     self.leftBarButton.center = CGPointMake(_leftBarButton.centerX, self.containerView.height/2);
     
-//    self.rightBarButton.right = self.rightBarButton.right;
-//    self.rightBarButton.centerY = self.containerView.height / 2;
+    self.rightBarButton.right = self.rightBarButton.right;
+    self.rightBarButton.centerY = self.containerView.height / 2;
     
     self.titleView.center = CGPointMake(self.containerView.width / 2, self.containerView.height / 2) ;
-    
     self.titleLabel.frame = CGRectMake(0, 5, 200, _titleView.height - 10);
-
-    // 新修改的
-    self.titleView.bottom = 35;
-    
-    _leftBarButton.bottom = 40;
-    
-    
-//    self.rightBarButton.right = FULL_WIDTH - 15;
-    
-//    self.rightBarButton.bottom = 28;
-
     
 }
 
