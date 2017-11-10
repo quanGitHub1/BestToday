@@ -157,6 +157,23 @@
 		7AA2BDC51FB2D88E00864753 /* BTHomeComment.m in Sources */ = {isa = PBXBuildFile; fileRef = 7AA2BDC41FB2D88E00864753 /* BTHomeComment.m */; };
 		7AA2BDC81FB2FAE400864753 /* BTHomeCommentTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 7AA2BDC71FB2FAE400864753 /* BTHomeCommentTableViewCell.m */; };
 		7AA2BDCE1FB3015900864753 /* BTHomeCommentView.m in Sources */ = {isa = PBXBuildFile; fileRef = 7AA2BDCD1FB3015900864753 /* BTHomeCommentView.m */; };
+		CBCD2EA91FB4657100994037 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CBCD2E9A1FB4657100994037 /* Assets.xcassets */; };
+		CBCD2EAA1FB4657100994037 /* FSAlbumView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBCD2E9B1FB4657100994037 /* FSAlbumView.swift */; };
+		CBCD2EAB1FB4657100994037 /* FSAlbumView.xib in Resources */ = {isa = PBXBuildFile; fileRef = CBCD2E9C1FB4657100994037 /* FSAlbumView.xib */; };
+		CBCD2EAC1FB4657100994037 /* FSAlbumViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBCD2E9D1FB4657100994037 /* FSAlbumViewCell.swift */; };
+		CBCD2EAD1FB4657100994037 /* FSAlbumViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = CBCD2E9E1FB4657100994037 /* FSAlbumViewCell.xib */; };
+		CBCD2EAE1FB4657100994037 /* FSCameraView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBCD2E9F1FB4657100994037 /* FSCameraView.swift */; };
+		CBCD2EAF1FB4657100994037 /* FSCameraView.xib in Resources */ = {isa = PBXBuildFile; fileRef = CBCD2EA01FB4657100994037 /* FSCameraView.xib */; };
+		CBCD2EB01FB4657100994037 /* FSConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBCD2EA11FB4657100994037 /* FSConstants.swift */; };
+		CBCD2EB11FB4657100994037 /* FSImageCropView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBCD2EA21FB4657100994037 /* FSImageCropView.swift */; };
+		CBCD2EB21FB4657100994037 /* FSVideoCameraView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBCD2EA31FB4657100994037 /* FSVideoCameraView.swift */; };
+		CBCD2EB31FB4657100994037 /* FSVideoCameraView.xib in Resources */ = {isa = PBXBuildFile; fileRef = CBCD2EA41FB4657100994037 /* FSVideoCameraView.xib */; };
+		CBCD2EB41FB4657100994037 /* FusumaViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBCD2EA51FB4657100994037 /* FusumaViewController.swift */; };
+		CBCD2EB51FB4657100994037 /* FusumaViewController.swift.orig in Resources */ = {isa = PBXBuildFile; fileRef = CBCD2EA61FB4657100994037 /* FusumaViewController.swift.orig */; };
+		CBCD2EB61FB4657100994037 /* FusumaViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = CBCD2EA71FB4657100994037 /* FusumaViewController.xib */; };
+		CBCD2EB71FB4657100994037 /* PhotoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBCD2EA81FB4657100994037 /* PhotoView.swift */; };
+		CBCD2EBC1FB4658F00994037 /* BTDiscoverCollectionView.m in Sources */ = {isa = PBXBuildFile; fileRef = CBCD2EB91FB4658F00994037 /* BTDiscoverCollectionView.m */; };
+		CBCD2EBD1FB4658F00994037 /* BTDiscoverHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = CBCD2EBB1FB4658F00994037 /* BTDiscoverHeaderView.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -483,6 +500,25 @@
 		7AA2BDC71FB2FAE400864753 /* BTHomeCommentTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BTHomeCommentTableViewCell.m; sourceTree = "<group>"; };
 		7AA2BDCC1FB3015900864753 /* BTHomeCommentView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BTHomeCommentView.h; sourceTree = "<group>"; };
 		7AA2BDCD1FB3015900864753 /* BTHomeCommentView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BTHomeCommentView.m; sourceTree = "<group>"; };
+		CBCD2E9A1FB4657100994037 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		CBCD2E9B1FB4657100994037 /* FSAlbumView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FSAlbumView.swift; sourceTree = "<group>"; };
+		CBCD2E9C1FB4657100994037 /* FSAlbumView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = FSAlbumView.xib; sourceTree = "<group>"; };
+		CBCD2E9D1FB4657100994037 /* FSAlbumViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FSAlbumViewCell.swift; sourceTree = "<group>"; };
+		CBCD2E9E1FB4657100994037 /* FSAlbumViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = FSAlbumViewCell.xib; sourceTree = "<group>"; };
+		CBCD2E9F1FB4657100994037 /* FSCameraView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FSCameraView.swift; sourceTree = "<group>"; };
+		CBCD2EA01FB4657100994037 /* FSCameraView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = FSCameraView.xib; sourceTree = "<group>"; };
+		CBCD2EA11FB4657100994037 /* FSConstants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FSConstants.swift; sourceTree = "<group>"; };
+		CBCD2EA21FB4657100994037 /* FSImageCropView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FSImageCropView.swift; sourceTree = "<group>"; };
+		CBCD2EA31FB4657100994037 /* FSVideoCameraView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FSVideoCameraView.swift; sourceTree = "<group>"; };
+		CBCD2EA41FB4657100994037 /* FSVideoCameraView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = FSVideoCameraView.xib; sourceTree = "<group>"; };
+		CBCD2EA51FB4657100994037 /* FusumaViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FusumaViewController.swift; sourceTree = "<group>"; };
+		CBCD2EA61FB4657100994037 /* FusumaViewController.swift.orig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = FusumaViewController.swift.orig; sourceTree = "<group>"; };
+		CBCD2EA71FB4657100994037 /* FusumaViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = FusumaViewController.xib; sourceTree = "<group>"; };
+		CBCD2EA81FB4657100994037 /* PhotoView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhotoView.swift; sourceTree = "<group>"; };
+		CBCD2EB81FB4658F00994037 /* BTDiscoverCollectionView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BTDiscoverCollectionView.h; sourceTree = "<group>"; };
+		CBCD2EB91FB4658F00994037 /* BTDiscoverCollectionView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BTDiscoverCollectionView.m; sourceTree = "<group>"; };
+		CBCD2EBA1FB4658F00994037 /* BTDiscoverHeaderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BTDiscoverHeaderView.h; sourceTree = "<group>"; };
+		CBCD2EBB1FB4658F00994037 /* BTDiscoverHeaderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BTDiscoverHeaderView.m; sourceTree = "<group>"; };
 		F2068EBEC2B2F928846BAA88 /* libPods-BestToday.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-BestToday.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		F975E1829CF425B2C69D560E /* Pods-BestToday.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BestToday.release.xcconfig"; path = "Pods/Target Support Files/Pods-BestToday/Pods-BestToday.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -722,6 +758,7 @@
 		7AA2BB861FAAB2D400864753 /* controller */ = {
 			isa = PBXGroup;
 			children = (
+				CBCD2E991FB4657100994037 /* BTPhoto */,
 				7AA2BCE81FAAC66700864753 /* BTPhotoViewController.h */,
 				7AA2BCE91FAAC66700864753 /* BTPhotoViewController.m */,
 			);
@@ -1339,6 +1376,10 @@
 		7AA2BCF61FAAFD2900864753 /* view */ = {
 			isa = PBXGroup;
 			children = (
+				CBCD2EB81FB4658F00994037 /* BTDiscoverCollectionView.h */,
+				CBCD2EB91FB4658F00994037 /* BTDiscoverCollectionView.m */,
+				CBCD2EBA1FB4658F00994037 /* BTDiscoverHeaderView.h */,
+				CBCD2EBB1FB4658F00994037 /* BTDiscoverHeaderView.m */,
 				7AA2BD1C1FAAFEB100864753 /* BTDiscoverView.h */,
 				7AA2BD1D1FAAFEB100864753 /* BTDiscoverView.m */,
 			);
@@ -1549,6 +1590,28 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		CBCD2E991FB4657100994037 /* BTPhoto */ = {
+			isa = PBXGroup;
+			children = (
+				CBCD2E9A1FB4657100994037 /* Assets.xcassets */,
+				CBCD2E9B1FB4657100994037 /* FSAlbumView.swift */,
+				CBCD2E9C1FB4657100994037 /* FSAlbumView.xib */,
+				CBCD2E9D1FB4657100994037 /* FSAlbumViewCell.swift */,
+				CBCD2E9E1FB4657100994037 /* FSAlbumViewCell.xib */,
+				CBCD2E9F1FB4657100994037 /* FSCameraView.swift */,
+				CBCD2EA01FB4657100994037 /* FSCameraView.xib */,
+				CBCD2EA11FB4657100994037 /* FSConstants.swift */,
+				CBCD2EA21FB4657100994037 /* FSImageCropView.swift */,
+				CBCD2EA31FB4657100994037 /* FSVideoCameraView.swift */,
+				CBCD2EA41FB4657100994037 /* FSVideoCameraView.xib */,
+				CBCD2EA51FB4657100994037 /* FusumaViewController.swift */,
+				CBCD2EA61FB4657100994037 /* FusumaViewController.swift.orig */,
+				CBCD2EA71FB4657100994037 /* FusumaViewController.xib */,
+				CBCD2EA81FB4657100994037 /* PhotoView.swift */,
+			);
+			path = BTPhoto;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -1619,7 +1682,6 @@
 				TargetAttributes = {
 					7AA2BB2F1FAAAE5500864753 = {
 						CreatedOnToolsVersion = 8.3.3;
-						DevelopmentTeam = ML77R3AZAP;
 						ProvisioningStyle = Automatic;
 					};
 					7AA2BB481FAAAE5500864753 = {
@@ -1662,10 +1724,17 @@
 			buildActionMask = 2147483647;
 			files = (
 				744DF52E1FB09EA700CF8796 /* Info.plist in Resources */,
+				CBCD2EB51FB4657100994037 /* FusumaViewController.swift.orig in Resources */,
 				7AA2BB771FAAAFB100864753 /* Main.storyboard in Resources */,
 				7AA2BB751FAAAFB100864753 /* Assets.xcassets in Resources */,
+				CBCD2EAD1FB4657100994037 /* FSAlbumViewCell.xib in Resources */,
 				7AA2BDB41FB15CE400864753 /* BTLoginViewController.xib in Resources */,
+				CBCD2EA91FB4657100994037 /* Assets.xcassets in Resources */,
+				CBCD2EAF1FB4657100994037 /* FSCameraView.xib in Resources */,
+				CBCD2EAB1FB4657100994037 /* FSAlbumView.xib in Resources */,
 				7AA2BB761FAAAFB100864753 /* LaunchScreen.storyboard in Resources */,
+				CBCD2EB61FB4657100994037 /* FusumaViewController.xib in Resources */,
+				CBCD2EB31FB4657100994037 /* FSVideoCameraView.xib in Resources */,
 				7AA2BD8D1FB1570400864753 /* README.txt in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1760,13 +1829,16 @@
 				7AA2BC171FAAB4CC00864753 /* UIFont+runtime.m in Sources */,
 				7AA2BB351FAAAE5500864753 /* main.m in Sources */,
 				7AA2BCC11FAAC07400864753 /* CFileUtil.m in Sources */,
+				CBCD2EB41FB4657100994037 /* FusumaViewController.swift in Sources */,
 				7AA2BD181FAAFE8B00864753 /* BTDiscoverEntity.m in Sources */,
 				7AA2BCBF1FAAC07400864753 /* MLTUtils.m in Sources */,
 				7AA2BCAF1FAAC07400864753 /* MLTTabBarItem.m in Sources */,
 				7AA2BDC81FB2FAE400864753 /* BTHomeCommentTableViewCell.m in Sources */,
 				7AA2BC2A1FAAB4CC00864753 /* MLTLoadingFooter.m in Sources */,
 				7AA2BCAE1FAAC07400864753 /* MLTTabBarController.m in Sources */,
+				CBCD2EB21FB4657100994037 /* FSVideoCameraView.swift in Sources */,
 				7AA2BCB01FAAC07400864753 /* MLTTabBarManager.m in Sources */,
+				CBCD2EAE1FB4657100994037 /* FSCameraView.swift in Sources */,
 				7AA2BCEA1FAAC66700864753 /* BTPhotoViewController.m in Sources */,
 				7AA2BCBB1FAAC07400864753 /* NSMutableSet+MLTKit.m in Sources */,
 				7AA2BC1C1FAAB4CC00864753 /* UIView+MLTKit.m in Sources */,
@@ -1776,7 +1848,9 @@
 				7AA2BDBA1FB1B0CA00864753 /* OpenDetailsView.m in Sources */,
 				7AA2BD301FAAFF3C00864753 /* BTPhotoEntity.m in Sources */,
 				7AA2BD571FAFFD3900864753 /* BTSpreadTableView.m in Sources */,
+				CBCD2EAA1FB4657100994037 /* FSAlbumView.swift in Sources */,
 				7AA2BDC51FB2D88E00864753 /* BTHomeComment.m in Sources */,
+				CBCD2EBD1FB4658F00994037 /* BTDiscoverHeaderView.m in Sources */,
 				7AA2BD211FAAFECE00864753 /* BTCollectionTableViewCell.m in Sources */,
 				7AA2BC2E1FAAB4CC00864753 /* MLTRefreshHeader.m in Sources */,
 				7AA2BD3C1FAAFF8900864753 /* BTMeEntity.m in Sources */,
@@ -1784,6 +1858,7 @@
 				7AA2BCB71FAAC07400864753 /* NSDateFormatter+MLTKit.m in Sources */,
 				7AA2BD4E1FAB003E00864753 /* BTPhotoViewModel.m in Sources */,
 				7AA2BD601FB005B300864753 /* BTRecomendUserTableViewCell.m in Sources */,
+				CBCD2EAC1FB4657100994037 /* FSAlbumViewCell.swift in Sources */,
 				7AA2BC351FAAB4CC00864753 /* MLTCollectionView.m in Sources */,
 				7AA2BD0F1FAAFE3C00864753 /* BtHomePageService.m in Sources */,
 				7AA2BC2C1FAAB4CC00864753 /* MLTIndicatorView.m in Sources */,
@@ -1791,9 +1866,12 @@
 				7AA2BD5D1FAFFE4D00864753 /* UIColor+MLTKit.m in Sources */,
 				7AA2BDC21FB2A79100864753 /* BTHomeOpenHander.m in Sources */,
 				7AA2BCB91FAAC07400864753 /* NSMutableDictionary+MLTKit.m in Sources */,
+				CBCD2EBC1FB4658F00994037 /* BTDiscoverCollectionView.m in Sources */,
 				7AA2BD1B1FAAFE9B00864753 /* BTDiscoverService.m in Sources */,
 				7AA2BD5A1FAFFDEE00864753 /* UILabel+MLTKit.m in Sources */,
 				7AA2BCB51FAAC07400864753 /* NSCalendar+YU.m in Sources */,
+				CBCD2EB01FB4657100994037 /* FSConstants.swift in Sources */,
+				CBCD2EB11FB4657100994037 /* FSImageCropView.swift in Sources */,
 				7AA2BC251FAAB4CC00864753 /* MLTBrokenNetworkView.m in Sources */,
 				7AA2BDAA1FB15C4E00864753 /* SendMessageToWXReq+requestWithTextOrMediaMessage.m in Sources */,
 				7AA2BD391FAAFF7700864753 /* BTMeTableViewCell.m in Sources */,
@@ -1823,6 +1901,7 @@
 				7AA2BCA81FAAC07400864753 /* MGJNavigationController.m in Sources */,
 				7AA2BD3F1FAAFF9600864753 /* BTMeService.m in Sources */,
 				7AA2BC151FAAB4CC00864753 /* UIButton+Font.m in Sources */,
+				CBCD2EB71FB4657100994037 /* PhotoView.swift in Sources */,
 				7AA2BC211FAAB4CC00864753 /* MLTBadgeView.m in Sources */,
 				7AA2BDBE1FB1B1BD00864753 /* NSString+Font.m in Sources */,
 				7AA2BD421FAAFFA700864753 /* BTMeView.m in Sources */,
@@ -2021,7 +2100,7 @@
 			baseConfigurationReference = 3628CE6CF7DDDC7E7152EBDC /* Pods-BestToday.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				DEVELOPMENT_TEAM = ML77R3AZAP;
+				DEVELOPMENT_TEAM = "";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "$(SRCROOT)/BestToday/BTFoundation/BTMacors/LEFinanceNewsIphone.pch";
 				INFOPLIST_FILE = "$(SRCROOT)/BestToday/Resourse/Info.plist";
@@ -2032,6 +2111,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = Rabbit.BestToday;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
 			};
 			name = Debug;
 		};
@@ -2040,7 +2120,7 @@
 			baseConfigurationReference = F975E1829CF425B2C69D560E /* Pods-BestToday.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				DEVELOPMENT_TEAM = ML77R3AZAP;
+				DEVELOPMENT_TEAM = "";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "$(SRCROOT)/BestToday/BTFoundation/BTMacors/LEFinanceNewsIphone.pch";
 				INFOPLIST_FILE = "$(SRCROOT)/BestToday/Resourse/Info.plist";
@@ -2051,12 +2131,14 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = Rabbit.BestToday;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
 			};
 			name = Release;
 		};
 		7AA2BB611FAAAE5500864753 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				DEVELOPMENT_TEAM = ML77R3AZAP;
 				INFOPLIST_FILE = BestTodayTests/Info.plist;
@@ -2070,6 +2152,7 @@
 		7AA2BB621FAAAE5500864753 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				DEVELOPMENT_TEAM = ML77R3AZAP;
 				INFOPLIST_FILE = BestTodayTests/Info.plist;
@@ -2083,6 +2166,7 @@
 		7AA2BB641FAAAE5500864753 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				DEVELOPMENT_TEAM = ML77R3AZAP;
 				INFOPLIST_FILE = BestTodayUITests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
@@ -2095,6 +2179,7 @@
 		7AA2BB651FAAAE5500864753 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				DEVELOPMENT_TEAM = ML77R3AZAP;
 				INFOPLIST_FILE = BestTodayUITests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
