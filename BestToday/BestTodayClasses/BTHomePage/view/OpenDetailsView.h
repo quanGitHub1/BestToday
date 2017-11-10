@@ -13,6 +13,8 @@
 
 @property (nonatomic, strong) NSDictionary *dicData;
 
+@property (nonatomic, assign) CGFloat heightLabTwo;
+
 /*
  frame  显示label大小
  text   显示内容

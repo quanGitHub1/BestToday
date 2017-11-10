@@ -86,7 +86,6 @@
         
         [textLabel sizeToFit];
     
-    
     if ([[BTHomeOpenHander shareHomeOpenHander].arrydata containsObject:[NSString stringWithFormat:@"%ld",_indexpath]]) {
         
         // 设置label的行间距
@@ -98,32 +97,42 @@
         NSMutableAttributedString  *setString;
         
         
-        setString = [[NSMutableAttributedString alloc] initWithString:_textStr];
+        setString = [[NSMutableAttributedString alloc] initWithString:text];
         
-        [setString  addAttribute:NSParagraphStyleAttributeName value:paragraphStyle range:NSMakeRange(0, _textStr.length)];
+        [setString  addAttribute:NSParagraphStyleAttributeName value:paragraphStyle range:NSMakeRange(0, text.length)];
         
         
         _textLabel.attributedText = setString;
         
         [_textLabel sizeToFit];
         
+        _heightLabTwo = _textLabel.bottom;
+        
+        [self creatLabData:@"YES"];
+
+        
         return;
 
      }
 
 
-        UIButton *openBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-        openBtn.frame = CGRectMake(width - 20, font * 3 + 8, screenWidth - width - 10, font );
-        openBtn.backgroundColor = [UIColor whiteColor];
-        [openBtn setTitle:@"更多" forState:0];
-        openBtn.titleLabel.font = [UIFont systemFontOfSize:15];
+    UIButton *openBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+    openBtn.frame = CGRectMake(width - 20, font * 3 + 8, screenWidth - width - 10, font );
+    openBtn.backgroundColor = [UIColor whiteColor];
+    [openBtn setTitle:@"更多" forState:0];
+    openBtn.titleLabel.font = [UIFont systemFontOfSize:15];
+
+    [openBtn setTitleColor:[UIColor colorWithHexString:@"#616161"] forState:UIControlStateNormal];
     
-        [openBtn setTitleColor:[UIColor colorWithHexString:@"#969696"] forState:UIControlStateNormal];
-        
-        [openBtn addTarget:self action:@selector(openBtnClick:) forControlEvents:UIControlEventTouchUpInside];
-        [self addSubview:openBtn];
-        
+    [openBtn addTarget:self action:@selector(openBtnClick:) forControlEvents:UIControlEventTouchUpInside];
+    [self addSubview:openBtn];
     
+  
+
+    _heightLabTwo = _textLabel.height;
+
+    [self creatLabData:@"YES"];
+
 }
 
 
@@ -156,6 +165,75 @@
     return linesArray;
 }
 
+- (void)creatLabData:(NSString *)isAdd{
+
+    UIView *viewLine = [[UIView alloc] initWithFrame:CGRectMake(0,  _textLabel.bottom + 13, FULL_WIDTH - 20, 0.6)];
+    
+    viewLine.backgroundColor = [UIColor colorWithHexString:@"#eeeeee"];
+    
+    [self addSubview:viewLine];
+    
+    NSArray *arrData = @[@"阿加阿达科技大厦空军啊空军打卡多久啊开始搭建啊看来大家啊看来大家啊可怜的", @"阿加阿达科技大厦空军啊空军打卡多久啊开始搭建啊看来大家啊看来大家啊可怜的符合双方就开始恢复健康顺利返回就开始了复活节凯撒绿肥红瘦开发和科技阿里复活节卡洛斯复活节卡什莱夫", @"小阿联军啊jlksjfklsajfl;kasfjkls;afjas;l"];
+    
+    CGFloat heightLab = 0.0;
+    
+    for (int i = 0; i < arrData.count; i++) {
+        
+        UILabel *labComment = [[UILabel alloc] initWithFrame:CGRectMake(0, heightLab + _textLabel.bottom + 26, FULL_WIDTH - 30, 0)];
+        
+        labComment.textColor = [UIColor colorWithHexString:@"#616161"];
+        
+        // 设置label的行间距
+        NSMutableParagraphStyle  *paragraphStyle = [[NSMutableParagraphStyle alloc] init];
+        
+        [paragraphStyle  setLineSpacing:8];
+        
+        NSMutableAttributedString  *setString;
+        
+        setString = [[NSMutableAttributedString alloc] initWithString:arrData[i]];
+        
+        [setString  addAttribute:NSParagraphStyleAttributeName value:paragraphStyle range:NSMakeRange(0, [arrData[i] length])];
+        
+        labComment.attributedText = setString;
+        
+        labComment.numberOfLines = 3;
+        
+        labComment.font = [UIFont systemFontOfSize:15];
+        
+        [labComment sizeToFit];
+        
+        heightLab += labComment.height + 10;
+        
+        _heightLabTwo = labComment.bottom;
+        
+        if ([isAdd isEqualToString:@"YES"]) {
+            
+            [self addSubview:labComment];
+        }
+        
+    }
+    
+    UIButton *btnComment = [[UIButton alloc] initWithFrame:CGRectMake(0, _heightLabTwo, FULL_WIDTH - 20, 20)];
+    
+    [btnComment setTitle:@"全部三条评论" forState:UIControlStateNormal];
+    
+    [btnComment setTitleColor:[UIColor colorWithHexString:@"#969696"] forState:UIControlStateNormal];
+    
+    btnComment.titleLabel.font = [UIFont systemFontOfSize:14];
+    
+    _heightLabTwo = btnComment.bottom;
+
+//    btnComment.titleLabel.textAlignment = NSTextAlignmentLeft;
+    
+    btnComment.contentHorizontalAlignment = UIControlContentHorizontalAlignmentLeft;
+
+    
+//    btnComment.backgroundColor = [UIColor redColor];
+    
+    [self addSubview:btnComment];
+
+}
+
 - (void)openBtnClick:(UIButton *)sender{
     
     if (![[BTHomeOpenHander shareHomeOpenHander].arrydata containsObject:[NSString stringWithFormat:@"%ld",_indexpath]]) {
@@ -180,15 +258,15 @@
     
     [_textLabel sizeToFit];
     
-//    CGFloat height = [_textStr heightWithText:_textStr font:_font width:_textLabel.bounds.size.width] + _font / 2;
-//    _textLabel.frame = CGRectMake(0, 0, _detaFrame.size.width, height);
-//    _textLabel.text = _textStr;
+    _heightLabTwo = _textLabel.bottom;
+    
+    [self creatLabData:@"NO"];
     
     sender.hidden = YES;
     
     if (self.sendHeightBlock) {
         
-        self.sendHeightBlock(_textLabel.height, _indexpath);
+        self.sendHeightBlock(_heightLabTwo, _indexpath);
         
     }
 }

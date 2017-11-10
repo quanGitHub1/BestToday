@@ -48,6 +48,8 @@
 
 @property (nonatomic, assign) CGFloat heightCell;
 
+@property (nonatomic) BOOL cell;
+
 
 - (void)makeDatacell:(NSInteger)indexpath ;
 
