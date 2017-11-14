@@ -10,7 +10,7 @@
 #import "BTHomePageTableViewCell.h"
 
 
-@interface BTHomedetailHeaderView ()<LEBaseTableViewDelegate,UITableViewDataSource, UITableViewDelegate, BTHomepageViewDelegate>
+@interface BTHomedetailHeaderView ()<UITableViewDataSource, UITableViewDelegate, BTHomepageViewDelegate>
 
 @property (nonatomic, strong)BTTableview *tableView;
 
@@ -29,20 +29,25 @@
         
         _dicCell = [[NSMutableDictionary alloc] init];
 
-        [self setupTableView];
+//        [self setupTableView];
         
     }
     return self;
 }
 
+
+- (void)initCreatTableview{
+
+    [self setupTableView];
+}
+
 - (void)setupTableView{
     
-    self.tableView = [[BTTableview alloc]initWithFrame:CGRectMake(0, 0, kSCREEN_WIDTH, 800)];
+    self.tableView = [[BTTableview alloc]initWithFrame:CGRectMake(0, 0, kSCREEN_WIDTH, _heightTab)];
     
     self.tableView.delegate = self;
     self.tableView.dataSource = self;
     self.tableView.estimatedRowHeight = 200;
-    self.tableView.dataDelegate = self;
     
     [self.tableView hiddenFreshFooter];
     

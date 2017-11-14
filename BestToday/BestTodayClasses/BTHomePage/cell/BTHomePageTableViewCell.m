@@ -54,8 +54,6 @@
             _labFabulous = [UILabel mlt_labelWithText:@"" color:[UIColor mlt_colorWithHexString:@"#bdbdbd" alpha:1] align:NSTextAlignmentLeft font:[UIFont systemFontOfSize:12] bkColor:nil frame:CGRectMake(FULL_WIDTH / 2 + 15, _labTime.top, 50, 0)];
             
 //            _labDescrp = [UILabel mlt_labelWithText:@"" color:[UIColor mlt_colorWithHexString:@"#616161" alpha:1] align:NSTextAlignmentLeft font:[UIFont systemFontOfSize:14] bkColor:nil frame:CGRectMake(_imageAvtar.left, _labTime.bottom + 15, FULL_WIDTH - 30, 0)];
-    
-            
             
             _btnCollection = [[UIButton alloc] init];
             
@@ -195,6 +193,7 @@
     
     
     int font = 15;
+    
     int row = 3;
     
     CGFloat height = font * (row + 1) + heightLabTwo + 30;

@@ -67,6 +67,10 @@ static NSString *const headerId = @"headerId";
         headerView = [collectionView dequeueReusableSupplementaryViewOfKind:kind withReuseIdentifier:headerId forIndexPath:indexPath];
         headerView.backgroundColor = [UIColor whiteColor];
         
+        headerView.heightTab = _heightCell;
+        
+        [headerView initCreatTableview];
+        
         return headerView;
     }
     return nil;
@@ -74,7 +78,7 @@ static NSString *const headerId = @"headerId";
 
 - (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout referenceSizeForHeaderInSection:(NSInteger)section
 {
-    return (CGSize){FULL_WIDTH,860};
+    return (CGSize){FULL_WIDTH,_heightCell + 60};
 }
 
 

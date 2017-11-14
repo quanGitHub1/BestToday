@@ -11,5 +11,6 @@
 
 @interface BTHomePageDetailViewController : BTViewController
 
+@property (nonatomic, assign) CGFloat heightCell;
 
 @end

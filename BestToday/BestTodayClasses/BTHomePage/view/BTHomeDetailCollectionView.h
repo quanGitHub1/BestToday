@@ -36,7 +36,7 @@
 
 @property (nonatomic, strong) LECollectionView *collectionView;
 
-- (void)setDataForCollectionView:(NSArray *)data;
+//- (void)setDataForCollectionView:(NSArray *)data;
 
 
 @end

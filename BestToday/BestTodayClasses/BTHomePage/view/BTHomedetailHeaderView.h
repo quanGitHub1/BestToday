@@ -10,4 +10,8 @@
 
 @interface BTHomedetailHeaderView : UICollectionReusableView
 
+@property (nonatomic, assign) CGFloat heightTab;
+
+- (void)initCreatTableview;
+
 @end

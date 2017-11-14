@@ -30,11 +30,10 @@
         self.clipsToBounds = NO;
         
         self.backgroundView = [[UIImageView alloc] initWithFrame:self.bounds];
-//        self.backgroundView.contentMode = UIViewContentModeTop;
-//        self.backgroundView.clipsToBounds = YES;
-        [self.backgroundView setImage:[UIImage imageNamed:@"navigation_background"]];
+        self.backgroundView.contentMode = UIViewContentModeTop;
+        self.backgroundView.clipsToBounds = YES;
         
-        self.containerView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, frame.size.width, 44.f )];
+        self.containerView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, frame.size.width, 70)];
         self.containerView.bottom = self.height;
         
         if (SYSTEM_VERSION_GREATER_THAN(@"8.0") && needBlurEffect) {
@@ -51,9 +50,9 @@
             [self addSubview:self.containerView];
         }
         //描边
-        self.bottomBorder = [[UIView alloc]initWithFrame:CGRectMake(0, 0, self.containerView.width, 1 / [UIScreen mainScreen].scale)];
+        self.bottomBorder = [[UIView alloc]initWithFrame:CGRectMake(0, self.containerView.bottom - 5, self.containerView.width, 5)];
         self.bottomBorder.bottom = self.containerView.height;
-        self.bottomBorder.backgroundColor = [UIColor grayColor];
+        self.bottomBorder.backgroundColor = [UIColor yellowColor];
         [self.containerView addSubview:self.bottomBorder];
         
 //        self.ptpModuleName = @"_head";

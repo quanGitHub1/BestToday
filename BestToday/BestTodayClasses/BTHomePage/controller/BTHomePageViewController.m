@@ -34,8 +34,9 @@
     
     
     [[BTHomeOpenHander shareHomeOpenHander] initDataArry];
-    
+
     [self setupTableView];
+    
 
 //    BTLoginViewController *loginvc = [[BTLoginViewController alloc] init];
 //    
@@ -160,7 +161,12 @@
 
     BTHomePageDetailViewController *homePagedetail = [[BTHomePageDetailViewController alloc] init];
     
+    BTHomePageTableViewCell *announcementCell = [_dicCell objectForKey:[NSString stringWithFormat:@"indexPath%ld", indexPath.row]];
+    
+    homePagedetail.heightCell = announcementCell.heightCell;
+    
     [self.navigationController pushViewController:homePagedetail animated:YES];
+    
 }
 
 
