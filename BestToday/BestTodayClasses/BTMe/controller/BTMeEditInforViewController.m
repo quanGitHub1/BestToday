@@ -63,7 +63,6 @@
     
 }
 
-
 - (UIView *)createView:(CGRect)frame{
     
     UIView *view = [[UIView alloc] initWithFrame:frame];
@@ -92,16 +91,16 @@
     
     _labProduct = [UILabel mlt_labelWithText:@"简介" color:[UIColor mlt_colorWithHexString:@"#969696" alpha:1] align:NSTextAlignmentLeft font:[UIFont systemFontOfSize:15] bkColor:nil frame:CGRectMake(15, _labName.bottom + 30, 40, 16)];
     
-    _textViewName = [[UITextField alloc] initWithFrame:CGRectMake(_labName.right + 30, _labName.top, FULL_WIDTH - _labName.right - 45, 30)];
+    _textViewName = [[UITextField alloc] initWithFrame:CGRectMake(_labName.right + 30, _labName.top - 8, FULL_WIDTH - _labName.right - 45, 40)];
     
     _textViewName.text = @"北冥有鱼";
     
     _textViewName.font = [UIFont systemFontOfSize:15];
     
     _textViewName.textColor = [UIColor colorWithHexString:@"#212121"];
-
     
-    _textProduct = [[UITextField alloc] initWithFrame:CGRectMake(_labProduct.right + 30, _labProduct.top, FULL_WIDTH - _labProduct.right - 45, 30)];
+    
+    _textProduct = [[UITextField alloc] initWithFrame:CGRectMake(_labProduct.right + 30, _labProduct.top - 8, FULL_WIDTH - _labProduct.right - 45, 40)];
     
     _textProduct.textColor = [UIColor colorWithHexString:@"#212121"];
 
@@ -138,6 +137,7 @@
 
 - (void)onclickBtnCancel:(UIButton *)btn{
     
+    [self.navigationController popViewControllerAnimated:YES];
 
 }
 

@@ -1,96 +1,67 @@
 //
-//  BTHomePageViewController.m
+//  BTHomedetailHeaderView.m
 //  BestToday
 //
-//  Created by leeco on 2017/11/2.
+//  Created by leeco on 2017/11/14.
 //  Copyright © 2017年 leeco. All rights reserved.
 //
 
-#import "BTHomePageViewController.h"
-#import "BTSpreadTableView.h"
-#import "BTLoginViewController.h"
+#import "BTHomedetailHeaderView.h"
 #import "BTHomePageTableViewCell.h"
-#import "BTHomeOpenHander.h"
-#import "BTHomePageDetailViewController.h"
 
-@interface BTHomePageViewController ()<LEBaseTableViewDelegate,UITableViewDataSource, UITableViewDelegate, BTSpreadTableViewDelegate, BTHomepageViewDelegate>
+
+@interface BTHomedetailHeaderView ()<LEBaseTableViewDelegate,UITableViewDataSource, UITableViewDelegate, BTHomepageViewDelegate>
 
 @property (nonatomic, strong)BTTableview *tableView;
 
-@property (nonatomic, strong) BTSpreadTableView *spreadTableView;
 
 @property (nonatomic, strong) NSMutableDictionary *dicCell;
 
 @end
 
-@implementation BTHomePageViewController
+@implementation BTHomedetailHeaderView
 
-- (void)viewDidLoad {
-    [super viewDidLoad];
-    self.view.backgroundColor = [UIColor whiteColor];
-    self.navigationBar.title = @"今日最佳";
-    
-    _dicCell = [[NSMutableDictionary alloc] init];
-    
-    
-    [[BTHomeOpenHander shareHomeOpenHander] initDataArry];
-    
-    [self setupTableView];
+- (instancetype)initWithFrame:(CGRect)frame
+{
+    if (self = [super initWithFrame:frame]) {
+        
+        self.backgroundColor = [UIColor whiteColor];
+        
+        _dicCell = [[NSMutableDictionary alloc] init];
 
-//    BTLoginViewController *loginvc = [[BTLoginViewController alloc] init];
-//    
-//    
-//    MGJNavigationController *navigationController = [[MGJNavigationController alloc] initWithRootViewController:loginvc];
-//    
-//    [self presentViewController:navigationController animated:YES completion:^{
-//        
-//        
-//    }];
-
-    
+        [self setupTableView];
+        
+    }
+    return self;
 }
 
 - (void)setupTableView{
     
-    self.tableView = [[BTTableview alloc]initWithFrame:CGRectMake(0, kNavigationBarHight, kSCREEN_WIDTH, kSCREEN_HEIGHT-kNavigationBarHight)];
+    self.tableView = [[BTTableview alloc]initWithFrame:CGRectMake(0, 0, kSCREEN_WIDTH, 800)];
     
     self.tableView.delegate = self;
     self.tableView.dataSource = self;
     self.tableView.estimatedRowHeight = 200;
-    
     self.tableView.dataDelegate = self;
+    
+    [self.tableView hiddenFreshFooter];
+    
+    _tableView.scrollEnabled = NO;
+
     
     self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     
-    [self.view addSubview:self.tableView];
+    UILabel *labTitle = [[UILabel alloc] initWithFrame:CGRectMake(0, _tableView.bottom + 20, FULL_WIDTH, 20)];
     
-    [self createTableViewHeaderView];
-    
-//    [self.tableView autoRefreshLoad];
-    
-}
+    labTitle.text = @"随便看看";
 
-- (void)createTableViewHeaderView{
+    labTitle.textAlignment = NSTextAlignmentCenter;
     
-    UIView *headerView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, FULL_WIDTH, ScaleHeight(120))];
-    headerView.backgroundColor = kCardBackColor;
+    labTitle.backgroundColor = [UIColor whiteColor];
     
-    // 调用tableView
-    if (!_spreadTableView) {
-        
-        /**
-         宽和高调换顺序
-         */
-        _spreadTableView = [[BTSpreadTableView alloc] initWithFrame:CGRectMake(0, 0, ScaleHeight(120), FULL_WIDTH) style:UITableViewStylePlain withType:BTSpreadTableViewStyleImageText];// x,y 高，宽
-        
-        _spreadTableView.backgroundColor = [UIColor yellowColor];
-        _spreadTableView.spreadDelegate = self;
-        
-    }
+    [self addSubview:self.tableView];
     
-    [headerView addSubview:_spreadTableView];
-    
-    self.tableView.tableHeaderView = headerView;
+    [self addSubview:labTitle];
     
 }
 
@@ -99,7 +70,7 @@
 - (void)reloadTableView:(NSInteger)indexpath height:(CGFloat)height {
     
     BTHomePageTableViewCell *announcementCell = [_dicCell objectForKey:[NSString stringWithFormat:@"indexPath%ld", indexpath]];
-
+    
     announcementCell.heightCell = height;
     
     [self.tableView reloadData];
@@ -110,7 +81,7 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     
-        return 10;
+    return 1;
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -138,8 +109,6 @@
         
         cell = [[BTHomePageTableViewCell alloc]initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:cellID];
         
-        cell.delegate = self;
-
         cell.selectionStyle=UITableViewCellSelectionStyleNone;
     }
     
@@ -156,16 +125,9 @@
     return cell;
 }
 
-- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
-
-    BTHomePageDetailViewController *homePagedetail = [[BTHomePageDetailViewController alloc] init];
-    
-    [self.navigationController pushViewController:homePagedetail animated:YES];
-}
-
 
 - (void)onclickBtnAtten:(UIButton *)btn{
-
+    
     UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"" message:@"" preferredStyle:UIAlertControllerStyleAlert];
     UIAlertAction *defaultAction = [UIAlertAction actionWithTitle:@"取消关注" style:UIAlertActionStyleDefault handler:nil];
     UIAlertAction *destructiveAction = [UIAlertAction actionWithTitle:@"置顶该用户" style:UIAlertActionStyleDefault handler:nil];
@@ -175,14 +137,8 @@
     [alertController addAction:destructiveAction];
     [alertController addAction:cancelAction];
     
-    [self presentViewController:alertController animated:YES completion:nil];
-    
     
 }
 
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
-}
 
 @end
