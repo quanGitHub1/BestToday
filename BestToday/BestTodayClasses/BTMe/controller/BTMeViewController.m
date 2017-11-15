@@ -10,6 +10,7 @@
 #import "MLTSegementView.h"
 #import "BTMeCollectionView.h"
 #import "BTMeEditInforViewController.h"
+#import "BTAttentionMeViewController.h"
 
 @interface BTMeViewController ()<MLTTouchLabelDelegate>
 
@@ -92,6 +93,8 @@
     
     [_btnModify setImage:imageName forState:UIControlStateNormal];
     
+    [_btnModify addTarget:self action:@selector(onclickModify:) forControlEvents:UIControlEventTouchUpInside];
+    
     _btnPublish = [[UIButton alloc] initWithFrame:CGRectMake(_labName.left, _labName.bottom + 20, 55, 0)];
     
     [_btnPublish setTitle:@"发表 20" forState:UIControlStateNormal];
@@ -115,6 +118,8 @@
     _btnfollow = [[UIButton alloc] initWithFrame:CGRectMake(_btnFans.right + 40, _labName.bottom + 20, 55, 0)];
     
     [_btnfollow setTitle:@"关注 365" forState:UIControlStateNormal];
+    
+    [_btnfollow addTarget:self action:@selector(onclickFollow:) forControlEvents:UIControlEventTouchUpInside];
     
     [_btnfollow setTitleColor:[UIColor colorWithHexString:@"#969696"] forState:UIControlStateNormal];
     
@@ -214,11 +219,31 @@
       }
 }
 
-- (void)addFriend:(UIButton *)btn{
+- (void)onclickModify:(UIButton *)btn{
     
     BTMeEditInforViewController *editInfor = [[BTMeEditInforViewController alloc] init];
     
     [self.navigationController pushViewController:editInfor animated:YES];
 }
+
+- (void)addFriend:(UIButton *)btn{
+    
+    BTAttentionMeViewController *Attention = [[BTAttentionMeViewController alloc] init];
+    
+    Attention.navTitle = @"关注我的";
+    
+    [self.navigationController pushViewController:Attention animated:YES];
+}
+
+- (void)onclickFollow:(UIButton *)btn{
+    
+    BTAttentionMeViewController *Attention = [[BTAttentionMeViewController alloc] init];
+    
+    Attention.navTitle = @"我关注的";
+    
+    [self.navigationController pushViewController:Attention animated:YES];
+}
+
+
 
 @end
