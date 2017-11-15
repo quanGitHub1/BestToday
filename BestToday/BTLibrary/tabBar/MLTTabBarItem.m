@@ -47,9 +47,9 @@
         self.label.text = title;
         // 修改字体大小
         self.label.font = [UIFont systemFontOfSize:11];
-        [self addSubview:self.label];
+//        [self addSubview:self.label];
         
-        self.imageView = [[UIImageView alloc]initWithFrame:CGRectMake((self.width - icon.size.width) / 2, 5, 22, 22)];
+        self.imageView = [[UIImageView alloc]initWithFrame:CGRectMake((self.width - icon.size.width) / 2, 0, self.icon.size.width, self.icon.size.height)];
         
         self.imageView.image = self.icon;
         self.imageView.contentMode = UIViewContentModeScaleAspectFit;
@@ -67,9 +67,7 @@
     self.label.width = self.width;
     self.label.bottom = self.height - 4.f;
     
-    
     [self updateImageViewFrame];
-    
     
     self.badgeView.center = CGPointMake(self.imageView.right + 1, self.imageView.top + 5);
 }
@@ -148,9 +146,10 @@
     }else {
         [self.imageView setFrame:CGRectMake(self.imageView.frame.origin.x, self.imageView.frame.origin.y, 22, 21)];
     }
-    self.imageView.bottom = self.label.top - (self.extendedIcon ? 3.f : 5.f);
+    self.imageView.bottom = self.label.top - (self.extendedIcon ? 3.f : 5.f) + 8;
     
     self.imageView.centerX = self.width / 2;
+    
     self.imageView.frame = CGRectOffset(self.imageView.frame, self.imageInset.left, self.imageInset.top);
 }
 

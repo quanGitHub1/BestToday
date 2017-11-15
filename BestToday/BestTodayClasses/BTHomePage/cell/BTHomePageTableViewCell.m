@@ -8,6 +8,10 @@
 
 #import "BTHomePageTableViewCell.h"
 
+#import <UShareUI/UShareUI.h>
+
+
+
 @implementation BTHomePageTableViewCell
 
 - (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier
@@ -108,6 +112,16 @@
 }
 
 - (void)onclickBtnCollection:(UIButton *)btn{
+    if (btn.selected == YES) {
+        btn.selected = NO;
+        
+        _labFabulous.text = [NSString stringWithFormat:@"%ld",[_labFabulous.text integerValue] - 1];
+    }else {
+        btn.selected = YES;
+        
+        _labFabulous.text = [NSString stringWithFormat:@"%ld",[_labFabulous.text integerValue] + 1];
+
+    }
 
 }
 
@@ -116,6 +130,13 @@
 }
 
 - (void)onclickBtnShare:(UIButton *)btn{
+    //显示分享面板
+    [UMSocialUIManager showShareMenuViewInWindowWithPlatformSelectionBlock:^(UMSocialPlatformType platformType, NSDictionary *userInfo)
+     {
+        // 根据获取的platformType确定所选平台进行下一步操作
+         
+         
+    }];
     
 }
 
@@ -133,10 +154,15 @@
     
     UIImage *iamgeInformation = [UIImage imageNamed:@"information"];
 
-    UIImage *iamgeCollection = [UIImage imageNamed:@"collection_select"];
+    UIImage *iamgeCollectionSelect = [UIImage imageNamed:@"collection_select"];
+    
+    UIImage *iamgeCollection = [UIImage imageNamed:@"collection"];
+
 
     [_btnCollection setImage:iamgeCollection forState:UIControlStateNormal];
     
+    [_btnCollection setImage:iamgeCollectionSelect forState:UIControlStateSelected];
+
     _btnCollection.frame = CGRectMake(_labFabulous.right + 15, _imagePic.bottom + 12, iamgeCollection.size.width, iamgeCollection.size.height);
     
     
