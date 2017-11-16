@@ -35,7 +35,7 @@
         
         self.containerView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, frame.size.width, 70)];
         self.containerView.bottom = self.height;
-        
+                
         if (SYSTEM_VERSION_GREATER_THAN(@"8.0") && needBlurEffect) {
             UIVisualEffect *effect = [UIBlurEffect effectWithStyle:UIBlurEffectStyleExtraLight];
             UIVisualEffectView *effectView = [[UIVisualEffectView alloc] initWithEffect:effect];
@@ -165,6 +165,7 @@
 - (void)layoutSubviews
 {
     [super layoutSubviews];
+
     self.backgroundView.frame = self.bounds;
     self.containerView.frame = CGRectMake(0, 0, self.bounds.size.width, 44.f );
     self.containerView.bottom = self.height;

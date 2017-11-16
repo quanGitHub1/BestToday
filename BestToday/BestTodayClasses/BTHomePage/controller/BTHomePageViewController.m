@@ -8,7 +8,7 @@
 
 #import "BTHomePageViewController.h"
 #import "BTSpreadTableView.h"
-#import "BTLoginViewController.h"
+#import "BTLoginsViewController.h"
 #import "BTHomePageTableViewCell.h"
 #import "BTHomeOpenHander.h"
 #import "BTHomePageDetailViewController.h"
@@ -38,7 +38,7 @@
     [self setupTableView];
     
 
-//    BTLoginViewController *loginvc = [[BTLoginViewController alloc] init];
+//    BTLoginsViewController *loginvc = [[BTLoginsViewController alloc] init];
 //    
 //    
 //    MGJNavigationController *navigationController = [[MGJNavigationController alloc] initWithRootViewController:loginvc];
@@ -47,7 +47,6 @@
 //        
 //        
 //    }];
-
     
 }
 

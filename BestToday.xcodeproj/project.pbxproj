@@ -19,6 +19,10 @@
 		7A16B9F61FBAEEF000E7EC3A /* BTHomedetailHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 7A16B9F51FBAEEF000E7EC3A /* BTHomedetailHeaderView.m */; };
 		7A16B9F91FBC3CF400E7EC3A /* BTAttentionMeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7A16B9F81FBC3CF400E7EC3A /* BTAttentionMeViewController.m */; };
 		7A16B9FC1FBC3E4F00E7EC3A /* BTAttentionTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 7A16B9FB1FBC3E4F00E7EC3A /* BTAttentionTableViewCell.m */; };
+		7A16B9FE1FBD2DF000E7EC3A /* BTLogin.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 7A16B9FD1FBD2DF000E7EC3A /* BTLogin.jpg */; };
+		7A16BA021FBD310F00E7EC3A /* BTLoginsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7A16BA001FBD310F00E7EC3A /* BTLoginsViewController.m */; };
+		7A16BA031FBD310F00E7EC3A /* BTLoginsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7A16BA011FBD310F00E7EC3A /* BTLoginsViewController.xib */; };
+		7A16BA051FBD415800E7EC3A /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 7A16BA041FBD415800E7EC3A /* Images.xcassets */; };
 		7AA2BB351FAAAE5500864753 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 7AA2BB341FAAAE5500864753 /* main.m */; };
 		7AA2BB4E1FAAAE5500864753 /* BestTodayTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 7AA2BB4D1FAAAE5500864753 /* BestTodayTests.m */; };
 		7AA2BB591FAAAE5500864753 /* BestTodayUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = 7AA2BB581FAAAE5500864753 /* BestTodayUITests.m */; };
@@ -157,8 +161,6 @@
 		7AA2BDAD1FB15C4E00864753 /* WXApiManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 7AA2BDA41FB15C4E00864753 /* WXApiManager.m */; };
 		7AA2BDAE1FB15C4E00864753 /* WXApiRequestHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 7AA2BDA61FB15C4E00864753 /* WXApiRequestHandler.m */; };
 		7AA2BDAF1FB15C4E00864753 /* WXApiResponseHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 7AA2BDA81FB15C4E00864753 /* WXApiResponseHandler.m */; };
-		7AA2BDB31FB15CE400864753 /* BTLoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7AA2BDB11FB15CE400864753 /* BTLoginViewController.m */; };
-		7AA2BDB41FB15CE400864753 /* BTLoginViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7AA2BDB21FB15CE400864753 /* BTLoginViewController.xib */; };
 		7AA2BDB71FB162F300864753 /* BTLoginService.m in Sources */ = {isa = PBXBuildFile; fileRef = 7AA2BDB61FB162F300864753 /* BTLoginService.m */; };
 		7AA2BDBA1FB1B0CA00864753 /* OpenDetailsView.m in Sources */ = {isa = PBXBuildFile; fileRef = 7AA2BDB91FB1B0CA00864753 /* OpenDetailsView.m */; };
 		7AA2BDBE1FB1B1BD00864753 /* NSString+Font.m in Sources */ = {isa = PBXBuildFile; fileRef = 7AA2BDBD1FB1B1BD00864753 /* NSString+Font.m */; };
@@ -225,6 +227,11 @@
 		7A16B9F81FBC3CF400E7EC3A /* BTAttentionMeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BTAttentionMeViewController.m; sourceTree = "<group>"; };
 		7A16B9FA1FBC3E4F00E7EC3A /* BTAttentionTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BTAttentionTableViewCell.h; sourceTree = "<group>"; };
 		7A16B9FB1FBC3E4F00E7EC3A /* BTAttentionTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BTAttentionTableViewCell.m; sourceTree = "<group>"; };
+		7A16B9FD1FBD2DF000E7EC3A /* BTLogin.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = BTLogin.jpg; sourceTree = "<group>"; };
+		7A16B9FF1FBD310F00E7EC3A /* BTLoginsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BTLoginsViewController.h; sourceTree = "<group>"; };
+		7A16BA001FBD310F00E7EC3A /* BTLoginsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BTLoginsViewController.m; sourceTree = "<group>"; };
+		7A16BA011FBD310F00E7EC3A /* BTLoginsViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = BTLoginsViewController.xib; sourceTree = "<group>"; };
+		7A16BA041FBD415800E7EC3A /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		7AA2BB301FAAAE5500864753 /* BestToday.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BestToday.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		7AA2BB341FAAAE5500864753 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		7AA2BB491FAAAE5500864753 /* BestTodayTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = BestTodayTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -509,9 +516,6 @@
 		7AA2BDA61FB15C4E00864753 /* WXApiRequestHandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WXApiRequestHandler.m; sourceTree = "<group>"; };
 		7AA2BDA71FB15C4E00864753 /* WXApiResponseHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WXApiResponseHandler.h; sourceTree = "<group>"; };
 		7AA2BDA81FB15C4E00864753 /* WXApiResponseHandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WXApiResponseHandler.m; sourceTree = "<group>"; };
-		7AA2BDB01FB15CE400864753 /* BTLoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BTLoginViewController.h; sourceTree = "<group>"; };
-		7AA2BDB11FB15CE400864753 /* BTLoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BTLoginViewController.m; sourceTree = "<group>"; };
-		7AA2BDB21FB15CE400864753 /* BTLoginViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = BTLoginViewController.xib; sourceTree = "<group>"; };
 		7AA2BDB51FB162F300864753 /* BTLoginService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BTLoginService.h; sourceTree = "<group>"; };
 		7AA2BDB61FB162F300864753 /* BTLoginService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BTLoginService.m; sourceTree = "<group>"; };
 		7AA2BDB81FB1B0CA00864753 /* OpenDetailsView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OpenDetailsView.h; sourceTree = "<group>"; };
@@ -624,6 +628,7 @@
 				7AA2BB6B1FAAAF5600864753 /* BTLibrary */,
 				7AA2BB6C1FAAAF5600864753 /* BTFoundation */,
 				7AA2BB6F1FAAAFB100864753 /* Resourse */,
+				7A16BA041FBD415800E7EC3A /* Images.xcassets */,
 				7AA2BB331FAAAE5500864753 /* Supporting Files */,
 			);
 			path = BestToday;
@@ -701,6 +706,7 @@
 				7AA2BB701FAAAFB100864753 /* Assets.xcassets */,
 				7AA2BB711FAAAFB100864753 /* LaunchScreen.storyboard */,
 				7AA2BB731FAAAFB100864753 /* Main.storyboard */,
+				7A16B9FD1FBD2DF000E7EC3A /* BTLogin.jpg */,
 			);
 			path = Resourse;
 			sourceTree = "<group>";
@@ -775,9 +781,9 @@
 			children = (
 				7AA2BCEB1FAAC67700864753 /* BTMeViewController.h */,
 				7AA2BCEC1FAAC67700864753 /* BTMeViewController.m */,
-				7AA2BDB01FB15CE400864753 /* BTLoginViewController.h */,
-				7AA2BDB11FB15CE400864753 /* BTLoginViewController.m */,
-				7AA2BDB21FB15CE400864753 /* BTLoginViewController.xib */,
+				7A16B9FF1FBD310F00E7EC3A /* BTLoginsViewController.h */,
+				7A16BA001FBD310F00E7EC3A /* BTLoginsViewController.m */,
+				7A16BA011FBD310F00E7EC3A /* BTLoginsViewController.xib */,
 				7A16B9EB1FB5A8C200E7EC3A /* BTMeEditInforViewController.h */,
 				7A16B9EC1FB5A8C200E7EC3A /* BTMeEditInforViewController.m */,
 				7A16B9F71FBC3CF400E7EC3A /* BTAttentionMeViewController.h */,
@@ -1774,14 +1780,16 @@
 				7AA2BB771FAAAFB100864753 /* Main.storyboard in Resources */,
 				7AA2BB751FAAAFB100864753 /* Assets.xcassets in Resources */,
 				CBCD2EAD1FB4657100994037 /* FSAlbumViewCell.xib in Resources */,
-				7AA2BDB41FB15CE400864753 /* BTLoginViewController.xib in Resources */,
 				CBCD2EA91FB4657100994037 /* Assets.xcassets in Resources */,
+				7A16BA051FBD415800E7EC3A /* Images.xcassets in Resources */,
 				CBCD2EAF1FB4657100994037 /* FSCameraView.xib in Resources */,
 				CBCD2EAB1FB4657100994037 /* FSAlbumView.xib in Resources */,
 				7AA2BB761FAAAFB100864753 /* LaunchScreen.storyboard in Resources */,
 				CBCD2EB61FB4657100994037 /* FusumaViewController.xib in Resources */,
+				7A16BA031FBD310F00E7EC3A /* BTLoginsViewController.xib in Resources */,
 				CBCD2EB31FB4657100994037 /* FSVideoCameraView.xib in Resources */,
 				7AA2BD8D1FB1570400864753 /* README.txt in Resources */,
+				7A16B9FE1FBD2DF000E7EC3A /* BTLogin.jpg in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1865,7 +1873,6 @@
 				7AA2BD331FAAFF4D00864753 /* BTPhotoService.m in Sources */,
 				7AA2BB6D1FAAAF5600864753 /* AppDelegate.m in Sources */,
 				7AA2BDAF1FB15C4E00864753 /* WXApiResponseHandler.m in Sources */,
-				7AA2BDB31FB15CE400864753 /* BTLoginViewController.m in Sources */,
 				7A16B9F01FBADE4600E7EC3A /* BTHomePageDetailViewController.m in Sources */,
 				7AA2BD4B1FAB002D00864753 /* BTCollectionViewModel.m in Sources */,
 				7AA2BCED1FAAC67700864753 /* BTMeViewController.m in Sources */,
@@ -1990,6 +1997,7 @@
 				7AA2BDCE1FB3015900864753 /* BTHomeCommentView.m in Sources */,
 				7AA2BC381FAAB4CC00864753 /* MLTSliderView.m in Sources */,
 				7AA2BC2D1FAAB4CC00864753 /* MLTLoadingView.m in Sources */,
+				7A16BA021FBD310F00E7EC3A /* BTLoginsViewController.m in Sources */,
 				7AA2BCDB1FAAC31F00864753 /* LEHttpRequestManager.m in Sources */,
 				7AA2BC221FAAB4CC00864753 /* MLTDotBadgeView.m in Sources */,
 				7AA2BD451FAB000100864753 /* BTHomePageViewModel.m in Sources */,
@@ -2155,10 +2163,12 @@
 			baseConfigurationReference = 3628CE6CF7DDDC7E7152EBDC /* Pods-BestToday.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				DEVELOPMENT_TEAM = ML77R3AZAP;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "$(SRCROOT)/BestToday/BTFoundation/BTMacors/LEFinanceNewsIphone.pch";
 				INFOPLIST_FILE = "$(SRCROOT)/BestToday/Resourse/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
@@ -2167,6 +2177,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = Rabbit.BestToday;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 3.0;
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
@@ -2175,10 +2186,12 @@
 			baseConfigurationReference = F975E1829CF425B2C69D560E /* Pods-BestToday.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				DEVELOPMENT_TEAM = ML77R3AZAP;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "$(SRCROOT)/BestToday/BTFoundation/BTMacors/LEFinanceNewsIphone.pch";
 				INFOPLIST_FILE = "$(SRCROOT)/BestToday/Resourse/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
@@ -2187,6 +2200,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = Rabbit.BestToday;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 3.0;
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};

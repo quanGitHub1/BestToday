@@ -89,13 +89,13 @@
     
     UIImage *imageName = [UIImage imageNamed:@"My_Modify"];
 
-    _btnModify = [[UIButton alloc] initWithFrame:CGRectMake(_labName.right + 6, 16, imageName.size.width, imageName.size.height)];
+    _btnModify = [[UIButton alloc] initWithFrame:CGRectMake(_labName.right + 6, 21, imageName.size.width, imageName.size.height)];
     
     [_btnModify setImage:imageName forState:UIControlStateNormal];
     
     [_btnModify addTarget:self action:@selector(onclickModify:) forControlEvents:UIControlEventTouchUpInside];
     
-    _btnPublish = [[UIButton alloc] initWithFrame:CGRectMake(_labName.left, _labName.bottom + 20, 55, 0)];
+    _btnPublish = [[UIButton alloc] initWithFrame:CGRectMake(_labName.left, _labName.bottom + 20, 65, 0)];
     
     [_btnPublish setTitle:@"发表 20" forState:UIControlStateNormal];
     
@@ -105,17 +105,19 @@
 
     [_btnPublish.titleLabel sizeToFit];
     
-    _btnFans = [[UIButton alloc] initWithFrame:CGRectMake(_btnPublish.right + 40, _labName.bottom + 20, 55, 0)];
+    _btnFans = [[UIButton alloc] initWithFrame:CGRectMake(_btnPublish.right + 40, _labName.bottom + 20, 65, 0)];
     
     [_btnFans setTitle:@"粉丝 350" forState:UIControlStateNormal];
     
     [_btnFans setTitleColor:[UIColor colorWithHexString:@"#969696"] forState:UIControlStateNormal];
     
+    [_btnModify addTarget:self action:@selector(onclickFans:) forControlEvents:UIControlEventTouchUpInside];
+    
     _btnFans.titleLabel.font = [UIFont systemFontOfSize:14];
     
     [_btnFans.titleLabel sizeToFit];
     
-    _btnfollow = [[UIButton alloc] initWithFrame:CGRectMake(_btnFans.right + 40, _labName.bottom + 20, 55, 0)];
+    _btnfollow = [[UIButton alloc] initWithFrame:CGRectMake(_btnFans.right + 40, _labName.bottom + 20, 65, 0)];
     
     [_btnfollow setTitle:@"关注 365" forState:UIControlStateNormal];
     
@@ -244,6 +246,14 @@
     [self.navigationController pushViewController:Attention animated:YES];
 }
 
+- (void)onclickFans:(UIButton *)btn{
+
+    BTAttentionMeViewController *Attention = [[BTAttentionMeViewController alloc] init];
+    
+    Attention.navTitle = @"关注我的";
+    
+    [self.navigationController pushViewController:Attention animated:YES];
+}
 
 
 @end

@@ -9,8 +9,9 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
-        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="LELoginViewController">
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="BTLoginsViewController">
             <connections>
+                <outlet property="loginImage" destination="ZyF-dP-xSn" id="QCO-eB-jYE"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
         </placeholder>
@@ -19,27 +20,21 @@
             <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="yvj-BQ-pYs">
-                    <rect key="frame" x="170" y="316" width="36" height="36"/>
-                    <constraints>
-                        <constraint firstAttribute="height" constant="36" id="UeU-C6-SvY"/>
-                        <constraint firstAttribute="width" constant="36" id="x2d-sA-Rtc"/>
-                    </constraints>
-                    <state key="normal" title="Button" image="LEMe_weixin"/>
-                    <connections>
-                        <action selector="onClickLoginWeixin:" destination="-1" eventType="touchUpInside" id="okY-tW-3Gj"/>
-                    </connections>
-                </button>
+                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="BTLogin.jpg" translatesAutoresizingMaskIntoConstraints="NO" id="ZyF-dP-xSn">
+                    <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                </imageView>
             </subviews>
             <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
             <constraints>
-                <constraint firstItem="yvj-BQ-pYs" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="Xwr-44-tya"/>
-                <constraint firstItem="yvj-BQ-pYs" firstAttribute="centerY" secondItem="i5M-Pr-FkT" secondAttribute="centerY" id="cbc-ha-9vk"/>
+                <constraint firstItem="ZyF-dP-xSn" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="8pu-8W-wOb"/>
+                <constraint firstAttribute="trailing" secondItem="ZyF-dP-xSn" secondAttribute="trailing" id="LJc-Vt-LVW"/>
+                <constraint firstAttribute="bottom" secondItem="ZyF-dP-xSn" secondAttribute="bottom" id="eXd-nV-2OQ"/>
+                <constraint firstItem="ZyF-dP-xSn" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="nwg-IR-WC5"/>
             </constraints>
-            <point key="canvasLocation" x="-62" y="41"/>
+            <point key="canvasLocation" x="-113" y="-7"/>
         </view>
     </objects>
     <resources>
-        <image name="LEMe_weixin" width="37" height="37"/>
+        <image name="BTLogin.jpg" width="750" height="1334"/>
     </resources>
 </document>
