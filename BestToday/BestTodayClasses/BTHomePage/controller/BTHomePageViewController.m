@@ -8,9 +8,10 @@
 
 #import "BTHomePageViewController.h"
 #import "BTSpreadTableView.h"
-#import "BTLoginViewController.h"
+#import "BTLoginsViewController.h"
 #import "BTHomePageTableViewCell.h"
 #import "BTHomeOpenHander.h"
+#import "BTHomePageDetailViewController.h"
 
 @interface BTHomePageViewController ()<LEBaseTableViewDelegate,UITableViewDataSource, UITableViewDelegate, BTSpreadTableViewDelegate, BTHomepageViewDelegate>
 
@@ -33,10 +34,11 @@
     
     
     [[BTHomeOpenHander shareHomeOpenHander] initDataArry];
-    
-    [self setupTableView];
 
-//    BTLoginViewController *loginvc = [[BTLoginViewController alloc] init];
+    [self setupTableView];
+    
+
+//    BTLoginsViewController *loginvc = [[BTLoginsViewController alloc] init];
 //    
 //    
 //    MGJNavigationController *navigationController = [[MGJNavigationController alloc] initWithRootViewController:loginvc];
@@ -45,7 +47,6 @@
 //        
 //        
 //    }];
-
     
 }
 
@@ -94,7 +95,6 @@
 }
 
 #pragma mark - BTHomepageViewDelegate
-
 
 - (void)reloadTableView:(NSInteger)indexpath height:(CGFloat)height {
     
@@ -155,6 +155,19 @@
     
     return cell;
 }
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+
+    BTHomePageDetailViewController *homePagedetail = [[BTHomePageDetailViewController alloc] init];
+    
+    BTHomePageTableViewCell *announcementCell = [_dicCell objectForKey:[NSString stringWithFormat:@"indexPath%ld", indexPath.row]];
+    
+    homePagedetail.heightCell = announcementCell.heightCell;
+    
+    [self.navigationController pushViewController:homePagedetail animated:YES];
+    
+}
+
 
 - (void)onclickBtnAtten:(UIButton *)btn{
 

@@ -7,8 +7,12 @@
 //
 
 #import "BTMeViewController.h"
+#import "MLTSegementView.h"
+#import "BTMeCollectionView.h"
+#import "BTMeEditInforViewController.h"
+#import "BTAttentionMeViewController.h"
 
-@interface BTMeViewController ()
+@interface BTMeViewController ()<MLTTouchLabelDelegate>
 
 @property (nonatomic, strong) UIImageView *imageAvtar;
 
@@ -28,6 +32,13 @@
 
 @property (nonatomic, strong) UIView *viewLine;    // 线
 
+@property (nonatomic, strong) MLTSegementView *segementView;
+
+@property (nonatomic) CGFloat heightHeader;
+
+@property (nonatomic,strong) BTMeCollectionView *collectionView;
+
+@property (nonatomic,strong) BTMeCollectionView *collectionViewTwo;
 
 
 @end
@@ -40,11 +51,13 @@
     self.view.backgroundColor = [UIColor whiteColor];
     
     [self setNavgationBar];
-
-   UIView *headView = [self creatHeaderView:CGRectMake(0, NAVBAR_HEIGHT, FULL_WIDTH, 200)];
+    
+   UIView *headView = [self creatHeaderView:CGRectMake(0, NAVBAR_HEIGHT, FULL_WIDTH, 270)];
     
    [self.view addSubview:headView];
     
+   [self creatSegment];
+
 }
 
 -(void)setNavgationBar{
@@ -76,11 +89,13 @@
     
     UIImage *imageName = [UIImage imageNamed:@"My_Modify"];
 
-    _btnModify = [[UIButton alloc] initWithFrame:CGRectMake(_labName.right + 6, 16, imageName.size.width, imageName.size.height)];
+    _btnModify = [[UIButton alloc] initWithFrame:CGRectMake(_labName.right + 6, 21, imageName.size.width, imageName.size.height)];
     
     [_btnModify setImage:imageName forState:UIControlStateNormal];
     
-    _btnPublish = [[UIButton alloc] initWithFrame:CGRectMake(_labName.left, _labName.bottom + 20, 55, 0)];
+    [_btnModify addTarget:self action:@selector(onclickModify:) forControlEvents:UIControlEventTouchUpInside];
+    
+    _btnPublish = [[UIButton alloc] initWithFrame:CGRectMake(_labName.left, _labName.bottom + 20, 65, 0)];
     
     [_btnPublish setTitle:@"发表 20" forState:UIControlStateNormal];
     
@@ -88,24 +103,25 @@
     
     [_btnPublish setTitleColor:[UIColor colorWithHexString:@"#969696"] forState:UIControlStateNormal];
 
-    
     [_btnPublish.titleLabel sizeToFit];
     
-    
-    
-    _btnFans = [[UIButton alloc] initWithFrame:CGRectMake(_btnPublish.right + 40, _labName.bottom + 20, 55, 0)];
+    _btnFans = [[UIButton alloc] initWithFrame:CGRectMake(_btnPublish.right + 40, _labName.bottom + 20, 65, 0)];
     
     [_btnFans setTitle:@"粉丝 350" forState:UIControlStateNormal];
     
     [_btnFans setTitleColor:[UIColor colorWithHexString:@"#969696"] forState:UIControlStateNormal];
     
+    [_btnModify addTarget:self action:@selector(onclickFans:) forControlEvents:UIControlEventTouchUpInside];
+    
     _btnFans.titleLabel.font = [UIFont systemFontOfSize:14];
     
     [_btnFans.titleLabel sizeToFit];
     
-    _btnfollow = [[UIButton alloc] initWithFrame:CGRectMake(_btnFans.right + 40, _labName.bottom + 20, 55, 0)];
+    _btnfollow = [[UIButton alloc] initWithFrame:CGRectMake(_btnFans.right + 40, _labName.bottom + 20, 65, 0)];
     
     [_btnfollow setTitle:@"关注 365" forState:UIControlStateNormal];
+    
+    [_btnfollow addTarget:self action:@selector(onclickFollow:) forControlEvents:UIControlEventTouchUpInside];
     
     [_btnfollow setTitleColor:[UIColor colorWithHexString:@"#969696"] forState:UIControlStateNormal];
     
@@ -140,6 +156,8 @@
     
     _viewLine.backgroundColor = [UIColor colorWithHexString:@"#eeeeee"];
     
+    _heightHeader = _viewLine.bottom + NAVBAR_HEIGHT;
+    
     [viewHeaer addSubview:_imageAvtar];
     
     [viewHeaer addSubview:_labName];
@@ -159,12 +177,83 @@
     [viewHeaer addSubview:_viewLine];
     
     return viewHeaer;
+}
+
+
+- (void)creatSegment{
     
+    _segementView = [[MLTSegementView alloc]initWithFrame:CGRectMake(0, _heightHeader, FULL_WIDTH, 50)];
+    
+    _segementView.touchDelegate = self;
+    
+    _segementView.titleArray = @[@"作品",@"喜欢"];
+    
+    [_segementView.scrollLine setBackgroundColor:[UIColor mlt_colorWithHexString:@"#c09034" alpha:1]];
+    
+    _segementView.titleSelectedColor = [UIColor mlt_colorWithHexString:@"#212121" alpha:1];
+    
+    _segementView.backgroundColor = [UIColor whiteColor];
+    
+    _collectionView = [[BTMeCollectionView alloc] initWithFrame:CGRectMake(0, _segementView.bottom, FULL_WIDTH, FULL_HEIGHT - _segementView.bottom)];
+    
+    _collectionViewTwo = [[BTMeCollectionView alloc] initWithFrame:CGRectMake(0, _segementView.bottom, FULL_WIDTH, FULL_HEIGHT - _segementView.bottom)];
+
+    
+    [self.view addSubview:_segementView];
+    
+    [self.view addSubview:_collectionView];
+    
+    [self.view addSubview:_collectionViewTwo];
+}
+
+/** 点击工具栏选择 */
+- (void)touchLabelWithIndex:(NSInteger)index{
+    
+  
+    if (index == 0) {
+        
+        [self.view bringSubviewToFront:_collectionView];
+        
+    }else {
+        
+        [self.view bringSubviewToFront:_collectionViewTwo];
+
+      }
+}
+
+- (void)onclickModify:(UIButton *)btn{
+    
+    BTMeEditInforViewController *editInfor = [[BTMeEditInforViewController alloc] init];
+    
+    [self.navigationController pushViewController:editInfor animated:YES];
 }
 
 - (void)addFriend:(UIButton *)btn{
     
+    BTAttentionMeViewController *Attention = [[BTAttentionMeViewController alloc] init];
     
+    Attention.navTitle = @"关注我的";
+    
+    [self.navigationController pushViewController:Attention animated:YES];
 }
+
+- (void)onclickFollow:(UIButton *)btn{
+    
+    BTAttentionMeViewController *Attention = [[BTAttentionMeViewController alloc] init];
+    
+    Attention.navTitle = @"我关注的";
+    
+    [self.navigationController pushViewController:Attention animated:YES];
+}
+
+- (void)onclickFans:(UIButton *)btn{
+
+    BTAttentionMeViewController *Attention = [[BTAttentionMeViewController alloc] init];
+    
+    Attention.navTitle = @"关注我的";
+    
+    [self.navigationController pushViewController:Attention animated:YES];
+}
+
 
 @end

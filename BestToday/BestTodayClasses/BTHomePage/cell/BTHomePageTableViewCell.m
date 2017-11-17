@@ -8,6 +8,10 @@
 
 #import "BTHomePageTableViewCell.h"
 
+#import <UShareUI/UShareUI.h>
+
+
+
 @implementation BTHomePageTableViewCell
 
 - (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier
@@ -54,8 +58,6 @@
             _labFabulous = [UILabel mlt_labelWithText:@"" color:[UIColor mlt_colorWithHexString:@"#bdbdbd" alpha:1] align:NSTextAlignmentLeft font:[UIFont systemFontOfSize:12] bkColor:nil frame:CGRectMake(FULL_WIDTH / 2 + 15, _labTime.top, 50, 0)];
             
 //            _labDescrp = [UILabel mlt_labelWithText:@"" color:[UIColor mlt_colorWithHexString:@"#616161" alpha:1] align:NSTextAlignmentLeft font:[UIFont systemFontOfSize:14] bkColor:nil frame:CGRectMake(_imageAvtar.left, _labTime.bottom + 15, FULL_WIDTH - 30, 0)];
-    
-            
             
             _btnCollection = [[UIButton alloc] init];
             
@@ -110,6 +112,16 @@
 }
 
 - (void)onclickBtnCollection:(UIButton *)btn{
+    if (btn.selected == YES) {
+        btn.selected = NO;
+        
+        _labFabulous.text = [NSString stringWithFormat:@"%ld",[_labFabulous.text integerValue] - 1];
+    }else {
+        btn.selected = YES;
+        
+        _labFabulous.text = [NSString stringWithFormat:@"%ld",[_labFabulous.text integerValue] + 1];
+
+    }
 
 }
 
@@ -118,6 +130,13 @@
 }
 
 - (void)onclickBtnShare:(UIButton *)btn{
+    //显示分享面板
+    [UMSocialUIManager showShareMenuViewInWindowWithPlatformSelectionBlock:^(UMSocialPlatformType platformType, NSDictionary *userInfo)
+     {
+        // 根据获取的platformType确定所选平台进行下一步操作
+         
+         
+    }];
     
 }
 
@@ -135,10 +154,15 @@
     
     UIImage *iamgeInformation = [UIImage imageNamed:@"information"];
 
-    UIImage *iamgeCollection = [UIImage imageNamed:@"collection_select"];
+    UIImage *iamgeCollectionSelect = [UIImage imageNamed:@"collection_select"];
+    
+    UIImage *iamgeCollection = [UIImage imageNamed:@"collection"];
+
 
     [_btnCollection setImage:iamgeCollection forState:UIControlStateNormal];
     
+    [_btnCollection setImage:iamgeCollectionSelect forState:UIControlStateSelected];
+
     _btnCollection.frame = CGRectMake(_labFabulous.right + 15, _imagePic.bottom + 12, iamgeCollection.size.width, iamgeCollection.size.height);
     
     
@@ -195,6 +219,7 @@
     
     
     int font = 15;
+    
     int row = 3;
     
     CGFloat height = font * (row + 1) + heightLabTwo + 30;

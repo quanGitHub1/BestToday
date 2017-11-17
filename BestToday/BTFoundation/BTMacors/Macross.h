@@ -581,7 +581,7 @@ __strong __typeof__(VAR) VAR = metamacro_concat(VAR, _weak_);
 
 #define AppWindow [[[UIApplication sharedApplication] delegate] window]
 
-#define kNavigationBarHight 64
+#define kNavigationBarHight 70
 #define kTabBarHeight 49
 #define KLoginBottomHeight 44*FIT_750_HEIGHT
 #define Limit 20

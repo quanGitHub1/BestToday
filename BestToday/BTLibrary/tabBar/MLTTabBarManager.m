@@ -33,10 +33,10 @@
     self = [super init];
     if (self) {
         //do something
-        self.tabBarTitles = @[@"首页", @"发现", @"拍照", @"关注", @"我的"];
-        self.tabBarNormalIcons = @[@"tabbar_optional", @"tabbar_Information", @"tabbar_live", @"tabbar_Information",@"tabbar_mine"];
+//        self.tabBarTitles = @[@"首页", @"发现", @"拍照", @"关注", @"我的"];
+        self.tabBarNormalIcons = @[@"tabbar_Home", @"tabbar_Search", @"tabbar_Add", @"tabbar_info",@"tabbar_mine"];
         
-        self.tabBarSelectedIcons = @[@"tabbar_optional_select", @"tabbar_information_select", @"tabbar_liveSelect", @"tabbar_information_select",@"tabbar_mine_select"];
+        self.tabBarSelectedIcons = @[@"tabbar_Homeselect", @"tabbar_Searchselect", @"tabbar_Addselect", @"tabbar_infoSelect",@"tabbar_mine_select"];
         
     }
     return self;
