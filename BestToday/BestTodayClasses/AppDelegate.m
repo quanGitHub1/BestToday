@@ -14,13 +14,11 @@
 
 #import <UMSocialCore/UMSocialCore.h>
 
-
 #define UMAppKey            @"570c660367e58e91600010a5"
 #define WeChatAppId         @"wxd930ea5d5a258f4f"
 #define WeChatAppSecret     @"795a6f7b8986109c002085a52759df68"
 #define QQAppID             @"1105274162"
 #define QQAppKey            @"U7L3TNEJdW12VOp6"
-
 
 @interface AppDelegate ()
 
@@ -43,7 +41,6 @@
     
     [WXApi registerAppSupportContentFlag:typeFlag];
     
-
     /* 打开调试日志 */
     [[UMSocialManager defaultManager] openLog:YES];
     

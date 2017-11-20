@@ -168,6 +168,8 @@
 		7AA2BDC51FB2D88E00864753 /* BTHomeComment.m in Sources */ = {isa = PBXBuildFile; fileRef = 7AA2BDC41FB2D88E00864753 /* BTHomeComment.m */; };
 		7AA2BDC81FB2FAE400864753 /* BTHomeCommentTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 7AA2BDC71FB2FAE400864753 /* BTHomeCommentTableViewCell.m */; };
 		7AA2BDCE1FB3015900864753 /* BTHomeCommentView.m in Sources */ = {isa = PBXBuildFile; fileRef = 7AA2BDCD1FB3015900864753 /* BTHomeCommentView.m */; };
+		CB670BC81FBEC388004BDCEA /* BTSystemMessageCell.m in Sources */ = {isa = PBXBuildFile; fileRef = CB670BC71FBEC388004BDCEA /* BTSystemMessageCell.m */; };
+		CB670BCB1FBEC3A6004BDCEA /* BTMeMessageCell.m in Sources */ = {isa = PBXBuildFile; fileRef = CB670BCA1FBEC3A6004BDCEA /* BTMeMessageCell.m */; };
 		CBCD2EA91FB4657100994037 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CBCD2E9A1FB4657100994037 /* Assets.xcassets */; };
 		CBCD2EAA1FB4657100994037 /* FSAlbumView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBCD2E9B1FB4657100994037 /* FSAlbumView.swift */; };
 		CBCD2EAB1FB4657100994037 /* FSAlbumView.xib in Resources */ = {isa = PBXBuildFile; fileRef = CBCD2E9C1FB4657100994037 /* FSAlbumView.xib */; };
@@ -532,6 +534,10 @@
 		7AA2BDC71FB2FAE400864753 /* BTHomeCommentTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BTHomeCommentTableViewCell.m; sourceTree = "<group>"; };
 		7AA2BDCC1FB3015900864753 /* BTHomeCommentView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BTHomeCommentView.h; sourceTree = "<group>"; };
 		7AA2BDCD1FB3015900864753 /* BTHomeCommentView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BTHomeCommentView.m; sourceTree = "<group>"; };
+		CB670BC61FBEC388004BDCEA /* BTSystemMessageCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BTSystemMessageCell.h; sourceTree = "<group>"; };
+		CB670BC71FBEC388004BDCEA /* BTSystemMessageCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BTSystemMessageCell.m; sourceTree = "<group>"; };
+		CB670BC91FBEC3A6004BDCEA /* BTMeMessageCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BTMeMessageCell.h; sourceTree = "<group>"; };
+		CB670BCA1FBEC3A6004BDCEA /* BTMeMessageCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BTMeMessageCell.m; sourceTree = "<group>"; };
 		CBCD2E9A1FB4657100994037 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		CBCD2E9B1FB4657100994037 /* FSAlbumView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FSAlbumView.swift; sourceTree = "<group>"; };
 		CBCD2E9C1FB4657100994037 /* FSAlbumView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = FSAlbumView.xib; sourceTree = "<group>"; };
@@ -1448,6 +1454,10 @@
 			children = (
 				7AA2BD1F1FAAFECE00864753 /* BTCollectionTableViewCell.h */,
 				7AA2BD201FAAFECE00864753 /* BTCollectionTableViewCell.m */,
+				CB670BC61FBEC388004BDCEA /* BTSystemMessageCell.h */,
+				CB670BC71FBEC388004BDCEA /* BTSystemMessageCell.m */,
+				CB670BC91FBEC3A6004BDCEA /* BTMeMessageCell.h */,
+				CB670BCA1FBEC3A6004BDCEA /* BTMeMessageCell.m */,
 			);
 			path = cell;
 			sourceTree = "<group>";
@@ -1821,13 +1831,16 @@
 			files = (
 			);
 			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
 			);
 			name = "[CP] Check Pods Manifest.lock";
 			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-BestToday-checkManifestLockResult.txt",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
 		8AD334D677B03F816E4EF663 /* [CP] Embed Pods Frameworks */ = {
@@ -1851,9 +1864,14 @@
 			files = (
 			);
 			inputPaths = (
+				"${SRCROOT}/Pods/Target Support Files/Pods-BestToday/Pods-BestToday-resources.sh",
+				"${PODS_ROOT}/MJRefresh/MJRefresh/MJRefresh.bundle",
+				"${PODS_ROOT}/UMengUShare/UShareSDK/UMSocialSDK/UMSocialSDKPromptResources.bundle",
+				"${PODS_ROOT}/UMengUShare/UShareSDK/UMSocialUI/UMSocialSDKResources.bundle",
 			);
 			name = "[CP] Copy Pods Resources";
 			outputPaths = (
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -1891,6 +1909,7 @@
 				CBCD2EB41FB4657100994037 /* FusumaViewController.swift in Sources */,
 				7AA2BD181FAAFE8B00864753 /* BTDiscoverEntity.m in Sources */,
 				7AA2BCBF1FAAC07400864753 /* MLTUtils.m in Sources */,
+				CB670BC81FBEC388004BDCEA /* BTSystemMessageCell.m in Sources */,
 				7AA2BCAF1FAAC07400864753 /* MLTTabBarItem.m in Sources */,
 				7AA2BDC81FB2FAE400864753 /* BTHomeCommentTableViewCell.m in Sources */,
 				7AA2BC2A1FAAB4CC00864753 /* MLTLoadingFooter.m in Sources */,
@@ -1927,6 +1946,7 @@
 				7AA2BD0F1FAAFE3C00864753 /* BtHomePageService.m in Sources */,
 				7AA2BC2C1FAAB4CC00864753 /* MLTIndicatorView.m in Sources */,
 				7AA2BC371FAAB4CC00864753 /* MLTPageControl.m in Sources */,
+				CB670BCB1FBEC3A6004BDCEA /* BTMeMessageCell.m in Sources */,
 				7AA2BD5D1FAFFE4D00864753 /* UIColor+MLTKit.m in Sources */,
 				7AA2BDC21FB2A79100864753 /* BTHomeOpenHander.m in Sources */,
 				7AA2BCB91FAAC07400864753 /* NSMutableDictionary+MLTKit.m in Sources */,
