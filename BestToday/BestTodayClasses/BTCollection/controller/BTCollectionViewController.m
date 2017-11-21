@@ -11,7 +11,7 @@
 #import "BTTableview.h"
 #import "BTSystemMessageCell.h"
 #import "BTMeMessageCell.h"
-
+#import "BTMessageViewController.h"
 @interface BTCollectionViewController ()<UITableViewDelegate,UITableViewDataSource>
 
 @property (nonatomic ,strong) BTTableview *systemTableView;
@@ -44,12 +44,12 @@
     };
     self.navigationBar.titleView = segmentedControl;
     
-    self.systemTableView = [[BTTableview alloc]initWithFrame:CGRectMake(0, kNavigationBarHight, kSCREEN_WIDTH, kSCREEN_HEIGHT-kNavigationBarHight)];
+    self.systemTableView = [[BTTableview alloc]initWithFrame:CGRectMake(0, kNavigationBarHight, kSCREEN_WIDTH, kSCREEN_HEIGHT-kNavigationBarHight) style:UITableViewStylePlain];
     self.systemTableView.delegate = self;
     self.systemTableView.dataSource = self;
     [self.view addSubview:self.systemTableView];
     
-    self.meTableView = [[BTTableview alloc]initWithFrame:CGRectMake(0, kNavigationBarHight, kSCREEN_WIDTH, kSCREEN_HEIGHT-kNavigationBarHight)];
+    self.meTableView = [[BTTableview alloc]initWithFrame:CGRectMake(0, kNavigationBarHight, kSCREEN_WIDTH, kSCREEN_HEIGHT-kNavigationBarHight) style:UITableViewStylePlain];
     self.meTableView.delegate = self;
     self.meTableView.dataSource = self;
     
@@ -82,7 +82,8 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     if (tableView == _systemTableView) {
-        
+        BTMessageViewController *messageVC = [[BTMessageViewController alloc] init];
+        [self.navigationController pushViewController:messageVC animated:YES];
     }else{
         
     }

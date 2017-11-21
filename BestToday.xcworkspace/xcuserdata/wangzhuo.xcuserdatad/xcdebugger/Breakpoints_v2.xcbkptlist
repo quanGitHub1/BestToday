@@ -2,4 +2,54 @@
 <Bucket
    type = "0"
    version = "2.0">
+   <Breakpoints>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "BestToday/BestTodayClasses/BTCollection/controller/message/BTMessageViewController.m"
+            timestampString = "532944232.521468"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "164"
+            endingLineNumber = "164"
+            landmarkName = "-chatToolbarDidChangeFrameToHeight:"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "-[BTMessageViewController chatToolbarDidChangeFrameToHeight:]"
+                  moduleName = "BestToday"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/wangzhuo/Desktop/bdbd/BestToday/BestTodayClasses/BTCollection/controller/message/BTMessageViewController.m"
+                  timestampString = "532944816.676256"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "164"
+                  endingLineNumber = "164"
+                  offsetFromSymbolStart = "46">
+               </Location>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "__61-[BTMessageViewController chatToolbarDidChangeFrameToHeight:]_block_invoke"
+                  moduleName = "BestToday"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/wangzhuo/Desktop/bdbd/BestToday/BestTodayClasses/BTCollection/controller/message/BTMessageViewController.m"
+                  timestampString = "532944816.678784"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "164"
+                  endingLineNumber = "164"
+                  offsetFromSymbolStart = "15">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+   </Breakpoints>
 </Bucket>
