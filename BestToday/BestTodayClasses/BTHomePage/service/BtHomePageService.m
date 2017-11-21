@@ -10,4 +10,23 @@
 
 @implementation BtHomePageService
 
+- (void)loadqueryMyFollowedUsers:(NSInteger)tag completion:(void(^)(BOOL isSuccess, BOOL isCache))completion{
+
+    NSString *urlString = [NSString stringWithFormat:@"%@&tag=%ld",BTQueryMyFollowedUsers,tag];
+    
+    [NetworkHelper GET:urlString parameters:nil responseCache:^(id responseCache) {
+        
+    } success:^(id responseObject) {
+        
+        completion(YES,NO);
+        
+        
+    } failure:^(NSError *error) {
+        completion(NO,NO);
+    }];
+
+    
+}
+
+
 @end

@@ -10,4 +10,7 @@
 
 @interface BtHomePageService : NSObject
 
+- (void)loadqueryMyFollowedUsers:(NSInteger)tag completion:(void(^)(BOOL isSuccess, BOOL isCache))completion;
+
+
 @end

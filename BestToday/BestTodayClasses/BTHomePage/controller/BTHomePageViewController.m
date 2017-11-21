@@ -12,6 +12,8 @@
 #import "BTHomePageTableViewCell.h"
 #import "BTHomeOpenHander.h"
 #import "BTHomePageDetailViewController.h"
+#import <UShareUI/UShareUI.h>
+
 
 @interface BTHomePageViewController ()<LEBaseTableViewDelegate,UITableViewDataSource, UITableViewDelegate, BTSpreadTableViewDelegate, BTHomepageViewDelegate>
 
@@ -37,6 +39,7 @@
 
     [self setupTableView];
     
+
 
 //    BTLoginsViewController *loginvc = [[BTLoginsViewController alloc] init];
 //    
@@ -91,6 +94,27 @@
     [headerView addSubview:_spreadTableView];
     
     self.tableView.tableHeaderView = headerView;
+    
+}
+
+/** 快讯速递和最新公告 */
+- (void)requestAnnouncementData{
+    
+//    [self.individualService loadAnnouncementInLatestStockID:_symbolid completion:^(BOOL isSuccess, BOOL isCache) {
+//        
+//        if (isSuccess) {
+//            [SVProgressHUD dismiss];
+//            
+//            [_tableView stop];
+//            
+//            dispatch_async(dispatch_get_main_queue(), ^{
+//                
+//                [self.tableView reloadData];
+//                
+//            });
+//            
+//        }
+//    }];
     
 }
 

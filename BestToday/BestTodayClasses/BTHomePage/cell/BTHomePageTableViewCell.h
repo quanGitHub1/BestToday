@@ -9,6 +9,7 @@
 #import <UIKit/UIKit.h>
 #import "OpenDetailsView.h"
 #import "BTHomeCommentView.h"
+#import <UShareUI/UShareUI.h>
 
 
 @protocol BTHomepageViewDelegate <NSObject>
@@ -18,7 +19,8 @@
 
 @end
 
-@interface BTHomePageTableViewCell : UITableViewCell
+@interface BTHomePageTableViewCell : UITableViewCell<UMSocialShareMenuViewDelegate>
+
 
 @property(nonatomic, weak) id <BTHomepageViewDelegate>delegate;
 

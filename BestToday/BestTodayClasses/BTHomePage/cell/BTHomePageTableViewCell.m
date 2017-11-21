@@ -8,9 +8,6 @@
 
 #import "BTHomePageTableViewCell.h"
 
-#import <UShareUI/UShareUI.h>
-
-
 
 @implementation BTHomePageTableViewCell
 
@@ -127,18 +124,51 @@
 
 - (void)onclickBtnComment:(UIButton *)btn{
     
+    //设置用户自定义的平台
+    [UMSocialUIManager setPreDefinePlatforms:@[@(UMSocialPlatformType_WechatSession),
+                                               @(UMSocialPlatformType_WechatTimeLine),
+                                               @(UMSocialPlatformType_WechatFavorite),
+                                               @(UMSocialPlatformType_QQ),
+                                               @(UMSocialPlatformType_Tim),
+                                               @(UMSocialPlatformType_Qzone),
+                                               @(UMSocialPlatformType_Sina),
+                                               @(UMSocialPlatformType_TencentWb),
+                                               ]];
+    
+    [UMSocialUIManager setShareMenuViewDelegate:self];
 }
 
 - (void)onclickBtnShare:(UIButton *)btn{
+    
+    __weak typeof(self) weakSelf = self;
+
     //显示分享面板
     [UMSocialUIManager showShareMenuViewInWindowWithPlatformSelectionBlock:^(UMSocialPlatformType platformType, NSDictionary *userInfo)
      {
         // 根据获取的platformType确定所选平台进行下一步操作
-         
+         [weakSelf shareTextToPlatformType:platformType];
          
     }];
     
 }
+
+//分享文本
+- (void)shareTextToPlatformType:(UMSocialPlatformType)platformType
+{
+    //创建分享消息对象
+    UMSocialMessageObject *messageObject = [UMSocialMessageObject messageObject];
+    //设置文本
+    messageObject.text = @"社会化组件UShare将各大社交平台接入您的应用，快速武装App。";
+    //调用分享接口
+    [[UMSocialManager defaultManager] shareToPlatform:platformType messageObject:messageObject currentViewController:self completion:^(id data, NSError *error) {
+        if (error) {
+            NSLog(@"************Share fail with error %@*********",error);
+        }else{
+            NSLog(@"response data is %@",data);
+        }
+    }];
+}
+
 
 - (void)makeDatacell:(NSInteger)indexpath{
 

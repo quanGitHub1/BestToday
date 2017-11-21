@@ -12,7 +12,10 @@
 #ifdef DEBUG    //// 测试环境
 
 // 用户登录
-#define BTUserLogin   @"http://doit1987.com/todayHot/app/user/wxAppUserLogin.json"
+#define BTUserLogin   @"http://zuijia365.com/todayHot/app/user/wxAppUserLogin.json"
+
+#define BTQueryMyFollowedUsers   @"http://zuijia365.com/todayHot/app/user/queryMyFollowedUsers.json"
+
 
 #else         //////// 线上环境
 
