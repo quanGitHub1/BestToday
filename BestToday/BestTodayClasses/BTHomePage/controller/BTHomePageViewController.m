@@ -13,6 +13,7 @@
 #import "BTHomeOpenHander.h"
 #import "BTHomePageDetailViewController.h"
 #import <UShareUI/UShareUI.h>
+#import "BtHomePageService.h"
 
 
 @interface BTHomePageViewController ()<LEBaseTableViewDelegate,UITableViewDataSource, UITableViewDelegate, BTSpreadTableViewDelegate, BTHomepageViewDelegate>
@@ -22,6 +23,8 @@
 @property (nonatomic, strong) BTSpreadTableView *spreadTableView;
 
 @property (nonatomic, strong) NSMutableDictionary *dicCell;
+
+@property (nonatomic, strong) BtHomePageService *homePageService;
 
 @end
 
@@ -38,6 +41,8 @@
     [[BTHomeOpenHander shareHomeOpenHander] initDataArry];
 
     [self setupTableView];
+    
+    [self requestAnnouncementData];
     
 
 
@@ -86,7 +91,10 @@
          */
         _spreadTableView = [[BTSpreadTableView alloc] initWithFrame:CGRectMake(0, 0, ScaleHeight(120), FULL_WIDTH) style:UITableViewStylePlain withType:BTSpreadTableViewStyleImageText];// x,y 高，宽
         
-        _spreadTableView.backgroundColor = [UIColor yellowColor];
+        _spreadTableView.backgroundColor = [UIColor colorWithHexString:@"#f5f5f5"];
+        
+       _spreadTableView.dataArr = self.homePageService.arrFollowedUsers;
+        
         _spreadTableView.spreadDelegate = self;
         
     }
@@ -97,25 +105,24 @@
     
 }
 
-/** 快讯速递和最新公告 */
+/** 关注我的接口 */
 - (void)requestAnnouncementData{
     
-//    [self.individualService loadAnnouncementInLatestStockID:_symbolid completion:^(BOOL isSuccess, BOOL isCache) {
-//        
-//        if (isSuccess) {
-//            [SVProgressHUD dismiss];
-//            
-//            [_tableView stop];
-//            
-//            dispatch_async(dispatch_get_main_queue(), ^{
-//                
-//                [self.tableView reloadData];
-//                
-//            });
-//            
-//        }
-//    }];
-    
+    [self.homePageService loadqueryMyFollowedUsers:1 completion:^(BOOL isSuccess, BOOL isCache) {
+        
+        [self.tableView stop];
+        
+        if (isSuccess) {
+            
+            _spreadTableView.dataArr = self.homePageService.arrFollowedUsers;
+            
+            [_spreadTableView reloadData];
+            
+            [self.tableView reloadData];
+
+            
+        }
+    }];
 }
 
 #pragma mark - BTHomepageViewDelegate
@@ -192,7 +199,6 @@
     
 }
 
-
 - (void)onclickBtnAtten:(UIButton *)btn{
 
     UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"" message:@"" preferredStyle:UIAlertControllerStyleAlert];
@@ -207,6 +213,14 @@
     [self presentViewController:alertController animated:YES completion:nil];
     
     
+}
+
+#pragma mark - lazy
+- (BtHomePageService *)homePageService {
+    if (!_homePageService) {
+        _homePageService = [[BtHomePageService alloc] init];
+    }
+    return _homePageService;
 }
 
 - (void)didReceiveMemoryWarning {

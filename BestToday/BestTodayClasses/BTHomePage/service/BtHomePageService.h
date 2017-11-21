@@ -10,6 +10,8 @@
 
 @interface BtHomePageService : NSObject
 
+@property (nonatomic, strong) NSMutableArray *arrFollowedUsers;
+
 - (void)loadqueryMyFollowedUsers:(NSInteger)tag completion:(void(^)(BOOL isSuccess, BOOL isCache))completion;
 
 

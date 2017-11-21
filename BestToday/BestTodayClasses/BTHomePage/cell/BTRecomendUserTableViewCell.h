@@ -7,6 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "BTHomeUserEntity.h"
 
 @interface BTRecomendUserTableViewCell : UITableViewCell
 
@@ -14,7 +15,7 @@
 
 @property (nonatomic, strong) UILabel *labName;
 
-//- (void)makeEditCellData:(MLTDiscoverDetailEditStockEnty *)editStockEnty;
+- (void)makeEditCellData:(BTHomeUserEntity *)userEnty;
 
 
 @end

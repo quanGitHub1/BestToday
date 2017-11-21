@@ -25,6 +25,7 @@
 		7A16BA051FBD415800E7EC3A /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 7A16BA041FBD415800E7EC3A /* Images.xcassets */; };
 		7A16BA071FBD7F4C00E7EC3A /* libsqlite3.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 7A16BA061FBD7F4C00E7EC3A /* libsqlite3.tbd */; };
 		7A16BA091FBD7F5B00E7EC3A /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7A16BA081FBD7F5B00E7EC3A /* CoreGraphics.framework */; };
+		7A16BA7C1FC4304800E7EC3A /* BTHomeUserEntity.m in Sources */ = {isa = PBXBuildFile; fileRef = 7A16BA7B1FC4304800E7EC3A /* BTHomeUserEntity.m */; };
 		7AA2BB351FAAAE5500864753 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 7AA2BB341FAAAE5500864753 /* main.m */; };
 		7AA2BB4E1FAAAE5500864753 /* BestTodayTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 7AA2BB4D1FAAAE5500864753 /* BestTodayTests.m */; };
 		7AA2BB591FAAAE5500864753 /* BestTodayUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = 7AA2BB581FAAAE5500864753 /* BestTodayUITests.m */; };
@@ -236,6 +237,8 @@
 		7A16BA041FBD415800E7EC3A /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		7A16BA061FBD7F4C00E7EC3A /* libsqlite3.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libsqlite3.tbd; path = usr/lib/libsqlite3.tbd; sourceTree = SDKROOT; };
 		7A16BA081FBD7F5B00E7EC3A /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
+		7A16BA7A1FC4304800E7EC3A /* BTHomeUserEntity.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BTHomeUserEntity.h; sourceTree = "<group>"; };
+		7A16BA7B1FC4304800E7EC3A /* BTHomeUserEntity.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BTHomeUserEntity.m; sourceTree = "<group>"; };
 		7AA2BB301FAAAE5500864753 /* BestToday.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BestToday.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		7AA2BB341FAAAE5500864753 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		7AA2BB491FAAAE5500864753 /* BestTodayTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = BestTodayTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -1363,6 +1366,8 @@
 				7AA2BD0B1FAAFE2800864753 /* BTHomePageEntity.m */,
 				7AA2BDC31FB2D88E00864753 /* BTHomeComment.h */,
 				7AA2BDC41FB2D88E00864753 /* BTHomeComment.m */,
+				7A16BA7A1FC4304800E7EC3A /* BTHomeUserEntity.h */,
+				7A16BA7B1FC4304800E7EC3A /* BTHomeUserEntity.m */,
 			);
 			path = model;
 			sourceTree = "<group>";
@@ -2003,6 +2008,7 @@
 				7AA2BC1A1FAAB4CC00864753 /* UIView+Extension.m in Sources */,
 				7AA2BCB81FAAC07400864753 /* NSDictionary+MLTKit.m in Sources */,
 				7AA2BDCE1FB3015900864753 /* BTHomeCommentView.m in Sources */,
+				7A16BA7C1FC4304800E7EC3A /* BTHomeUserEntity.m in Sources */,
 				7AA2BC381FAAB4CC00864753 /* MLTSliderView.m in Sources */,
 				7AA2BC2D1FAAB4CC00864753 /* MLTLoadingView.m in Sources */,
 				7A16BA021FBD310F00E7EC3A /* BTLoginsViewController.m in Sources */,

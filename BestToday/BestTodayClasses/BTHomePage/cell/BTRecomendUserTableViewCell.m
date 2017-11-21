@@ -7,6 +7,7 @@
 //
 
 #import "BTRecomendUserTableViewCell.h"
+#import "UIImageView+WebCache.h"
 
 @implementation BTRecomendUserTableViewCell
 
@@ -24,7 +25,7 @@
             
             _imagePic.contentMode = UIViewContentModeScaleAspectFit;
             
-            _imagePic.backgroundColor = [UIColor redColor];
+            _imagePic.backgroundColor = [UIColor whiteColor];
             
             _imagePic.layer.cornerRadius = ScaleWidth(30);
             
@@ -38,7 +39,9 @@
             
             [self.contentView addSubview:_labName];
             
-            self.backgroundColor = [UIColor yellowColor];
+            self.contentView.backgroundColor = [UIColor colorWithHexString:@"#f5f5f5"];
+
+            
             
         }
         return self;
@@ -47,12 +50,11 @@
     return self;
 }
 
-//- (void)makeEditCellData:(MLTDiscoverDetailEditStockEnty *)editStockEnty{
-//    
-//    [_imagePic mlt_setImageWithSourceString:editStockEnty.img placeHolder:nil];
-//    
-//    _labName.text = editStockEnty.name;
-//    
-//}
+- (void)makeEditCellData:(BTHomeUserEntity *)userEnty{
+
+    _labName.text = userEnty.nickName;
+    
+    [_imagePic sd_setImageWithURL:[NSURL URLWithString:userEnty.avatarUrl] placeholderImage:nil];
+}
 
 @end
