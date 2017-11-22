@@ -10,6 +10,7 @@
 #import "OpenDetailsView.h"
 #import "BTHomeCommentView.h"
 #import <UShareUI/UShareUI.h>
+#import "BTHomePageEntity.h"
 
 
 @protocol BTHomepageViewDelegate <NSObject>
@@ -44,16 +45,19 @@
 
 @property (nonatomic, strong) OpenDetailsView *labDescrp; //描述
 
+@property (nonatomic, strong) UILabel *labTextInfor; //描述
+
+
 @property (nonatomic, strong) UIView *viewLine; //线
 
 @property (nonatomic, strong) BTHomeCommentView *homeCommentView;
+
 
 @property (nonatomic, assign) CGFloat heightCell;
 
 @property (nonatomic) BOOL cell;
 
-
-- (void)makeDatacell:(NSInteger)indexpath ;
+- (void)makeDatacellData:(BTHomePageEntity *)homePage index:(NSInteger)indexpath;
 
 
 @end

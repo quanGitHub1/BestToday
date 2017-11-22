@@ -119,7 +119,7 @@
     
     [cell.btnAtten addTarget:self action:@selector(onclickBtnAtten:) forControlEvents:UIControlEventTouchUpInside];
     
-    [cell makeDatacell:indexPath.row];
+//    [cell makeDatacell:indexPath.row];
     
     if (![[_dicCell allKeys] containsObject:[NSString stringWithFormat:@"indexPath%ld", indexPath.row]]) {
         

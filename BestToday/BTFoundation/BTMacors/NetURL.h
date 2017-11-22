@@ -16,6 +16,10 @@
 
 #define BTQueryMyFollowedUsers   @"http://zuijia365.com/todayHot/app/user/queryMyFollowedUsers.json"
 
+#define BTqueryFollowedResource   @"http://zuijia365.com/todayHot/app/resource/queryFollowedResource.json"
+
+#define BTqueryRecommendResourceByPage   @"http://zuijia365.com/todayHot/app/recommend/recommendResourceByPage.json"
+
 
 #else         //////// 线上环境
 

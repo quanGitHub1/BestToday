@@ -7,7 +7,6 @@
 //
 
 #import "BTRecomendUserTableViewCell.h"
-#import "UIImageView+WebCache.h"
 
 @implementation BTRecomendUserTableViewCell
 

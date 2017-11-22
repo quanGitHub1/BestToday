@@ -26,6 +26,9 @@
 		7A16BA071FBD7F4C00E7EC3A /* libsqlite3.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 7A16BA061FBD7F4C00E7EC3A /* libsqlite3.tbd */; };
 		7A16BA091FBD7F5B00E7EC3A /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7A16BA081FBD7F5B00E7EC3A /* CoreGraphics.framework */; };
 		7A16BA7C1FC4304800E7EC3A /* BTHomeUserEntity.m in Sources */ = {isa = PBXBuildFile; fileRef = 7A16BA7B1FC4304800E7EC3A /* BTHomeUserEntity.m */; };
+		7A16BA7F1FC5714500E7EC3A /* BTHomeDetailLookEntity.m in Sources */ = {isa = PBXBuildFile; fileRef = 7A16BA7E1FC5714500E7EC3A /* BTHomeDetailLookEntity.m */; };
+		7A16BA821FC5715D00E7EC3A /* BTHomeDetailService.m in Sources */ = {isa = PBXBuildFile; fileRef = 7A16BA811FC5715D00E7EC3A /* BTHomeDetailService.m */; };
+		7A16BA851FC574EA00E7EC3A /* BTHomedetailCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 7A16BA841FC574EA00E7EC3A /* BTHomedetailCollectionViewCell.m */; };
 		7AA2BB351FAAAE5500864753 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 7AA2BB341FAAAE5500864753 /* main.m */; };
 		7AA2BB4E1FAAAE5500864753 /* BestTodayTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 7AA2BB4D1FAAAE5500864753 /* BestTodayTests.m */; };
 		7AA2BB591FAAAE5500864753 /* BestTodayUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = 7AA2BB581FAAAE5500864753 /* BestTodayUITests.m */; };
@@ -239,6 +242,12 @@
 		7A16BA081FBD7F5B00E7EC3A /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
 		7A16BA7A1FC4304800E7EC3A /* BTHomeUserEntity.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BTHomeUserEntity.h; sourceTree = "<group>"; };
 		7A16BA7B1FC4304800E7EC3A /* BTHomeUserEntity.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BTHomeUserEntity.m; sourceTree = "<group>"; };
+		7A16BA7D1FC5714500E7EC3A /* BTHomeDetailLookEntity.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BTHomeDetailLookEntity.h; sourceTree = "<group>"; };
+		7A16BA7E1FC5714500E7EC3A /* BTHomeDetailLookEntity.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BTHomeDetailLookEntity.m; sourceTree = "<group>"; };
+		7A16BA801FC5715D00E7EC3A /* BTHomeDetailService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BTHomeDetailService.h; sourceTree = "<group>"; };
+		7A16BA811FC5715D00E7EC3A /* BTHomeDetailService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BTHomeDetailService.m; sourceTree = "<group>"; };
+		7A16BA831FC574EA00E7EC3A /* BTHomedetailCollectionViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BTHomedetailCollectionViewCell.h; sourceTree = "<group>"; };
+		7A16BA841FC574EA00E7EC3A /* BTHomedetailCollectionViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BTHomedetailCollectionViewCell.m; sourceTree = "<group>"; };
 		7AA2BB301FAAAE5500864753 /* BestToday.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BestToday.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		7AA2BB341FAAAE5500864753 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		7AA2BB491FAAAE5500864753 /* BestTodayTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = BestTodayTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -1355,6 +1364,8 @@
 				7AA2BD5F1FB005B300864753 /* BTRecomendUserTableViewCell.m */,
 				7AA2BDC61FB2FAE400864753 /* BTHomeCommentTableViewCell.h */,
 				7AA2BDC71FB2FAE400864753 /* BTHomeCommentTableViewCell.m */,
+				7A16BA831FC574EA00E7EC3A /* BTHomedetailCollectionViewCell.h */,
+				7A16BA841FC574EA00E7EC3A /* BTHomedetailCollectionViewCell.m */,
 			);
 			path = cell;
 			sourceTree = "<group>";
@@ -1368,6 +1379,8 @@
 				7AA2BDC41FB2D88E00864753 /* BTHomeComment.m */,
 				7A16BA7A1FC4304800E7EC3A /* BTHomeUserEntity.h */,
 				7A16BA7B1FC4304800E7EC3A /* BTHomeUserEntity.m */,
+				7A16BA7D1FC5714500E7EC3A /* BTHomeDetailLookEntity.h */,
+				7A16BA7E1FC5714500E7EC3A /* BTHomeDetailLookEntity.m */,
 			);
 			path = model;
 			sourceTree = "<group>";
@@ -1377,6 +1390,8 @@
 			children = (
 				7AA2BD0D1FAAFE3C00864753 /* BtHomePageService.h */,
 				7AA2BD0E1FAAFE3C00864753 /* BtHomePageService.m */,
+				7A16BA801FC5715D00E7EC3A /* BTHomeDetailService.h */,
+				7A16BA811FC5715D00E7EC3A /* BTHomeDetailService.m */,
 			);
 			path = service;
 			sourceTree = "<group>";
@@ -1957,6 +1972,7 @@
 				7AA2BCBD1FAAC07400864753 /* NSURL+MLTKit.m in Sources */,
 				7AA2BC1E1FAAB4CC00864753 /* UIView+MLTSnapshot.m in Sources */,
 				7AA2BC201FAAB4CC00864753 /* MBSort.m in Sources */,
+				7A16BA851FC574EA00E7EC3A /* BTHomedetailCollectionViewCell.m in Sources */,
 				7AA2BCB31FAAC07400864753 /* NSMutableArray+MLTKit.m in Sources */,
 				7AA2BD121FAAFE5600864753 /* BTHomePageView.m in Sources */,
 				7AA2BC141FAAB4CC00864753 /* NSObject+MGJKit.m in Sources */,
@@ -1970,6 +1986,7 @@
 				7AA2BCDC1FAAC31F00864753 /* NetworkCache.m in Sources */,
 				7AA2BDAB1FB15C4E00864753 /* UIAlertView+WX.m in Sources */,
 				7AA2BCA91FAAC07400864753 /* MGJNavigationControllerPopShrinkOutAnimation.m in Sources */,
+				7A16BA821FC5715D00E7EC3A /* BTHomeDetailService.m in Sources */,
 				7AA2BCA81FAAC07400864753 /* MGJNavigationController.m in Sources */,
 				7AA2BD3F1FAAFF9600864753 /* BTMeService.m in Sources */,
 				7A16B9E11FB5899900E7EC3A /* MLTSegementView.m in Sources */,
@@ -1986,6 +2003,7 @@
 				7AA2BCC01FAAC07400864753 /* ShareURL.m in Sources */,
 				7AA2BDB71FB162F300864753 /* BTLoginService.m in Sources */,
 				7AA2BD091FAAFE1300864753 /* BTHomePageTableViewCell.m in Sources */,
+				7A16BA7F1FC5714500E7EC3A /* BTHomeDetailLookEntity.m in Sources */,
 				7AA2BD511FAB005300864753 /* BTMeViewModel.m in Sources */,
 				7AA2BC131FAAB4CC00864753 /* NSObject+CallMethod.m in Sources */,
 				7AA2BC2F1FAAB4CC00864753 /* MLTRefreshIndicatorView.m in Sources */,

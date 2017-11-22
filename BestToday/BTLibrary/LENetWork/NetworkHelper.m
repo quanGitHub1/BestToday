@@ -171,7 +171,7 @@ static AFHTTPSessionManager *_sessionManager;
         
         parameters = [NSMutableDictionary dictionaryWithCapacity:10];
         NSString *version = [[[NSBundle mainBundle] infoDictionary] objectForKey:@"CFBundleShortVersionString"];
-        [parameters setValue:@"iOS" forKey:@"appType"];
+//        [parameters setValue:@"iOS" forKey:@"appType"];
         [parameters setValue:version forKey:@"appVersion"];
         [parameters setValue:version forKey:@"osVersion"];
         [parameters setValue:@"abc1005" forKey:@"cSessionId"];

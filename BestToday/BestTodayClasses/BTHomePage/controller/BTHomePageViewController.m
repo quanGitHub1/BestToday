@@ -26,6 +26,8 @@
 
 @property (nonatomic, strong) BtHomePageService *homePageService;
 
+@property (nonatomic, strong) NSString *pageAssistParam;
+
 @end
 
 @implementation BTHomePageViewController
@@ -42,8 +44,7 @@
 
     [self setupTableView];
     
-    [self requestAnnouncementData];
-    
+    [self loadData];
 
 
 //    BTLoginsViewController *loginvc = [[BTLoginsViewController alloc] init];
@@ -60,7 +61,7 @@
 
 - (void)setupTableView{
     
-    self.tableView = [[BTTableview alloc]initWithFrame:CGRectMake(0, kNavigationBarHight, kSCREEN_WIDTH, kSCREEN_HEIGHT-kNavigationBarHight)];
+    self.tableView = [[BTTableview alloc]initWithFrame:CGRectMake(0, kNavigationBarHight, kSCREEN_WIDTH, kSCREEN_HEIGHT-kNavigationBarHight - kTabBarHeight)];
     
     self.tableView.delegate = self;
     self.tableView.dataSource = self;
@@ -105,6 +106,35 @@
     
 }
 
+- (void)requestDataSource{
+    
+    if (_dicCell.count > 0) {
+        [_dicCell removeAllObjects];
+    }
+    
+    _pageAssistParam = @"";
+    
+    [self loadData];
+}
+
+- (void)requestMoreDataSource{
+    
+    if (self.homePageService.arrFollowedResource.count % 10  != 0) {
+        [self.tableView noDataFooterEndRefreshing];
+        
+    }else{
+        [self loadData];
+    }
+}
+
+- (void)loadData{
+
+    [self requestAnnouncementData];
+    
+    [self requestQueryFollowedResource];
+    
+}
+
 /** 关注我的接口 */
 - (void)requestAnnouncementData{
     
@@ -120,6 +150,23 @@
             
             [self.tableView reloadData];
 
+            
+        }
+    }];
+}
+
+- (void)requestQueryFollowedResource{
+
+    [self.homePageService loadqueryFollowedResource:0 pageAssistParam:_pageAssistParam completion:^(BOOL isSuccess, BOOL isCache, NSString* pageAssistParam) {
+        
+        
+        [self.tableView stop];
+        
+        _pageAssistParam = pageAssistParam;
+        
+        if (isSuccess) {
+            
+          [self.tableView reloadData];
             
         }
     }];
@@ -141,7 +188,7 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     
-        return 10;
+    return _homePageService.arrFollowedResource.count;
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -176,7 +223,7 @@
     
     [cell.btnAtten addTarget:self action:@selector(onclickBtnAtten:) forControlEvents:UIControlEventTouchUpInside];
     
-    [cell makeDatacell:indexPath.row];
+    [cell makeDatacellData:[self.homePageService.arrFollowedResource objectAtIndex:indexPath.row] index:indexPath.row];
     
     if (![[_dicCell allKeys] containsObject:[NSString stringWithFormat:@"indexPath%ld", indexPath.row]]) {
         
