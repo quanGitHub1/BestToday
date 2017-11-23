@@ -13,7 +13,6 @@
 /** 第三方登录 */
 - (void)thirdPartyLogin:(NSDictionary *)dicUser completion:(void (^)(BOOL isSuccess))completion{
     
-    
     [NetworkHelper POST:BTUserLogin parameters:dicUser success:^(id responseObject) {
         
         if (responseObject) {
@@ -37,7 +36,6 @@
         completion(NO);
 
     }];
-    
     
 }
 

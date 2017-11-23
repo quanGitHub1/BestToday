@@ -22,5 +22,5 @@
  row    显示文字行数
  block  点击后详情高度
  */
-+ (instancetype)initWithFrame:(CGRect)frame text:(NSString *)text font:(int)font numberOfRow:(int)row indexPath:(NSInteger)indexpath block:(void (^)(CGFloat, NSInteger))block;
++ (instancetype)initWithFrame:(CGRect)frame text:(NSString *)text totalCommentMsg:(NSString *)totalCommentMsg comment:(NSArray *)commentArr font:(int)font numberOfRow:(int)row indexPath:(NSInteger)indexpath block:(void (^)(CGFloat, NSInteger))block;
 @end

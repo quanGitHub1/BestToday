@@ -22,6 +22,19 @@
 		7A16B9FE1FBD2DF000E7EC3A /* BTLogin.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 7A16B9FD1FBD2DF000E7EC3A /* BTLogin.jpg */; };
 		7A16BA021FBD310F00E7EC3A /* BTLoginsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7A16BA001FBD310F00E7EC3A /* BTLoginsViewController.m */; };
 		7A16BA031FBD310F00E7EC3A /* BTLoginsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7A16BA011FBD310F00E7EC3A /* BTLoginsViewController.xib */; };
+		7A16BA051FBD415800E7EC3A /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 7A16BA041FBD415800E7EC3A /* Images.xcassets */; };
+		7A16BA071FBD7F4C00E7EC3A /* libsqlite3.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 7A16BA061FBD7F4C00E7EC3A /* libsqlite3.tbd */; };
+		7A16BA091FBD7F5B00E7EC3A /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7A16BA081FBD7F5B00E7EC3A /* CoreGraphics.framework */; };
+		7A16BA7C1FC4304800E7EC3A /* BTHomeUserEntity.m in Sources */ = {isa = PBXBuildFile; fileRef = 7A16BA7B1FC4304800E7EC3A /* BTHomeUserEntity.m */; };
+		7A16BA7F1FC5714500E7EC3A /* BTHomeDetailLookEntity.m in Sources */ = {isa = PBXBuildFile; fileRef = 7A16BA7E1FC5714500E7EC3A /* BTHomeDetailLookEntity.m */; };
+		7A16BA821FC5715D00E7EC3A /* BTHomeDetailService.m in Sources */ = {isa = PBXBuildFile; fileRef = 7A16BA811FC5715D00E7EC3A /* BTHomeDetailService.m */; };
+		7A16BA851FC574EA00E7EC3A /* BTHomedetailCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 7A16BA841FC574EA00E7EC3A /* BTHomedetailCollectionViewCell.m */; };
+		7A2429A71FC665C200EE7948 /* BTLikeCommentService.m in Sources */ = {isa = PBXBuildFile; fileRef = 7A2429A61FC665C200EE7948 /* BTLikeCommentService.m */; };
+		7A2429B31FC66B1800EE7948 /* SVIndefiniteAnimatedView.m in Sources */ = {isa = PBXBuildFile; fileRef = 7A2429AA1FC66B1800EE7948 /* SVIndefiniteAnimatedView.m */; };
+		7A2429B41FC66B1800EE7948 /* SVProgressAnimatedView.m in Sources */ = {isa = PBXBuildFile; fileRef = 7A2429AC1FC66B1800EE7948 /* SVProgressAnimatedView.m */; };
+		7A2429B51FC66B1800EE7948 /* SVProgressHUD.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 7A2429AE1FC66B1800EE7948 /* SVProgressHUD.bundle */; };
+		7A2429B61FC66B1800EE7948 /* SVProgressHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = 7A2429B01FC66B1800EE7948 /* SVProgressHUD.m */; };
+		7A2429B71FC66B1800EE7948 /* SVRadialGradientLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 7A2429B21FC66B1800EE7948 /* SVRadialGradientLayer.m */; };
 		7AA2BB351FAAAE5500864753 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 7AA2BB341FAAAE5500864753 /* main.m */; };
 		7AA2BB4E1FAAAE5500864753 /* BestTodayTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 7AA2BB4D1FAAAE5500864753 /* BestTodayTests.m */; };
 		7AA2BB591FAAAE5500864753 /* BestTodayUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = 7AA2BB581FAAAE5500864753 /* BestTodayUITests.m */; };
@@ -261,6 +274,29 @@
 		7A16B9FF1FBD310F00E7EC3A /* BTLoginsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BTLoginsViewController.h; sourceTree = "<group>"; };
 		7A16BA001FBD310F00E7EC3A /* BTLoginsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BTLoginsViewController.m; sourceTree = "<group>"; };
 		7A16BA011FBD310F00E7EC3A /* BTLoginsViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = BTLoginsViewController.xib; sourceTree = "<group>"; };
+		7A16BA041FBD415800E7EC3A /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
+		7A16BA061FBD7F4C00E7EC3A /* libsqlite3.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libsqlite3.tbd; path = usr/lib/libsqlite3.tbd; sourceTree = SDKROOT; };
+		7A16BA081FBD7F5B00E7EC3A /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
+		7A16BA7A1FC4304800E7EC3A /* BTHomeUserEntity.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BTHomeUserEntity.h; sourceTree = "<group>"; };
+		7A16BA7B1FC4304800E7EC3A /* BTHomeUserEntity.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BTHomeUserEntity.m; sourceTree = "<group>"; };
+		7A16BA7D1FC5714500E7EC3A /* BTHomeDetailLookEntity.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BTHomeDetailLookEntity.h; sourceTree = "<group>"; };
+		7A16BA7E1FC5714500E7EC3A /* BTHomeDetailLookEntity.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BTHomeDetailLookEntity.m; sourceTree = "<group>"; };
+		7A16BA801FC5715D00E7EC3A /* BTHomeDetailService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BTHomeDetailService.h; sourceTree = "<group>"; };
+		7A16BA811FC5715D00E7EC3A /* BTHomeDetailService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BTHomeDetailService.m; sourceTree = "<group>"; };
+		7A16BA831FC574EA00E7EC3A /* BTHomedetailCollectionViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BTHomedetailCollectionViewCell.h; sourceTree = "<group>"; };
+		7A16BA841FC574EA00E7EC3A /* BTHomedetailCollectionViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BTHomedetailCollectionViewCell.m; sourceTree = "<group>"; };
+		7A2429A51FC665C200EE7948 /* BTLikeCommentService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BTLikeCommentService.h; sourceTree = "<group>"; };
+		7A2429A61FC665C200EE7948 /* BTLikeCommentService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BTLikeCommentService.m; sourceTree = "<group>"; };
+		7A2429A91FC66B1800EE7948 /* SVIndefiniteAnimatedView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SVIndefiniteAnimatedView.h; sourceTree = "<group>"; };
+		7A2429AA1FC66B1800EE7948 /* SVIndefiniteAnimatedView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SVIndefiniteAnimatedView.m; sourceTree = "<group>"; };
+		7A2429AB1FC66B1800EE7948 /* SVProgressAnimatedView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SVProgressAnimatedView.h; sourceTree = "<group>"; };
+		7A2429AC1FC66B1800EE7948 /* SVProgressAnimatedView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SVProgressAnimatedView.m; sourceTree = "<group>"; };
+		7A2429AD1FC66B1800EE7948 /* SVProgressHUD-Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "SVProgressHUD-Prefix.pch"; sourceTree = "<group>"; };
+		7A2429AE1FC66B1800EE7948 /* SVProgressHUD.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = SVProgressHUD.bundle; sourceTree = "<group>"; };
+		7A2429AF1FC66B1800EE7948 /* SVProgressHUD.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SVProgressHUD.h; sourceTree = "<group>"; };
+		7A2429B01FC66B1800EE7948 /* SVProgressHUD.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SVProgressHUD.m; sourceTree = "<group>"; };
+		7A2429B11FC66B1800EE7948 /* SVRadialGradientLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SVRadialGradientLayer.h; sourceTree = "<group>"; };
+		7A2429B21FC66B1800EE7948 /* SVRadialGradientLayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SVRadialGradientLayer.m; sourceTree = "<group>"; };
 		7AA2BB301FAAAE5500864753 /* BestToday.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BestToday.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		7AA2BB341FAAAE5500864753 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		7AA2BB491FAAAE5500864753 /* BestTodayTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = BestTodayTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -652,6 +688,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				7A16BA091FBD7F5B00E7EC3A /* CoreGraphics.framework in Frameworks */,
+				7A16BA071FBD7F4C00E7EC3A /* libsqlite3.tbd in Frameworks */,
 				7AA2BD971FB1576500864753 /* libc++.tbd in Frameworks */,
 				7AA2BD951FB1575A00864753 /* libz.tbd in Frameworks */,
 				7AA2BD931FB1575100864753 /* libsqlite3.0.tbd in Frameworks */,
@@ -690,6 +728,23 @@
 				F975E1829CF425B2C69D560E /* Pods-BestToday.release.xcconfig */,
 			);
 			name = Pods;
+			sourceTree = "<group>";
+		};
+		7A2429A81FC66B1800EE7948 /* SVProgressHUD */ = {
+			isa = PBXGroup;
+			children = (
+				7A2429A91FC66B1800EE7948 /* SVIndefiniteAnimatedView.h */,
+				7A2429AA1FC66B1800EE7948 /* SVIndefiniteAnimatedView.m */,
+				7A2429AB1FC66B1800EE7948 /* SVProgressAnimatedView.h */,
+				7A2429AC1FC66B1800EE7948 /* SVProgressAnimatedView.m */,
+				7A2429AD1FC66B1800EE7948 /* SVProgressHUD-Prefix.pch */,
+				7A2429AE1FC66B1800EE7948 /* SVProgressHUD.bundle */,
+				7A2429AF1FC66B1800EE7948 /* SVProgressHUD.h */,
+				7A2429B01FC66B1800EE7948 /* SVProgressHUD.m */,
+				7A2429B11FC66B1800EE7948 /* SVRadialGradientLayer.h */,
+				7A2429B21FC66B1800EE7948 /* SVRadialGradientLayer.m */,
+			);
+			path = SVProgressHUD;
 			sourceTree = "<group>";
 		};
 		7AA2BB271FAAAE5500864753 = {
@@ -783,6 +838,7 @@
 		7AA2BB6C1FAAAF5600864753 /* BTFoundation */ = {
 			isa = PBXGroup;
 			children = (
+				7A2429A81FC66B1800EE7948 /* SVProgressHUD */,
 				7AA2BD981FB15C4E00864753 /* Helper */,
 				7AA2BDA21FB15C4E00864753 /* Control */,
 				7AA2BD861FB1570400864753 /* OpenSDK1.8.0_NoPay */,
@@ -1442,6 +1498,8 @@
 				7AA2BD5F1FB005B300864753 /* BTRecomendUserTableViewCell.m */,
 				7AA2BDC61FB2FAE400864753 /* BTHomeCommentTableViewCell.h */,
 				7AA2BDC71FB2FAE400864753 /* BTHomeCommentTableViewCell.m */,
+				7A16BA831FC574EA00E7EC3A /* BTHomedetailCollectionViewCell.h */,
+				7A16BA841FC574EA00E7EC3A /* BTHomedetailCollectionViewCell.m */,
 			);
 			path = cell;
 			sourceTree = "<group>";
@@ -1453,6 +1511,10 @@
 				7AA2BD0B1FAAFE2800864753 /* BTHomePageEntity.m */,
 				7AA2BDC31FB2D88E00864753 /* BTHomeComment.h */,
 				7AA2BDC41FB2D88E00864753 /* BTHomeComment.m */,
+				7A16BA7A1FC4304800E7EC3A /* BTHomeUserEntity.h */,
+				7A16BA7B1FC4304800E7EC3A /* BTHomeUserEntity.m */,
+				7A16BA7D1FC5714500E7EC3A /* BTHomeDetailLookEntity.h */,
+				7A16BA7E1FC5714500E7EC3A /* BTHomeDetailLookEntity.m */,
 			);
 			path = model;
 			sourceTree = "<group>";
@@ -1462,6 +1524,10 @@
 			children = (
 				7AA2BD0D1FAAFE3C00864753 /* BtHomePageService.h */,
 				7AA2BD0E1FAAFE3C00864753 /* BtHomePageService.m */,
+				7A16BA801FC5715D00E7EC3A /* BTHomeDetailService.h */,
+				7A16BA811FC5715D00E7EC3A /* BTHomeDetailService.m */,
+				7A2429A51FC665C200EE7948 /* BTLikeCommentService.h */,
+				7A2429A61FC665C200EE7948 /* BTLikeCommentService.m */,
 			);
 			path = service;
 			sourceTree = "<group>";
@@ -1727,6 +1793,8 @@
 		BC4398B11687166B76DDE2B4 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				7A16BA081FBD7F5B00E7EC3A /* CoreGraphics.framework */,
+				7A16BA061FBD7F4C00E7EC3A /* libsqlite3.tbd */,
 				7AA2BD961FB1576400864753 /* libc++.tbd */,
 				7AA2BD941FB1575A00864753 /* libz.tbd */,
 				7AA2BD921FB1575100864753 /* libsqlite3.0.tbd */,
@@ -1982,6 +2050,7 @@
 				CBCD2EAB1FB4657100994037 /* FSAlbumView.xib in Resources */,
 				7AA2BB761FAAAFB100864753 /* LaunchScreen.storyboard in Resources */,
 				CBCD2EB61FB4657100994037 /* FusumaViewController.xib in Resources */,
+				7A2429B51FC66B1800EE7948 /* SVProgressHUD.bundle in Resources */,
 				7A16BA031FBD310F00E7EC3A /* BTLoginsViewController.xib in Resources */,
 				CBCD2EB31FB4657100994037 /* FSVideoCameraView.xib in Resources */,
 				7AA2BD8D1FB1570400864753 /* README.txt in Resources */,
@@ -2142,6 +2211,7 @@
 				7AA2BCB91FAAC07400864753 /* NSMutableDictionary+MLTKit.m in Sources */,
 				CB670DFB1FC2E0BD004BDCEA /* EaseEmotionEscape.m in Sources */,
 				CBCD2EBC1FB4658F00994037 /* BTDiscoverCollectionView.m in Sources */,
+				7A2429B71FC66B1800EE7948 /* SVRadialGradientLayer.m in Sources */,
 				7AA2BD1B1FAAFE9B00864753 /* BTDiscoverService.m in Sources */,
 				7AA2BD5A1FAFFDEE00864753 /* UILabel+MLTKit.m in Sources */,
 				CB670DFA1FC2E0BD004BDCEA /* EaseEmojiEmoticons.m in Sources */,
@@ -2161,11 +2231,13 @@
 				7AA2BC1D1FAAB4CC00864753 /* UIView+MLTMasonry.m in Sources */,
 				7AA2BCAC1FAAC07400864753 /* MGJNavigationBar.m in Sources */,
 				7AA2BC0E1FAAB4CC00864753 /* LECollectionViewController.m in Sources */,
+				7A2429A71FC665C200EE7948 /* BTLikeCommentService.m in Sources */,
 				7AA2BCB41FAAC07400864753 /* NSBundle+MLTKit.m in Sources */,
 				7AA2BCBD1FAAC07400864753 /* NSURL+MLTKit.m in Sources */,
 				7AA2BC1E1FAAB4CC00864753 /* UIView+MLTSnapshot.m in Sources */,
 				CB670DB71FC2C6BA004BDCEA /* EaseBubbleView+Text.m in Sources */,
 				7AA2BC201FAAB4CC00864753 /* MBSort.m in Sources */,
+				7A16BA851FC574EA00E7EC3A /* BTHomedetailCollectionViewCell.m in Sources */,
 				7AA2BCB31FAAC07400864753 /* NSMutableArray+MLTKit.m in Sources */,
 				7AA2BD121FAAFE5600864753 /* BTHomePageView.m in Sources */,
 				CB670DF91FC2E0BD004BDCEA /* EaseEmoji.m in Sources */,
@@ -2183,6 +2255,7 @@
 				7AA2BCDC1FAAC31F00864753 /* NetworkCache.m in Sources */,
 				7AA2BDAB1FB15C4E00864753 /* UIAlertView+WX.m in Sources */,
 				7AA2BCA91FAAC07400864753 /* MGJNavigationControllerPopShrinkOutAnimation.m in Sources */,
+				7A16BA821FC5715D00E7EC3A /* BTHomeDetailService.m in Sources */,
 				7AA2BCA81FAAC07400864753 /* MGJNavigationController.m in Sources */,
 				7AA2BD3F1FAAFF9600864753 /* BTMeService.m in Sources */,
 				7A16B9E11FB5899900E7EC3A /* MLTSegementView.m in Sources */,
@@ -2201,6 +2274,7 @@
 				7AA2BDB71FB162F300864753 /* BTLoginService.m in Sources */,
 				7AA2BD091FAAFE1300864753 /* BTHomePageTableViewCell.m in Sources */,
 				CB670DE61FC2DFC0004BDCEA /* EMSDWebImagePrefetcher.m in Sources */,
+				7A16BA7F1FC5714500E7EC3A /* BTHomeDetailLookEntity.m in Sources */,
 				7AA2BD511FAB005300864753 /* BTMeViewModel.m in Sources */,
 				7AA2BC131FAAB4CC00864753 /* NSObject+CallMethod.m in Sources */,
 				7AA2BC2F1FAAB4CC00864753 /* MLTRefreshIndicatorView.m in Sources */,
@@ -2219,18 +2293,21 @@
 				7AA2BCBA1FAAC07400864753 /* NSObject+Addition.m in Sources */,
 				7AA2BC271FAAB4CC00864753 /* MLTTableView+MLTBrokenNetwork.m in Sources */,
 				7AA2BCBC1FAAC07400864753 /* NSThread+MLTKit.m in Sources */,
+				7A2429B31FC66B1800EE7948 /* SVIndefiniteAnimatedView.m in Sources */,
 				7AA2BC261FAAB4CC00864753 /* MLTCollectionView+MLTBrokenNetwork.m in Sources */,
 				7AA2BD481FAB001700864753 /* BTDiscoverViewModel.m in Sources */,
 				7AA2BC1B1FAAB4CC00864753 /* UIView+MLTAnimation.m in Sources */,
 				7AA2BC1A1FAAB4CC00864753 /* UIView+Extension.m in Sources */,
 				7AA2BCB81FAAC07400864753 /* NSDictionary+MLTKit.m in Sources */,
 				7AA2BDCE1FB3015900864753 /* BTHomeCommentView.m in Sources */,
+				7A16BA7C1FC4304800E7EC3A /* BTHomeUserEntity.m in Sources */,
 				7AA2BC381FAAB4CC00864753 /* MLTSliderView.m in Sources */,
 				7AA2BC2D1FAAB4CC00864753 /* MLTLoadingView.m in Sources */,
 				7A16BA021FBD310F00E7EC3A /* BTLoginsViewController.m in Sources */,
 				7AA2BCDB1FAAC31F00864753 /* LEHttpRequestManager.m in Sources */,
 				CB670DEE1FC2DFC0004BDCEA /* UIImageView+EMWebCache.m in Sources */,
 				7AA2BC221FAAB4CC00864753 /* MLTDotBadgeView.m in Sources */,
+				7A2429B41FC66B1800EE7948 /* SVProgressAnimatedView.m in Sources */,
 				7AA2BD451FAB000100864753 /* BTHomePageViewModel.m in Sources */,
 				7AA2BCA61FAAC07400864753 /* FBKVOController.m in Sources */,
 				7AA2BC101FAAB4CC00864753 /* BTViewController.m in Sources */,
@@ -2247,6 +2324,7 @@
 				7AA2BCA71FAAC07400864753 /* AMTTabbarIconManager.m in Sources */,
 				CB670D941FC28E78004BDCEA /* EaseTextView.m in Sources */,
 				CB670DE51FC2DFC0004BDCEA /* EMSDWebImageManager.m in Sources */,
+				7A2429B61FC66B1800EE7948 /* SVProgressHUD.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

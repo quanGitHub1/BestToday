@@ -12,13 +12,16 @@
 //#import "UMSocial.h"
 //#import "UMSocialQQHandler.h"
 
+
 #import <UMSocialCore/UMSocialCore.h>
 
-#define UMAppKey            @"570c660367e58e91600010a5"
-#define WeChatAppId         @"wxd930ea5d5a258f4f"
-#define WeChatAppSecret     @"795a6f7b8986109c002085a52759df68"
-#define QQAppID             @"1105274162"
-#define QQAppKey            @"U7L3TNEJdW12VOp6"
+#define UMAppKey            @"5861e5daf5ade41326001eab"
+
+//#define WeChatAppId         @"wxd930ea5d5a258f4f"
+//#define WeChatAppSecret     @"795a6f7b8986109c002085a52759df68"
+//#define QQAppID             @"1105274162"
+//#define QQAppKey            @"U7L3TNEJdW12VOp6"
+
 
 @interface AppDelegate ()
 
@@ -33,13 +36,14 @@
     // APP入口
     [MLTUISkeletonModule shareInstance];
     
-    //向微信注册
-    [WXApi registerApp:@"wxd930ea5d5a258f4f" enableMTA:YES];
+//    //向微信注册
+//    [WXApi registerApp:@"wxd930ea5d5a258f4f" enableMTA:YES];
+//    
+//    //向微信注册支持的文件类型
+//    UInt64 typeFlag = MMAPP_SUPPORT_TEXT | MMAPP_SUPPORT_PICTURE | MMAPP_SUPPORT_LOCATION | MMAPP_SUPPORT_VIDEO |MMAPP_SUPPORT_AUDIO | MMAPP_SUPPORT_WEBPAGE | MMAPP_SUPPORT_DOC | MMAPP_SUPPORT_DOCX | MMAPP_SUPPORT_PPT | MMAPP_SUPPORT_PPTX | MMAPP_SUPPORT_XLS | MMAPP_SUPPORT_XLSX | MMAPP_SUPPORT_PDF;
+//    
+//    [WXApi registerAppSupportContentFlag:typeFlag];
     
-    //向微信注册支持的文件类型
-    UInt64 typeFlag = MMAPP_SUPPORT_TEXT | MMAPP_SUPPORT_PICTURE | MMAPP_SUPPORT_LOCATION | MMAPP_SUPPORT_VIDEO |MMAPP_SUPPORT_AUDIO | MMAPP_SUPPORT_WEBPAGE | MMAPP_SUPPORT_DOC | MMAPP_SUPPORT_DOCX | MMAPP_SUPPORT_PPT | MMAPP_SUPPORT_PPTX | MMAPP_SUPPORT_XLS | MMAPP_SUPPORT_XLSX | MMAPP_SUPPORT_PDF;
-    
-    [WXApi registerAppSupportContentFlag:typeFlag];
     
     /* 打开调试日志 */
     [[UMSocialManager defaultManager] openLog:YES];
@@ -51,7 +55,6 @@
     
     return YES;
 }
-
 
 - (void)configUSharePlatforms
 {
@@ -70,8 +73,48 @@
      100424468.no permission of union id
      [QQ/QZone平台集成说明]http://dev.umeng.com/social/ios/%E8%BF%9B%E9%98%B6%E6%96%87%E6%A1%A3#1_3
      */
+    [[UMSocialManager defaultManager] setPlaform:UMSocialPlatformType_QQ appKey:@"1105821097"/*设置QQ平台的appID*/  appSecret:nil redirectURL:nil];
+    
+    /*
+     设置新浪的appKey和appSecret
+     [新浪微博集成说明]http://dev.umeng.com/social/ios/%E8%BF%9B%E9%98%B6%E6%96%87%E6%A1%A3#1_2
+     */
+    [[UMSocialManager defaultManager] setPlaform:UMSocialPlatformType_Sina appKey:@"3921700954"  appSecret:@"04b48b094faeb16683c32669824ebdad" redirectURL:@"https://sns.whalecloud.com/sina2/callback"];
+    
+    /* 钉钉的appKey */
+    [[UMSocialManager defaultManager] setPlaform: UMSocialPlatformType_DingDing appKey:@"dingoalmlnohc0wggfedpk" appSecret:nil redirectURL:nil];
+    
+    /* 支付宝的appKey */
+    [[UMSocialManager defaultManager] setPlaform: UMSocialPlatformType_AlipaySession appKey:@"2015111700822536" appSecret:nil redirectURL:nil];
+    
+    
+    /* 设置易信的appKey */
+    [[UMSocialManager defaultManager] setPlaform: UMSocialPlatformType_YixinSession appKey:@"yx35664bdff4db42c2b7be1e29390c1a06" appSecret:nil redirectURL:@"http://mobile.umeng.com/social"];
+    
+    /* 设置点点虫（原来往）的appKey和appSecret */
+    [[UMSocialManager defaultManager] setPlaform: UMSocialPlatformType_LaiWangSession appKey:@"8112117817424282305" appSecret:@"9996ed5039e641658de7b83345fee6c9" redirectURL:@"http://mobile.umeng.com/social"];
+    
+    /* 设置领英的appKey和appSecret */
+    [[UMSocialManager defaultManager] setPlaform:UMSocialPlatformType_Linkedin appKey:@"81t5eiem37d2sc"  appSecret:@"7dgUXPLH8kA8WHMV" redirectURL:@"https://api.linkedin.com/v1/people"];
+    
+    /* 设置Twitter的appKey和appSecret */
+    [[UMSocialManager defaultManager] setPlaform:UMSocialPlatformType_Twitter appKey:@"fB5tvRpna1CKK97xZUslbxiet"  appSecret:@"YcbSvseLIwZ4hZg9YmgJPP5uWzd4zr6BpBKGZhf07zzh3oj62K" redirectURL:nil];
+    
+    /* 设置Facebook的appKey和UrlString */
+    [[UMSocialManager defaultManager] setPlaform:UMSocialPlatformType_Facebook appKey:@"506027402887373"  appSecret:nil redirectURL:nil];
+    
+    /* 设置Pinterest的appKey */
+    [[UMSocialManager defaultManager] setPlaform:UMSocialPlatformType_Pinterest appKey:@"4864546872699668063"  appSecret:nil redirectURL:nil];
+    
+    /* dropbox的appKey */
+    [[UMSocialManager defaultManager] setPlaform: UMSocialPlatformType_DropBox appKey:@"k4pn9gdwygpy4av" appSecret:@"td28zkbyb9p49xu" redirectURL:@"https://mobile.umeng.com/social"];
+    
+    /* vk的appkey */
+    [[UMSocialManager defaultManager]  setPlaform:UMSocialPlatformType_VKontakte appKey:@"5786123" appSecret:nil redirectURL:nil];
     
 }
+
+
 
 
 - (BOOL)application:(UIApplication *)application handleOpenURL:(NSURL *)url {

@@ -167,6 +167,18 @@ static AFHTTPSessionManager *_sessionManager;
                   failure:(HttpRequestFailed)failure {
     //读取缓存
     
+    if (!parameters) {
+        
+        parameters = [NSMutableDictionary dictionaryWithCapacity:10];
+        NSString *version = [[[NSBundle mainBundle] infoDictionary] objectForKey:@"CFBundleShortVersionString"];
+//        [parameters setValue:@"iOS" forKey:@"appType"];
+        [parameters setValue:version forKey:@"appVersion"];
+        [parameters setValue:version forKey:@"osVersion"];
+        [parameters setValue:@"abc1005" forKey:@"cSessionId"];
+
+        [parameters setValue:[MLTUtils getCurrentDevicePlatform] forKey:@"phoneModel"];
+    }
+    
     responseCache!=nil ? responseCache([NetworkCache httpCacheForURL:URL parameters:parameters]) : nil;
     
     NSURLSessionTask *sessionTask = [_sessionManager GET:URL parameters:parameters progress:^(NSProgress * _Nonnull uploadProgress) {
