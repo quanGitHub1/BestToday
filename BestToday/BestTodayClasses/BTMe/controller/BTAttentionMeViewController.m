@@ -67,10 +67,11 @@
 }
 
 - (void)requestqueryUserById{
-    
-    [self.meService loadqueryMyResourceByPage:1005 completion:^(BOOL isSuccess, BOOL isCache) {
+    [self.meService loadqueryMyResourceByPage:1005 pageAssistParam:@"" completion:^(BOOL isSuccess, BOOL isCache, NSString *pageAssistParam) {
         
     }];
+    
+    
 }
 
 - (void)navigationBackButtonClicked:(UIButton *)btn {

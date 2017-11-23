@@ -33,6 +33,6 @@
 @property (nonatomic, strong) LECollectionView *collectionView;
 @property (nonatomic, assign)id <BTDiscoverCollectionViewDelegate> discoverCVDelegate;
 
-- (void)setDataForCollectionView:(NSArray *)data;
+- (void)setDataForCollectionView:(NSMutableArray *)data;
 
 @end

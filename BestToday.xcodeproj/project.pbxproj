@@ -22,7 +22,6 @@
 		7A16B9FE1FBD2DF000E7EC3A /* BTLogin.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 7A16B9FD1FBD2DF000E7EC3A /* BTLogin.jpg */; };
 		7A16BA021FBD310F00E7EC3A /* BTLoginsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7A16BA001FBD310F00E7EC3A /* BTLoginsViewController.m */; };
 		7A16BA031FBD310F00E7EC3A /* BTLoginsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7A16BA011FBD310F00E7EC3A /* BTLoginsViewController.xib */; };
-		7A16BA051FBD415800E7EC3A /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 7A16BA041FBD415800E7EC3A /* Images.xcassets */; };
 		7A16BA071FBD7F4C00E7EC3A /* libsqlite3.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 7A16BA061FBD7F4C00E7EC3A /* libsqlite3.tbd */; };
 		7A16BA091FBD7F5B00E7EC3A /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7A16BA081FBD7F5B00E7EC3A /* CoreGraphics.framework */; };
 		7A16BA7C1FC4304800E7EC3A /* BTHomeUserEntity.m in Sources */ = {isa = PBXBuildFile; fileRef = 7A16BA7B1FC4304800E7EC3A /* BTHomeUserEntity.m */; };
@@ -135,7 +134,6 @@
 		7AA2BD0C1FAAFE2800864753 /* BTHomePageEntity.m in Sources */ = {isa = PBXBuildFile; fileRef = 7AA2BD0B1FAAFE2800864753 /* BTHomePageEntity.m */; };
 		7AA2BD0F1FAAFE3C00864753 /* BtHomePageService.m in Sources */ = {isa = PBXBuildFile; fileRef = 7AA2BD0E1FAAFE3C00864753 /* BtHomePageService.m */; };
 		7AA2BD121FAAFE5600864753 /* BTHomePageView.m in Sources */ = {isa = PBXBuildFile; fileRef = 7AA2BD111FAAFE5600864753 /* BTHomePageView.m */; };
-		7AA2BD151FAAFE7400864753 /* BTDiscoverTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 7AA2BD141FAAFE7400864753 /* BTDiscoverTableViewCell.m */; };
 		7AA2BD181FAAFE8B00864753 /* BTDiscoverEntity.m in Sources */ = {isa = PBXBuildFile; fileRef = 7AA2BD171FAAFE8B00864753 /* BTDiscoverEntity.m */; };
 		7AA2BD1B1FAAFE9B00864753 /* BTDiscoverService.m in Sources */ = {isa = PBXBuildFile; fileRef = 7AA2BD1A1FAAFE9B00864753 /* BTDiscoverService.m */; };
 		7AA2BD1E1FAAFEB100864753 /* BTDiscoverView.m in Sources */ = {isa = PBXBuildFile; fileRef = 7AA2BD1D1FAAFEB100864753 /* BTDiscoverView.m */; };
@@ -211,6 +209,7 @@
 		CB670DFC1FC2E0BD004BDCEA /* EaseEmotionManager.m in Sources */ = {isa = PBXBuildFile; fileRef = CB670DF81FC2E0BC004BDCEA /* EaseEmotionManager.m */; };
 		CB670E001FC4039A004BDCEA /* EaseMessageModel.m in Sources */ = {isa = PBXBuildFile; fileRef = CB670DFF1FC4039A004BDCEA /* EaseMessageModel.m */; };
 		CB670E021FC40E93004BDCEA /* EaseUIResource.bundle in Resources */ = {isa = PBXBuildFile; fileRef = CB670E011FC40E93004BDCEA /* EaseUIResource.bundle */; };
+		CB670E071FC6B9FD004BDCEA /* BTDiscoverCell.m in Sources */ = {isa = PBXBuildFile; fileRef = CB670E061FC6B9FD004BDCEA /* BTDiscoverCell.m */; };
 		CBCD2EA91FB4657100994037 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CBCD2E9A1FB4657100994037 /* Assets.xcassets */; };
 		CBCD2EAA1FB4657100994037 /* FSAlbumView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBCD2E9B1FB4657100994037 /* FSAlbumView.swift */; };
 		CBCD2EAB1FB4657100994037 /* FSAlbumView.xib in Resources */ = {isa = PBXBuildFile; fileRef = CBCD2E9C1FB4657100994037 /* FSAlbumView.xib */; };
@@ -274,7 +273,6 @@
 		7A16B9FF1FBD310F00E7EC3A /* BTLoginsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BTLoginsViewController.h; sourceTree = "<group>"; };
 		7A16BA001FBD310F00E7EC3A /* BTLoginsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BTLoginsViewController.m; sourceTree = "<group>"; };
 		7A16BA011FBD310F00E7EC3A /* BTLoginsViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = BTLoginsViewController.xib; sourceTree = "<group>"; };
-		7A16BA041FBD415800E7EC3A /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		7A16BA061FBD7F4C00E7EC3A /* libsqlite3.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libsqlite3.tbd; path = usr/lib/libsqlite3.tbd; sourceTree = SDKROOT; };
 		7A16BA081FBD7F5B00E7EC3A /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
 		7A16BA7A1FC4304800E7EC3A /* BTHomeUserEntity.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BTHomeUserEntity.h; sourceTree = "<group>"; };
@@ -508,8 +506,6 @@
 		7AA2BD0E1FAAFE3C00864753 /* BtHomePageService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BtHomePageService.m; sourceTree = "<group>"; };
 		7AA2BD101FAAFE5600864753 /* BTHomePageView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BTHomePageView.h; sourceTree = "<group>"; };
 		7AA2BD111FAAFE5600864753 /* BTHomePageView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BTHomePageView.m; sourceTree = "<group>"; };
-		7AA2BD131FAAFE7400864753 /* BTDiscoverTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BTDiscoverTableViewCell.h; sourceTree = "<group>"; };
-		7AA2BD141FAAFE7400864753 /* BTDiscoverTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BTDiscoverTableViewCell.m; sourceTree = "<group>"; };
 		7AA2BD161FAAFE8B00864753 /* BTDiscoverEntity.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BTDiscoverEntity.h; sourceTree = "<group>"; };
 		7AA2BD171FAAFE8B00864753 /* BTDiscoverEntity.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BTDiscoverEntity.m; sourceTree = "<group>"; };
 		7AA2BD191FAAFE9B00864753 /* BTDiscoverService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BTDiscoverService.h; sourceTree = "<group>"; };
@@ -659,6 +655,8 @@
 		CB670DFE1FC40399004BDCEA /* EaseMessageModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EaseMessageModel.h; sourceTree = "<group>"; };
 		CB670DFF1FC4039A004BDCEA /* EaseMessageModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EaseMessageModel.m; sourceTree = "<group>"; };
 		CB670E011FC40E93004BDCEA /* EaseUIResource.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = EaseUIResource.bundle; sourceTree = "<group>"; };
+		CB670E051FC6B9FD004BDCEA /* BTDiscoverCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BTDiscoverCell.h; sourceTree = "<group>"; };
+		CB670E061FC6B9FD004BDCEA /* BTDiscoverCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BTDiscoverCell.m; sourceTree = "<group>"; };
 		CBCD2E9A1FB4657100994037 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		CBCD2E9B1FB4657100994037 /* FSAlbumView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FSAlbumView.swift; sourceTree = "<group>"; };
 		CBCD2E9C1FB4657100994037 /* FSAlbumView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = FSAlbumView.xib; sourceTree = "<group>"; };
@@ -1554,8 +1552,8 @@
 		7AA2BCF31FAAFD2900864753 /* cell */ = {
 			isa = PBXGroup;
 			children = (
-				7AA2BD131FAAFE7400864753 /* BTDiscoverTableViewCell.h */,
-				7AA2BD141FAAFE7400864753 /* BTDiscoverTableViewCell.m */,
+				CB670E051FC6B9FD004BDCEA /* BTDiscoverCell.h */,
+				CB670E061FC6B9FD004BDCEA /* BTDiscoverCell.m */,
 			);
 			path = cell;
 			sourceTree = "<group>";
@@ -2311,10 +2309,10 @@
 				7AA2BD451FAB000100864753 /* BTHomePageViewModel.m in Sources */,
 				7AA2BCA61FAAC07400864753 /* FBKVOController.m in Sources */,
 				7AA2BC101FAAB4CC00864753 /* BTViewController.m in Sources */,
+				CB670E071FC6B9FD004BDCEA /* BTDiscoverCell.m in Sources */,
 				7AA2BCAB1FAAC07400864753 /* MGJPercentDrivenShrinkPopInteractiveController.m in Sources */,
 				7AA2BC301FAAB4CC00864753 /* UIScrollView+MLTPager.m in Sources */,
 				7AA2BCAA1FAAC07400864753 /* MGJNavigationControllerPushZoomInAnimation.m in Sources */,
-				7AA2BD151FAAFE7400864753 /* BTDiscoverTableViewCell.m in Sources */,
 				CB670D8E1FC28C17004BDCEA /* BTMessageViewController.m in Sources */,
 				7AA2BD361FAAFF5C00864753 /* BTPhotoView.m in Sources */,
 				7AA2BD2A1FAAFF0E00864753 /* BTCollectionView.m in Sources */,

@@ -38,6 +38,9 @@
 // 我点赞过的图片资源接口
 #define BTqueryCommentResourceByPage  @"http://zuijia365.com/todayHot/app/resource/queryCommentResourceByPage.json"
 
+// 发现
+#define BTqueryDiscoverResourceByPage   @"http://zuijia365.com/todayHot/app/resource/queryForDetection.json"
+
 #else         //////// 线上环境
 
 
