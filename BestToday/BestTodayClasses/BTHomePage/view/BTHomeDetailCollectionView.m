@@ -122,7 +122,6 @@ static NSString *const cellId = @"cellId";
 }
 
 #pragma mark ---- UICollectionViewDelegateFlowLayout
-
 - (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath
 {
     return (CGSize){(FULL_WIDTH - 10)/3,(FULL_WIDTH - 10)/3};

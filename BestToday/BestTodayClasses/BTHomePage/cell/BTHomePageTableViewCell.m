@@ -11,8 +11,6 @@
 #import "BTHomeComment.h"
 #import "CoreText/CoreText.h"
 
-
-
 @implementation BTHomePageTableViewCell
 
 - (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier
@@ -56,8 +54,7 @@
             _labTime = [UILabel mlt_labelWithText:@"" color:[UIColor mlt_colorWithHexString:@"#bdbdbd" alpha:1] align:NSTextAlignmentLeft font:[UIFont systemFontOfSize:12] bkColor:nil frame:CGRectMake(_imageAvtar.left, _imagePic.bottom + 15, 150, 18)];
         
             
-            _labFabulous = [UILabel mlt_labelWithText:@"" color:[UIColor mlt_colorWithHexString:@"#bdbdbd" alpha:1] align:NSTextAlignmentLeft font:[UIFont systemFontOfSize:12] bkColor:nil frame:CGRectMake(FULL_WIDTH / 2 + 15, _labTime.top, 50, 0)];
-            
+            _labFabulous = [UILabel mlt_labelWithText:@"" color:[UIColor mlt_colorWithHexString:@"#bdbdbd" alpha:1] align:NSTextAlignmentRight font:[UIFont systemFontOfSize:12] bkColor:nil frame:CGRectMake(FULL_WIDTH / 2, _labTime.top, 50, 15)];
             
             _labTextInfor = [UILabel mlt_labelWithText:@"" color:[UIColor mlt_colorWithHexString:@"#bdbdbd" alpha:1] align:NSTextAlignmentLeft font:[UIFont systemFontOfSize:12] bkColor:nil frame:CGRectMake(FULL_WIDTH / 2 + 15, _labTime.top, FULL_WIDTH - 30, 0)];
 
@@ -113,15 +110,41 @@
 }
 
 - (void)onclickBtnCollection:(UIButton *)btn{
-    if (btn.selected == YES) {
-        btn.selected = NO;
-        
-        _labFabulous.text = [NSString stringWithFormat:@"%ld",[_labFabulous.text integerValue] - 1];
-    }else {
-        btn.selected = YES;
-        
-        _labFabulous.text = [NSString stringWithFormat:@"%ld",[_labFabulous.text integerValue] + 1];
+    
+    BTLikeCommentService *likeService = [BTLikeCommentService new];
 
+    if (btn.selected == YES) {
+        
+        [likeService loadqueryCancelSaveLikeResource:_resourceId completion:^(BOOL isSuccess, BOOL isCache) {
+            
+            if (isSuccess) {
+                
+                btn.selected = NO;
+                
+                _labFabulous.text = [NSString stringWithFormat:@"%ld赞",[_labFabulous.text integerValue] - 1];
+                
+            }else {
+                
+                [SVProgressHUD showInfoWithStatus:@"取消点赞失败"];
+            }
+        }];
+       
+    }else {
+        
+        [likeService loadquerySaveLikeResource:_resourceId completion:^(BOOL isSuccess, BOOL isCache) {
+            
+            if (isSuccess) {
+                
+                btn.selected = YES;
+                _labFabulous.text = [NSString stringWithFormat:@"%ld赞",[_labFabulous.text integerValue] + 1];
+               
+                
+            }else {
+                
+                [SVProgressHUD showInfoWithStatus:@"点赞失败"];
+                
+            }
+        }];
     }
 
 }
@@ -176,6 +199,9 @@
 
 - (void)makeDatacellData:(BTHomePageEntity *)homePage index:(NSInteger)indexpath{
     
+    //  拿到id 点赞关注评论都有用
+    _resourceId = homePage.resourceId;
+    
     BTHomeUserEntity *userEntity = [BTHomeUserEntity yy_modelWithJSON:homePage.userVo];
 
     _labName.text = userEntity.nickName;
@@ -186,7 +212,7 @@
     
     _labFabulous.text = [NSString stringWithFormat:@"%@赞",homePage.likeCount];
     
-    [_labFabulous sizeToFit];
+//    [_labFabulous sizeToFit];
     
     [_imagePic sd_setImageWithURL:[NSURL URLWithString:homePage.picUrl] placeholderImage:nil];
     
@@ -198,7 +224,9 @@
     
     UIImage *iamgeCollection = [UIImage imageNamed:@"collection"];
 
-
+    // 是否已经评论
+    _btnCollection.selected = [homePage.isLiked boolValue];
+    
     [_btnCollection setImage:iamgeCollection forState:UIControlStateNormal];
     
     [_btnCollection setImage:iamgeCollectionSelect forState:UIControlStateSelected];
@@ -308,12 +336,6 @@
         
     }];
     
-    NSLog(@"_labDescrp.height+++++++++++%f", _labDescrp.height);
-
-    
-//    _labDescrp.backgroundColor = [UIColor redColor];
-    
-//    _labDescrp.clipsToBounds = YES;
     
     [self.contentView addSubview:_labDescrp];
     

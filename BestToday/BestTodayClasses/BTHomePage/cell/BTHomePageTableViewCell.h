@@ -11,6 +11,7 @@
 #import "BTHomeCommentView.h"
 #import <UShareUI/UShareUI.h>
 #import "BTHomePageEntity.h"
+#import "BTLikeCommentService.h"
 
 
 @protocol BTHomepageViewDelegate <NSObject>
@@ -51,6 +52,9 @@
 @property (nonatomic, strong) UIView *viewLine; //线
 
 @property (nonatomic, strong) BTHomeCommentView *homeCommentView;
+
+
+@property (nonatomic, strong) NSString *resourceId;
 
 
 @property (nonatomic, assign) CGFloat heightCell;

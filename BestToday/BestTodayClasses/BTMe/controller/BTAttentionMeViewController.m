@@ -8,6 +8,8 @@
 
 #import "BTAttentionMeViewController.h"
 #import "BTAttentionTableViewCell.h"
+#import "BTMeService.h"
+#import "BTMeEntity.h"
 
 @interface BTAttentionMeViewController ()<UITableViewDelegate, UITableViewDataSource, LEBaseTableViewDelegate>
 
@@ -16,6 +18,8 @@
 @property (nonatomic, assign) NSInteger page;//页数
 
 @property (nonatomic) BOOL isPullup;
+
+@property (nonatomic, strong) BTMeService *meService;
 
 @end
 
@@ -58,6 +62,17 @@
     
 }
 
+- (void)loadData{
+    
+}
+
+- (void)requestqueryUserById{
+    
+    [self.meService loadqueryMyResourceByPage:1005 completion:^(BOOL isSuccess, BOOL isCache) {
+        
+    }];
+}
+
 - (void)navigationBackButtonClicked:(UIButton *)btn {
     [self.navigationController popViewControllerAnimated:YES];
 }
@@ -87,6 +102,14 @@
     }
     
     return cell;
+}
+
+#pragma mark - lazy
+- (BTMeService *)meService {
+    if (!_meService) {
+        _meService = [[BTMeService alloc] init];
+    }
+    return _meService;
 }
 
 - (void)didReceiveMemoryWarning {

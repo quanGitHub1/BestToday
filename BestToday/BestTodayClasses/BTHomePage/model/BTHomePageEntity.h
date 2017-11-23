@@ -34,6 +34,10 @@
 
 @property (nonatomic, strong) NSString *createTimeShort;  // 图片发表时间简短格式
 
+@property (nonatomic, strong) NSString *resourceId;  // 图片资源ID
+
+
+
 @end
 
 
