@@ -28,9 +28,17 @@ static NSString *const headerId = @"headerId";
     [super viewDidLoad];
     
     self.navigationBar.title = @"今日最佳";
+    
+    [self.navigationBar setLeftBarButton:[UIButton mlt_rightBarButtonWithImage:[UIImage imageNamed:@"info_backs"] highlightedImage:nil target:self action:@selector(navigationBackButtonClicked:) forControlEvents:UIControlEventTouchUpInside]];
+
 
     [self setUpCollectionView];
     
+}
+
+
+- (void)navigationBackButtonClicked:(UIButton *)btn {
+    [self.navigationController popViewControllerAnimated:YES];
 }
 
 

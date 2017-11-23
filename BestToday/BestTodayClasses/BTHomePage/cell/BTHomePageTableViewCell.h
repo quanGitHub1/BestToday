@@ -9,6 +9,9 @@
 #import <UIKit/UIKit.h>
 #import "OpenDetailsView.h"
 #import "BTHomeCommentView.h"
+#import <UShareUI/UShareUI.h>
+#import "BTHomePageEntity.h"
+#import "BTLikeCommentService.h"
 
 
 @protocol BTHomepageViewDelegate <NSObject>
@@ -18,7 +21,8 @@
 
 @end
 
-@interface BTHomePageTableViewCell : UITableViewCell
+@interface BTHomePageTableViewCell : UITableViewCell<UMSocialShareMenuViewDelegate>
+
 
 @property(nonatomic, weak) id <BTHomepageViewDelegate>delegate;
 
@@ -42,16 +46,22 @@
 
 @property (nonatomic, strong) OpenDetailsView *labDescrp; //描述
 
+@property (nonatomic, strong) UILabel *labTextInfor; //描述
+
+
 @property (nonatomic, strong) UIView *viewLine; //线
 
 @property (nonatomic, strong) BTHomeCommentView *homeCommentView;
+
+
+@property (nonatomic, strong) NSString *resourceId;
+
 
 @property (nonatomic, assign) CGFloat heightCell;
 
 @property (nonatomic) BOOL cell;
 
-
-- (void)makeDatacell:(NSInteger)indexpath ;
+- (void)makeDatacellData:(BTHomePageEntity *)homePage index:(NSInteger)indexpath;
 
 
 @end

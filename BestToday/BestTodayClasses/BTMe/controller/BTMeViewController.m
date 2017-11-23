@@ -10,6 +10,9 @@
 #import "MLTSegementView.h"
 #import "BTMeCollectionView.h"
 #import "BTMeEditInforViewController.h"
+#import "BTAttentionMeViewController.h"
+#import "BTMeService.h"
+#import "BTMeEntity.h"
 
 @interface BTMeViewController ()<MLTTouchLabelDelegate>
 
@@ -39,6 +42,7 @@
 
 @property (nonatomic,strong) BTMeCollectionView *collectionViewTwo;
 
+@property (nonatomic, strong)BTMeService *meService;
 
 @end
 
@@ -56,6 +60,8 @@
    [self.view addSubview:headView];
     
    [self creatSegment];
+    
+    [self loadData];
 
 }
 
@@ -88,33 +94,36 @@
     
     UIImage *imageName = [UIImage imageNamed:@"My_Modify"];
 
-    _btnModify = [[UIButton alloc] initWithFrame:CGRectMake(_labName.right + 6, 16, imageName.size.width, imageName.size.height)];
+    _btnModify = [[UIButton alloc] initWithFrame:CGRectMake(_labName.right + 6, 21, imageName.size.width, imageName.size.height)];
     
     [_btnModify setImage:imageName forState:UIControlStateNormal];
     
-    _btnPublish = [[UIButton alloc] initWithFrame:CGRectMake(_labName.left, _labName.bottom + 20, 55, 0)];
+    [_btnModify addTarget:self action:@selector(onclickModify:) forControlEvents:UIControlEventTouchUpInside];
     
-    [_btnPublish setTitle:@"发表 20" forState:UIControlStateNormal];
+    _btnPublish = [[UIButton alloc] initWithFrame:CGRectMake(_labName.left, _labName.bottom + 20, 65, 0)];
     
+
     _btnPublish.titleLabel.font = [UIFont systemFontOfSize:14];
     
     [_btnPublish setTitleColor:[UIColor colorWithHexString:@"#969696"] forState:UIControlStateNormal];
 
     [_btnPublish.titleLabel sizeToFit];
     
-    _btnFans = [[UIButton alloc] initWithFrame:CGRectMake(_btnPublish.right + 40, _labName.bottom + 20, 55, 0)];
+    _btnFans = [[UIButton alloc] initWithFrame:CGRectMake(_btnPublish.right + 40, _labName.bottom + 20, 65, 0)];
     
-    [_btnFans setTitle:@"粉丝 350" forState:UIControlStateNormal];
     
     [_btnFans setTitleColor:[UIColor colorWithHexString:@"#969696"] forState:UIControlStateNormal];
+    
+    [_btnModify addTarget:self action:@selector(onclickFans:) forControlEvents:UIControlEventTouchUpInside];
     
     _btnFans.titleLabel.font = [UIFont systemFontOfSize:14];
     
     [_btnFans.titleLabel sizeToFit];
     
-    _btnfollow = [[UIButton alloc] initWithFrame:CGRectMake(_btnFans.right + 40, _labName.bottom + 20, 55, 0)];
+    _btnfollow = [[UIButton alloc] initWithFrame:CGRectMake(_btnFans.right + 40, _labName.bottom + 20, 65, 0)];
     
-    [_btnfollow setTitle:@"关注 365" forState:UIControlStateNormal];
+    
+    [_btnfollow addTarget:self action:@selector(onclickFollow:) forControlEvents:UIControlEventTouchUpInside];
     
     [_btnfollow setTitleColor:[UIColor colorWithHexString:@"#969696"] forState:UIControlStateNormal];
     
@@ -122,7 +131,7 @@
     
     [_btnfollow.titleLabel sizeToFit];
     
-    _labDes = [UILabel mlt_labelWithText:@"成年快乐撒开连锁酒店；打卡大哭大哭；利库德的考拉我钦点的扩大到；奥兰多的萨达大厦" color:[UIColor mlt_colorWithHexString:@"#212121" alpha:1] align:NSTextAlignmentLeft font:[UIFont systemFontOfSize:14] bkColor:nil frame:CGRectMake(_imageAvtar.left, _imageAvtar.bottom + 17, FULL_WIDTH - 30, 0)];
+    _labDes = [UILabel mlt_labelWithText:@"" color:[UIColor mlt_colorWithHexString:@"#212121" alpha:1] align:NSTextAlignmentLeft font:[UIFont systemFontOfSize:14] bkColor:nil frame:CGRectMake(_imageAvtar.left, _imageAvtar.bottom + 17, FULL_WIDTH - 30, 0)];
 
     // 设置label的行间距
     NSMutableParagraphStyle  *paragraphStyle = [[NSMutableParagraphStyle alloc] init];
@@ -199,6 +208,42 @@
     [self.view addSubview:_collectionViewTwo];
 }
 
+- (void)loadData{
+
+    [self requestqueryUserById];
+}
+
+- (void)requestqueryUserById{
+    
+    [self.meService loadqueryUserById:1001 completion:^(BOOL isSuccess, BOOL isCache) {
+        
+        if (isSuccess) {
+            
+            [self refreshHeaderView];
+        }
+        
+    }];
+}
+
+// 刷新头部试图
+- (void)refreshHeaderView{
+    
+    
+    BTMeEntity *meEntity = [_meService.arrByUser objectAtIndex:0];
+    
+    [_imageAvtar sd_setImageWithURL:[NSURL URLWithString:meEntity.avatarUrl] placeholderImage:nil];
+    
+    _labName.text = meEntity.nickName;
+    
+    [_btnPublish setTitle:[NSString stringWithFormat:@"发表  %@", meEntity.publishCount] forState:UIControlStateNormal];
+    
+    [_btnFans setTitle:[NSString stringWithFormat:@"粉丝  %@", meEntity.fansCount] forState:UIControlStateNormal];
+    
+    [_btnfollow setTitle:[NSString stringWithFormat:@"关注  %@", meEntity.followCount] forState:UIControlStateNormal];
+    
+    _labDes.text = meEntity.introduction;
+}
+
 /** 点击工具栏选择 */
 - (void)touchLabelWithIndex:(NSInteger)index{
     
@@ -214,11 +259,46 @@
       }
 }
 
-- (void)addFriend:(UIButton *)btn{
+- (void)onclickModify:(UIButton *)btn{
     
     BTMeEditInforViewController *editInfor = [[BTMeEditInforViewController alloc] init];
     
     [self.navigationController pushViewController:editInfor animated:YES];
+}
+
+- (void)addFriend:(UIButton *)btn{
+    
+    BTAttentionMeViewController *Attention = [[BTAttentionMeViewController alloc] init];
+    
+    Attention.navTitle = @"关注我的";
+    
+    [self.navigationController pushViewController:Attention animated:YES];
+}
+
+- (void)onclickFollow:(UIButton *)btn{
+    
+    BTAttentionMeViewController *Attention = [[BTAttentionMeViewController alloc] init];
+    
+    Attention.navTitle = @"我关注的";
+    
+    [self.navigationController pushViewController:Attention animated:YES];
+}
+
+- (void)onclickFans:(UIButton *)btn{
+
+    BTAttentionMeViewController *Attention = [[BTAttentionMeViewController alloc] init];
+    
+    Attention.navTitle = @"关注我的";
+    
+    [self.navigationController pushViewController:Attention animated:YES];
+}
+
+#pragma mark - lazy
+- (BTMeService *)meService {
+    if (!_meService) {
+        _meService = [[BTMeService alloc] init];
+    }
+    return _meService;
 }
 
 @end

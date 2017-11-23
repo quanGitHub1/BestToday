@@ -14,6 +14,8 @@ pod 'JSONModel' , '~> 1.0.2'
 pod 'SwipeView' , '~> 1.3.2'
 pod "Masonry", "~> 0.6.4"
 pod 'YYText', '~> 1.0.2'
+pod 'UMengUShare/UI'
+
 
 
 end

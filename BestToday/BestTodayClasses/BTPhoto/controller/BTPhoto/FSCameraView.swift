@@ -21,7 +21,7 @@ final class FSCameraView: UIView, UIGestureRecognizerDelegate {
     @IBOutlet weak var shotButton: UIButton!
     @IBOutlet weak var flashButton: UIButton!
     @IBOutlet weak var flipButton: UIButton!
-    @IBOutlet weak var fullAspectRatioConstraint: NSLayoutConstraint!
+//    @IBOutlet weak var fullAspectRatioConstraint: NSLayoutConstraint!
     var croppedAspectRatioConstraint: NSLayoutConstraint?
     
     weak var delegate: FSCameraViewDelegate? = nil
@@ -60,22 +60,19 @@ final class FSCameraView: UIView, UIGestureRecognizerDelegate {
         let shotImage = fusumaShotImage != nil ? fusumaShotImage : UIImage(named: "ic_radio_button_checked", in: bundle, compatibleWith: nil)
         
         if(fusumaTintIcons) {
-            flashButton.tintColor = fusumaBaseTintColor
-            flipButton.tintColor  = fusumaBaseTintColor
-            shotButton.tintColor  = fusumaBaseTintColor
-            
             flashButton.setImage(flashOffImage?.withRenderingMode(.alwaysTemplate), for: UIControlState())
             flipButton.setImage(flipImage?.withRenderingMode(.alwaysTemplate), for: UIControlState())
             shotButton.setImage(shotImage?.withRenderingMode(.alwaysTemplate), for: UIControlState())
+            flashButton.tintColor = fusumaBaseTintColor
+            flipButton.tintColor  = fusumaBaseTintColor
+            shotButton.tintColor  = fusumaBaseTintColor
         } else {
             flashButton.setImage(flashOffImage, for: UIControlState())
             flipButton.setImage(flipImage, for: UIControlState())
             shotButton.setImage(shotImage, for: UIControlState())
         }
-
         
         self.isHidden = false
-        
         // AVCapture
         session = AVCaptureSession()
         

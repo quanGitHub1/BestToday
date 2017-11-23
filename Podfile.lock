@@ -22,6 +22,11 @@ PODS:
     - SDWebImage/Core (= 3.8.2)
   - SDWebImage/Core (3.8.2)
   - SwipeView (1.3.2)
+  - UMengUShare/Core (6.4.6):
+    - UMengUShare/Network
+  - UMengUShare/Network (6.4.6)
+  - UMengUShare/UI (6.4.6):
+    - UMengUShare/Core
   - YYCache (1.0.4)
   - YYModel (1.0.4)
   - YYText (1.0.7)
@@ -34,6 +39,7 @@ DEPENDENCIES:
   - MJRefresh
   - SDWebImage (~> 3.8.2)
   - SwipeView (~> 1.3.2)
+  - UMengUShare/UI
   - YYCache
   - YYModel
   - YYText (~> 1.0.2)
@@ -46,10 +52,11 @@ SPEC CHECKSUMS:
   MJRefresh: 9af70f5f9327a2cf87f0fb5929f35fcc2fa638ea
   SDWebImage: 098e97e6176540799c27e804c96653ee0833d13c
   SwipeView: bd67cfaf7760c036438446b3ccb28a3b84fce009
+  UMengUShare: fdbbf86353976727af26a66e9a84314ecb59c816
   YYCache: 8105b6638f5e849296c71f331ff83891a4942952
   YYModel: 2a7fdd96aaa4b86a824e26d0c517de8928c04b30
   YYText: 5c461d709e24d55a182d1441c41dc639a18a4849
 
-PODFILE CHECKSUM: 0e09bd1efb970e58668e2b52033b76c63b235c96
+PODFILE CHECKSUM: be69e1f416bae81084126cb6c88845181610048a
 
-COCOAPODS: 1.1.1
+COCOAPODS: 1.3.1

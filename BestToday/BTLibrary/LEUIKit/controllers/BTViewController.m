@@ -46,37 +46,19 @@
 #pragma mark - private method
 
 - (void)setUpNavigationBar {
-    _navigationBar = [[MGJNavigationBar alloc] initWithFrame:CGRectMake(0, 0, self.navigationController.view.width,  70) needBlurEffect:NO];
+    _navigationBar = [[MGJNavigationBar alloc] initWithFrame:CGRectMake(0, 0, FULL_WIDTH,  70) needBlurEffect:NO];
     _navigationBar.bottomBorderColor = [UIColor whiteColor];
     _navigationBar.titleColor = HEX(@"0d0d0d");
     _navigationBar.title = self.title;
     _navigationBar.backgroundColor = [UIColor whiteColor];
-    
-   
-
-
-    if (self.navigationController.viewControllers.count > 1) {
-        UIButton *backButton = [UIButton mlt_leftBarButtonWithImage:[UIImage imageNamed:kBundleImage(@"navigation_bar_back_icon")] highlightedImage:nil target:self action:@selector(back:) forControlEvents:UIControlEventTouchUpInside];
-        [_navigationBar setLeftBarButton:backButton];
-    }
     [self.view addSubview:_navigationBar];
     
+//    [_navigationBar setBackgroundImage:[UIImage imageNamed:@"navigation_background"]];
     
     self.navSeparator = [[UIView alloc] initWithFrame:(CGRect) {0,_navigationBar.height - .5, _navigationBar.width, 0.5}];
     _navSeparator.backgroundColor = HEX(@"d9d9d9");
     _navSeparator.hidden = NO;
     [_navigationBar addSubview:_navSeparator];
-    
-    
-//    UIBezierPath *shadowPath = [UIBezierPath bezierPathWithRect:_navigationBar.bounds];
-//    
-//    _navigationBar.layer.masksToBounds = NO;
-//    
-//    _navigationBar.layer.shadowColor = [UIColor yellowColor ].CGColor;
-//    
-//    _navigationBar.layer.shadowOpacity = 5.f;
-//    
-//    _navigationBar.layer.shadowPath = shadowPath.CGPath;
     
 }
 

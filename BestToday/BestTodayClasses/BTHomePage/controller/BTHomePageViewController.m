@@ -8,10 +8,13 @@
 
 #import "BTHomePageViewController.h"
 #import "BTSpreadTableView.h"
-#import "BTLoginViewController.h"
+#import "BTLoginsViewController.h"
 #import "BTHomePageTableViewCell.h"
 #import "BTHomeOpenHander.h"
 #import "BTHomePageDetailViewController.h"
+#import <UShareUI/UShareUI.h>
+#import "BtHomePageService.h"
+
 
 @interface BTHomePageViewController ()<LEBaseTableViewDelegate,UITableViewDataSource, UITableViewDelegate, BTSpreadTableViewDelegate, BTHomepageViewDelegate>
 
@@ -20,6 +23,10 @@
 @property (nonatomic, strong) BTSpreadTableView *spreadTableView;
 
 @property (nonatomic, strong) NSMutableDictionary *dicCell;
+
+@property (nonatomic, strong) BtHomePageService *homePageService;
+
+@property (nonatomic, strong) NSString *pageAssistParam;
 
 @end
 
@@ -37,8 +44,10 @@
 
     [self setupTableView];
     
+    [self loadData];
 
-//    BTLoginViewController *loginvc = [[BTLoginViewController alloc] init];
+
+//    BTLoginsViewController *loginvc = [[BTLoginsViewController alloc] init];
 //    
 //    
 //    MGJNavigationController *navigationController = [[MGJNavigationController alloc] initWithRootViewController:loginvc];
@@ -47,13 +56,12 @@
 //        
 //        
 //    }];
-
     
 }
 
 - (void)setupTableView{
     
-    self.tableView = [[BTTableview alloc]initWithFrame:CGRectMake(0, kNavigationBarHight, kSCREEN_WIDTH, kSCREEN_HEIGHT-kNavigationBarHight)];
+    self.tableView = [[BTTableview alloc]initWithFrame:CGRectMake(0, kNavigationBarHight, kSCREEN_WIDTH, kSCREEN_HEIGHT-kNavigationBarHight - kTabBarHeight)];
     
     self.tableView.delegate = self;
     self.tableView.dataSource = self;
@@ -84,7 +92,10 @@
          */
         _spreadTableView = [[BTSpreadTableView alloc] initWithFrame:CGRectMake(0, 0, ScaleHeight(120), FULL_WIDTH) style:UITableViewStylePlain withType:BTSpreadTableViewStyleImageText];// x,y 高，宽
         
-        _spreadTableView.backgroundColor = [UIColor yellowColor];
+        _spreadTableView.backgroundColor = [UIColor colorWithHexString:@"#f5f5f5"];
+        
+       _spreadTableView.dataArr = self.homePageService.arrFollowedUsers;
+        
         _spreadTableView.spreadDelegate = self;
         
     }
@@ -93,6 +104,72 @@
     
     self.tableView.tableHeaderView = headerView;
     
+}
+
+- (void)requestDataSource{
+    
+    if (_dicCell.count > 0) {
+        [_dicCell removeAllObjects];
+    }
+    
+    _pageAssistParam = @"";
+    
+    [self loadData];
+}
+
+- (void)requestMoreDataSource{
+    
+    if (self.homePageService.arrFollowedResource.count % 10  != 0) {
+        [self.tableView noDataFooterEndRefreshing];
+        
+    }else{
+        [self loadData];
+    }
+}
+
+- (void)loadData{
+
+    [self requestAnnouncementData];
+    
+    [self requestQueryFollowedResource];
+    
+}
+
+/** 关注我的接口 */
+- (void)requestAnnouncementData{
+    
+    [self.homePageService loadqueryMyFollowedUsers:1 completion:^(BOOL isSuccess, BOOL isCache) {
+        
+        [self.tableView stop];
+        
+        if (isSuccess) {
+            
+            _spreadTableView.dataArr = self.homePageService.arrFollowedUsers;
+            
+            [_spreadTableView reloadData];
+            
+            [self.tableView reloadData];
+
+            
+        }
+    }];
+}
+
+- (void)requestQueryFollowedResource{
+
+    [self.homePageService loadqueryFollowedResource:0 pageAssistParam:_pageAssistParam completion:^(BOOL isSuccess, BOOL isCache, NSString* pageAssistParam) {
+        
+        
+        [self.tableView stop];
+        
+        _pageAssistParam = pageAssistParam;
+        
+        if (isSuccess) {
+            
+          [self.tableView reloadData];
+            
+        }
+    }];
 }
 
 #pragma mark - BTHomepageViewDelegate
@@ -111,7 +188,7 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     
-        return 10;
+    return _homePageService.arrFollowedResource.count;
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -119,7 +196,6 @@
     if (_dicCell.count > indexPath.row) {
         
         BTHomePageTableViewCell *announcementCell = [_dicCell objectForKey:[NSString stringWithFormat:@"indexPath%ld", indexPath.row]];
-        
         return announcementCell.heightCell;
     }
     
@@ -146,7 +222,7 @@
     
     [cell.btnAtten addTarget:self action:@selector(onclickBtnAtten:) forControlEvents:UIControlEventTouchUpInside];
     
-    [cell makeDatacell:indexPath.row];
+    [cell makeDatacellData:[self.homePageService.arrFollowedResource objectAtIndex:indexPath.row] index:indexPath.row];
     
     if (![[_dicCell allKeys] containsObject:[NSString stringWithFormat:@"indexPath%ld", indexPath.row]]) {
         
@@ -169,7 +245,6 @@
     
 }
 
-
 - (void)onclickBtnAtten:(UIButton *)btn{
 
     UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"" message:@"" preferredStyle:UIAlertControllerStyleAlert];
@@ -184,6 +259,14 @@
     [self presentViewController:alertController animated:YES completion:nil];
     
     
+}
+
+#pragma mark - lazy
+- (BtHomePageService *)homePageService {
+    if (!_homePageService) {
+        _homePageService = [[BtHomePageService alloc] init];
+    }
+    return _homePageService;
 }
 
 - (void)didReceiveMemoryWarning {

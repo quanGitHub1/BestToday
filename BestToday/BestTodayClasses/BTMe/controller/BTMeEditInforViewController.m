@@ -8,7 +8,8 @@
 
 #import "BTMeEditInforViewController.h"
 
-@interface BTMeEditInforViewController ()
+@interface BTMeEditInforViewController ()<UINavigationControllerDelegate,UIImagePickerControllerDelegate>
+
 
 @property (nonatomic, strong) UILabel *labName;
 
@@ -17,6 +18,8 @@
 @property (nonatomic, strong) UITextField *textViewName;
 
 @property (nonatomic, strong) UITextField *textProduct;
+
+@property (nonatomic, strong)  UIImageView *imageView;
 
 
 @end
@@ -67,17 +70,30 @@
     
     UIView *view = [[UIView alloc] initWithFrame:frame];
     
-    UIImageView *imageView = [[UIImageView alloc] initWithFrame:CGRectMake((FULL_WIDTH - ScaleWidth(81))/2, 32, ScaleWidth(81), ScaleWidth(81))];
+    _imageView = [[UIImageView alloc] initWithFrame:CGRectMake((FULL_WIDTH - ScaleWidth(81))/2, 32, ScaleWidth(81), ScaleWidth(81))];
     
-    imageView.backgroundColor = [UIColor redColor];
+    _imageView.backgroundColor = [UIColor redColor];
     
-    imageView.contentMode = UIViewContentModeScaleAspectFit;
+    _imageView.contentMode = UIViewContentModeScaleAspectFit;
     
-    imageView.layer.cornerRadius = ScaleWidth(81/2);
+    _imageView.layer.cornerRadius = ScaleWidth(81/2);
     
-    imageView.clipsToBounds = YES;
+    _imageView.clipsToBounds = YES;
     
-    UILabel *labChange = [[UILabel alloc] initWithFrame:CGRectMake(0, imageView.bottom + 7, FULL_WIDTH, 16)];
+    /**
+     *  添加手势：也就是当用户点击头像了之后，对这个操作进行反应
+     */
+    //允许用户交互
+    _imageView.userInteractionEnabled = YES;
+    //初始化一个手势
+    UITapGestureRecognizer *singleTap = [[UITapGestureRecognizer alloc]initWithTarget:self
+                                                                               action:@selector(alterHeadPortrait:)];
+    //给ImageView添加手势
+    [_imageView addGestureRecognizer:singleTap];
+    
+    
+    
+    UILabel *labChange = [[UILabel alloc] initWithFrame:CGRectMake(0, _imageView.bottom + 7, FULL_WIDTH, 16)];
     
     labChange.text = @"更换头像";
     
@@ -130,10 +146,63 @@
     [view addSubview:_textViewName];
    
     [view addSubview:labChange];
-    [view addSubview:imageView];
+    [view addSubview:_imageView];
     
     return view;
 }
+
+//  方法：alterHeadPortrait
+-(void)alterHeadPortrait:(UITapGestureRecognizer *)gesture{
+   
+    /**
+     *  弹出提示框
+     */
+    //初始化提示框
+    UIAlertController *alert = [UIAlertController alertControllerWithTitle:nil message:nil preferredStyle:UIAlertControllerStyleActionSheet];
+    //按钮：从相册选择，类型：UIAlertActionStyleDefault
+    [alert addAction:[UIAlertAction actionWithTitle:@"从相册选择" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+        //初始化UIImagePickerController
+        UIImagePickerController *PickerImage = [[UIImagePickerController alloc]init];
+        //获取方式1：通过相册（呈现全部相册），UIImagePickerControllerSourceTypePhotoLibrary
+        //获取方式2，通过相机，UIImagePickerControllerSourceTypeCamera
+        //获取方法3，通过相册（呈现全部图片），UIImagePickerControllerSourceTypeSavedPhotosAlbum
+        PickerImage.sourceType = UIImagePickerControllerSourceTypePhotoLibrary;
+        //允许编辑，即放大裁剪
+        PickerImage.allowsEditing = YES;
+        
+        //自代理
+        PickerImage.delegate = self;
+        //页面跳转
+        [self presentViewController:PickerImage animated:YES completion:nil];
+    }]];
+    //按钮：拍照，类型：UIAlertActionStyleDefault
+    [alert addAction:[UIAlertAction actionWithTitle:@"拍照" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action){
+        /**
+         其实和从相册选择一样，只是获取方式不同，前面是通过相册，而现在，我们要通过相机的方式
+         */
+        UIImagePickerController *PickerImage = [[UIImagePickerController alloc]init];
+        //获取方式:通过相机
+        PickerImage.sourceType = UIImagePickerControllerSourceTypeCamera;
+        PickerImage.allowsEditing = YES;
+        PickerImage.delegate = self;
+        [self presentViewController:PickerImage animated:YES completion:nil];
+    }]];
+    //按钮：取消，类型：UIAlertActionStyleCancel
+    [alert addAction:[UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleCancel handler:nil]];
+    [self presentViewController:alert animated:YES completion:nil];
+    
+    
+}
+
+//PickerImage完成后的代理方法
+- (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary<NSString *,id> *)info{
+    //定义一个newPhoto，用来存放我们选择的图片。
+    UIImage *newPhoto = [info objectForKey:@"UIImagePickerControllerEditedImage"];
+    _imageView.image = newPhoto;
+    [self dismissViewControllerAnimated:YES completion:nil];
+}
+
+
 
 - (void)onclickBtnCancel:(UIButton *)btn{
     

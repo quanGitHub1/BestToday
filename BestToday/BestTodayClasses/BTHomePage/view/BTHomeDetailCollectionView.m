@@ -10,7 +10,8 @@
 #import "LECollectionView.h"
 #import "BTMeCollectionViewCell.h"
 #import "BTDiscoverHeaderView.h"
-
+#import "BTHomeDetailService.h"
+#import "BTHomedetailCollectionViewCell.h"
 
 static NSString *const cellId = @"cellId";
 
@@ -22,6 +23,9 @@ static NSString *const cellId = @"cellId";
 
 @property (nonatomic, assign) BOOL isMoreData;
 
+@property (nonatomic, strong) BTHomeDetailService *detailService;
+
+@property (nonatomic, strong) NSString *pageAssistParam;
 
 
 @end
@@ -32,6 +36,8 @@ static NSString *const cellId = @"cellId";
 {
     if (self = [super initWithFrame:frame]) {
         [self setUpCollectionViewWithFrame:frame];
+        
+        [self requestRecommendResourceByPage];
     }
     return self;
 }
@@ -40,12 +46,34 @@ static NSString *const cellId = @"cellId";
     UICollectionViewFlowLayout * flowLayout = [[UICollectionViewFlowLayout alloc] init];
     _collectionView = [[LECollectionView alloc] initWithFrame:CGRectMake(0, 0, frame.size.width, frame.size.height) collectionViewLayout:flowLayout];
     _collectionView.backgroundColor = [UIColor whiteColor];
+    
+    [_collectionView registerClass:[BTHomedetailCollectionViewCell class] forCellWithReuseIdentifier:@"BTHomedetailCollectionViewCell"];
+
     _collectionView.dataSource = self;
     _collectionView.delegate = self;
     _collectionView.dataDelegate = self;
     [self addSubview:_collectionView];
     [_collectionView registerClass:[UICollectionViewCell class] forCellWithReuseIdentifier:cellId];
 }
+
+
+- (void)requestRecommendResourceByPage{
+   
+    [self.detailService loadRecommendResourceByPage:1 pageAssistParam:_pageAssistParam resourceIds:@"18301" completion:^(BOOL isSuccess, BOOL isCache, NSString *pageAssistParam) {
+        
+        [self.collectionView stop];
+        
+        if (isSuccess) {
+            
+            [self.collectionView reloadData];
+            
+        }
+
+        
+    }];
+
+}
+
 
 #pragma mark ---- CollectionView 数据源
 
@@ -65,13 +93,20 @@ static NSString *const cellId = @"cellId";
 
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section
 {
-    return 30;
+    return _detailService.arrDetailResourceByPage.count;
 }
 
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath
 {
-    UICollectionViewCell *cell = [_collectionView dequeueReusableCellWithReuseIdentifier:cellId forIndexPath:indexPath];
-    cell.backgroundColor = [UIColor purpleColor];
+//    UICollectionViewCell *cell = [_collectionView dequeueReusableCellWithReuseIdentifier:cellId forIndexPath:indexPath];
+//    cell.backgroundColor = [UIColor purpleColor];
+    
+    static NSString * CellIdentifier = @"BTHomedetailCollectionViewCell";
+
+    BTHomedetailCollectionViewCell * cell = (BTHomedetailCollectionViewCell *)[collectionView dequeueReusableCellWithReuseIdentifier:CellIdentifier forIndexPath:indexPath];
+    
+    [cell makeDetailRecomendCellData:[self.detailService.arrDetailResourceByPage objectAtIndex:indexPath.item]];
+    
     return cell;
 }
 
@@ -87,7 +122,6 @@ static NSString *const cellId = @"cellId";
 }
 
 #pragma mark ---- UICollectionViewDelegateFlowLayout
-
 - (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath
 {
     return (CGSize){(FULL_WIDTH - 10)/3,(FULL_WIDTH - 10)/3};
@@ -127,5 +161,12 @@ static NSString *const cellId = @"cellId";
     }
 }
 
+#pragma mark - lazy
+- (BTHomeDetailService *)detailService{
+    if (!_detailService) {
+        _detailService = [[BTHomeDetailService alloc] init];
+    }
+    return _detailService;
+}
 
 @end

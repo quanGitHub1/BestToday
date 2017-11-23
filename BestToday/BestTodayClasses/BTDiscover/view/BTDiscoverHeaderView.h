@@ -7,7 +7,11 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "BTSpreadTableView.h"
 
 @interface BTDiscoverHeaderView : UICollectionReusableView
+
+@property (nonatomic, strong) BTSpreadTableView *spreadTableView;
+
 
 @end

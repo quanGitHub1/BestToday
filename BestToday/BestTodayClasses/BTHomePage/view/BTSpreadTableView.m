@@ -33,7 +33,6 @@
 {
     self = [super initWithFrame:frame style:style];
     if (self) {
-        
         self.delegate = self;
         self.dataSource = self;
         self.separatorStyle = UITableViewCellSeparatorStyleNone;
@@ -100,7 +99,7 @@
     }
     
 
-    for (int i = 0; i < 10; i++) {
+    for (int i = 0; i < _dataArr.count; i++) {
         
         UITableViewCell *cell = nil;
         
@@ -112,7 +111,7 @@
                 
                 cell.selectionStyle = UITableViewCellSelectionStyleNone;
                 
-//                [(BTRecomendUserTableViewCell *)cell makeEditCellData:[_dataArr objectAtIndex:i]];
+                [(BTRecomendUserTableViewCell *)cell makeEditCellData:[_dataArr objectAtIndex:i]];
                 
                 // 把cell添加进去
                 [_cellArr addObject:cell];
@@ -139,11 +138,8 @@
     
     [self addCell];
     
-    return 10;
+    return [_dataArr count];
     
-    if (_dataArr.count == 0) {
-        return 0;
-    }
     
 }
 
