@@ -60,7 +60,6 @@ NSString *const EaseMessageCellIdentifierSendText = @"EaseMessageCellSendText";
     if (self) {
         self.accessibilityIdentifier = @"table_cell";
 
-//        _messageType = model.bodyType;
         [self _setupSubviewsWithType:1
                             isSender:model.isSender
                                model:model];

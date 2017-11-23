@@ -71,15 +71,15 @@ final class FSAlbumView: UIView, UICollectionViewDataSource, UICollectionViewDel
             layoutSubviews()
         }
         
-        let panGesture      = UIPanGestureRecognizer(target: self, action: #selector(FSAlbumView.panned(_:)))
-        panGesture.delegate = self
-        self.addGestureRecognizer(panGesture)
+//        let panGesture      = UIPanGestureRecognizer(target: self, action: #selector(FSAlbumView.panned(_:)))
+//        panGesture.delegate = self
+//        self.addGestureRecognizer(panGesture)
         
         collectionViewConstraintHeight.constant = self.frame.height - imageCropViewContainer.frame.height - imageCropViewOriginalConstraintTop
         imageCropViewConstraintTop.constant = 50
         dragDirection = Direction.up
         
-        imageCropViewContainer.layer.shadowColor   = UIColor.black.cgColor
+        imageCropViewContainer.layer.shadowColor   = UIColor.white.cgColor
         imageCropViewContainer.layer.shadowRadius  = 30.0
         imageCropViewContainer.layer.shadowOpacity = 0.9
         imageCropViewContainer.layer.shadowOffset  = CGSize.zero
@@ -112,7 +112,6 @@ final class FSAlbumView: UIView, UICollectionViewDataSource, UICollectionViewDel
     deinit {
         
         if PHPhotoLibrary.authorizationStatus() == PHAuthorizationStatus.authorized {
-            
             PHPhotoLibrary.shared().unregisterChangeObserver(self)
         }
     }
@@ -141,7 +140,6 @@ final class FSAlbumView: UIView, UICollectionViewDataSource, UICollectionViewDel
             
             // Move
             if dragDirection == Direction.stop {
-                
                 dragDirection = (imageCropViewConstraintTop.constant == imageCropViewOriginalConstraintTop) ? Direction.up : Direction.down
             }
             
@@ -151,11 +149,11 @@ final class FSAlbumView: UIView, UICollectionViewDataSource, UICollectionViewDel
                     
                     dragDirection = Direction.stop
                     
-                    imageCropView.changeScrollable(false)
-                    
+//                    imageCropView.changeScrollable(false)
+                
             } else {
                 
-                imageCropView.changeScrollable(true)
+//                imageCropView.changeScrollable(true)
             }
             
         } else if sender.state == UIGestureRecognizerState.changed {
@@ -193,7 +191,7 @@ final class FSAlbumView: UIView, UICollectionViewDataSource, UICollectionViewDel
             
             if sender.state == UIGestureRecognizerState.ended && dragDirection == Direction.stop {
                 
-                imageCropView.changeScrollable(true)
+//                imageCropView.changeScrollable(true)
                 return
             }
             
@@ -202,7 +200,7 @@ final class FSAlbumView: UIView, UICollectionViewDataSource, UICollectionViewDel
             if currentPos.y < cropBottomY - dragDiff && imageCropViewConstraintTop.constant != imageCropViewOriginalConstraintTop {
                 
                 // The largest movement
-                imageCropView.changeScrollable(false)
+//                imageCropView.changeScrollable(false)
                 
                 imageCropViewConstraintTop.constant = imageCropViewMinimalVisibleHeight - self.imageCropViewContainer.frame.height
                 
@@ -219,7 +217,7 @@ final class FSAlbumView: UIView, UICollectionViewDataSource, UICollectionViewDel
             } else {
                 
                 // Get back to the original position
-                imageCropView.changeScrollable(true)
+//                imageCropView.changeScrollable(true)
                 
                 imageCropViewConstraintTop.constant = imageCropViewOriginalConstraintTop
                 collectionViewConstraintHeight.constant = self.frame.height - imageCropViewOriginalConstraintTop - imageCropViewContainer.frame.height
@@ -275,7 +273,7 @@ final class FSAlbumView: UIView, UICollectionViewDataSource, UICollectionViewDel
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAtIndexPath indexPath: IndexPath) -> CGSize {
         
-        let width = (collectionView.frame.width - 3) / 4
+        let width = (collectionView.frame.width - 2) / 3
         return CGSize(width: width, height: width)
     }
     
@@ -283,7 +281,7 @@ final class FSAlbumView: UIView, UICollectionViewDataSource, UICollectionViewDel
         
         changeImage(images[(indexPath as NSIndexPath).row])
         
-        imageCropView.changeScrollable(true)
+//        imageCropView.changeScrollable(true)
         
         imageCropViewConstraintTop.constant = imageCropViewOriginalConstraintTop
         collectionViewConstraintHeight.constant = self.frame.height - imageCropViewOriginalConstraintTop - imageCropViewContainer.frame.height
@@ -394,7 +392,6 @@ private extension FSAlbumView {
                     result, info in
                     
                     DispatchQueue.main.async(execute: {
-                        
                         self.imageCropView.imageSize = CGSize(width: asset.pixelWidth, height: asset.pixelHeight)
                         self.imageCropView.image = result
                     })

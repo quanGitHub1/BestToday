@@ -26,12 +26,12 @@
                   moduleName = "BestToday"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/wangzhuo/Desktop/bdbd/BestToday/BestTodayClasses/BTCollection/controller/message/BTMessageViewController.m"
-                  timestampString = "532944816.676256"
+                  timestampString = "533036141.249772"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "164"
                   endingLineNumber = "164"
-                  offsetFromSymbolStart = "46">
+                  offsetFromSymbolStart = "64">
                </Location>
                <Location
                   shouldBeEnabled = "Yes"
@@ -41,12 +41,12 @@
                   moduleName = "BestToday"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/wangzhuo/Desktop/bdbd/BestToday/BestTodayClasses/BTCollection/controller/message/BTMessageViewController.m"
-                  timestampString = "532944816.678784"
+                  timestampString = "533036141.251344"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "164"
-                  endingLineNumber = "164"
-                  offsetFromSymbolStart = "15">
+                  startingLineNumber = "165"
+                  endingLineNumber = "165"
+                  offsetFromSymbolStart = "20">
                </Location>
             </Locations>
          </BreakpointContent>
