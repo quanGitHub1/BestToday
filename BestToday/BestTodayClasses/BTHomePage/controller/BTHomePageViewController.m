@@ -196,6 +196,7 @@
     if (_dicCell.count > indexPath.row) {
         
         BTHomePageTableViewCell *announcementCell = [_dicCell objectForKey:[NSString stringWithFormat:@"indexPath%ld", indexPath.row]];
+        
         return announcementCell.heightCell;
     }
     

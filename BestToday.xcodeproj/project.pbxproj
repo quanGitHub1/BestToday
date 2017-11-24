@@ -137,7 +137,6 @@
 		7AA2BD181FAAFE8B00864753 /* BTDiscoverEntity.m in Sources */ = {isa = PBXBuildFile; fileRef = 7AA2BD171FAAFE8B00864753 /* BTDiscoverEntity.m */; };
 		7AA2BD1B1FAAFE9B00864753 /* BTDiscoverService.m in Sources */ = {isa = PBXBuildFile; fileRef = 7AA2BD1A1FAAFE9B00864753 /* BTDiscoverService.m */; };
 		7AA2BD1E1FAAFEB100864753 /* BTDiscoverView.m in Sources */ = {isa = PBXBuildFile; fileRef = 7AA2BD1D1FAAFEB100864753 /* BTDiscoverView.m */; };
-		7AA2BD211FAAFECE00864753 /* BTCollectionTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 7AA2BD201FAAFECE00864753 /* BTCollectionTableViewCell.m */; };
 		7AA2BD241FAAFEE300864753 /* BTCollectionEntity.m in Sources */ = {isa = PBXBuildFile; fileRef = 7AA2BD231FAAFEE300864753 /* BTCollectionEntity.m */; };
 		7AA2BD271FAAFEFD00864753 /* BTCollectionService.m in Sources */ = {isa = PBXBuildFile; fileRef = 7AA2BD261FAAFEFD00864753 /* BTCollectionService.m */; };
 		7AA2BD2A1FAAFF0E00864753 /* BTCollectionView.m in Sources */ = {isa = PBXBuildFile; fileRef = 7AA2BD291FAAFF0E00864753 /* BTCollectionView.m */; };
@@ -512,8 +511,6 @@
 		7AA2BD1A1FAAFE9B00864753 /* BTDiscoverService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BTDiscoverService.m; sourceTree = "<group>"; };
 		7AA2BD1C1FAAFEB100864753 /* BTDiscoverView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BTDiscoverView.h; sourceTree = "<group>"; };
 		7AA2BD1D1FAAFEB100864753 /* BTDiscoverView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BTDiscoverView.m; sourceTree = "<group>"; };
-		7AA2BD1F1FAAFECE00864753 /* BTCollectionTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BTCollectionTableViewCell.h; sourceTree = "<group>"; };
-		7AA2BD201FAAFECE00864753 /* BTCollectionTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BTCollectionTableViewCell.m; sourceTree = "<group>"; };
 		7AA2BD221FAAFEE300864753 /* BTCollectionEntity.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BTCollectionEntity.h; sourceTree = "<group>"; };
 		7AA2BD231FAAFEE300864753 /* BTCollectionEntity.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BTCollectionEntity.m; sourceTree = "<group>"; };
 		7AA2BD251FAAFEFD00864753 /* BTCollectionService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BTCollectionService.h; sourceTree = "<group>"; };
@@ -1601,8 +1598,6 @@
 		7AA2BCF81FAAFD3C00864753 /* cell */ = {
 			isa = PBXGroup;
 			children = (
-				7AA2BD1F1FAAFECE00864753 /* BTCollectionTableViewCell.h */,
-				7AA2BD201FAAFECE00864753 /* BTCollectionTableViewCell.m */,
 				CB670BC61FBEC388004BDCEA /* BTSystemMessageCell.h */,
 				CB670BC71FBEC388004BDCEA /* BTSystemMessageCell.m */,
 				CB670BC91FBEC3A6004BDCEA /* BTMeMessageCell.h */,
@@ -2186,7 +2181,6 @@
 				CBCD2EAA1FB4657100994037 /* FSAlbumView.swift in Sources */,
 				7AA2BDC51FB2D88E00864753 /* BTHomeComment.m in Sources */,
 				CBCD2EBD1FB4658F00994037 /* BTDiscoverHeaderView.m in Sources */,
-				7AA2BD211FAAFECE00864753 /* BTCollectionTableViewCell.m in Sources */,
 				7AA2BC2E1FAAB4CC00864753 /* MLTRefreshHeader.m in Sources */,
 				7AA2BD3C1FAAFF8900864753 /* BTMeEntity.m in Sources */,
 				7A16B9ED1FB5A8C200E7EC3A /* BTMeEditInforViewController.m in Sources */,
