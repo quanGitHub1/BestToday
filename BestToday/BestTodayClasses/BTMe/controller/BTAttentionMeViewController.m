@@ -68,9 +68,9 @@
 
 - (void)requestqueryUserById{
     
-    [self.meService loadqueryMyResourceByPage:1005 completion:^(BOOL isSuccess, BOOL isCache) {
-        
-    }];
+//    [self.meService loadqueryMyResourceByPage:1005 completion:^(BOOL isSuccess, BOOL isCache) {
+//        
+//    }];
 }
 
 - (void)navigationBackButtonClicked:(UIButton *)btn {
