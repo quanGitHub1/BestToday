@@ -12,10 +12,15 @@
 #import "BTDiscoverHeaderView.h"
 #import "BTHomeDetailService.h"
 #import "BTHomedetailCollectionViewCell.h"
+#import "BTHomeHeaderView.h"
+#import "BTHomedetailHeaderView.h"
 
 static NSString *const cellId = @"cellId";
 
-@interface BTHomeDetailCollectionView()<UICollectionViewDelegate, UICollectionViewDataSource, LEBaseCollectionViewDelegate, UICollectionViewDelegateFlowLayout>
+static NSString *const headerId = @"headerId";
+
+
+@interface BTHomeDetailCollectionView()<UICollectionViewDelegate, UICollectionViewDataSource, LEBaseCollectionViewDelegate, UICollectionViewDelegateFlowLayout, HomeDetailheaderDelegate>
 
 @property (nonatomic, strong) NSString *lpage;
 
@@ -27,27 +32,55 @@ static NSString *const cellId = @"cellId";
 
 @property (nonatomic, strong) NSString *pageAssistParam;
 
+@property (nonatomic, assign) CGFloat heightCell;
+
+@property (nonatomic, assign) CGFloat heightCellTwo;
+
+@property (nonatomic, assign) CGRect frames;
+
+
+@property (nonatomic, strong) BTHomeHeaderView *headerViews;
+
 
 @end
 
 @implementation BTHomeDetailCollectionView
 
-- (instancetype)initWithFrame:(CGRect)frame
+- (instancetype)initWithFrame:(CGRect)frame resourceId:(NSString *)resourceId
 {
     if (self = [super initWithFrame:frame]) {
-        [self setUpCollectionViewWithFrame:frame];
         
-        [self requestRecommendResourceByPage];
+        _frames = frame;
+        
+        _headerViews = [[BTHomeHeaderView alloc] initWithFrame:CGRectMake(0, 0, FULL_WIDTH, 800)];
+        
+        _headerViews.resourceId = resourceId;
+        
+        _resourceId = resourceId;
+        
+        _headerViews.delegate = self;
+        
+        [_headerViews initCreatTableview];
+        
+        [self addSubview:_headerViews];
+        
+        _headerViews.hidden = YES;
+        
+        
     }
     return self;
 }
 
+
 - (void)setUpCollectionViewWithFrame:(CGRect)frame{
+    
     UICollectionViewFlowLayout * flowLayout = [[UICollectionViewFlowLayout alloc] init];
     _collectionView = [[LECollectionView alloc] initWithFrame:CGRectMake(0, 0, frame.size.width, frame.size.height) collectionViewLayout:flowLayout];
     _collectionView.backgroundColor = [UIColor whiteColor];
     
     [_collectionView registerClass:[BTHomedetailCollectionViewCell class] forCellWithReuseIdentifier:@"BTHomedetailCollectionViewCell"];
+    
+      [_collectionView registerClass:[BTHomedetailHeaderView class] forSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:headerId];
 
     _collectionView.dataSource = self;
     _collectionView.delegate = self;
@@ -57,36 +90,53 @@ static NSString *const cellId = @"cellId";
 }
 
 
+- (void)loadData{
+    
+    [self requestRecommendResourceByPage];
+}
+
+
+/** 请求推荐图片 */
 - (void)requestRecommendResourceByPage{
    
     [self.detailService loadRecommendResourceByPage:1 pageAssistParam:_pageAssistParam resourceIds:@"18301" completion:^(BOOL isSuccess, BOOL isCache, NSString *pageAssistParam) {
         
         [self.collectionView stop];
         
+        _pageAssistParam = pageAssistParam;
+        
         if (isSuccess) {
             
             [self.collectionView reloadData];
-            
         }
 
-        
     }];
 
 }
 
-
 #pragma mark ---- CollectionView 数据源
 
 - (void)requestDataSource{
-    if (_discoverCVDelegate && [_discoverCVDelegate respondsToSelector:@selector(requestDataSource)]) {
-        [_discoverCVDelegate requestDataSource];
-    }
+   
+    _pageAssistParam = @"";
+    
+    [_collectionView resetNoMoreData];
+
+    
+    [self loadData];
+    
 }
 
 - (void)requestMoreDataSource{
-    if (_discoverCVDelegate && [_discoverCVDelegate respondsToSelector:@selector(requestMoreDataSource)]) {
-        [_discoverCVDelegate requestMoreDataSource];
+    
+    
+    if (self.detailService.arrDetailResourceByPage.count % 10  != 0) {
+        [self.collectionView noDataFooterEndRefreshing];
+        
+    }else{
+        [self loadData];
     }
+   
 }
 
 #pragma mark ---- UICollectionViewDataSource
@@ -98,8 +148,6 @@ static NSString *const cellId = @"cellId";
 
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath
 {
-//    UICollectionViewCell *cell = [_collectionView dequeueReusableCellWithReuseIdentifier:cellId forIndexPath:indexPath];
-//    cell.backgroundColor = [UIColor purpleColor];
     
     static NSString * CellIdentifier = @"BTHomedetailCollectionViewCell";
 
@@ -113,12 +161,44 @@ static NSString *const cellId = @"cellId";
 // 和UITableView类似，UICollectionView也可设置段头段尾
 - (UICollectionReusableView *)collectionView:(UICollectionView *)collectionView viewForSupplementaryElementOfKind:(NSString *)kind atIndexPath:(NSIndexPath *)indexPath
 {
-    if (_discoverCVDelegate && [_discoverCVDelegate respondsToSelector:@selector(collectionView: viewForSupplementaryElementOfKind:atIndexPath:)]) {
-        return [_discoverCVDelegate collectionView:collectionView viewForSupplementaryElementOfKind:kind atIndexPath:indexPath];
-    }else{
-        return nil;
+    
+    BTHomedetailHeaderView *headerView = nil;
+    
+    if([kind isEqualToString:UICollectionElementKindSectionHeader])
+    {
+        headerView = [collectionView dequeueReusableSupplementaryViewOfKind:kind withReuseIdentifier:headerId forIndexPath:indexPath];
+        
+        headerView.clipsToBounds = YES;
+        
+        headerView.backgroundColor = [UIColor whiteColor];
+        
+        headerView.resourceId = _resourceId;
+        
+        [headerView initCreatTableview];
+        
+        headerView.delegate = self;
+        
+        return headerView;
     }
     
+    return nil;
+}
+
+// 拿到高度返回
+-(void)reloadTwoCollection:(CGFloat)height{
+    
+    _heightCell = height;
+    
+    [self setUpCollectionViewWithFrame:_frames];
+    
+    [self loadData];
+    
+}
+
+- (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout referenceSizeForHeaderInSection:(NSInteger)section
+{
+    return (CGSize){FULL_WIDTH, _heightCell > 0 ? _heightCell : 0};
+
 }
 
 #pragma mark ---- UICollectionViewDelegateFlowLayout
@@ -142,23 +222,15 @@ static NSString *const cellId = @"cellId";
     return 2.5f;
 }
 
-- (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout referenceSizeForHeaderInSection:(NSInteger)section
-{
-    if (_discoverCVDelegate && [_discoverCVDelegate respondsToSelector:@selector(collectionView: layout:referenceSizeForHeaderInSection:)]) {
-        return  [_discoverCVDelegate collectionView:collectionView layout:collectionViewLayout referenceSizeForHeaderInSection:section];
-    }else{
-        return (CGSize){0,0};
-    }
-}
 
 #pragma mark ---- UICollectionViewDelegate
 
 // 选中某item
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
 {
-    if (_discoverCVDelegate && [_discoverCVDelegate respondsToSelector:@selector(collectionView: didSelectItemAtIndexPath:)]) {
-        [_discoverCVDelegate collectionView:collectionView didSelectItemAtIndexPath:indexPath];
-    }
+//    if (_discoverCVDelegate && [_discoverCVDelegate respondsToSelector:@selector(collectionView: didSelectItemAtIndexPath:)]) {
+//        [_discoverCVDelegate collectionView:collectionView didSelectItemAtIndexPath:indexPath];
+//    }
 }
 
 #pragma mark - lazy

@@ -344,6 +344,16 @@
             _heightCell = _labDescrp.bottom + 10;
             
         }
+    
+    if (_delegate && [_delegate respondsToSelector:@selector(reloadTableViewheight:)]) {
+        
+        _heightCell = _labDescrp.bottom + 20;
+        
+        [self.delegate reloadTableViewheight:_heightCell];
+        
+    }
+
+    
 }
 
 - (NSArray *)getSeparatedLinesFromLabel:(UILabel *)label

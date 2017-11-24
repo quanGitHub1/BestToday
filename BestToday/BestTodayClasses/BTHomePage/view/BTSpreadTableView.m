@@ -33,7 +33,6 @@
 {
     self = [super initWithFrame:frame style:style];
     if (self) {
-        
         self.delegate = self;
         self.dataSource = self;
         self.separatorStyle = UITableViewCellSeparatorStyleNone;

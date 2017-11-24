@@ -8,9 +8,21 @@
 
 #import <UIKit/UIKit.h>
 
+@protocol HomeDetailheaderDelegate <NSObject>
+
+- (void)reloadCollection:(CGFloat)height;
+
+
+@end
+
 @interface BTHomedetailHeaderView : UICollectionReusableView
 
+@property (nonatomic, strong)id<HomeDetailheaderDelegate>delegate;
+
 @property (nonatomic, assign) CGFloat heightTab;
+
+@property (nonatomic, strong) NSString *resourceId;
+
 
 - (void)initCreatTableview;
 

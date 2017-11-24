@@ -32,9 +32,19 @@ extension UIView {
     
     func addBottomBorder(_ color: UIColor, width: CGFloat) {
         let border = CALayer()
-        border.borderColor = color.cgColor
         border.frame = CGRect(x: 0, y: self.frame.size.height - width, width:  self.frame.size.width, height: width)
-        border.borderWidth = width
+        border.shadowOpacity = 0.8
+        border.shadowColor = color.cgColor;
+        border.shadowOffset = CGSize(width:2,height:2)
+        self.layer.addSublayer(border)
+    }
+    
+    func addTopShadow(_ color: UIColor, width: CGFloat) {
+        let border = CALayer()
+        border.frame = CGRect(x: 0, y: 0 ,width:  self.frame.size.width , height: width)
+        border.shadowOpacity = 0.8
+        border.shadowColor = color.cgColor;
+        border.shadowOffset = CGSize(width:1,height:1)
         self.layer.addSublayer(border)
     }
 

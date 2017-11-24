@@ -13,4 +13,6 @@
 
 @property (nonatomic, assign) CGFloat heightCell;
 
+@property (nonatomic, strong) NSString *resourceId;
+
 @end

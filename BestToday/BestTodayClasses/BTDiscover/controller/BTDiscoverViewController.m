@@ -9,10 +9,22 @@
 #import "BTDiscoverViewController.h"
 #import "BTDiscoverHeaderView.h"
 #import "BTDiscoverCollectionView.h"
+#import "BTDiscoverEntity.h"
+#import "BTDiscoverService.h"
+#import "BtHomePageService.h"
 
 @interface BTDiscoverViewController ()<BTDiscoverCollectionViewDelegate>
-
+{
+    NSString *_pageAssistParam;
+    int page;
+}
 @property (nonatomic, strong) BTDiscoverCollectionView *collectionView;
+
+@property (nonatomic, strong) BTDiscoverService *discoverService;
+
+@property (nonatomic, strong) BtHomePageService *homePageService;
+
+@property (nonatomic, strong) BTDiscoverHeaderView *discoverHeaderView;
 
 @end
 
@@ -34,37 +46,59 @@ static NSString *const headerId = @"headerId";
 }
 
 - (void)setUpCollectionView{
-    _collectionView = [[BTDiscoverCollectionView alloc] initWithFrame:CGRectMake(0, kNavigationBarHight, SCREEN_WIDTH, SCREEN_HEIGHT-TAB_HEIGHT)];
+    _collectionView = [[BTDiscoverCollectionView alloc] initWithFrame:CGRectMake(0, kNavigationBarHight, SCREEN_WIDTH, SCREEN_HEIGHT-TAB_HEIGHT-kNavigationBarHight)];
     [_collectionView.collectionView registerClass:[BTDiscoverHeaderView class] forSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:headerId];
     _collectionView.discoverCVDelegate = self;
-
-    [_collectionView setDataForCollectionView:@[@"1",@"1",@"1",@"1",@"1",@"1",@"1",@"1"]];
-    
     [self.view addSubview:_collectionView];
+    
+    _discoverHeaderView = [[BTDiscoverHeaderView alloc] initWithFrame:CGRectMake(0, 0, screenWidth, 120)];
 }
-
 
 #pragma mark ---- CollectionView 数据源
 
 - (void)requestDataSource{
-    NSLog(@"下拉刷新数据");
+    __weak BTDiscoverViewController *weakSelf = self;
+    page = 1;
+    //发现 的图片内容
+    [self.discoverService loadqueryDiscoverResource:page pageAssistParam:@"" completion:^(BOOL isSuccess,  NSString *message, NSString *pageAssistParam) {
+        [weakSelf.collectionView.collectionView stop];
+        if (isSuccess) {
+            page ++;
+            [_collectionView setDataForCollectionView:weakSelf.discoverService.arrDiscoverResource];
+            _pageAssistParam = pageAssistParam;
+            [weakSelf.collectionView.collectionView reloadData];
+        }
+    }];
+    // 推荐关注列表
+    [self.homePageService loadqueryMyFollowedUsers:2 completion:^(BOOL isSuccess, BOOL isCache) {
+        if (isSuccess) {
+            weakSelf.discoverHeaderView.spreadTableView.dataArr = weakSelf.homePageService.arrFollowedUsers;
+        }
+    }];
 }
 
 - (void)requestMoreDataSource{
-    NSLog(@"上拉加载更多");
+    //发现内容加载更多
+    __weak BTDiscoverViewController *weakSelf = self;
+    [self.discoverService loadqueryDiscoverResource:page pageAssistParam:_pageAssistParam completion:^(BOOL isSuccess,  NSString *message, NSString *pageAssistParam) {
+        [weakSelf.collectionView.collectionView stop];
+        if (isSuccess) {
+            page++;
+            [_collectionView setDataForCollectionView:weakSelf.discoverService.arrDiscoverResource];
+            _pageAssistParam = pageAssistParam;
+            [weakSelf.collectionView.collectionView reloadData];
+        }
+    }];
 }
 
 
 // 和UITableView类似，UICollectionView也可设置段头段尾
 - (UICollectionReusableView *)collectionView:(UICollectionView *)collectionView viewForSupplementaryElementOfKind:(NSString *)kind atIndexPath:(NSIndexPath *)indexPath
 {
-    BTDiscoverHeaderView *headerView = nil;
     if([kind isEqualToString:UICollectionElementKindSectionHeader])
     {
-        headerView = [collectionView dequeueReusableSupplementaryViewOfKind:kind withReuseIdentifier:headerId forIndexPath:indexPath];
-        headerView.backgroundColor = [UIColor grayColor];
-        
-        return headerView;
+        _discoverHeaderView = [collectionView dequeueReusableSupplementaryViewOfKind:kind withReuseIdentifier:headerId forIndexPath:indexPath];
+        return _discoverHeaderView;
     }
     return nil;
 }
@@ -78,6 +112,21 @@ static NSString *const headerId = @"headerId";
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
 {
     NSLog(@"选中cell ");
+}
+
+
+- (BTDiscoverService *)discoverService {
+    if (!_discoverService) {
+        _discoverService = [[BTDiscoverService alloc] init];
+    }
+    return _discoverService;
+}
+
+- (BtHomePageService *)homePageService {
+    if (!_homePageService) {
+        _homePageService = [[BtHomePageService alloc] init];
+    }
+    return _homePageService;
 }
 
 /*

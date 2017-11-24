@@ -10,33 +10,15 @@
 
 #import "LECollectionView.h"
 
-@protocol BTHomeDetailCollectionViewDelegate <NSObject>
-
-- (void)requestDataSource;
-
-@optional
-
-- (void)requestMoreDataSource;
-
-// 点击选择 代理
-- (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath;
-
-// collectionView header footer 代理
-- (UICollectionReusableView *)collectionView:(UICollectionView *)collectionView viewForSupplementaryElementOfKind:(NSString *)kind atIndexPath:(NSIndexPath *)indexPath;
-
-//collectionView header  size
-- (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout referenceSizeForHeaderInSection:(NSInteger)section;
-
-@end
-
-
 @interface BTHomeDetailCollectionView : UIView
 
-@property (nonatomic, assign)id <BTHomeDetailCollectionViewDelegate> discoverCVDelegate;
+
 
 @property (nonatomic, strong) LECollectionView *collectionView;
 
-//- (void)setDataForCollectionView:(NSArray *)data;
+@property (nonatomic, strong) NSString *resourceId;
 
+
+- (instancetype)initWithFrame:(CGRect)frame resourceId:(NSString *)resourceId;
 
 @end

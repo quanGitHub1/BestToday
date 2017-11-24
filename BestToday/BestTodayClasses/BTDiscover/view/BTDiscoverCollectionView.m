@@ -7,13 +7,13 @@
 //
 
 #import "BTDiscoverCollectionView.h"
+#import "BTDiscoverCell.h"
+#import "BTDiscoverEntity.h"
 
 @interface BTDiscoverCollectionView ()<LEBaseCollectionViewDelegate,UICollectionViewDelegate,UICollectionViewDataSource,UICollectionViewDelegateFlowLayout>
-{
-    NSArray *dataArray;
-    
-    
-}
+
+@property (nonatomic, strong) NSMutableArray *dataArray;
+
 @end
 
 
@@ -31,6 +31,7 @@ static NSString *const cellId = @"cellId";
 - (instancetype)initWithFrame:(CGRect)frame
 {
     if (self = [super initWithFrame:frame]) {
+        _dataArray = [NSMutableArray array];
         [self setUpCollectionViewWithFrame:frame];
     }
     return self;
@@ -43,14 +44,14 @@ static NSString *const cellId = @"cellId";
     _collectionView.dataSource = self;
     _collectionView.delegate = self;
     _collectionView.dataDelegate = self;
-    //    [_collectionView autoRefreshLoad];
+    [_collectionView autoRefreshLoad];
     [self addSubview:_collectionView];
     
-    [_collectionView registerClass:[UICollectionViewCell class] forCellWithReuseIdentifier:cellId];
+    [_collectionView registerClass:[BTDiscoverCell class] forCellWithReuseIdentifier:cellId];
 }
 
-- (void)setDataForCollectionView:(NSArray *)data{
-    dataArray = [NSArray arrayWithArray:data];
+- (void)setDataForCollectionView:(NSMutableArray *)data{
+    _dataArray = data;
     [_collectionView reloadData];
 }
 
@@ -72,13 +73,15 @@ static NSString *const cellId = @"cellId";
 
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section
 {
-    return dataArray.count;
+    return _dataArray.count;
 }
 
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath
 {
-    UICollectionViewCell *cell = [_collectionView dequeueReusableCellWithReuseIdentifier:cellId forIndexPath:indexPath];
-    cell.backgroundColor = [UIColor purpleColor];
+    BTDiscoverEntity *entity = _dataArray[indexPath.row];
+    BTDiscoverCell *cell = [_collectionView dequeueReusableCellWithReuseIdentifier:cellId forIndexPath:indexPath];
+    cell.backgroundColor = [UIColor colorWithHexString:entity.backgroundColor];
+    cell.imageUrl = entity.smallPicUrl;
     return cell;
 }
 

@@ -8,14 +8,20 @@
 
 #import "BTHomedetailHeaderView.h"
 #import "BTHomePageTableViewCell.h"
+#import "BTHomeDetailService.h"
 
 
 @interface BTHomedetailHeaderView ()<UITableViewDataSource, UITableViewDelegate, BTHomepageViewDelegate>
 
 @property (nonatomic, strong)BTTableview *tableView;
 
+@property (nonatomic, strong) BTHomeDetailService *detailService;
 
 @property (nonatomic, strong) NSMutableDictionary *dicCell;
+
+@property (nonatomic, strong) UILabel *labTitle;
+
+@property (nonatomic, assign) CGFloat heightCells;
 
 @end
 
@@ -27,9 +33,7 @@
         
         self.backgroundColor = [UIColor whiteColor];
         
-        _dicCell = [[NSMutableDictionary alloc] init];
 
-//        [self setupTableView];
         
     }
     return self;
@@ -37,38 +41,56 @@
 
 
 - (void)initCreatTableview{
+    
+    _dicCell = [[NSMutableDictionary alloc] init];
 
     [self setupTableView];
+    
+    [self requestDetailResource];
 }
 
 - (void)setupTableView{
     
-    self.tableView = [[BTTableview alloc]initWithFrame:CGRectMake(0, 0, kSCREEN_WIDTH, _heightTab)];
+    self.tableView = [[BTTableview alloc]initWithFrame:CGRectMake(0, 0, kSCREEN_WIDTH, self.height - 50)];
     
     self.tableView.delegate = self;
     self.tableView.dataSource = self;
-    self.tableView.estimatedRowHeight = 200;
+    self.tableView.estimatedRowHeight = 400;
     
     [self.tableView hiddenFreshFooter];
     
     _tableView.scrollEnabled = NO;
-
     
     self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     
-    UILabel *labTitle = [[UILabel alloc] initWithFrame:CGRectMake(0, _tableView.bottom + 20, FULL_WIDTH, 20)];
+    _labTitle = [[UILabel alloc] initWithFrame:CGRectMake(0, _tableView.bottom + 20, FULL_WIDTH, 20)];
     
-    labTitle.text = @"随便看看";
+    _labTitle.text = @"随便看看";
 
-    labTitle.textAlignment = NSTextAlignmentCenter;
+    _labTitle.textAlignment = NSTextAlignmentCenter;
     
-    labTitle.backgroundColor = [UIColor whiteColor];
+    _labTitle.backgroundColor = [UIColor whiteColor];
     
     [self addSubview:self.tableView];
     
-    [self addSubview:labTitle];
+    [self addSubview:_labTitle];
     
 }
+
+
+- (void)requestDetailResource{
+    
+    [self.detailService loadqueryResourceDetail:[_resourceId integerValue] completion:^(BOOL isSuccess, BOOL isCache) {
+        
+        if (isSuccess) {
+            
+            [_tableView reloadData];
+            
+        }
+        
+    }];
+}
+
 
 #pragma mark - BTHomepageViewDelegate
 
@@ -91,14 +113,16 @@
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
     
-    if (_dicCell.count > indexPath.row) {
-        
-        BTHomePageTableViewCell *announcementCell = [_dicCell objectForKey:[NSString stringWithFormat:@"indexPath%ld", indexPath.row]];
-        
-        return announcementCell.heightCell;
-    }
+//    if (_dicCell.count > indexPath.row) {
+//        
+//        BTHomePageTableViewCell *announcementCell = [_dicCell objectForKey:[NSString stringWithFormat:@"indexPath%ld", indexPath.row]];
+//    
+//        return announcementCell.heightCell;
+//    }
     
-    return 0;
+    
+    
+    return _heightCells;
     
 }
 
@@ -109,7 +133,6 @@
     
     BTHomePageTableViewCell *cell = [tableView cellForRowAtIndexPath:indexPath]; //根据indexPath准确地取出一行，而不是从cell重用队列中取出
     
-    
     if (!cell) {
         
         cell = [[BTHomePageTableViewCell alloc]initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:cellID];
@@ -119,13 +142,20 @@
     
     [cell.btnAtten addTarget:self action:@selector(onclickBtnAtten:) forControlEvents:UIControlEventTouchUpInside];
     
-//    [cell makeDatacell:indexPath.row];
-    
-    if (![[_dicCell allKeys] containsObject:[NSString stringWithFormat:@"indexPath%ld", indexPath.row]]) {
+    if (self.detailService.arrDetailResource.count > 0) {
         
-        [_dicCell setObject:cell forKey:[NSString stringWithFormat:@"indexPath%ld", indexPath.row]];
-        
+        [cell makeDatacellData:[self.detailService.arrDetailResource objectAtIndex:indexPath.row] index:indexPath.row];
+
     }
+    
+    
+    _heightCells = cell.heightCell;
+    
+//    if (![[_dicCell allKeys] containsObject:[NSString stringWithFormat:@"indexPath%ld", indexPath.row]]) {
+//        
+//        [_dicCell setObject:cell forKey:[NSString stringWithFormat:@"indexPath%ld", indexPath.row]];
+//        
+//    }
     
     return cell;
 }
@@ -142,8 +172,14 @@
     [alertController addAction:destructiveAction];
     [alertController addAction:cancelAction];
     
-    
 }
 
+#pragma mark - lazy
+- (BTHomeDetailService *)detailService{
+    if (!_detailService) {
+        _detailService = [[BTHomeDetailService alloc] init];
+    }
+    return _detailService;
+}
 
 @end
