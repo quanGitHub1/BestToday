@@ -34,6 +34,7 @@
 		7A2429B51FC66B1800EE7948 /* SVProgressHUD.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 7A2429AE1FC66B1800EE7948 /* SVProgressHUD.bundle */; };
 		7A2429B61FC66B1800EE7948 /* SVProgressHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = 7A2429B01FC66B1800EE7948 /* SVProgressHUD.m */; };
 		7A2429B71FC66B1800EE7948 /* SVRadialGradientLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 7A2429B21FC66B1800EE7948 /* SVRadialGradientLayer.m */; };
+		7A2429BD1FC7F5DB00EE7948 /* BTHomeHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 7A2429BC1FC7F5DB00EE7948 /* BTHomeHeaderView.m */; };
 		7AA2BB351FAAAE5500864753 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 7AA2BB341FAAAE5500864753 /* main.m */; };
 		7AA2BB4E1FAAAE5500864753 /* BestTodayTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 7AA2BB4D1FAAAE5500864753 /* BestTodayTests.m */; };
 		7AA2BB591FAAAE5500864753 /* BestTodayUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = 7AA2BB581FAAAE5500864753 /* BestTodayUITests.m */; };
@@ -294,6 +295,8 @@
 		7A2429B01FC66B1800EE7948 /* SVProgressHUD.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SVProgressHUD.m; sourceTree = "<group>"; };
 		7A2429B11FC66B1800EE7948 /* SVRadialGradientLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SVRadialGradientLayer.h; sourceTree = "<group>"; };
 		7A2429B21FC66B1800EE7948 /* SVRadialGradientLayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SVRadialGradientLayer.m; sourceTree = "<group>"; };
+		7A2429BB1FC7F5DB00EE7948 /* BTHomeHeaderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BTHomeHeaderView.h; sourceTree = "<group>"; };
+		7A2429BC1FC7F5DB00EE7948 /* BTHomeHeaderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BTHomeHeaderView.m; sourceTree = "<group>"; };
 		7AA2BB301FAAAE5500864753 /* BestToday.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BestToday.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		7AA2BB341FAAAE5500864753 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		7AA2BB491FAAAE5500864753 /* BestTodayTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = BestTodayTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -1542,6 +1545,8 @@
 				7A16B9F21FBAE2D100E7EC3A /* BTHomeDetailCollectionView.m */,
 				7A16B9F41FBAEEF000E7EC3A /* BTHomedetailHeaderView.h */,
 				7A16B9F51FBAEEF000E7EC3A /* BTHomedetailHeaderView.m */,
+				7A2429BB1FC7F5DB00EE7948 /* BTHomeHeaderView.h */,
+				7A2429BC1FC7F5DB00EE7948 /* BTHomeHeaderView.m */,
 			);
 			path = view;
 			sourceTree = "<group>";
@@ -2217,6 +2222,7 @@
 				CB670DE31FC2DFC0004BDCEA /* EMSDWebImageDownloader.m in Sources */,
 				7AA2BD391FAAFF7700864753 /* BTMeTableViewCell.m in Sources */,
 				7AA2BDAE1FB15C4E00864753 /* WXApiRequestHandler.m in Sources */,
+				7A2429BD1FC7F5DB00EE7948 /* BTHomeHeaderView.m in Sources */,
 				CB670DBA1FC2C6BA004BDCEA /* EaseBubbleView.m in Sources */,
 				7AA2BCE11FAAC62900864753 /* BTHomePageViewController.m in Sources */,
 				7AA2BCA51FAAC07400864753 /* NSObject+LEEntity.m in Sources */,

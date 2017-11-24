@@ -12,7 +12,7 @@
 #import "BTHomedetailHeaderView.h"
 
 
-@interface BTHomePageDetailViewController ()<BTHomeDetailCollectionViewDelegate>
+@interface BTHomePageDetailViewController ()
 
 @property (nonatomic,strong) BTHomeDetailCollectionView *collectionView;
 
@@ -44,49 +44,12 @@ static NSString *const headerId = @"headerId";
 
 - (void)setUpCollectionView{
     
-    _collectionView = [[BTHomeDetailCollectionView alloc] initWithFrame:CGRectMake(0, kNavigationBarHight, SCREEN_WIDTH, SCREEN_HEIGHT-kNavigationBarHight)];
+    _collectionView = [[BTHomeDetailCollectionView alloc] initWithFrame:CGRectMake(0, kNavigationBarHight, SCREEN_WIDTH, SCREEN_HEIGHT-kNavigationBarHight) resourceId:_resourceId];
     
     [_collectionView.collectionView registerClass:[BTHomedetailHeaderView class] forSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:headerId];
-    
-    _collectionView.discoverCVDelegate = self;
-
-    
+        
     [self.view addSubview:_collectionView];
     
-}
-
-#pragma mark ---- CollectionView 数据源
-
-- (void)requestDataSource{
-    NSLog(@"下拉刷新数据");
-}
-
-- (void)requestMoreDataSource{
-    NSLog(@"上拉加载更多");
-}
-
-
-// 和UITableView类似，UICollectionView也可设置段头段尾
-- (UICollectionReusableView *)collectionView:(UICollectionView *)collectionView viewForSupplementaryElementOfKind:(NSString *)kind atIndexPath:(NSIndexPath *)indexPath
-{
-    BTHomedetailHeaderView *headerView = nil;
-    if([kind isEqualToString:UICollectionElementKindSectionHeader])
-    {
-        headerView = [collectionView dequeueReusableSupplementaryViewOfKind:kind withReuseIdentifier:headerId forIndexPath:indexPath];
-        headerView.backgroundColor = [UIColor whiteColor];
-        
-        headerView.heightTab = _heightCell;
-        
-        [headerView initCreatTableview];
-        
-        return headerView;
-    }
-    return nil;
-}
-
-- (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout referenceSizeForHeaderInSection:(NSInteger)section
-{
-    return (CGSize){FULL_WIDTH,_heightCell + 60};
 }
 
 

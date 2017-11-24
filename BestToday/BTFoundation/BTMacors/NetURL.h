@@ -32,6 +32,9 @@
 // 用户信息
 #define BTqueryUserById  @"http://zuijia365.com/todayHot/app/user/queryUserById.json"
 
+// 查询图片详情接口
+#define BTqueryResourceDetail  @"http://zuijia365.com/todayHot/app/resource/queryResourceDetail.json"
+
 // 我发表的图片资源接口
 #define BTqueryMyResourceByPage  @"http://zuijia365.com/todayHot/app/resource/queryMyResourceByPage.json"
 

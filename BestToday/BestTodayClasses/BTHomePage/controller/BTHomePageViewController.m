@@ -14,6 +14,7 @@
 #import "BTHomePageDetailViewController.h"
 #import <UShareUI/UShareUI.h>
 #import "BtHomePageService.h"
+#import "BTHomePageEntity.h"
 
 
 @interface BTHomePageViewController ()<LEBaseTableViewDelegate,UITableViewDataSource, UITableViewDelegate, BTSpreadTableViewDelegate, BTHomepageViewDelegate>
@@ -111,6 +112,8 @@
     if (_dicCell.count > 0) {
         [_dicCell removeAllObjects];
     }
+    
+    [_tableView resetNoMoreData];
     
     _pageAssistParam = @"";
     
@@ -238,9 +241,9 @@
 
     BTHomePageDetailViewController *homePagedetail = [[BTHomePageDetailViewController alloc] init];
     
-    BTHomePageTableViewCell *announcementCell = [_dicCell objectForKey:[NSString stringWithFormat:@"indexPath%ld", indexPath.row]];
+    BTHomePageEntity *pageEntity = [_homePageService.arrFollowedResource objectAtIndex:indexPath.row];
     
-    homePagedetail.heightCell = announcementCell.heightCell;
+    homePagedetail.resourceId = pageEntity.resourceId;
     
     [self.navigationController pushViewController:homePagedetail animated:YES];
     

@@ -65,7 +65,7 @@
         if (!([respones[@"code"] integerValue] == 0)) {
             return NO;
         }
-        
+        [self.arrFollowedUsers removeAllObjects];
         NSDictionary *dicData = respones[@"data"];
         
         if (dicData && [dicData isKindOfClass:[NSDictionary class]]) {
