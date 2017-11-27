@@ -9,6 +9,7 @@
 #import "BTMeViewController.h"
 #import "MLTSegementView.h"
 #import "BTMeCollectionView.h"
+#import "BTMeLikeCollectionView.h"
 #import "BTMeEditInforViewController.h"
 #import "BTAttentionMeViewController.h"
 #import "BTMeService.h"
@@ -40,7 +41,7 @@
 
 @property (nonatomic,strong) BTMeCollectionView *collectionView;
 
-@property (nonatomic,strong) BTMeCollectionView *collectionViewTwo;
+@property (nonatomic,strong) BTMeLikeCollectionView *collectionViewTwo;
 
 @property (nonatomic, strong)BTMeService *meService;
 
@@ -114,7 +115,7 @@
     
     [_btnFans setTitleColor:[UIColor colorWithHexString:@"#969696"] forState:UIControlStateNormal];
     
-    [_btnModify addTarget:self action:@selector(onclickFans:) forControlEvents:UIControlEventTouchUpInside];
+    [_btnFans addTarget:self action:@selector(onclickFans:) forControlEvents:UIControlEventTouchUpInside];
     
     _btnFans.titleLabel.font = [UIFont systemFontOfSize:14];
     
@@ -196,16 +197,18 @@
     
     _segementView.backgroundColor = [UIColor whiteColor];
     
-    _collectionView = [[BTMeCollectionView alloc] initWithFrame:CGRectMake(0, _segementView.bottom, FULL_WIDTH, FULL_HEIGHT - _segementView.bottom)];
+    _collectionView = [[BTMeCollectionView alloc] initWithFrame:CGRectMake(0, _segementView.bottom, FULL_WIDTH, FULL_HEIGHT - _segementView.bottom - MLTTabbarHeight)];
     
-    _collectionViewTwo = [[BTMeCollectionView alloc] initWithFrame:CGRectMake(0, _segementView.bottom, FULL_WIDTH, FULL_HEIGHT - _segementView.bottom)];
+    _collectionViewTwo = [[BTMeLikeCollectionView alloc] initWithFrame:CGRectMake(0, _segementView.bottom, FULL_WIDTH, FULL_HEIGHT - _segementView.bottom - MLTTabbarHeight)];
 
     
     [self.view addSubview:_segementView];
     
-    [self.view addSubview:_collectionView];
     
     [self.view addSubview:_collectionViewTwo];
+    
+    [self.view addSubview:_collectionView];
+
 }
 
 - (void)loadData{

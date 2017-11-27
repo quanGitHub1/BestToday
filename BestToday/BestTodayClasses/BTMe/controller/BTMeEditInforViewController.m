@@ -52,6 +52,9 @@
     
     [self.navigationBar.leftBarButton addSubview:btnLeft];
     
+    btnLeft.titleLabel.backgroundColor = [UIColor redColor];
+
+    
     UIButton *btnRight = [[UIButton alloc] initWithFrame:CGRectMake(FULL_WIDTH - 55, 35, 50, 30)];
     
     [btnRight setTitle:@"完成" forState:UIControlStateNormal];
