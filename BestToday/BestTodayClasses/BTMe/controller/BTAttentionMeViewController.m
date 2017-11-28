@@ -8,7 +8,7 @@
 
 #import "BTAttentionMeViewController.h"
 #import "BTAttentionTableViewCell.h"
-#import "BTMeService.h"
+#import "BTMeAttentionService.h"
 #import "BTMeEntity.h"
 
 @interface BTAttentionMeViewController ()<UITableViewDelegate, UITableViewDataSource, LEBaseTableViewDelegate>
@@ -19,7 +19,7 @@
 
 @property (nonatomic) BOOL isPullup;
 
-@property (nonatomic, strong) BTMeService *meService;
+@property (nonatomic, strong) BTMeAttentionService *meService;
 
 @end
 
@@ -32,6 +32,8 @@
     [self setupNavigationBar];
     
     [self setupTableView];
+    
+    [self loadData];
 }
 
 
@@ -64,13 +66,16 @@
 
 - (void)loadData{
     
+    [self requestqueryUser];
 }
 
-- (void)requestqueryUserById{
-    [self.meService loadqueryMyResourceByPage:1005 pageAssistParam:@"" completion:^(BOOL isSuccess, BOOL isCache, NSString *pageAssistParam) {
+- (void)requestqueryUser{
+
+    [self.meService loadqueryMyFansUsersCompletion:^(BOOL isSuccess, BOOL isCache) {
+        
+        
         
     }];
-    
     
 }
 
@@ -106,9 +111,9 @@
 }
 
 #pragma mark - lazy
-- (BTMeService *)meService {
+- (BTMeAttentionService *)meService {
     if (!_meService) {
-        _meService = [[BTMeService alloc] init];
+        _meService = [[BTMeAttentionService alloc] init];
     }
     return _meService;
 }

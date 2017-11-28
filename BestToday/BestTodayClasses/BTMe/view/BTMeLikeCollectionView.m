@@ -1,18 +1,18 @@
 //
-//  BTMeCollectionView.m
+//  BTMeLikeCollectionView.m
 //  BestToday
 //
-//  Created by leeco on 2017/11/10.
+//  Created by leeco on 2017/11/27.
 //  Copyright © 2017年 leeco. All rights reserved.
 //
 
-#import "BTMeCollectionView.h"
+#import "BTMeLikeCollectionView.h"
 #import "MLTWaterflowLayout.h"
 #import "LECollectionView.h"
 #import "BTMeCollectionViewCell.h"
 #import "BTMeService.h"
 
-@interface BTMeCollectionView()<UICollectionViewDelegate, UICollectionViewDataSource, LEBaseCollectionViewDelegate, MLTWaterflowLayoutDelegate>
+@interface BTMeLikeCollectionView() <UICollectionViewDelegate, UICollectionViewDataSource, LEBaseCollectionViewDelegate, MLTWaterflowLayoutDelegate>
 
 @property (nonatomic, strong) NSString *lpage;
 
@@ -26,10 +26,9 @@
 
 @property (nonatomic, strong) NSString *pageAssistParam;
 
-
 @end
 
-@implementation BTMeCollectionView
+@implementation BTMeLikeCollectionView
 
 -(instancetype)initWithFrame:(CGRect)frame
 {
@@ -42,12 +41,11 @@
         [self creatTableview];
         
         [self loadData];
-
+        
     }
     
     return self;
 }
-
 
 -(void)initDataAndView{
     [self creatTableview];
@@ -71,7 +69,7 @@
     
     _collectionView.dataDelegate = self;
     
-//    [_collectionView autoRefreshLoad];
+    //    [_collectionView autoRefreshLoad];
     
     [self addSubview:_collectionView];
 }
@@ -87,7 +85,7 @@
 
 - (void)requestMoreDataSource{
     
-    if (self.meService.arrMyResource.count % 10  != 0) {
+    if (self.meService.arrCommentResource.count % 10  != 0) {
         [self.collectionView noDataFooterEndRefreshing];
         
     }else{
@@ -97,13 +95,13 @@
 }
 
 - (void)loadData{
-
+    
     [self requestqueryMyResourceByPage];
 }
 
 - (void)requestqueryMyResourceByPage{
-
-    [self.meService loadqueryMyResourceByPage:1 pageAssistParam:_pageAssistParam completion:^(BOOL isSuccess, BOOL isCache, NSString *pageAssistParam) {
+    
+    [self.meService loadqueryCommentResourceByPage:1 pageAssistParam:_pageAssistParam completion:^(BOOL isSuccess, BOOL isCache, NSString *pageAssistParam) {
         
         [self.collectionView stop];
         
@@ -112,9 +110,11 @@
         if (isSuccess) {
             
             [self.collectionView reloadData];
+            
         }
 
     }];
+    
 }
 
 #pragma mark - UICollectionViewDelegate / UICollectionViewDataSource / UICollectionViewDelegateFlowLayout
@@ -125,7 +125,7 @@
 
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section {
     
-    return self.meService.arrMyResource.count;
+    return self.meService.arrCommentResource.count;
 }
 
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
@@ -134,14 +134,14 @@
     
     BTMeCollectionViewCell * cell = (BTMeCollectionViewCell *)[collectionView dequeueReusableCellWithReuseIdentifier:CellIdentifier forIndexPath:indexPath];
     
-    [cell makeLiveFiannceCellData:[self.meService.arrMyResource objectAtIndex:indexPath.item]];
+    [cell makeLiveFiannceCellData:[self.meService.arrCommentResource objectAtIndex:indexPath.item]];
     
     return cell;
 }
 
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
     
-  
+    
 }
 
 #pragma mark - <WaterflowLayoutDelegate>
@@ -178,5 +178,6 @@
     }
     return _meService;
 }
+
 
 @end

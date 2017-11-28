@@ -34,14 +34,11 @@
     return self;
 }
 
-- (void)makeLiveFiannceCellData{
-    
-//    [_imagePic sd_setImageWithURL:[NSURL URLWithString:financeEntity.image] placeholderImage:nil];
-//    
-//    _labName.text = financeEntity.title;
-//    
-//    _labName.numberOfLines = 2;
-    
+- (void)makeLiveFiannceCellData:(BTMeResourceVoList *)resourceVolist{
+
+    [_imagePic sd_setImageWithURL:[NSURL URLWithString:resourceVolist.picUrl] placeholderImage:nil];
+
+    _imagePic.backgroundColor = [UIColor colorWithHexString:resourceVolist.backgroundColor];
 }
 
 @end

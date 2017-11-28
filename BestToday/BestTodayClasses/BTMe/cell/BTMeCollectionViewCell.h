@@ -7,13 +7,14 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "BTMeResourceVoList.h"
 
 @interface BTMeCollectionViewCell : UICollectionViewCell
 
 @property(nonatomic, strong) UIImageView *imagePic;  // 图片
 
 
-- (void)makeLiveFiannceCellData;
+- (void)makeLiveFiannceCellData:(BTMeResourceVoList *)resourceVolist;
 
 
 @end

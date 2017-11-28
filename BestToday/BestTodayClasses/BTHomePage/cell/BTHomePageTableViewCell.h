@@ -18,6 +18,9 @@
 
 - (void)reloadTableView:(NSInteger)indexpath height:(CGFloat)height;
 
+- (void)reloadTableViewheight:(CGFloat)height;
+
+
 
 @end
 
@@ -58,6 +61,8 @@
 
 
 @property (nonatomic, assign) CGFloat heightCell;
+
+@property (nonatomic, strong) BTHomePageEntity *homePageEntity;
 
 @property (nonatomic) BOOL cell;
 

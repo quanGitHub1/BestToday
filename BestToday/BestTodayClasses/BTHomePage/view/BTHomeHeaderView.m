@@ -1,17 +1,17 @@
 //
-//  BTHomedetailHeaderView.m
+//  BTHomeHeaderView.m
 //  BestToday
 //
-//  Created by leeco on 2017/11/14.
+//  Created by leeco on 2017/11/24.
 //  Copyright © 2017年 leeco. All rights reserved.
 //
 
-#import "BTHomedetailHeaderView.h"
+#import "BTHomeHeaderView.h"
 #import "BTHomePageTableViewCell.h"
 #import "BTHomeDetailService.h"
 
 
-@interface BTHomedetailHeaderView ()<UITableViewDataSource, UITableViewDelegate, BTHomepageViewDelegate>
+@interface BTHomeHeaderView ()<UITableViewDataSource, UITableViewDelegate, BTHomepageViewDelegate>
 
 @property (nonatomic, strong)BTTableview *tableView;
 
@@ -23,9 +23,10 @@
 
 @property (nonatomic, assign) CGFloat heightCells;
 
+
 @end
 
-@implementation BTHomedetailHeaderView
+@implementation BTHomeHeaderView
 
 - (instancetype)initWithFrame:(CGRect)frame
 {
@@ -34,7 +35,6 @@
         self.backgroundColor = [UIColor whiteColor];
         
 
-        
     }
     return self;
 }
@@ -43,42 +43,55 @@
 - (void)initCreatTableview{
     
     _dicCell = [[NSMutableDictionary alloc] init];
-
+    
     [self setupTableView];
     
-    [self requestDetailResource];
+    [self requestDetailResourceTwo];
 }
 
 - (void)setupTableView{
     
-    self.tableView = [[BTTableview alloc]initWithFrame:CGRectMake(0, 0, kSCREEN_WIDTH, self.height - 50)];
+    _tableView = [[BTTableview alloc]initWithFrame:CGRectMake(0, 0, kSCREEN_WIDTH, 500)];
     
-    self.tableView.delegate = self;
-    self.tableView.dataSource = self;
-    self.tableView.estimatedRowHeight = 400;
+    _tableView.delegate = self;
+    _tableView.dataSource = self;
     
-    [self.tableView hiddenFreshFooter];
+    _tableView.estimatedRowHeight = 100;
+    
+    [_tableView hiddenFreshFooter];
     
     _tableView.scrollEnabled = NO;
     
-    self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
+    _tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     
     _labTitle = [[UILabel alloc] initWithFrame:CGRectMake(0, _tableView.bottom + 20, FULL_WIDTH, 20)];
     
     _labTitle.text = @"随便看看";
-
+    
     _labTitle.textAlignment = NSTextAlignmentCenter;
     
     _labTitle.backgroundColor = [UIColor whiteColor];
     
-    [self addSubview:self.tableView];
+    [self addSubview:_tableView];
     
     [self addSubview:_labTitle];
     
 }
 
+- (void)reloadTableViewheight:(CGFloat)height{
 
-- (void)requestDetailResource{
+    if ([_delegate respondsToSelector:@selector(reloadTwoCollection:)]) {
+        
+        _tableView.frame = CGRectMake(0, 0, FULL_WIDTH, height);
+        
+        _labTitle.frame = CGRectMake(0, _tableView.bottom + 20, FULL_WIDTH, 20);
+        
+        [self.delegate reloadTwoCollection:height + 50];
+    }
+
+}
+
+- (void)requestDetailResourceTwo{
     
     [self.detailService loadqueryResourceDetail:[_resourceId integerValue] completion:^(BOOL isSuccess, BOOL isCache) {
         
@@ -91,7 +104,6 @@
     }];
 }
 
-
 #pragma mark - BTHomepageViewDelegate
 
 - (void)reloadTableView:(NSInteger)indexpath height:(CGFloat)height {
@@ -99,6 +111,7 @@
     BTHomePageTableViewCell *announcementCell = [_dicCell objectForKey:[NSString stringWithFormat:@"indexPath%ld", indexpath]];
     
     announcementCell.heightCell = height;
+    
     
     [self.tableView reloadData];
     
@@ -113,25 +126,18 @@
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
     
-//    if (_dicCell.count > indexPath.row) {
-//        
-//        BTHomePageTableViewCell *announcementCell = [_dicCell objectForKey:[NSString stringWithFormat:@"indexPath%ld", indexPath.row]];
-//    
-//        return announcementCell.heightCell;
-//    }
     
-    
-    
-    return _heightCells;
+    return 800;
     
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     
     
-    static NSString * const cellID = @"mindCell";
+    static NSString * const cellID = @"BTHomePageTableViewCell";
     
     BTHomePageTableViewCell *cell = [tableView cellForRowAtIndexPath:indexPath]; //根据indexPath准确地取出一行，而不是从cell重用队列中取出
+    
     
     if (!cell) {
         
@@ -140,22 +146,19 @@
         cell.selectionStyle=UITableViewCellSelectionStyleNone;
     }
     
+    
+    cell.delegate = self;
+
     [cell.btnAtten addTarget:self action:@selector(onclickBtnAtten:) forControlEvents:UIControlEventTouchUpInside];
     
     if (self.detailService.arrDetailResource.count > 0) {
         
         [cell makeDatacellData:[self.detailService.arrDetailResource objectAtIndex:indexPath.row] index:indexPath.row];
-
+        
     }
-    
     
     _heightCells = cell.heightCell;
     
-//    if (![[_dicCell allKeys] containsObject:[NSString stringWithFormat:@"indexPath%ld", indexPath.row]]) {
-//        
-//        [_dicCell setObject:cell forKey:[NSString stringWithFormat:@"indexPath%ld", indexPath.row]];
-//        
-//    }
     
     return cell;
 }
