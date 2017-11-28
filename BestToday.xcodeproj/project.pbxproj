@@ -37,6 +37,8 @@
 		7A2429BD1FC7F5DB00EE7948 /* BTHomeHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 7A2429BC1FC7F5DB00EE7948 /* BTHomeHeaderView.m */; };
 		7A2429C01FCBB5D500EE7948 /* BTMeResourceVoList.m in Sources */ = {isa = PBXBuildFile; fileRef = 7A2429BF1FCBB5D500EE7948 /* BTMeResourceVoList.m */; };
 		7A2429C31FCBC0F900EE7948 /* BTMeLikeCollectionView.m in Sources */ = {isa = PBXBuildFile; fileRef = 7A2429C21FCBC0F900EE7948 /* BTMeLikeCollectionView.m */; };
+		7A2429C91FCD4F2E00EE7948 /* BTMeAttentionService.m in Sources */ = {isa = PBXBuildFile; fileRef = 7A2429C81FCD4F2D00EE7948 /* BTMeAttentionService.m */; };
+		7A9CC11B1FCD622C00A1666E /* BTMeEditInforService.m in Sources */ = {isa = PBXBuildFile; fileRef = 7A9CC11A1FCD622C00A1666E /* BTMeEditInforService.m */; };
 		7AA2BB351FAAAE5500864753 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 7AA2BB341FAAAE5500864753 /* main.m */; };
 		7AA2BB4E1FAAAE5500864753 /* BestTodayTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 7AA2BB4D1FAAAE5500864753 /* BestTodayTests.m */; };
 		7AA2BB591FAAAE5500864753 /* BestTodayUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = 7AA2BB581FAAAE5500864753 /* BestTodayUITests.m */; };
@@ -304,6 +306,10 @@
 		7A2429BF1FCBB5D500EE7948 /* BTMeResourceVoList.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BTMeResourceVoList.m; sourceTree = "<group>"; };
 		7A2429C11FCBC0F900EE7948 /* BTMeLikeCollectionView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BTMeLikeCollectionView.h; sourceTree = "<group>"; };
 		7A2429C21FCBC0F900EE7948 /* BTMeLikeCollectionView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BTMeLikeCollectionView.m; sourceTree = "<group>"; };
+		7A2429C71FCD4F2D00EE7948 /* BTMeAttentionService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BTMeAttentionService.h; sourceTree = "<group>"; };
+		7A2429C81FCD4F2D00EE7948 /* BTMeAttentionService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BTMeAttentionService.m; sourceTree = "<group>"; };
+		7A9CC1191FCD622C00A1666E /* BTMeEditInforService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BTMeEditInforService.h; sourceTree = "<group>"; };
+		7A9CC11A1FCD622C00A1666E /* BTMeEditInforService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BTMeEditInforService.m; sourceTree = "<group>"; };
 		7AA2BB301FAAAE5500864753 /* BestToday.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BestToday.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		7AA2BB341FAAAE5500864753 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		7AA2BB491FAAAE5500864753 /* BestTodayTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = BestTodayTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -1734,6 +1740,10 @@
 				7AA2BD3E1FAAFF9600864753 /* BTMeService.m */,
 				7AA2BDB51FB162F300864753 /* BTLoginService.h */,
 				7AA2BDB61FB162F300864753 /* BTLoginService.m */,
+				7A2429C71FCD4F2D00EE7948 /* BTMeAttentionService.h */,
+				7A2429C81FCD4F2D00EE7948 /* BTMeAttentionService.m */,
+				7A9CC1191FCD622C00A1666E /* BTMeEditInforService.h */,
+				7A9CC11A1FCD622C00A1666E /* BTMeEditInforService.m */,
 			);
 			path = service;
 			sourceTree = "<group>";
@@ -2230,6 +2240,7 @@
 				CB670DFA1FC2E0BD004BDCEA /* EaseEmojiEmoticons.m in Sources */,
 				7AA2BCB51FAAC07400864753 /* NSCalendar+YU.m in Sources */,
 				CBCD2EB01FB4657100994037 /* FSConstants.swift in Sources */,
+				7A9CC11B1FCD622C00A1666E /* BTMeEditInforService.m in Sources */,
 				CBCD2EC31FB97D1500994037 /* ZFJSegmentedControl.m in Sources */,
 				CBCD2EB11FB4657100994037 /* FSImageCropView.swift in Sources */,
 				7AA2BC251FAAB4CC00864753 /* MLTBrokenNetworkView.m in Sources */,
@@ -2238,6 +2249,7 @@
 				CB670DE31FC2DFC0004BDCEA /* EMSDWebImageDownloader.m in Sources */,
 				7AA2BD391FAAFF7700864753 /* BTMeTableViewCell.m in Sources */,
 				7AA2BDAE1FB15C4E00864753 /* WXApiRequestHandler.m in Sources */,
+				7A2429C91FCD4F2E00EE7948 /* BTMeAttentionService.m in Sources */,
 				7A2429BD1FC7F5DB00EE7948 /* BTHomeHeaderView.m in Sources */,
 				CB670DBA1FC2C6BA004BDCEA /* EaseBubbleView.m in Sources */,
 				7AA2BCE11FAAC62900864753 /* BTHomePageViewController.m in Sources */,

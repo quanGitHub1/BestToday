@@ -89,29 +89,28 @@
     
     _labName = [UILabel mlt_labelWithText:@"" color:[UIColor mlt_colorWithHexString:@"#212121" alpha:1] align:NSTextAlignmentLeft font:[UIFont boldSystemFontOfSize:18] bkColor:nil frame:CGRectMake(13 + _imageAvtar.right, 21, 200, 0)];
     
-    _labName.text = @"dsfdsfsdv";
-    
-    [_labName sizeToFit];
-    
     UIImage *imageName = [UIImage imageNamed:@"My_Modify"];
 
-    _btnModify = [[UIButton alloc] initWithFrame:CGRectMake(_labName.right + 6, 21, imageName.size.width, imageName.size.height)];
+    _btnModify = [[UIButton alloc] initWithFrame:CGRectMake(_labName.right , 21, imageName.size.width, imageName.size.height)];
     
     [_btnModify setImage:imageName forState:UIControlStateNormal];
     
     [_btnModify addTarget:self action:@selector(onclickModify:) forControlEvents:UIControlEventTouchUpInside];
     
-    _btnPublish = [[UIButton alloc] initWithFrame:CGRectMake(_labName.left, _labName.bottom + 20, 65, 0)];
     
-
+    // 发表
+    _btnPublish = [[UIButton alloc] initWithFrame:CGRectMake(_imageAvtar.right + 5, 61, 65, 0)];
+    
     _btnPublish.titleLabel.font = [UIFont systemFontOfSize:14];
+    
+    _btnPublish.titleLabel.textAlignment = NSTextAlignmentLeft;
     
     [_btnPublish setTitleColor:[UIColor colorWithHexString:@"#969696"] forState:UIControlStateNormal];
 
     [_btnPublish.titleLabel sizeToFit];
     
-    _btnFans = [[UIButton alloc] initWithFrame:CGRectMake(_btnPublish.right + 40, _labName.bottom + 20, 65, 0)];
-    
+    // 粉丝
+    _btnFans = [[UIButton alloc] initWithFrame:CGRectMake(_btnPublish.right + 40, _btnPublish.top, 65, 0)];
     
     [_btnFans setTitleColor:[UIColor colorWithHexString:@"#969696"] forState:UIControlStateNormal];
     
@@ -121,8 +120,9 @@
     
     [_btnFans.titleLabel sizeToFit];
     
-    _btnfollow = [[UIButton alloc] initWithFrame:CGRectMake(_btnFans.right + 40, _labName.bottom + 20, 65, 0)];
     
+    // 关注
+    _btnfollow = [[UIButton alloc] initWithFrame:CGRectMake(_btnFans.right + 40, _btnPublish.top, 65, 0)];
     
     [_btnfollow addTarget:self action:@selector(onclickFollow:) forControlEvents:UIControlEventTouchUpInside];
     
@@ -238,11 +238,20 @@
     
     _labName.text = meEntity.nickName;
     
+    [_labName sizeToFit];
+    
+    UIImage *imageName = [UIImage imageNamed:@"My_Modify"];
+
+    _btnModify.frame = CGRectMake(_labName.right + 5 , 21, imageName.size.width, imageName.size.height);
+
     [_btnPublish setTitle:[NSString stringWithFormat:@"发表  %@", meEntity.publishCount] forState:UIControlStateNormal];
     
     [_btnFans setTitle:[NSString stringWithFormat:@"粉丝  %@", meEntity.fansCount] forState:UIControlStateNormal];
     
     [_btnfollow setTitle:[NSString stringWithFormat:@"关注  %@", meEntity.followCount] forState:UIControlStateNormal];
+    
+    [_btnPublish setBackgroundColor:[UIColor redColor]];
+    
     
     _labDes.text = meEntity.introduction;
 }

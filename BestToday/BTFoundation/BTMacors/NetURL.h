@@ -38,8 +38,15 @@
 // 我发表的图片资源接口
 #define BTqueryMyResourceByPage  @"http://zuijia365.com/todayHot/app/resource/queryMyResourceByPage.json"
 
+// 查询关注我的用户(粉丝)列表接口
+#define BTqueryMyFansUsers   @"http://zuijia365.com/todayHot/app/user/queryMyFansUsers.json"
+
+
 // 我点赞过的图片资源接口
 #define BTqueryCommentResourceByPage  @"http://zuijia365.com/todayHot/app/resource/queryCommentResourceByPage.json"
+
+// 更换头像接口
+#define BTqueryUpdateAvatar  @"http://zuijia365.com/todayHot/app/user/updateAvatar.json"
 
 // 发现
 #define BTqueryDiscoverResourceByPage   @"http://zuijia365.com/todayHot/app/resource/queryForDetection.json"

@@ -7,6 +7,7 @@
 //
 
 #import "BTMeEditInforViewController.h"
+#import "BTMeEditInforService.h"
 
 @interface BTMeEditInforViewController ()<UINavigationControllerDelegate,UIImagePickerControllerDelegate>
 
@@ -20,6 +21,8 @@
 @property (nonatomic, strong) UITextField *textProduct;
 
 @property (nonatomic, strong)  UIImageView *imageView;
+
+@property (nonatomic, strong)  BTMeEditInforService *editService;
 
 
 @end
@@ -69,6 +72,7 @@
     
 }
 
+
 - (UIView *)createView:(CGRect)frame{
     
     UIView *view = [[UIView alloc] initWithFrame:frame];
@@ -93,8 +97,7 @@
                                                                                action:@selector(alterHeadPortrait:)];
     //给ImageView添加手势
     [_imageView addGestureRecognizer:singleTap];
-    
-    
+        
     
     UILabel *labChange = [[UILabel alloc] initWithFrame:CGRectMake(0, _imageView.bottom + 7, FULL_WIDTH, 16)];
     
@@ -154,6 +157,20 @@
     return view;
 }
 
+
+
+- (void)loadData{
+    [self requestUpdateAvtar];
+}
+
+- (void)requestUpdateAvtar{
+
+    [self.editService loadqueryUpdateAvatar:_imageView.image completion:^(BOOL isSuccess, BOOL isCache) {
+        
+    }];
+    
+}
+
 //  方法：alterHeadPortrait
 -(void)alterHeadPortrait:(UITapGestureRecognizer *)gesture{
    
@@ -203,6 +220,8 @@
     UIImage *newPhoto = [info objectForKey:@"UIImagePickerControllerEditedImage"];
     _imageView.image = newPhoto;
     [self dismissViewControllerAnimated:YES completion:nil];
+    
+    [self loadData];
 }
 
 
@@ -217,6 +236,15 @@
     
     
 }
+
+#pragma mark - lazy
+- (BTMeEditInforService *)editService {
+    if (!_editService) {
+        _editService = [[BTMeEditInforService alloc] init];
+    }
+    return _editService;
+}
+
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
