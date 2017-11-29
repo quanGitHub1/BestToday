@@ -12,11 +12,21 @@
 
 @property (nonatomic, strong)NSMutableArray *arrByUser;
 
+@property (nonatomic, strong)NSMutableArray *arrMyResource; // 我发表的
+
+@property (nonatomic, strong)NSMutableArray *arrCommentResource; // 我关注的
+
+@property (nonatomic, strong) NSString *pageAssistParam;
+
+@property (nonatomic, strong) NSString *pageAssistParamTwo;
+
+
+
 //用户信息
 - (void)loadqueryUserById:(NSInteger)userID completion:(void(^)(BOOL isSuccess, BOOL isCache))completion;
 
 // 我发表的图片资源接口
-- (void)loadqueryMyResourceByPage:(NSInteger)userID pageAssistParam:(NSString *)pageAssistParam completion:(void(^)(BOOL isSuccess, BOOL isCache, NSString* pageAssistParam))completion;
+- (void)loadqueryMyResourceByPage:(NSInteger)pageIndex pageAssistParam:(NSString *)pageAssistParam completion:(void(^)(BOOL isSuccess, BOOL isCache, NSString* pageAssistParam))completion;
 
 // 我点赞过的图片资源接口
 - (void)loadqueryCommentResourceByPage:(NSInteger)userID pageAssistParam:(NSString *)pageAssistParam completion:(void(^)(BOOL isSuccess, BOOL isCache, NSString* pageAssistParam))completion;

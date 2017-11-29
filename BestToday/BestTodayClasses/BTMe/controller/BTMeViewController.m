@@ -9,10 +9,12 @@
 #import "BTMeViewController.h"
 #import "MLTSegementView.h"
 #import "BTMeCollectionView.h"
+#import "BTMeLikeCollectionView.h"
 #import "BTMeEditInforViewController.h"
 #import "BTAttentionMeViewController.h"
 #import "BTMeService.h"
 #import "BTMeEntity.h"
+
 
 @interface BTMeViewController ()<MLTTouchLabelDelegate>
 
@@ -40,7 +42,7 @@
 
 @property (nonatomic,strong) BTMeCollectionView *collectionView;
 
-@property (nonatomic,strong) BTMeCollectionView *collectionViewTwo;
+@property (nonatomic,strong) BTMeLikeCollectionView *collectionViewTwo;
 
 @property (nonatomic, strong)BTMeService *meService;
 
@@ -80,7 +82,7 @@
     
     _imageAvtar.contentMode = UIViewContentModeScaleAspectFit;
     
-    _imageAvtar.backgroundColor = [UIColor redColor];
+    _imageAvtar.backgroundColor = [UIColor whiteColor];
     
     _imageAvtar.layer.cornerRadius = ScaleWidth(27);
     
@@ -88,40 +90,40 @@
     
     _labName = [UILabel mlt_labelWithText:@"" color:[UIColor mlt_colorWithHexString:@"#212121" alpha:1] align:NSTextAlignmentLeft font:[UIFont boldSystemFontOfSize:18] bkColor:nil frame:CGRectMake(13 + _imageAvtar.right, 21, 200, 0)];
     
-    _labName.text = @"dsfdsfsdv";
-    
-    [_labName sizeToFit];
-    
     UIImage *imageName = [UIImage imageNamed:@"My_Modify"];
 
-    _btnModify = [[UIButton alloc] initWithFrame:CGRectMake(_labName.right + 6, 21, imageName.size.width, imageName.size.height)];
+    _btnModify = [[UIButton alloc] initWithFrame:CGRectMake(_labName.right , 21, imageName.size.width, imageName.size.height)];
     
     [_btnModify setImage:imageName forState:UIControlStateNormal];
     
     [_btnModify addTarget:self action:@selector(onclickModify:) forControlEvents:UIControlEventTouchUpInside];
     
-    _btnPublish = [[UIButton alloc] initWithFrame:CGRectMake(_labName.left, _labName.bottom + 20, 65, 0)];
     
-
+    // 发表
+    _btnPublish = [[UIButton alloc] initWithFrame:CGRectMake(_imageAvtar.right + 5, 61, 65, 0)];
+    
     _btnPublish.titleLabel.font = [UIFont systemFontOfSize:14];
+    
+    _btnPublish.titleLabel.textAlignment = NSTextAlignmentLeft;
     
     [_btnPublish setTitleColor:[UIColor colorWithHexString:@"#969696"] forState:UIControlStateNormal];
 
     [_btnPublish.titleLabel sizeToFit];
     
-    _btnFans = [[UIButton alloc] initWithFrame:CGRectMake(_btnPublish.right + 40, _labName.bottom + 20, 65, 0)];
-    
+    // 粉丝
+    _btnFans = [[UIButton alloc] initWithFrame:CGRectMake(_btnPublish.right + 40, _btnPublish.top, 65, 0)];
     
     [_btnFans setTitleColor:[UIColor colorWithHexString:@"#969696"] forState:UIControlStateNormal];
     
-    [_btnModify addTarget:self action:@selector(onclickFans:) forControlEvents:UIControlEventTouchUpInside];
+    [_btnFans addTarget:self action:@selector(onclickFans:) forControlEvents:UIControlEventTouchUpInside];
     
     _btnFans.titleLabel.font = [UIFont systemFontOfSize:14];
     
     [_btnFans.titleLabel sizeToFit];
     
-    _btnfollow = [[UIButton alloc] initWithFrame:CGRectMake(_btnFans.right + 40, _labName.bottom + 20, 65, 0)];
     
+    // 关注
+    _btnfollow = [[UIButton alloc] initWithFrame:CGRectMake(_btnFans.right + 40, _btnPublish.top, 65, 0)];
     
     [_btnfollow addTarget:self action:@selector(onclickFollow:) forControlEvents:UIControlEventTouchUpInside];
     
@@ -131,8 +133,8 @@
     
     [_btnfollow.titleLabel sizeToFit];
     
+    
     _labDes = [UILabel mlt_labelWithText:@"" color:[UIColor mlt_colorWithHexString:@"#212121" alpha:1] align:NSTextAlignmentLeft font:[UIFont systemFontOfSize:14] bkColor:nil frame:CGRectMake(_imageAvtar.left, _imageAvtar.bottom + 17, FULL_WIDTH - 30, 0)];
-
     // 设置label的行间距
     NSMutableParagraphStyle  *paragraphStyle = [[NSMutableParagraphStyle alloc] init];
     
@@ -147,8 +149,6 @@
     _labDes.attributedText = setString;
     
     _labDes.numberOfLines = 0;
-    
-    [_labDes sizeToFit];
     
     _labTag = [UILabel mlt_labelWithText:@"#电影  美食  设计  摄影  旅行  食物派" color:[UIColor mlt_colorWithHexString:@"#969696" alpha:1] align:NSTextAlignmentLeft font:[UIFont systemFontOfSize:14] bkColor:nil frame:CGRectMake(_imageAvtar.left, _labDes.bottom + 16, FULL_WIDTH - 30, 0)];
     
@@ -196,16 +196,18 @@
     
     _segementView.backgroundColor = [UIColor whiteColor];
     
-    _collectionView = [[BTMeCollectionView alloc] initWithFrame:CGRectMake(0, _segementView.bottom, FULL_WIDTH, FULL_HEIGHT - _segementView.bottom)];
+    _collectionView = [[BTMeCollectionView alloc] initWithFrame:CGRectMake(0, _segementView.bottom, FULL_WIDTH, FULL_HEIGHT - _segementView.bottom - MLTTabbarHeight)];
     
-    _collectionViewTwo = [[BTMeCollectionView alloc] initWithFrame:CGRectMake(0, _segementView.bottom, FULL_WIDTH, FULL_HEIGHT - _segementView.bottom)];
+    _collectionViewTwo = [[BTMeLikeCollectionView alloc] initWithFrame:CGRectMake(0, _segementView.bottom, FULL_WIDTH, FULL_HEIGHT - _segementView.bottom - MLTTabbarHeight)];
 
     
     [self.view addSubview:_segementView];
     
-    [self.view addSubview:_collectionView];
     
     [self.view addSubview:_collectionViewTwo];
+    
+    [self.view addSubview:_collectionView];
+
 }
 
 - (void)loadData{
@@ -229,19 +231,51 @@
 - (void)refreshHeaderView{
     
     
-    BTMeEntity *meEntity = [_meService.arrByUser objectAtIndex:0];
+    BTMeEntity *meEntity = [self.meService.arrByUser objectAtIndex:0];
     
     [_imageAvtar sd_setImageWithURL:[NSURL URLWithString:meEntity.avatarUrl] placeholderImage:nil];
     
     _labName.text = meEntity.nickName;
     
+    [_labName sizeToFit];
+    
+    UIImage *imageName = [UIImage imageNamed:@"My_Modify"];
+
+    _btnModify.frame = CGRectMake(_labName.right + 5 , 21, imageName.size.width, imageName.size.height);
+
     [_btnPublish setTitle:[NSString stringWithFormat:@"发表  %@", meEntity.publishCount] forState:UIControlStateNormal];
     
     [_btnFans setTitle:[NSString stringWithFormat:@"粉丝  %@", meEntity.fansCount] forState:UIControlStateNormal];
     
     [_btnfollow setTitle:[NSString stringWithFormat:@"关注  %@", meEntity.followCount] forState:UIControlStateNormal];
     
+    [_btnPublish setBackgroundColor:[UIColor redColor]];
+    
+    
     _labDes.text = meEntity.introduction;
+    
+    [_labDes sizeToFit];
+    
+    _labTag.frame = CGRectMake(_imageAvtar.left, _labDes.bottom + 16, FULL_WIDTH - 30, 0);
+    
+    for (int i = 0; i < meEntity.personalTags.count; i++) {
+        
+        _labTag.text = [NSString stringWithFormat:@"%@ %@",_labTag.text, meEntity.personalTags[i]];
+        
+    }
+    
+    [_labTag sizeToFit];
+    
+    _viewLine.frame = CGRectMake(0, _labTag.bottom + 16, FULL_WIDTH, 1);
+    
+    _heightHeader = _viewLine.bottom + NAVBAR_HEIGHT;
+    
+    _segementView.frame = CGRectMake(0, _heightHeader, FULL_WIDTH, 50);
+    
+    _collectionView.frame = CGRectMake(0, _segementView.bottom, FULL_WIDTH, FULL_HEIGHT - _segementView.bottom - MLTTabbarHeight);
+
+    _collectionViewTwo.frame = CGRectMake(0, _segementView.bottom, FULL_WIDTH, FULL_HEIGHT - _segementView.bottom - MLTTabbarHeight);
+
 }
 
 /** 点击工具栏选择 */
@@ -261,7 +295,27 @@
 
 - (void)onclickModify:(UIButton *)btn{
     
+    BTMeEntity *meEntity = [self.meService.arrByUser objectAtIndex:0];
+
+    
     BTMeEditInforViewController *editInfor = [[BTMeEditInforViewController alloc] init];
+    
+    editInfor.nikeName = meEntity.nickName;
+    
+    editInfor.introduction = meEntity.introduction;
+    
+    editInfor.picAvtar = _imageAvtar.image;
+    
+    // block 值回掉
+    editInfor.updateInforBlock = ^(NSString *nikeName, NSString *introduction, UIImage *picAvtar) {
+        
+        _imageAvtar.image = picAvtar;
+        
+        _labName.text = nikeName;
+        
+        _labDes.text = introduction;
+        
+    };
     
     [self.navigationController pushViewController:editInfor animated:YES];
 }
@@ -292,6 +346,7 @@
     
     [self.navigationController pushViewController:Attention animated:YES];
 }
+
 
 #pragma mark - lazy
 - (BTMeService *)meService {

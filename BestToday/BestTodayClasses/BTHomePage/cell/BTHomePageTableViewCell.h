@@ -62,6 +62,8 @@
 
 @property (nonatomic, assign) CGFloat heightCell;
 
+@property (nonatomic, strong) BTHomePageEntity *homePageEntity;
+
 @property (nonatomic) BOOL cell;
 
 - (void)makeDatacellData:(BTHomePageEntity *)homePage index:(NSInteger)indexpath;

@@ -20,6 +20,12 @@
 //  首页关注
 #define BTqueryFollowedResource   @"http://zuijia365.com/todayHot/app/resource/queryFollowedResource.json"
 
+// 置顶用户/取消置顶接口
+#define BTquerySetTopUser   @"http://zuijia365.com/todayHot/app/user/setTopUser.json"
+
+// 取消关注接口
+#define BTqueryUnFollowUser   @"http://zuijia365.com/todayHot/app/user/unFollowUser.json"
+
 // 详情页随便看看
 #define BTqueryRecommendResourceByPage   @"http://zuijia365.com/todayHot/app/recommend/recommendResourceByPage.json"
 
@@ -38,8 +44,18 @@
 // 我发表的图片资源接口
 #define BTqueryMyResourceByPage  @"http://zuijia365.com/todayHot/app/resource/queryMyResourceByPage.json"
 
+// 查询关注我的用户(粉丝)列表接口
+#define BTqueryMyFansUsers   @"http://zuijia365.com/todayHot/app/user/queryMyFansUsers.json"
+
+
 // 我点赞过的图片资源接口
 #define BTqueryCommentResourceByPage  @"http://zuijia365.com/todayHot/app/resource/queryCommentResourceByPage.json"
+
+// 更换头像接口
+#define BTqueryUpdateAvatar  @"http://zuijia365.com/todayHot/app/user/updateAvatar.json"
+
+// 编辑用户信息接口
+#define BTqueryUpdateUser  @"http://zuijia365.com/todayHot/app/user/updateUser.json"
 
 // 发现
 #define BTqueryDiscoverResourceByPage   @"http://zuijia365.com/todayHot/app/resource/queryForDetection.json"

@@ -7,6 +7,7 @@
 //
 
 #import "BTMeEditInforViewController.h"
+#import "BTMeEditInforService.h"
 
 @interface BTMeEditInforViewController ()<UINavigationControllerDelegate,UIImagePickerControllerDelegate>
 
@@ -20,6 +21,8 @@
 @property (nonatomic, strong) UITextField *textProduct;
 
 @property (nonatomic, strong)  UIImageView *imageView;
+
+@property (nonatomic, strong)  BTMeEditInforService *editService;
 
 
 @end
@@ -52,11 +55,16 @@
     
     [self.navigationBar.leftBarButton addSubview:btnLeft];
     
+    btnLeft.titleLabel.backgroundColor = [UIColor redColor];
+    
+    btnLeft.backgroundColor = [UIColor redColor];
+
+    
     UIButton *btnRight = [[UIButton alloc] initWithFrame:CGRectMake(FULL_WIDTH - 55, 35, 50, 30)];
     
     [btnRight setTitle:@"完成" forState:UIControlStateNormal];
     
-    [btnLeft addTarget:self action:@selector(onclickBtnSure:) forControlEvents:UIControlEventTouchUpInside];
+    [btnRight addTarget:self action:@selector(onclickBtnSure:) forControlEvents:UIControlEventTouchUpInside];
 
     btnRight.titleLabel.font = [UIFont systemFontOfSize:15];
     
@@ -66,19 +74,22 @@
     
 }
 
+
 - (UIView *)createView:(CGRect)frame{
     
     UIView *view = [[UIView alloc] initWithFrame:frame];
     
     _imageView = [[UIImageView alloc] initWithFrame:CGRectMake((FULL_WIDTH - ScaleWidth(81))/2, 32, ScaleWidth(81), ScaleWidth(81))];
     
-    _imageView.backgroundColor = [UIColor redColor];
+    _imageView.backgroundColor = [UIColor whiteColor];
     
     _imageView.contentMode = UIViewContentModeScaleAspectFit;
     
     _imageView.layer.cornerRadius = ScaleWidth(81/2);
     
     _imageView.clipsToBounds = YES;
+    
+    [_imageView setImage:_picAvtar];
     
     /**
      *  添加手势：也就是当用户点击头像了之后，对这个操作进行反应
@@ -90,8 +101,7 @@
                                                                                action:@selector(alterHeadPortrait:)];
     //给ImageView添加手势
     [_imageView addGestureRecognizer:singleTap];
-    
-    
+        
     
     UILabel *labChange = [[UILabel alloc] initWithFrame:CGRectMake(0, _imageView.bottom + 7, FULL_WIDTH, 16)];
     
@@ -109,7 +119,7 @@
     
     _textViewName = [[UITextField alloc] initWithFrame:CGRectMake(_labName.right + 30, _labName.top - 8, FULL_WIDTH - _labName.right - 45, 40)];
     
-    _textViewName.text = @"北冥有鱼";
+    _textViewName.text = self.nikeName;
     
     _textViewName.font = [UIFont systemFontOfSize:15];
     
@@ -120,7 +130,7 @@
     
     _textProduct.textColor = [UIColor colorWithHexString:@"#212121"];
 
-    _textProduct.text = @"dsfksdl;fksa;kfsa;'ka";
+    _textProduct.text = self.introduction;
     
     _textProduct.font = [UIFont systemFontOfSize:15];
     
@@ -149,6 +159,20 @@
     [view addSubview:_imageView];
     
     return view;
+}
+
+
+
+- (void)loadData{
+    [self requestUpdateAvtar];
+}
+
+- (void)requestUpdateAvtar{
+
+    [self.editService loadqueryUpdateAvatar:_imageView.image completion:^(BOOL isSuccess, BOOL isCache) {
+        
+    }];
+    
 }
 
 //  方法：alterHeadPortrait
@@ -200,6 +224,8 @@
     UIImage *newPhoto = [info objectForKey:@"UIImagePickerControllerEditedImage"];
     _imageView.image = newPhoto;
     [self dismissViewControllerAnimated:YES completion:nil];
+    
+    [self loadData];
 }
 
 
@@ -212,8 +238,25 @@
 
 - (void)onclickBtnSure:(UIButton *)btn{
     
-    
+    NSArray *arr = @[@"美术"];
+    [self.editService loadqueryUpdateUserwithName:_textViewName.text introduction:_textProduct.text personalTags:arr completion:^(BOOL isSuccess, BOOL isCache) {
+            
+        self.updateInforBlock(_textViewName.text, _textProduct.text, _imageView.image);
+        
+        [self.navigationController popViewControllerAnimated:YES];
+
+        
+    }];
 }
+
+#pragma mark - lazy
+- (BTMeEditInforService *)editService {
+    if (!_editService) {
+        _editService = [[BTMeEditInforService alloc] init];
+    }
+    return _editService;
+}
+
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];

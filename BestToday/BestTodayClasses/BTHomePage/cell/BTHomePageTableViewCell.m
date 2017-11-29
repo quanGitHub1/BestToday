@@ -121,7 +121,15 @@
                 
                 btn.selected = NO;
                 
+                _homePageEntity.isLiked = @"0";
+                
+                
+                _homePageEntity.likeCount = [NSString stringWithFormat:@"%ld",[_labFabulous.text integerValue] - 1];
+
+                
                 _labFabulous.text = [NSString stringWithFormat:@"%ld赞",[_labFabulous.text integerValue] - 1];
+                
+
                 
             }else {
                 
@@ -136,8 +144,14 @@
             if (isSuccess) {
                 
                 btn.selected = YES;
+                
+                _homePageEntity.isLiked = @"1";
+
+                _homePageEntity.likeCount = [NSString stringWithFormat:@"%ld",[_labFabulous.text integerValue] + 1];
+
                 _labFabulous.text = [NSString stringWithFormat:@"%ld赞",[_labFabulous.text integerValue] + 1];
                
+
                 
             }else {
                 
@@ -202,6 +216,8 @@
     //  拿到id 点赞关注评论都有用
     _resourceId = homePage.resourceId;
     
+    _homePageEntity = homePage;
+    
     BTHomeUserEntity *userEntity = [BTHomeUserEntity yy_modelWithJSON:homePage.userVo];
 
     _labName.text = userEntity.nickName;
@@ -212,7 +228,6 @@
     
     _labFabulous.text = [NSString stringWithFormat:@"%@赞",homePage.likeCount];
     
-//    [_labFabulous sizeToFit];
     
     [_imagePic sd_setImageWithURL:[NSURL URLWithString:homePage.picUrl] placeholderImage:nil];
     
@@ -223,8 +238,10 @@
     UIImage *iamgeCollectionSelect = [UIImage imageNamed:@"collection_select"];
     
     UIImage *iamgeCollection = [UIImage imageNamed:@"collection"];
+    
+    
 
-    // 是否已经评论
+    // 是否已经点赞
     _btnCollection.selected = [homePage.isLiked boolValue];
     
     [_btnCollection setImage:iamgeCollection forState:UIControlStateNormal];

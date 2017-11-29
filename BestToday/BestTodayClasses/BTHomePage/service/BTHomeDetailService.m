@@ -21,9 +21,7 @@
     } success:^(id responseObject) {
         
         if ([pageAssistParam isEqualToString:@""]) {
-            
             [_arrDetailResourceByPage removeAllObjects];
-            
         }
         
         [self handleListData:responseObject];
@@ -76,9 +74,7 @@
                 
                 [self.arrDetailResourceByPage addObject:lookEntity];
             }
-            
             return YES;
-            
         }
     }
     
