@@ -138,8 +138,7 @@
 		7AA2BD181FAAFE8B00864753 /* BTDiscoverEntity.m in Sources */ = {isa = PBXBuildFile; fileRef = 7AA2BD171FAAFE8B00864753 /* BTDiscoverEntity.m */; };
 		7AA2BD1B1FAAFE9B00864753 /* BTDiscoverService.m in Sources */ = {isa = PBXBuildFile; fileRef = 7AA2BD1A1FAAFE9B00864753 /* BTDiscoverService.m */; };
 		7AA2BD1E1FAAFEB100864753 /* BTDiscoverView.m in Sources */ = {isa = PBXBuildFile; fileRef = 7AA2BD1D1FAAFEB100864753 /* BTDiscoverView.m */; };
-		7AA2BD241FAAFEE300864753 /* BTCollectionEntity.m in Sources */ = {isa = PBXBuildFile; fileRef = 7AA2BD231FAAFEE300864753 /* BTCollectionEntity.m */; };
-		7AA2BD271FAAFEFD00864753 /* BTCollectionService.m in Sources */ = {isa = PBXBuildFile; fileRef = 7AA2BD261FAAFEFD00864753 /* BTCollectionService.m */; };
+		7AA2BD271FAAFEFD00864753 /* BTMessageService.m in Sources */ = {isa = PBXBuildFile; fileRef = 7AA2BD261FAAFEFD00864753 /* BTMessageService.m */; };
 		7AA2BD2A1FAAFF0E00864753 /* BTCollectionView.m in Sources */ = {isa = PBXBuildFile; fileRef = 7AA2BD291FAAFF0E00864753 /* BTCollectionView.m */; };
 		7AA2BD2D1FAAFF2B00864753 /* BTPhotoTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 7AA2BD2C1FAAFF2B00864753 /* BTPhotoTableViewCell.m */; };
 		7AA2BD301FAAFF3C00864753 /* BTPhotoEntity.m in Sources */ = {isa = PBXBuildFile; fileRef = 7AA2BD2F1FAAFF3C00864753 /* BTPhotoEntity.m */; };
@@ -210,6 +209,9 @@
 		CB670E001FC4039A004BDCEA /* EaseMessageModel.m in Sources */ = {isa = PBXBuildFile; fileRef = CB670DFF1FC4039A004BDCEA /* EaseMessageModel.m */; };
 		CB670E021FC40E93004BDCEA /* EaseUIResource.bundle in Resources */ = {isa = PBXBuildFile; fileRef = CB670E011FC40E93004BDCEA /* EaseUIResource.bundle */; };
 		CB670E071FC6B9FD004BDCEA /* BTDiscoverCell.m in Sources */ = {isa = PBXBuildFile; fileRef = CB670E061FC6B9FD004BDCEA /* BTDiscoverCell.m */; };
+		CB670E0A1FC817DF004BDCEA /* BTMessageEntity.m in Sources */ = {isa = PBXBuildFile; fileRef = CB670E091FC817DF004BDCEA /* BTMessageEntity.m */; };
+		CB670E0D1FC81821004BDCEA /* BTMessageUserEntity.m in Sources */ = {isa = PBXBuildFile; fileRef = CB670E0C1FC81821004BDCEA /* BTMessageUserEntity.m */; };
+		CB926A481FCEAA27003AB4D5 /* SQButtonTagView.m in Sources */ = {isa = PBXBuildFile; fileRef = CB926A461FCEAA27003AB4D5 /* SQButtonTagView.m */; };
 		CBCD2EA91FB4657100994037 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CBCD2E9A1FB4657100994037 /* Assets.xcassets */; };
 		CBCD2EAA1FB4657100994037 /* FSAlbumView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBCD2E9B1FB4657100994037 /* FSAlbumView.swift */; };
 		CBCD2EAB1FB4657100994037 /* FSAlbumView.xib in Resources */ = {isa = PBXBuildFile; fileRef = CBCD2E9C1FB4657100994037 /* FSAlbumView.xib */; };
@@ -227,6 +229,7 @@
 		CBCD2EBC1FB4658F00994037 /* BTDiscoverCollectionView.m in Sources */ = {isa = PBXBuildFile; fileRef = CBCD2EB91FB4658F00994037 /* BTDiscoverCollectionView.m */; };
 		CBCD2EBD1FB4658F00994037 /* BTDiscoverHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = CBCD2EBB1FB4658F00994037 /* BTDiscoverHeaderView.m */; };
 		CBCD2EC31FB97D1500994037 /* ZFJSegmentedControl.m in Sources */ = {isa = PBXBuildFile; fileRef = CBCD2EC21FB97D1500994037 /* ZFJSegmentedControl.m */; };
+		CBF6C71B1FCD588C00289208 /* BTPublishViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CBF6C71A1FCD588C00289208 /* BTPublishViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -514,10 +517,8 @@
 		7AA2BD1A1FAAFE9B00864753 /* BTDiscoverService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BTDiscoverService.m; sourceTree = "<group>"; };
 		7AA2BD1C1FAAFEB100864753 /* BTDiscoverView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BTDiscoverView.h; sourceTree = "<group>"; };
 		7AA2BD1D1FAAFEB100864753 /* BTDiscoverView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BTDiscoverView.m; sourceTree = "<group>"; };
-		7AA2BD221FAAFEE300864753 /* BTCollectionEntity.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BTCollectionEntity.h; sourceTree = "<group>"; };
-		7AA2BD231FAAFEE300864753 /* BTCollectionEntity.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BTCollectionEntity.m; sourceTree = "<group>"; };
-		7AA2BD251FAAFEFD00864753 /* BTCollectionService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BTCollectionService.h; sourceTree = "<group>"; };
-		7AA2BD261FAAFEFD00864753 /* BTCollectionService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BTCollectionService.m; sourceTree = "<group>"; };
+		7AA2BD251FAAFEFD00864753 /* BTMessageService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BTMessageService.h; sourceTree = "<group>"; };
+		7AA2BD261FAAFEFD00864753 /* BTMessageService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BTMessageService.m; sourceTree = "<group>"; };
 		7AA2BD281FAAFF0E00864753 /* BTCollectionView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BTCollectionView.h; sourceTree = "<group>"; };
 		7AA2BD291FAAFF0E00864753 /* BTCollectionView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BTCollectionView.m; sourceTree = "<group>"; };
 		7AA2BD2B1FAAFF2B00864753 /* BTPhotoTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BTPhotoTableViewCell.h; sourceTree = "<group>"; };
@@ -657,6 +658,13 @@
 		CB670E011FC40E93004BDCEA /* EaseUIResource.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = EaseUIResource.bundle; sourceTree = "<group>"; };
 		CB670E051FC6B9FD004BDCEA /* BTDiscoverCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BTDiscoverCell.h; sourceTree = "<group>"; };
 		CB670E061FC6B9FD004BDCEA /* BTDiscoverCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BTDiscoverCell.m; sourceTree = "<group>"; };
+		CB670E081FC817DF004BDCEA /* BTMessageEntity.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BTMessageEntity.h; sourceTree = "<group>"; };
+		CB670E091FC817DF004BDCEA /* BTMessageEntity.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BTMessageEntity.m; sourceTree = "<group>"; };
+		CB670E0B1FC81821004BDCEA /* BTMessageUserEntity.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BTMessageUserEntity.h; sourceTree = "<group>"; };
+		CB670E0C1FC81821004BDCEA /* BTMessageUserEntity.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BTMessageUserEntity.m; sourceTree = "<group>"; };
+		CB926A461FCEAA27003AB4D5 /* SQButtonTagView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SQButtonTagView.m; sourceTree = "<group>"; };
+		CB926A471FCEAA27003AB4D5 /* SQButtonTagView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SQButtonTagView.h; sourceTree = "<group>"; };
+		CB926A491FCEAE8F003AB4D5 /* BestToday-Bridging-Header.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "BestToday-Bridging-Header.h"; sourceTree = "<group>"; };
 		CBCD2E9A1FB4657100994037 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		CBCD2E9B1FB4657100994037 /* FSAlbumView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FSAlbumView.swift; sourceTree = "<group>"; };
 		CBCD2E9C1FB4657100994037 /* FSAlbumView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = FSAlbumView.xib; sourceTree = "<group>"; };
@@ -677,6 +685,8 @@
 		CBCD2EBB1FB4658F00994037 /* BTDiscoverHeaderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BTDiscoverHeaderView.m; sourceTree = "<group>"; };
 		CBCD2EC11FB97D1500994037 /* ZFJSegmentedControl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZFJSegmentedControl.h; sourceTree = "<group>"; };
 		CBCD2EC21FB97D1500994037 /* ZFJSegmentedControl.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZFJSegmentedControl.m; sourceTree = "<group>"; };
+		CBF6C7191FCD588C00289208 /* BTPublishViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BTPublishViewController.h; sourceTree = "<group>"; };
+		CBF6C71A1FCD588C00289208 /* BTPublishViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BTPublishViewController.m; sourceTree = "<group>"; };
 		F2068EBEC2B2F928846BAA88 /* libPods-BestToday.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-BestToday.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		F975E1829CF425B2C69D560E /* Pods-BestToday.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BestToday.release.xcconfig"; path = "Pods/Target Support Files/Pods-BestToday/Pods-BestToday.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -782,6 +792,7 @@
 		7AA2BB331FAAAE5500864753 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				CB926A491FCEAE8F003AB4D5 /* BestToday-Bridging-Header.h */,
 				7AA2BB341FAAAE5500864753 /* main.m */,
 			);
 			name = "Supporting Files";
@@ -944,6 +955,8 @@
 				CBCD2E991FB4657100994037 /* BTPhoto */,
 				7AA2BCE81FAAC66700864753 /* BTPhotoViewController.h */,
 				7AA2BCE91FAAC66700864753 /* BTPhotoViewController.m */,
+				CBF6C7191FCD588C00289208 /* BTPublishViewController.h */,
+				CBF6C71A1FCD588C00289208 /* BTPublishViewController.m */,
 			);
 			path = controller;
 			sourceTree = "<group>";
@@ -1614,8 +1627,10 @@
 		7AA2BCF91FAAFD3C00864753 /* model */ = {
 			isa = PBXGroup;
 			children = (
-				7AA2BD221FAAFEE300864753 /* BTCollectionEntity.h */,
-				7AA2BD231FAAFEE300864753 /* BTCollectionEntity.m */,
+				CB670E081FC817DF004BDCEA /* BTMessageEntity.h */,
+				CB670E091FC817DF004BDCEA /* BTMessageEntity.m */,
+				CB670E0B1FC81821004BDCEA /* BTMessageUserEntity.h */,
+				CB670E0C1FC81821004BDCEA /* BTMessageUserEntity.m */,
 			);
 			path = model;
 			sourceTree = "<group>";
@@ -1623,8 +1638,8 @@
 		7AA2BCFA1FAAFD3C00864753 /* service */ = {
 			isa = PBXGroup;
 			children = (
-				7AA2BD251FAAFEFD00864753 /* BTCollectionService.h */,
-				7AA2BD261FAAFEFD00864753 /* BTCollectionService.m */,
+				7AA2BD251FAAFEFD00864753 /* BTMessageService.h */,
+				7AA2BD261FAAFEFD00864753 /* BTMessageService.m */,
 			);
 			path = service;
 			sourceTree = "<group>";
@@ -1677,6 +1692,8 @@
 		7AA2BD001FAAFD5000864753 /* view */ = {
 			isa = PBXGroup;
 			children = (
+				CB926A471FCEAA27003AB4D5 /* SQButtonTagView.h */,
+				CB926A461FCEAA27003AB4D5 /* SQButtonTagView.m */,
 				7AA2BD341FAAFF5C00864753 /* BTPhotoView.h */,
 				7AA2BD351FAAFF5C00864753 /* BTPhotoView.m */,
 			);
@@ -2148,6 +2165,7 @@
 				7AA2BDAF1FB15C4E00864753 /* WXApiResponseHandler.m in Sources */,
 				7A16B9F01FBADE4600E7EC3A /* BTHomePageDetailViewController.m in Sources */,
 				7AA2BD4B1FAB002D00864753 /* BTCollectionViewModel.m in Sources */,
+				CB670E0A1FC817DF004BDCEA /* BTMessageEntity.m in Sources */,
 				CB670DE11FC2DFC0004BDCEA /* EMSDWebImageCompat.m in Sources */,
 				7AA2BCED1FAAC67700864753 /* BTMeViewController.m in Sources */,
 				7AA2BC3A1FAAB4CC00864753 /* UIView+DDAddition.m in Sources */,
@@ -2164,6 +2182,7 @@
 				7AA2BD181FAAFE8B00864753 /* BTDiscoverEntity.m in Sources */,
 				7AA2BCBF1FAAC07400864753 /* MLTUtils.m in Sources */,
 				CB670BC81FBEC388004BDCEA /* BTSystemMessageCell.m in Sources */,
+				CBF6C71B1FCD588C00289208 /* BTPublishViewController.m in Sources */,
 				7AA2BCAF1FAAC07400864753 /* MLTTabBarItem.m in Sources */,
 				7AA2BDC81FB2FAE400864753 /* BTHomeCommentTableViewCell.m in Sources */,
 				7AA2BC2A1FAAB4CC00864753 /* MLTLoadingFooter.m in Sources */,
@@ -2190,7 +2209,7 @@
 				7AA2BD3C1FAAFF8900864753 /* BTMeEntity.m in Sources */,
 				7A16B9ED1FB5A8C200E7EC3A /* BTMeEditInforViewController.m in Sources */,
 				7A16B9F31FBAE2D100E7EC3A /* BTHomeDetailCollectionView.m in Sources */,
-				7AA2BD271FAAFEFD00864753 /* BTCollectionService.m in Sources */,
+				7AA2BD271FAAFEFD00864753 /* BTMessageService.m in Sources */,
 				7AA2BCB71FAAC07400864753 /* NSDateFormatter+MLTKit.m in Sources */,
 				7AA2BD4E1FAB003E00864753 /* BTPhotoViewModel.m in Sources */,
 				7AA2BD601FB005B300864753 /* BTRecomendUserTableViewCell.m in Sources */,
@@ -2223,6 +2242,7 @@
 				7AA2BD391FAAFF7700864753 /* BTMeTableViewCell.m in Sources */,
 				7AA2BDAE1FB15C4E00864753 /* WXApiRequestHandler.m in Sources */,
 				7A2429BD1FC7F5DB00EE7948 /* BTHomeHeaderView.m in Sources */,
+				CB926A481FCEAA27003AB4D5 /* SQButtonTagView.m in Sources */,
 				CB670DBA1FC2C6BA004BDCEA /* EaseBubbleView.m in Sources */,
 				7AA2BCE11FAAC62900864753 /* BTHomePageViewController.m in Sources */,
 				7AA2BCA51FAAC07400864753 /* NSObject+LEEntity.m in Sources */,
@@ -2246,7 +2266,6 @@
 				7AA2BD1E1FAAFEB100864753 /* BTDiscoverView.m in Sources */,
 				7AA2BCA41FAAC07400864753 /* LEEntity.m in Sources */,
 				7AA2BC0F1FAAB4CC00864753 /* BTTableViewController.m in Sources */,
-				7AA2BD241FAAFEE300864753 /* BTCollectionEntity.m in Sources */,
 				CB670DE21FC2DFC0004BDCEA /* EMSDWebImageDecoder.m in Sources */,
 				7AA2BCBE1FAAC07400864753 /* MLTTimer.m in Sources */,
 				CB670DEA1FC2DFC0004BDCEA /* UIImage+EMGIF.m in Sources */,
@@ -2299,6 +2318,7 @@
 				7AA2BCB81FAAC07400864753 /* NSDictionary+MLTKit.m in Sources */,
 				7AA2BDCE1FB3015900864753 /* BTHomeCommentView.m in Sources */,
 				7A16BA7C1FC4304800E7EC3A /* BTHomeUserEntity.m in Sources */,
+				CB670E0D1FC81821004BDCEA /* BTMessageUserEntity.m in Sources */,
 				7AA2BC381FAAB4CC00864753 /* MLTSliderView.m in Sources */,
 				7AA2BC2D1FAAB4CC00864753 /* MLTLoadingView.m in Sources */,
 				7A16BA021FBD310F00E7EC3A /* BTLoginsViewController.m in Sources */,
@@ -2489,6 +2509,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = Rabbit.BestToday;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "BestToday/BestToday-Bridging-Header.h";
 				SWIFT_VERSION = 3.0;
 				TARGETED_DEVICE_FAMILY = 1;
 			};
@@ -2514,6 +2535,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = Rabbit.BestToday;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "BestToday/BestToday-Bridging-Header.h";
 				SWIFT_VERSION = 3.0;
 				TARGETED_DEVICE_FAMILY = 1;
 			};

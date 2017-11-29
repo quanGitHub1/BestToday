@@ -44,6 +44,11 @@
 // 发现
 #define BTqueryDiscoverResourceByPage   @"http://zuijia365.com/todayHot/app/resource/queryForDetection.json"
 
+#define BTquerySystemMessage   @"http://zuijia365.com/todayHot/app/message/querySystemMessages.json"
+
+#define BTqueryMeMessage   @"http://zuijia365.com/todayHot/app/message/queryMyMessages.json"
+
+
 #else         //////// 线上环境
 
 

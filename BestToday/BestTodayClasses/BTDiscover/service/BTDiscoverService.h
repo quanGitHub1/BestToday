@@ -14,7 +14,7 @@
 
 @property (nonatomic, strong) NSString *pageAssistParam;
 
-// 分页查询首页已关注图片资源列表接口
+// 分页查询发现已关注图片资源列表接口
 - (void)loadqueryDiscoverResource:(NSInteger)pageIndex pageAssistParam:(NSString *)pageAssistParam completion:(void(^)(BOOL isSuccess, NSString *message, NSString *pageAssistParam))completion;
 
 

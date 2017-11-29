@@ -30,6 +30,7 @@
     [super viewDidLoad];
     self.view.backgroundColor = [UIColor whiteColor];
     self.navigationBar.title = @"系统消息";
+     [self.navigationBar setLeftBarButton:[UIButton mlt_rightBarButtonWithImage:[UIImage imageNamed:@"info_backs"] highlightedImage:nil target:self action:@selector(navigationBackButtonClicked:) forControlEvents:UIControlEventTouchUpInside]];
     self.dataArray = [NSMutableArray array];
     CGFloat chatbarHeight = [BTChatToolBar defaultHeight];
 
@@ -75,6 +76,11 @@
     
     self.isViewDidAppear = NO;
 }
+
+- (void)navigationBackButtonClicked:(UIButton *)button{
+    [self.navigationController popViewControllerAnimated:YES];
+}
+
 #pragma mark - setter
 
 - (void)setIsViewDidAppear:(BOOL)isViewDidAppear

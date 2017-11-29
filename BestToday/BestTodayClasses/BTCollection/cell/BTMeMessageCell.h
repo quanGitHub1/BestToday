@@ -7,7 +7,12 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "BTMessageEntity.h"
+#import "BTMessageUserEntity.h"
 
 @interface BTMeMessageCell : UITableViewCell
+
+- (void)setDataForCell:(BTMessageEntity *)entity;
+
 
 @end

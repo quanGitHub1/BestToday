@@ -28,12 +28,14 @@
         _avatarImageView.backgroundColor = kRedColor;
         [self addSubview:_avatarImageView];
         
-        _titleLabel = [[UILabel alloc] initWithFrame:CGRectMake(80, 10,screenWidth-160, 20)];
-        _titleLabel.backgroundColor = kGreenColor;
+        _titleLabel = [[UILabel alloc] initWithFrame:CGRectMake(80, 15,screenWidth-160, 30)];
         [self addSubview:_titleLabel];
         
-        _followLabel = [[UILabel alloc] initWithFrame:CGRectMake(screenWidth-60, 10, 40, 20)];
+        _followLabel = [[UILabel alloc] initWithFrame:CGRectMake(screenWidth-70, 15, 50, 30)];
         _followLabel.text = @"+ 关注";
+        _followLabel.font = [UIFont systemFontOfSize:14];
+        _followLabel.textAlignment = NSTextAlignmentCenter;
+        _followLabel.textColor = [UIColor redColor];
         _followLabel.layer.masksToBounds = YES;
         _followLabel.layer.borderColor = [UIColor redColor].CGColor;
         _followLabel.layer.borderWidth = .5f;
@@ -45,6 +47,12 @@
     }
     
     return self;
+}
+
+- (void)setDataForCell:(BTMessageEntity *)entity{
+     [_avatarImageView sd_setImageWithURL:[NSURL URLWithString:entity.userEntity.avatarUrl]];
+    _titleLabel.text = entity.content;
+    [_photoImageView sd_setImageWithURL:[NSURL URLWithString:entity.resourcePicUrl]];
 }
 
 

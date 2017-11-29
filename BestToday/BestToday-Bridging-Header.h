@@ -9,6 +9,6 @@
 #ifndef BestToday_Bridging_Header_h
 #define BestToday_Bridging_Header_h
 
-
+#import "BTPublishViewController.h"
 
 #endif /* BestToday_Bridging_Header_h */
