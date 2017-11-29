@@ -15,6 +15,7 @@
 #import <UShareUI/UShareUI.h>
 #import "BtHomePageService.h"
 #import "BTHomePageEntity.h"
+#import "BTHomeUserEntity.h"
 
 
 @interface BTHomePageViewController ()<LEBaseTableViewDelegate,UITableViewDataSource, UITableViewDelegate, BTSpreadTableViewDelegate, BTHomepageViewDelegate>
@@ -153,7 +154,6 @@
             
             [self.tableView reloadData];
 
-            
         }
     }];
 }
@@ -225,6 +225,8 @@
     
     [cell.btnAtten addTarget:self action:@selector(onclickBtnAtten:) forControlEvents:UIControlEventTouchUpInside];
     
+    cell.btnAtten.tag = indexPath.row;
+    
     [cell makeDatacellData:[self.homePageService.arrFollowedResource objectAtIndex:indexPath.row] index:indexPath.row];
     
     if (![[_dicCell allKeys] containsObject:[NSString stringWithFormat:@"indexPath%ld", indexPath.row]]) {
@@ -251,18 +253,59 @@
 - (void)onclickBtnAtten:(UIButton *)btn{
 
     UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"" message:@"" preferredStyle:UIAlertControllerStyleAlert];
-    UIAlertAction *defaultAction = [UIAlertAction actionWithTitle:@"取消关注" style:UIAlertActionStyleDefault handler:nil];
-    UIAlertAction *destructiveAction = [UIAlertAction actionWithTitle:@"置顶该用户" style:UIAlertActionStyleDefault handler:nil];
+    
+    UIAlertAction *canAction = [UIAlertAction actionWithTitle:@"取消关注" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+        
+        [self requestUnFollowUser:btn.tag];
+        
+    }];
+    
+    UIAlertAction *destructiveAction = [UIAlertAction actionWithTitle:@"置顶该用户" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+        
+        [self requestSetTopUser:btn.tag isTopped:1];
+        
+    }];
+    
     UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleCancel handler:nil];
     
-    [alertController addAction:defaultAction];
+    [alertController addAction:canAction];
     [alertController addAction:destructiveAction];
     [alertController addAction:cancelAction];
-    
     [self presentViewController:alertController animated:YES completion:nil];
     
+}
+
+// 置顶用户/取消置顶接口
+- (void)requestSetTopUser:(NSInteger)index isTopped:(NSInteger)isTopped{
+    
+    BTHomePageEntity *pageEntity = [_homePageService.arrFollowedResource objectAtIndex:index];
+    
+    BTHomeUserEntity *userEntity = [BTHomeUserEntity yy_modelWithJSON:pageEntity.userVo];
+
+    
+    [self.homePageService loadquerySetTopUser:isTopped followedUserId:[userEntity.userId integerValue] completion:^(BOOL isSuccess, BOOL isCache) {
+        
+        
+        
+    }];
     
 }
+
+
+// 置顶用户/取消置顶接口
+- (void)requestUnFollowUser:(NSInteger)index{
+    
+    BTHomePageEntity *pageEntity = [_homePageService.arrFollowedResource objectAtIndex:index];
+    
+    BTHomeUserEntity *userEntity = [BTHomeUserEntity yy_modelWithJSON:pageEntity.userVo];
+    
+    [self.homePageService loadqueryUnFollowUser:[userEntity.userId integerValue] completion:^(BOOL isSuccess, BOOL isCache) {
+        
+        
+        
+    }];
+}
+
 
 #pragma mark - lazy
 - (BtHomePageService *)homePageService {

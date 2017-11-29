@@ -12,6 +12,31 @@
 
 @implementation BTMeEditInforService
 
+
+- (void)loadqueryUpdateUserwithName:(NSString *)mName introduction:(NSString *)introduction personalTags:(NSArray *)personalTags  completion:(void (^)(BOOL isSuccess, BOOL isCache))completion{
+    
+    NSMutableDictionary  *parameters = [NSMutableDictionary dictionary];
+    [parameters setValue:(mName.length > 0 ? mName : @"") forKey:@"nickName"];
+    [parameters setValue:introduction.length > 0 ? introduction : @"" forKey:@"introduction"];
+    //[parameters setValue:personalTags forKey:@"personalTags"];
+    
+    [NetworkHelper POST:BTqueryUpdateUser parameters:parameters success:^(id responseObject) {
+        
+        NSString *code = responseObject[@"code"];
+        
+        if ([code integerValue] == 0) {
+            completion(YES,NO);
+            
+        }else{
+            completion(NO,NO);
+        }
+    } failure:^(NSError *error) {
+        completion(NO,NO);
+        
+    }];
+
+}
+
 - (void)loadqueryUpdateAvatar:(UIImage *)picImage completion:(void(^)(BOOL isSuccess, BOOL isCache))completion{
 
     picImage = [self imageWithImageSimple:picImage scaledToSize:CGSizeMake(100, 100)];
@@ -24,7 +49,6 @@
     
     NSMutableDictionary  *parameters = [NSMutableDictionary dictionary];
     NSString *version = [[[NSBundle mainBundle] infoDictionary] objectForKey:@"CFBundleShortVersionString"];
-    //        [parameters setValue:@"iOS" forKey:@"appType"];
     [parameters setValue:version forKey:@"appVersion"];
     [parameters setValue:version forKey:@"osVersion"];
     [parameters setValue:@"abc1005" forKey:@"cSessionId"];
@@ -42,7 +66,7 @@
         NSDictionary *resultDict=responseObject;
         NSString *code=[resultDict objectForKey:@"code"];
         NSString *codeStr= [NSString stringWithFormat:@"%@",code];
-        if ([codeStr isEqualToString:@"200"]) {
+        if ([codeStr isEqualToString:@"0"]) {
             NSDictionary *dataDict=[resultDict objectForKey:@"data"];
             NSString *headUrl=[dataDict valueForKey:@"url"];
             completion(YES,headUrl);

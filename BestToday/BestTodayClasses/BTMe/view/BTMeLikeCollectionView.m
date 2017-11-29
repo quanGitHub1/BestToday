@@ -11,6 +11,7 @@
 #import "LECollectionView.h"
 #import "BTMeCollectionViewCell.h"
 #import "BTMeService.h"
+#import "BTHomePageDetailViewController.h"
 
 @interface BTMeLikeCollectionView() <UICollectionViewDelegate, UICollectionViewDataSource, LEBaseCollectionViewDelegate, MLTWaterflowLayoutDelegate>
 
@@ -141,7 +142,23 @@
 
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
     
+    BTHomePageDetailViewController *homePagedetail = [[BTHomePageDetailViewController alloc] init];
     
+    BTMeResourceVoList *ResourceVoList = [self.meService.arrCommentResource objectAtIndex:indexPath.row];
+    
+    homePagedetail.resourceId = ResourceVoList.resourceId;
+    [[self viewController].navigationController pushViewController:homePagedetail animated:YES];
+    
+}
+
+- (UIViewController *)viewController {
+    for (UIView* next = [self superview]; next; next = next.superview) {
+        UIResponder *nextResponder = [next nextResponder];
+        if ([nextResponder isKindOfClass:[UIViewController class]]) {
+            return (UIViewController *)nextResponder;
+        }
+    }
+    return nil;
 }
 
 #pragma mark - <WaterflowLayoutDelegate>

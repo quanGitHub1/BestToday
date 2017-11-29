@@ -2517,7 +2517,7 @@
 					"$(PROJECT_DIR)/BestToday/BTFoundation/EaseUI/EMUIKit/3rdparty/DeviceHelper/VoiceConvert/opencore-amrnb",
 					"$(PROJECT_DIR)/BestToday/BTFoundation/EaseUI/EMUIKit/3rdparty/DeviceHelper/VoiceConvert/opencore-amrwb",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = Rabbit.BestToday;
+				PRODUCT_BUNDLE_IDENTIFIER = com.TodayBest.iphone;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 3.0;
 				TARGETED_DEVICE_FAMILY = 1;
@@ -2542,7 +2542,7 @@
 					"$(PROJECT_DIR)/BestToday/BTFoundation/EaseUI/EMUIKit/3rdparty/DeviceHelper/VoiceConvert/opencore-amrnb",
 					"$(PROJECT_DIR)/BestToday/BTFoundation/EaseUI/EMUIKit/3rdparty/DeviceHelper/VoiceConvert/opencore-amrwb",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = Rabbit.BestToday;
+				PRODUCT_BUNDLE_IDENTIFIER = com.TodayBest.iphone;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 3.0;
 				TARGETED_DEVICE_FAMILY = 1;

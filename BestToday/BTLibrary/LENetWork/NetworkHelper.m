@@ -143,6 +143,14 @@ static AFHTTPSessionManager *_sessionManager;
                    success:(HttpRequestSuccess)success
                    failure:(HttpRequestFailed)failure {
     
+    
+    NSString *version = [[[NSBundle mainBundle] infoDictionary] objectForKey:@"CFBundleShortVersionString"];
+    //        [parameters setValue:@"iOS" forKey:@"appType"];
+    [parameters setValue:version forKey:@"appVersion"];
+    [parameters setValue:version forKey:@"osVersion"];
+    [parameters setValue:@"abc1005" forKey:@"cSessionId"];
+    [parameters setValue:[MLTUtils getCurrentDevicePlatform] forKey:@"phoneModel"];
+    
     //读取缓存
     NSURLSessionTask *sessionTask = [_sessionManager POST:URL parameters:parameters progress:^(NSProgress * _Nonnull uploadProgress) {
         
