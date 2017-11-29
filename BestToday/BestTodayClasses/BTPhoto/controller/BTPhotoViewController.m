@@ -27,7 +27,6 @@
     [self.navigationController presentViewController:fusumaViewController animated:NO completion:nil];
 }
 
-
 - (void)fusumaImageSelected:(UIImage *)image source:(enum FusumaMode)source{
     
     BTPublishViewController *publishVC = [[BTPublishViewController alloc] init];
