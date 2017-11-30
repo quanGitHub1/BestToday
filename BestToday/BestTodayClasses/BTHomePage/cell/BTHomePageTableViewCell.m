@@ -10,6 +10,7 @@
 #import "BTHomeUserEntity.h"
 #import "BTHomeComment.h"
 #import "CoreText/CoreText.h"
+#import "WYShareView.h"
 
 @implementation BTHomePageTableViewCell
 
@@ -181,15 +182,25 @@
 
 - (void)onclickBtnShare:(UIButton *)btn{
     
-    __weak typeof(self) weakSelf = self;
 
-    //显示分享面板
-    [UMSocialUIManager showShareMenuViewInWindowWithPlatformSelectionBlock:^(UMSocialPlatformType platformType, NSDictionary *userInfo)
-     {
-        // 根据获取的platformType确定所选平台进行下一步操作
-         [weakSelf shareTextToPlatformType:platformType];
-         
-    }];
+    [WYShareView showShareViewWithPublishContent:@{@"text" :@"11111",
+                                                   @"desc":@"2222",
+                                                   @"image":@[[UIImage imageNamed:@"iconShare"]],
+                                                   @"url"  :@"http://t.finance.le.com/news/1548202501019"}
+                                          Result:^(ShareType type, BOOL isSuccess) {
+                                              
+                                              
+                                              //回调
+                                          }];
+//    __weak typeof(self) weakSelf = self;
+//
+//    //显示分享面板
+//    [UMSocialUIManager showShareMenuViewInWindowWithPlatformSelectionBlock:^(UMSocialPlatformType platformType, NSDictionary *userInfo)
+//     {
+//        // 根据获取的platformType确定所选平台进行下一步操作
+//         [weakSelf shareTextToPlatformType:platformType];
+//
+//    }];
     
 }
 
