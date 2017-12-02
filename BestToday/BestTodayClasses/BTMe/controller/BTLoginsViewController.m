@@ -7,8 +7,8 @@
 //
 
 #import "BTLoginsViewController.h"
-#import "WXApiRequestHandler.h"
-#import "WXApiManager.h"
+//#import "WXApiRequestHandler.h"
+//#import "WXApiManager.h"
 #import "BTLoginService.h"
 #import "WechatAuthSDK.h"
 
@@ -16,7 +16,7 @@ static NSString *kAuthScope = @"snsapi_message,snsapi_userinfo,snsapi_friend,sns
 static NSString *kAuthOpenID = @"0c806938e2413ce73eef92cc3";
 static NSString *kAuthState = @"xxx";
 
-@interface BTLoginsViewController ()<WXApiManagerDelegate, WechatAuthAPIDelegate>
+@interface BTLoginsViewController ()<WechatAuthAPIDelegate>
 
 @property (nonatomic, strong) BTLoginService *loginService;
 
@@ -36,7 +36,7 @@ static NSString *kAuthState = @"xxx";
     
     self.navigationBar.hidden = YES;
     
-    [WXApiManager sharedManager].delegate = self;
+//    [WXApiManager sharedManager].delegate = self;
     
     _loginImage.userInteractionEnabled = YES;
     //创建手势 使用initWithTarget:action:的方法创建
@@ -59,29 +59,29 @@ static NSString *kAuthState = @"xxx";
 
 - (void)tapView:(UITapGestureRecognizer*)gesTap{
 
-    [WXApiRequestHandler sendAuthRequestScope: kAuthScope
-                                        State:kAuthState
-                                       OpenID:kAuthOpenID
-                             InViewController:self];
+//    [WXApiRequestHandler sendAuthRequestScope: kAuthScope
+//                                        State:kAuthState
+//                                       OpenID:kAuthOpenID
+//                             InViewController:self];
     
 }
 
-- (void)managerDidRecvAuthResponse:(SendAuthResp *)response {
-    
-    NSDictionary *dic = @{
-                          @"appType": @"iOS",
-                          @"code":response.code,
-                          @"phoneModel":[MLTUtils getCurrentDevicePlatform],
-                          @"appVersion":[MLTUtils appVersion]
-                          };
-    
-    [self.loginService thirdPartyLogin:dic completion:^(BOOL isSuccess) {
-        
-        NSLog(@"1111111298908080-8");
-        
-    }];
-    
-}
+//- (void)managerDidRecvAuthResponse:(SendAuthResp *)response {
+//
+////    NSDictionary *dic = @{
+////                          @"appType": @"iOS",
+////                          @"code":response.code,
+////                          @"phoneModel":[MLTUtils getCurrentDevicePlatform],
+////                          @"appVersion":[MLTUtils appVersion]
+////                          };
+////
+////    [self.loginService thirdPartyLogin:dic completion:^(BOOL isSuccess) {
+////
+////        NSLog(@"1111111298908080-8");
+////
+////    }];
+//    
+//}
 
 
 #pragma mark - lazy
