@@ -21,6 +21,11 @@
     [super viewDidLoad];
     self.view.backgroundColor = [UIColor whiteColor];
     self.navigationBar.title = @"拍照";
+   
+}
+
+- (void)viewWillAppear:(BOOL)animated{
+    [super viewWillAppear:animated];
     FusumaViewController *fusumaViewController = [[FusumaViewController alloc] init];
     fusumaViewController.cropHeightRatio = 0.6;
     fusumaViewController.delegate = self;
@@ -39,7 +44,9 @@
 }
 
 - (void)fusumaClosed{
-    
+    UINavigationController *navC = (UINavigationController *)AppWindow.rootViewController;
+    MLTTabBarController *tabBarVC = navC.viewControllers[0];
+    [tabBarVC selectAtIndex:0];
 }
 
 - (void)fusumaVideoCompletedWithFileURL:(NSURL *)fileURL{

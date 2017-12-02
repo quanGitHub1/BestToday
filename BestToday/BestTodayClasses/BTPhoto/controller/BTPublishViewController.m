@@ -33,6 +33,9 @@
 
 - (void)navigationBackButtonClicked:(UIButton *)button {
     [self.navigationController popViewControllerAnimated:YES];
+    UINavigationController *navC = (UINavigationController *)AppWindow.rootViewController;
+    MLTTabBarController *tabBarVC = navC.viewControllers[0];
+    [tabBarVC selectAtIndex:0];
 }
 
 - (void)submitAction{

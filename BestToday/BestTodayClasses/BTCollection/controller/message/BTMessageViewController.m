@@ -40,6 +40,7 @@
     _tableView.delegate = self;
     _tableView.dataSource = self;
     _tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
+    [_tableView hiddenFreshFooter];
     [self.view addSubview:_tableView];
     
     
@@ -185,13 +186,10 @@
 - (void)didSendText:(NSString *)text
 {
     if (text && text.length > 0) {
-//        [self sendTextMessage:text];
-        NSLog(@"%@",text);
         NSDictionary * dic = [NSDictionary dictionaryWithObjectsAndKeys:@"1",@"isSender",@"我",@"nickname",@"",@"avatarurl",text,@"text", nil];
         EaseMessageModel * model = [[EaseMessageModel alloc] initWithMessage:dic];
         [self.dataArray addObject:model];
         [self.tableView reloadData];
-        
     }
 }
 

@@ -207,10 +207,12 @@ public class FusumaViewController: UIViewController {
     }
     
     @IBAction func closeButtonPressed(_ sender: UIButton) {
-        self.delegate?.fusumaWillClosed()
+//        self.delegate?.fusumaWillClosed()
+        self.delegate?.fusumaClosed()
+
         self.dismiss(animated: true, completion: {
-            self.delegate?.fusumaClosed()
         })
+
     }
     
     @IBAction func libraryButtonPressed(_ sender: UIButton) {
@@ -232,32 +234,29 @@ public class FusumaViewController: UIViewController {
         let view = albumView.imageCropView
 
         if fusumaCropImage {
-            
-            
             let cropRect = CGRect(x: 0, y: 0, width: (view?.image.size.width)!, height: (view?.image.size.height)!)
-            
             DispatchQueue.global(qos: .default).async(execute: {
-                
+
                 let options = PHImageRequestOptions()
                 options.deliveryMode = .highQualityFormat
                 options.isNetworkAccessAllowed = true
                 options.normalizedCropRect = cropRect
                 options.resizeMode = .exact
-                
+
                 let targetWidth = floor(CGFloat(self.albumView.phAsset.pixelWidth) * cropRect.width)
                 let targetHeight = floor(CGFloat(self.albumView.phAsset.pixelHeight) * cropRect.height)
                 let dimensionW = max(min(targetHeight, targetWidth), 1024 * UIScreen.main.scale)
                 let dimensionH = dimensionW * self.getCropHeightRatio()
 
                 let targetSize = CGSize(width: dimensionW, height: dimensionH)
-                
+
                 PHImageManager.default().requestImage(for: self.albumView.phAsset, targetSize: targetSize,
                 contentMode: .aspectFill, options: options) {
                     result, info in
-                    
+
                     DispatchQueue.main.async(execute: {
                         self.delegate?.fusumaImageSelected(result!, source: self.mode)
-                        
+
                         self.dismiss(animated: true, completion: {
                             self.delegate?.fusumaDismissedWithImage(result!, source: self.mode)
                         })

@@ -55,7 +55,7 @@
         _activityButtomView = nil;
         _isShowButtomView = NO;
         
-//        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(chatKeyboardWillChangeFrame:) name:UIKeyboardWillChangeFrameNotification object:nil];
+        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(chatKeyboardWillChangeFrame:) name:UIKeyboardWillChangeFrameNotification object:nil];
         
         [self _setupSubviews];
     }
@@ -73,7 +73,7 @@
     
     //toolbar
     _toolbarView = [[UIView alloc] initWithFrame:self.bounds];
-    _toolbarView.backgroundColor = [UIColor clearColor];
+    _toolbarView.backgroundColor = [UIColor colorWithHexString:@"#f8f8f8"];
     [self addSubview:_toolbarView];
     
     _toolbarBackgroundImageView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, _toolbarView.frame.size.width, _toolbarView.frame.size.height)];
@@ -82,19 +82,26 @@
     [_toolbarView addSubview:_toolbarBackgroundImageView];
     
     //input textview
-    _inputTextView = [[EaseTextView alloc] initWithFrame:CGRectMake(self.horizontalPadding, self.verticalPadding, self.frame.size.width - self.verticalPadding * 2, self.frame.size.height - self.verticalPadding * 2)];
+    _inputTextView = [[EaseTextView alloc] initWithFrame:CGRectMake(self.horizontalPadding, self.verticalPadding, self.frame.size.width - self.verticalPadding * 3 - 70, self.frame.size.height - self.verticalPadding * 2)];
     _inputTextView.autoresizingMask = UIViewAutoresizingFlexibleHeight;
     _inputTextView.scrollEnabled = YES;
     _inputTextView.returnKeyType = UIReturnKeySend;
     _inputTextView.enablesReturnKeyAutomatically = YES; // UITextView内部判断send按钮是否可以用
     _inputTextView.placeHolder = @"发表评论";
     _inputTextView.delegate = self;
-    _inputTextView.backgroundColor = [UIColor clearColor];
-    _inputTextView.layer.borderColor = [UIColor colorWithWhite:0.8f alpha:1.0f].CGColor;
-    _inputTextView.layer.borderWidth = 0.65f;
-    _inputTextView.layer.cornerRadius = 6.0f;
+    _inputTextView.backgroundColor = [UIColor whiteColor];
+    _inputTextView.layer.masksToBounds = YES;
+    _inputTextView.layer.cornerRadius = 3;
     _previousTextViewContentHeight = [self _getTextViewContentH:_inputTextView];
     [_toolbarView addSubview:_inputTextView];
+    
+    UIButton * sendButton = [UIButton buttonWithType:UIButtonTypeCustom];
+    sendButton.frame = CGRectMake(self.frame.size.width - self.verticalPadding -70, self.verticalPadding, 70, self.frame.size.height - self.verticalPadding * 2);
+    [sendButton setTitle:@"发送" forState:UIControlStateNormal];
+    [sendButton setTitleColor:[UIColor colorWithHexString:@"#949494"] forState:UIControlStateNormal];
+    [sendButton addTarget:self action:@selector(doSendAction) forControlEvents:UIControlEventTouchUpInside];
+    [_toolbarView addSubview:sendButton];
+    
     
 }
 
@@ -111,6 +118,15 @@
     } else {
         return textView.contentSize.height;
     }
+}
+// 发送消息
+- (void)doSendAction{
+    if ([self.delegate respondsToSelector:@selector(didSendText:)]) {
+        [self.delegate didSendText:self.inputTextView.text];
+        self.inputTextView.text = @"";
+        [self _willShowInputTextViewToHeight:[self _getTextViewContentH:self.inputTextView]];
+    }
+    
 }
 
 #pragma mark - UITextViewDelegate
@@ -195,6 +211,73 @@
             [_delegate chatToolbarDidChangeFrameToHeight:self.frame.size.height];
         }
     }
+}
+
+/*!
+ @method
+ @brief 调整toolBar的高度
+ @param bottomHeight 底部菜单的高度
+ */
+- (void)_willShowBottomHeight:(CGFloat)bottomHeight
+{
+    CGRect fromFrame = self.frame;
+    CGFloat toHeight = self.toolbarView.frame.size.height + bottomHeight;
+    CGRect toFrame = CGRectMake(fromFrame.origin.x, fromFrame.origin.y + (fromFrame.size.height - toHeight), fromFrame.size.width, toHeight);
+    
+    if(bottomHeight == 0 && self.frame.size.height == self.toolbarView.frame.size.height)
+    {
+        return;
+    }
+    
+    if (bottomHeight == 0) {
+        self.isShowButtomView = NO;
+    }
+    else{
+        self.isShowButtomView = YES;
+    }
+    
+    self.frame = toFrame;
+    
+    if (_delegate && [_delegate respondsToSelector:@selector(chatToolbarDidChangeFrameToHeight:)]) {
+        [_delegate chatToolbarDidChangeFrameToHeight:toHeight];
+    }
+}
+
+
+- (void)_willShowKeyboardFromFrame:(CGRect)beginFrame toFrame:(CGRect)toFrame
+{
+    if (beginFrame.origin.y == [[UIScreen mainScreen] bounds].size.height)
+    {
+        [self _willShowBottomHeight:toFrame.size.height];
+        if (self.activityButtomView) {
+            [self.activityButtomView removeFromSuperview];
+        }
+        self.activityButtomView = nil;
+    }
+    else if (toFrame.origin.y == [[UIScreen mainScreen] bounds].size.height)
+    {
+        [self _willShowBottomHeight:0];
+    }
+    else{
+        [self _willShowBottomHeight:toFrame.size.height];
+    }
+}
+
+#pragma mark - UIKeyboardNotification
+
+- (void)chatKeyboardWillChangeFrame:(NSNotification *)notification
+{
+    NSDictionary *userInfo = notification.userInfo;
+    CGRect endFrame = [userInfo[UIKeyboardFrameEndUserInfoKey] CGRectValue];
+    CGRect beginFrame = [userInfo[UIKeyboardFrameBeginUserInfoKey] CGRectValue];
+    CGFloat duration = [userInfo[UIKeyboardAnimationDurationUserInfoKey] doubleValue];
+    UIViewAnimationCurve curve = [userInfo[UIKeyboardAnimationCurveUserInfoKey] integerValue];
+    
+    void(^animations)() = ^{
+        [self _willShowKeyboardFromFrame:beginFrame toFrame:endFrame];
+    };
+    
+    [UIView animateWithDuration:duration delay:0.0f options:(curve << 16 | UIViewAnimationOptionBeginFromCurrentState) animations:animations completion:nil];
 }
 
 
