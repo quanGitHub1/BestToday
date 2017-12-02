@@ -31,7 +31,6 @@ static NSString *const headerId = @"headerId";
     
     [self.navigationBar setLeftBarButton:[UIButton mlt_rightBarButtonWithImage:[UIImage imageNamed:@"info_backs"] highlightedImage:nil target:self action:@selector(navigationBackButtonClicked:) forControlEvents:UIControlEventTouchUpInside]];
 
-
     [self setUpCollectionView];
     
 }

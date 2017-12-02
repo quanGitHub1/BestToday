@@ -9,8 +9,9 @@
 #import "BTPhotoViewController.h"
 
 #import "BestToday-Swift.h"
+#import "BTPublishViewController.h"
 
-@interface BTPhotoViewController ()
+@interface BTPhotoViewController ()<FusumaDelegate>
 
 @end
 
@@ -20,22 +21,38 @@
     [super viewDidLoad];
     self.view.backgroundColor = [UIColor whiteColor];
     self.navigationBar.title = @"拍照";
+    FusumaViewController *fusumaViewController = [[FusumaViewController alloc] init];
+    fusumaViewController.cropHeightRatio = 0.6;
+    fusumaViewController.delegate = self;
+    [self.navigationController presentViewController:fusumaViewController animated:NO completion:nil];
+}
+
+- (void)fusumaImageSelected:(UIImage *)image source:(enum FusumaMode)source{
     
-    UIButton *button = [UIButton buttonWithType:UIButtonTypeCustom];
-    button.frame = CGRectMake(100, 200, 100, 100);
-    button.backgroundColor = [UIColor redColor];
-    [button setTitle:@"拍照" forState:UIControlStateNormal];
-    [button addTarget:self action:@selector(doPhoto) forControlEvents:UIControlEventTouchUpInside];
-    [self.view addSubview:button];
+    BTPublishViewController *publishVC = [[BTPublishViewController alloc] init];
     
+    [self.navigationController pushViewController:publishVC animated:YES];
+}
+
+- (void)fusumaWillClosed{
     
 }
 
-- (void)doPhoto{
+- (void)fusumaClosed{
     
-    FusumaViewController *fusumaViewController = [[FusumaViewController alloc] init];
-    fusumaViewController.cropHeightRatio = 0.6;
-    [self.navigationController presentViewController:fusumaViewController animated:YES completion:nil];
+}
+
+- (void)fusumaVideoCompletedWithFileURL:(NSURL *)fileURL{
+    
+}
+
+
+- (void)fusumaCameraRollUnauthorized{
+    
+}
+
+- (void)fusumaDismissedWithImage:(UIImage *)image source:(enum FusumaMode)source{
+    
 }
 
 - (void)didReceiveMemoryWarning {

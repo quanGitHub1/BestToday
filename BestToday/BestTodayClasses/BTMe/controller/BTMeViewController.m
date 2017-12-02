@@ -15,6 +15,7 @@
 #import "BTMeService.h"
 #import "BTMeEntity.h"
 
+
 @interface BTMeViewController ()<MLTTouchLabelDelegate>
 
 @property (nonatomic, strong) UIImageView *imageAvtar;
@@ -81,7 +82,7 @@
     
     _imageAvtar.contentMode = UIViewContentModeScaleAspectFit;
     
-    _imageAvtar.backgroundColor = [UIColor redColor];
+    _imageAvtar.backgroundColor = [UIColor whiteColor];
     
     _imageAvtar.layer.cornerRadius = ScaleWidth(27);
     
@@ -132,8 +133,8 @@
     
     [_btnfollow.titleLabel sizeToFit];
     
+    
     _labDes = [UILabel mlt_labelWithText:@"" color:[UIColor mlt_colorWithHexString:@"#212121" alpha:1] align:NSTextAlignmentLeft font:[UIFont systemFontOfSize:14] bkColor:nil frame:CGRectMake(_imageAvtar.left, _imageAvtar.bottom + 17, FULL_WIDTH - 30, 0)];
-
     // 设置label的行间距
     NSMutableParagraphStyle  *paragraphStyle = [[NSMutableParagraphStyle alloc] init];
     
@@ -148,8 +149,6 @@
     _labDes.attributedText = setString;
     
     _labDes.numberOfLines = 0;
-    
-    [_labDes sizeToFit];
     
     _labTag = [UILabel mlt_labelWithText:@"#电影  美食  设计  摄影  旅行  食物派" color:[UIColor mlt_colorWithHexString:@"#969696" alpha:1] align:NSTextAlignmentLeft font:[UIFont systemFontOfSize:14] bkColor:nil frame:CGRectMake(_imageAvtar.left, _labDes.bottom + 16, FULL_WIDTH - 30, 0)];
     
@@ -232,7 +231,7 @@
 - (void)refreshHeaderView{
     
     
-    BTMeEntity *meEntity = [_meService.arrByUser objectAtIndex:0];
+    BTMeEntity *meEntity = [self.meService.arrByUser objectAtIndex:0];
     
     [_imageAvtar sd_setImageWithURL:[NSURL URLWithString:meEntity.avatarUrl] placeholderImage:nil];
     
@@ -254,6 +253,29 @@
     
     
     _labDes.text = meEntity.introduction;
+    
+    [_labDes sizeToFit];
+    
+    _labTag.frame = CGRectMake(_imageAvtar.left, _labDes.bottom + 16, FULL_WIDTH - 30, 0);
+    
+    for (int i = 0; i < meEntity.personalTags.count; i++) {
+        
+        _labTag.text = [NSString stringWithFormat:@"%@ %@",_labTag.text, meEntity.personalTags[i]];
+        
+    }
+    
+    [_labTag sizeToFit];
+    
+    _viewLine.frame = CGRectMake(0, _labTag.bottom + 16, FULL_WIDTH, 1);
+    
+    _heightHeader = _viewLine.bottom + NAVBAR_HEIGHT;
+    
+    _segementView.frame = CGRectMake(0, _heightHeader, FULL_WIDTH, 50);
+    
+    _collectionView.frame = CGRectMake(0, _segementView.bottom, FULL_WIDTH, FULL_HEIGHT - _segementView.bottom - MLTTabbarHeight);
+
+    _collectionViewTwo.frame = CGRectMake(0, _segementView.bottom, FULL_WIDTH, FULL_HEIGHT - _segementView.bottom - MLTTabbarHeight);
+
 }
 
 /** 点击工具栏选择 */
@@ -273,7 +295,27 @@
 
 - (void)onclickModify:(UIButton *)btn{
     
+    BTMeEntity *meEntity = [self.meService.arrByUser objectAtIndex:0];
+
+    
     BTMeEditInforViewController *editInfor = [[BTMeEditInforViewController alloc] init];
+    
+    editInfor.nikeName = meEntity.nickName;
+    
+    editInfor.introduction = meEntity.introduction;
+    
+    editInfor.picAvtar = _imageAvtar.image;
+    
+    // block 值回掉
+    editInfor.updateInforBlock = ^(NSString *nikeName, NSString *introduction, UIImage *picAvtar) {
+        
+        _imageAvtar.image = picAvtar;
+        
+        _labName.text = nikeName;
+        
+        _labDes.text = introduction;
+        
+    };
     
     [self.navigationController pushViewController:editInfor animated:YES];
 }
@@ -304,6 +346,7 @@
     
     [self.navigationController pushViewController:Attention animated:YES];
 }
+
 
 #pragma mark - lazy
 - (BTMeService *)meService {

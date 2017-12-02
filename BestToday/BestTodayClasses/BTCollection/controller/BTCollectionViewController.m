@@ -12,11 +12,15 @@
 #import "BTSystemMessageCell.h"
 #import "BTMeMessageCell.h"
 #import "BTMessageViewController.h"
-@interface BTCollectionViewController ()<UITableViewDelegate,UITableViewDataSource>
+#import "BTMessageService.h"
 
+@interface BTCollectionViewController ()<UITableViewDelegate,UITableViewDataSource,LEBaseTableViewDelegate>
+{
+    BOOL messageType;
+}
 @property (nonatomic ,strong) BTTableview *systemTableView;
 @property (nonatomic ,strong) BTTableview *meTableView;
-
+@property (nonatomic, strong) BTMessageService *messageService;
 
 @end
 
@@ -29,15 +33,18 @@
     ZFJSegmentedControl * segmentedControl = [[ZFJSegmentedControl alloc] initwithTitleArr:@[@"系统消息",@"你"] iconArr:nil SCType:SCType_Underline];
     segmentedControl.frame = CGRectMake(0, NAVBAR_HEIGHT, SCREEN_WIDTH, 40);
     segmentedControl.backgroundColor = [UIColor whiteColor];
-    segmentedControl.titleColor = [UIColor lightGrayColor];
+    segmentedControl.titleColor = [UIColor colorWithHexString:@"#212121"];
+    segmentedControl.selectTitleColor = [UIColor colorWithHexString:@"#969696"];
     segmentedControl.selectBtnSpace = 5;//设置按钮间的间距
     segmentedControl.SCType_Underline_HEI = 2;//设置底部横线的高度
     segmentedControl.titleFont = [UIFont fontWithName:@"STHeitiSC-Light" size:16];
     segmentedControl.selectType = ^(NSInteger selectIndex,NSString *selectIndexTitle){
         if (selectIndex == 0) {
+            messageType = NO;
             [_meTableView removeFromSuperview];
             [self.view addSubview:self.systemTableView];
         }else{
+            messageType = YES;
             [_systemTableView removeFromSuperview];
             [self.view addSubview:self.meTableView];
         }
@@ -47,11 +54,17 @@
     self.systemTableView = [[BTTableview alloc]initWithFrame:CGRectMake(0, kNavigationBarHight, kSCREEN_WIDTH, kSCREEN_HEIGHT-kNavigationBarHight) style:UITableViewStylePlain];
     self.systemTableView.delegate = self;
     self.systemTableView.dataSource = self;
+    self.systemTableView.dataDelegate = self;
+    [self.systemTableView autoRefreshLoad];
+    [self.systemTableView hiddenFreshFooter];
     [self.view addSubview:self.systemTableView];
     
     self.meTableView = [[BTTableview alloc]initWithFrame:CGRectMake(0, kNavigationBarHight, kSCREEN_WIDTH, kSCREEN_HEIGHT-kNavigationBarHight) style:UITableViewStylePlain];
     self.meTableView.delegate = self;
     self.meTableView.dataSource = self;
+    self.meTableView.dataDelegate = self;
+    [self.meTableView autoRefreshLoad];
+    [self.meTableView hiddenFreshFooter];
     
 }
 
@@ -60,18 +73,49 @@
     // Dispose of any resources that can be recreated.
 }
 
+#pragma mark - LEBaseTableViewDelegate
+// 请求数据
+- (void)requestDataSource{
+    if (!messageType) {
+        [self.messageService loadQuerySystemMessageResourceCompletion:^(BOOL isSuccess, NSString *message) {
+            [self.systemTableView stop];
+            if (isSuccess) {
+                [self.systemTableView reloadData];
+            }
+        }];
+    }else{
+        [self.messageService loadQueryMeMessageResourceCompletion:^(BOOL isSuccess, NSString *message) {
+            [self.meTableView stop];
+            if (isSuccess) {
+                [self.meTableView reloadData];
+            }
+        }];
+    }
+}
+
+#pragma mark - tableViewDelegate&DataSource
+
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
-    return 5;
+    if (tableView == _systemTableView) {
+        return self.messageService.arrSystemMessageResource.count;
+    }else{
+        return self.messageService.arrMeMessageResource.count;
+    }
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     if (tableView == _systemTableView) {
         BTSystemMessageCell *cell = [[BTSystemMessageCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"systemTableView"];
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
+        BTMessageEntity *entity = self.messageService.arrSystemMessageResource[indexPath.row];
+        [cell setDataForCell:entity];
         return cell;
     }else{
         BTMeMessageCell *cell = [[BTMeMessageCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"metableView"];
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
+        BTMessageEntity *entity = self.messageService.arrSystemMessageResource[indexPath.row];
+        [cell setDataForCell:entity];
+
         return cell;
     }
 }
@@ -87,6 +131,14 @@
     }else{
         
     }
+}
+
+
+- (BTMessageService *)messageService {
+    if (!_messageService) {
+        _messageService = [[BTMessageService alloc] init];
+    }
+    return _messageService;
 }
 
 /*

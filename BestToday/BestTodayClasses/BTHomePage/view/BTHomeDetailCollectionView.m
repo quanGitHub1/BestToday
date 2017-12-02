@@ -14,6 +14,8 @@
 #import "BTHomedetailCollectionViewCell.h"
 #import "BTHomeHeaderView.h"
 #import "BTHomedetailHeaderView.h"
+#import "BTHomePageDetailViewController.h"
+#import "BTHomePageEntity.h"
 
 static NSString *const cellId = @"cellId";
 
@@ -228,9 +230,24 @@ static NSString *const headerId = @"headerId";
 // 选中某item
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
 {
-//    if (_discoverCVDelegate && [_discoverCVDelegate respondsToSelector:@selector(collectionView: didSelectItemAtIndexPath:)]) {
-//        [_discoverCVDelegate collectionView:collectionView didSelectItemAtIndexPath:indexPath];
-//    }
+
+    BTHomePageDetailViewController *homePagedetail = [[BTHomePageDetailViewController alloc] init];
+    
+    BTHomePageEntity *PageEntity = [_detailService.arrDetailResourceByPage objectAtIndex:indexPath.row];
+    
+    homePagedetail.resourceId = PageEntity.resourceId;
+    
+    [[self viewController].navigationController pushViewController:homePagedetail animated:YES];
+}
+
+- (UIViewController *)viewController {
+    for (UIView* next = [self superview]; next; next = next.superview) {
+        UIResponder *nextResponder = [next nextResponder];
+        if ([nextResponder isKindOfClass:[UIViewController class]]) {
+            return (UIViewController *)nextResponder;
+        }
+    }
+    return nil;
 }
 
 #pragma mark - lazy

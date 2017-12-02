@@ -12,6 +12,7 @@
 #import "BTDiscoverEntity.h"
 #import "BTDiscoverService.h"
 #import "BtHomePageService.h"
+#import "BTHomePageDetailViewController.h"
 
 @interface BTDiscoverViewController ()<BTDiscoverCollectionViewDelegate>
 {
@@ -111,7 +112,10 @@ static NSString *const headerId = @"headerId";
 // 选中某item
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
 {
-    NSLog(@"选中cell ");
+    BTHomePageDetailViewController *homePagedetail = [[BTHomePageDetailViewController alloc] init];
+    BTDiscoverEntity *discoverEntity = [_discoverService.arrDiscoverResource objectAtIndex:indexPath.row];
+    homePagedetail.resourceId = discoverEntity.resourceId;
+    [self.navigationController pushViewController:homePagedetail animated:YES];
 }
 
 

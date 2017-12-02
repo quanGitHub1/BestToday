@@ -39,6 +39,10 @@
         
     } success:^(id responseObject) {
         
+        if (!pageAssistParam) {
+            
+            [self.arrMyResource removeAllObjects];
+        }
         [self handleRequestSourceListData:responseObject];
         
         completion(YES,NO,_pageAssistParam);
@@ -57,6 +61,11 @@
         
     } success:^(id responseObject) {
         
+        if (pageAssistParam) {
+            
+            [self.arrCommentResource removeAllObjects];
+            
+        }
         [self handleRequestLikeSourceListData:responseObject];
         
         completion(YES,NO,_pageAssistParam);
@@ -101,8 +110,6 @@
         
         NSDictionary *dicData = respones[@"data"];
         
-        
-        
         if (dicData && [dicData isKindOfClass:[NSDictionary class]]) {
             
             NSArray *datas = dicData[@"resourceVoList"];
@@ -116,16 +123,14 @@
                 }
                 
                 return YES;
-
             }
-            
         }
     }
     
     return NO;
 }
 
-/** 我发表的图片资源接口 */
+/** 我喜欢的图片资源接口 */
 - (BOOL)handleRequestLikeSourceListData:(id)respones {
     
     if (respones && [respones isKindOfClass:[NSDictionary class]]) {
@@ -148,9 +153,7 @@
                 }
                 
                 return YES;
-                
             }
-            
         }
     }
     

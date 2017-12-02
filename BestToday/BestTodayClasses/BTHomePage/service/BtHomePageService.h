@@ -24,6 +24,11 @@
 - (void)loadqueryFollowedResource:(NSInteger)pageIndex pageAssistParam:(NSString *)pageAssistParam completion:(void(^)(BOOL isSuccess, BOOL isCache, NSString *pageAssistParam))completion;
 
 
+// 置顶用户/取消置顶接口
+- (void)loadquerySetTopUser:(NSInteger)isTopped followedUserId:(NSInteger)followedUserId completion:(void(^)(BOOL isSuccess, BOOL isCache))completion;
+
+// 取消关注接口
+- (void)loadqueryUnFollowUser:(NSInteger)followedUserId completion:(void(^)(BOOL isSuccess, BOOL isCache))completion;
 
 
 @end
