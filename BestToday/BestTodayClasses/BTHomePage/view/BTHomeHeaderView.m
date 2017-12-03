@@ -8,10 +8,11 @@
 
 #import "BTHomeHeaderView.h"
 #import "BTHomePageTableViewCell.h"
+#import "BTHomeDetailPageTableViewCell.h"
 #import "BTHomeDetailService.h"
 
 
-@interface BTHomeHeaderView ()<UITableViewDataSource, UITableViewDelegate, BTHomepageViewDelegate>
+@interface BTHomeHeaderView ()<UITableViewDataSource, UITableViewDelegate, BTHomepageDetailViewDelegate>
 
 @property (nonatomic, strong)BTTableview *tableView;
 
@@ -34,7 +35,6 @@
         
         self.backgroundColor = [UIColor whiteColor];
         
-
     }
     return self;
 }
@@ -54,6 +54,7 @@
     _tableView = [[BTTableview alloc]initWithFrame:CGRectMake(0, 0, kSCREEN_WIDTH, 500)];
     
     _tableView.delegate = self;
+    
     _tableView.dataSource = self;
     
     _tableView.estimatedRowHeight = 100;
@@ -61,7 +62,7 @@
     [_tableView hiddenFreshFooter];
     
     _tableView.scrollEnabled = NO;
-    
+        
     _tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     
     _labTitle = [[UILabel alloc] initWithFrame:CGRectMake(0, _tableView.bottom + 20, FULL_WIDTH, 20)];
@@ -91,6 +92,11 @@
 
 }
 
+- (void)reloadTableviewDatas{
+  
+    [self.tableView reloadData];
+}
+
 - (void)requestDetailResourceTwo{
     
     [self.detailService loadqueryResourceDetail:[_resourceId integerValue] completion:^(BOOL isSuccess, BOOL isCache) {
@@ -105,13 +111,11 @@
 }
 
 #pragma mark - BTHomepageViewDelegate
-
 - (void)reloadTableView:(NSInteger)indexpath height:(CGFloat)height {
     
-    BTHomePageTableViewCell *announcementCell = [_dicCell objectForKey:[NSString stringWithFormat:@"indexPath%ld", indexpath]];
+    BTHomeDetailPageTableViewCell *announcementCell = [_dicCell objectForKey:[NSString stringWithFormat:@"indexPath%ld", indexpath]];
     
     announcementCell.heightCell = height;
-    
     
     [self.tableView reloadData];
     
@@ -136,16 +140,15 @@
     
     static NSString * const cellID = @"BTHomePageTableViewCell";
     
-    BTHomePageTableViewCell *cell = [tableView cellForRowAtIndexPath:indexPath]; //根据indexPath准确地取出一行，而不是从cell重用队列中取出
-    
+    BTHomeDetailPageTableViewCell *cell = [tableView cellForRowAtIndexPath:indexPath]; //根据indexPath准确地取出一行，而不是从cell重用队列中取出
+    cell.backgroundColor = [UIColor redColor];
     
     if (!cell) {
         
-        cell = [[BTHomePageTableViewCell alloc]initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:cellID];
+        cell = [[BTHomeDetailPageTableViewCell alloc]initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:cellID];
         
         cell.selectionStyle=UITableViewCellSelectionStyleNone;
     }
-    
     
     cell.delegate = self;
 

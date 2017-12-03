@@ -117,6 +117,10 @@
             
             NSArray *datas = dicData[@"followedUsers"];
             
+            if ([datas isKindOfClass:[NSNull class]]) {
+                return NO;
+            }
+            
             for (NSDictionary *dic in datas) {
                 
                 BTHomeUserEntity *userEntity = [BTHomeUserEntity yy_modelWithDictionary:dic];

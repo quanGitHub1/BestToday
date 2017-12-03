@@ -1,8 +1,8 @@
 //
-//  BTHomePageTableViewCell.h
+//  BTHomeDetailPageTableViewCell.h
 //  BestToday
 //
-//  Created by leeco on 2017/11/2.
+//  Created by wangfaquan on 2017/12/3.
 //  Copyright © 2017年 leeco. All rights reserved.
 //
 
@@ -13,24 +13,21 @@
 #import "BTHomePageEntity.h"
 #import "BTLikeCommentService.h"
 
-
-@protocol BTHomepageViewDelegate <NSObject>
+@protocol BTHomepageDetailViewDelegate <NSObject>
 
 - (void)reloadTableView:(NSInteger)indexpath height:(CGFloat)height;
 
 - (void)reloadTableViewheight:(CGFloat)height;
 
+- (void)reloadTableviewDatas;
 
 
 @end
 
-typedef void(^updateCellBlock)(NSInteger indexpathRow);
+@interface BTHomeDetailPageTableViewCell : UITableViewCell
 
 
-@interface BTHomePageTableViewCell : UITableViewCell<UMSocialShareMenuViewDelegate>
-
-
-@property(nonatomic, weak) id <BTHomepageViewDelegate>delegate;
+@property(nonatomic, weak) id <BTHomepageDetailViewDelegate>delegate;
 
 @property (nonatomic, strong) UIImageView *imageAvtar; // 头像
 
@@ -50,12 +47,16 @@ typedef void(^updateCellBlock)(NSInteger indexpathRow);
 
 @property (nonatomic, strong) UIButton *btnShare; // 分享
 
-@property (nonatomic, strong) OpenDetailsView *labDescrp; //描述
+@property (nonatomic, strong) UILabel *labDescrp; //描述
 
 @property (nonatomic, strong) UILabel *labTextInfor; //描述
 
 
 @property (nonatomic, strong) UIView *viewLine; //线
+
+@property (nonatomic, strong) UILabel *labComment;
+
+
 
 @property (nonatomic, strong) BTHomeCommentView *homeCommentView;
 
@@ -69,10 +70,7 @@ typedef void(^updateCellBlock)(NSInteger indexpathRow);
 
 @property (nonatomic) BOOL cell;
 
-@property (nonatomic, copy) updateCellBlock updateCellBlock;
-
 
 - (void)makeDatacellData:(BTHomePageEntity *)homePage index:(NSInteger)indexpath;
-
 
 @end

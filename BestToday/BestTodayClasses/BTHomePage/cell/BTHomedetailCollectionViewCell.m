@@ -27,7 +27,7 @@
         _imagePic.clipsToBounds = YES;
         
         [self.contentView addSubview:_imagePic];
-        
+                
         
     }
     return self;

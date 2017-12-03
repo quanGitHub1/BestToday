@@ -54,6 +54,7 @@ static NSString *const headerId = @"headerId";
         
         _frames = frame;
         
+        //   这个headerView是预估高度的
         _headerViews = [[BTHomeHeaderView alloc] initWithFrame:CGRectMake(0, 0, FULL_WIDTH, 800)];
         
         _headerViews.resourceId = resourceId;
@@ -63,11 +64,10 @@ static NSString *const headerId = @"headerId";
         _headerViews.delegate = self;
         
         [_headerViews initCreatTableview];
-        
+                
         [self addSubview:_headerViews];
         
         _headerViews.hidden = YES;
-        
         
     }
     return self;

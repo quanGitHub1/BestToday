@@ -7,11 +7,11 @@
 //
 
 #import "BTHomedetailHeaderView.h"
-#import "BTHomePageTableViewCell.h"
+#import "BTHomeDetailPageTableViewCell.h"
 #import "BTHomeDetailService.h"
 
 
-@interface BTHomedetailHeaderView ()<UITableViewDataSource, UITableViewDelegate, BTHomepageViewDelegate>
+@interface BTHomedetailHeaderView ()<UITableViewDataSource, UITableViewDelegate, BTHomepageDetailViewDelegate>
 
 @property (nonatomic, strong)BTTableview *tableView;
 
@@ -32,8 +32,6 @@
     if (self = [super initWithFrame:frame]) {
         
         self.backgroundColor = [UIColor whiteColor];
-        
-
         
     }
     return self;
@@ -57,6 +55,7 @@
     self.tableView.dataSource = self;
     self.tableView.estimatedRowHeight = 400;
     
+    self.tableView.backgroundColor = [UIColor redColor];
     [self.tableView hiddenFreshFooter];
     
     _tableView.scrollEnabled = NO;
@@ -96,7 +95,7 @@
 
 - (void)reloadTableView:(NSInteger)indexpath height:(CGFloat)height {
     
-    BTHomePageTableViewCell *announcementCell = [_dicCell objectForKey:[NSString stringWithFormat:@"indexPath%ld", indexpath]];
+    BTHomeDetailPageTableViewCell *announcementCell = [_dicCell objectForKey:[NSString stringWithFormat:@"indexPath%ld", indexpath]];
     
     announcementCell.heightCell = height;
     
@@ -113,14 +112,6 @@
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
     
-//    if (_dicCell.count > indexPath.row) {
-//        
-//        BTHomePageTableViewCell *announcementCell = [_dicCell objectForKey:[NSString stringWithFormat:@"indexPath%ld", indexPath.row]];
-//    
-//        return announcementCell.heightCell;
-//    }
-    
-    
     
     return _heightCells;
     
@@ -131,11 +122,11 @@
     
     static NSString * const cellID = @"mindCell";
     
-    BTHomePageTableViewCell *cell = [tableView cellForRowAtIndexPath:indexPath]; //根据indexPath准确地取出一行，而不是从cell重用队列中取出
+    BTHomeDetailPageTableViewCell *cell = [tableView cellForRowAtIndexPath:indexPath]; //根据indexPath准确地取出一行，而不是从cell重用队列中取出
     
     if (!cell) {
         
-        cell = [[BTHomePageTableViewCell alloc]initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:cellID];
+        cell = [[BTHomeDetailPageTableViewCell alloc]initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:cellID];
         
         cell.selectionStyle=UITableViewCellSelectionStyleNone;
     }
@@ -151,11 +142,6 @@
     
     _heightCells = cell.heightCell;
     
-//    if (![[_dicCell allKeys] containsObject:[NSString stringWithFormat:@"indexPath%ld", indexPath.row]]) {
-//        
-//        [_dicCell setObject:cell forKey:[NSString stringWithFormat:@"indexPath%ld", indexPath.row]];
-//        
-//    }
     
     return cell;
 }

@@ -54,23 +54,19 @@ static WYShareView *shareView = nil;
 }
 
 - (void)initData{
+    
     _titleArray = [[NSMutableArray alloc]init];
     _imageArray = [[NSMutableArray alloc]init];
     _typeArray = [[NSMutableArray alloc]init];
-    //    if ([WXApi isWXAppInstalled]) {
     [_titleArray addObject:@"微信"];
     [_imageArray addObject:@"share_wechat.png"];
     [_typeArray addObject:@(SSDKPlatformTypeWechat)];
     [_titleArray addObject:@"朋友圈"];
     [_imageArray addObject:@"share_wechatTimeline.png"];
     [_typeArray addObject:@(SSDKPlatformSubTypeWechatTimeline)];
-    //    }
-    //    if ([QQApiInterface isQQInstalled]) {
     [_titleArray addObject:@"QQ"];
     [_imageArray addObject:@"share_QQ.png"];
     [_typeArray addObject:@(SSDKPlatformTypeQQ)];
-    //        [_typeArray addObject:[NSString stringWithFormat:@"%ld",(long)DefaultCShareViewTypeQQ]];
-    //    }
     [_titleArray addObject:@"新浪微博"];
     [_imageArray addObject:@"share_sinaweibo.png"];
     [_typeArray addObject:@(SSDKPlatformTypeSinaWeibo)];
@@ -169,8 +165,8 @@ static WYShareView *shareView = nil;
 
         [shareParams SSDKSetupShareParamsByText:desc
                                          images:imageArray
-                                            url:[NSURL URLWithString:url]
-                                          title:text
+                                            url:nil
+                                          title:@"我的分享"
                                            type:SSDKContentTypeAuto];
         
         if (ssdkType == SSDKPlatformTypeSinaWeibo) {
@@ -199,7 +195,13 @@ static WYShareView *shareView = nil;
             }else {
                 imageStr = imageArray;
             }
-            [shareParams SSDKSetupWeChatParamsByText:desc title:text url:[NSURL URLWithString:url] thumbImage:imageStr image:imageStr musicFileURL:nil extInfo:nil fileData:nil emoticonData:nil type:SSDKContentTypeAuto forPlatformSubType:SSDKPlatformSubTypeWechatSession];
+//            [shareParams SSDKSetupWeChatParamsByText:desc title:text url:[NSURL URLWithString:url] thumbImage:imageStr image:imageStr musicFileURL:nil extInfo:nil fileData:nil emoticonData:nil type:SSDKContentTypeAuto forPlatformSubType:SSDKPlatformSubTypeWechatSession];
+            
+            [shareParams SSDKSetupShareParamsByText:@"3333"
+                                             images:@[imageStr]
+                                                url:[NSURL URLWithString:url]
+                                              title:@"111111"
+                                               type:SSDKContentTypeImage];
         }else{
             [shareParams SSDKSetupShareParamsByText:desc
                                              images:imageArray

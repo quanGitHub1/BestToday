@@ -200,7 +200,14 @@
         
         BTHomePageTableViewCell *announcementCell = [_dicCell objectForKey:[NSString stringWithFormat:@"indexPath%ld", indexPath.row]];
         
-        return announcementCell.heightCell;
+        if (announcementCell.heightCell > 0) {
+            return announcementCell.heightCell;
+
+        }else {
+        
+            return 800;
+        }
+        
     }
     
     return 0;
@@ -230,14 +237,54 @@
     
     [cell makeDatacellData:[self.homePageService.arrFollowedResource objectAtIndex:indexPath.row] index:indexPath.row];
     
+    
     if (![[_dicCell allKeys] containsObject:[NSString stringWithFormat:@"indexPath%ld", indexPath.row]]) {
         
-        [_dicCell setObject:cell forKey:[NSString stringWithFormat:@"indexPath%ld", indexPath.row]];
+        [_dicCell setObject: cell forKey:[NSString stringWithFormat:@"indexPath%ld", indexPath.row]];
         
     }
     
+    cell.updateCellBlock = ^(NSInteger indexpathRow) {
+        
+        [self.tableView reloadData];
+    };
+    
     return cell;
 }
+
+
+//- (void)configureCell:(BTHomePageTableViewCell *)cell atIndexPath:(NSIndexPath *)indexPath {
+//    
+//    BTHomePageEntity *pageEntity = [self.homePageService.arrFollowedResource objectAtIndex:indexPath.row];
+//    
+//    NSString *imgURL = pageEntity.picUrl;
+//    
+//    UIImage *cachedImage = [[SDImageCache sharedImageCache] imageFromDiskCacheForKey:imgURL];
+//    
+//    if ( !cachedImage ) {
+//        
+//        [self downloadImage:pageEntity.picUrl forIndexPath:indexPath];
+//        
+//        [cell.imagePic setImage:cachedImage];
+//        
+//    } else {
+//        
+//        [cell.imagePic setImage:cachedImage];
+//    }
+//}
+
+- (void)downloadImage:(NSString *)imageURL forIndexPath:(NSIndexPath *)indexPath {
+    // 利用 SDWebImage 框架提供的功能下载图片
+    [[SDWebImageDownloader sharedDownloader] downloadImageWithURL:[NSURL URLWithString:imageURL] options:SDWebImageDownloaderUseNSURLCache progress:^(NSInteger receivedSize, NSInteger expectedSize) {
+        // do nothing
+    } completed:^(UIImage *image, NSData *data, NSError *error, BOOL finished) {
+        [[SDImageCache sharedImageCache] storeImage:image forKey:imageURL toDisk:YES];
+        dispatch_async(dispatch_get_main_queue(), ^{
+            [self.tableView reloadData];
+        });
+    }];
+}
+
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
 
