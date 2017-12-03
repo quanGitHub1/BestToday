@@ -20,7 +20,7 @@
 
 - (void)reloadTableViewheight:(CGFloat)height;
 
-
+- (void)reloadTableviewDatas;
 
 @end
 

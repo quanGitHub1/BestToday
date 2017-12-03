@@ -175,6 +175,12 @@
     }];
 }
 
+
+- (void)reloadTableviewDatas{
+    [self.tableView reloadData];
+}
+
+
 #pragma mark - BTHomepageViewDelegate
 
 - (void)reloadTableView:(NSInteger)indexpath height:(CGFloat)height {

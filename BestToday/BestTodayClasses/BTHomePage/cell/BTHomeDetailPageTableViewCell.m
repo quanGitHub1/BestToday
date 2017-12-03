@@ -91,6 +91,8 @@
             
             [self.contentView addSubview:_viewLine];
             
+            [self.contentView addSubview:_labTextInfor];
+            
             [self.contentView addSubview:_labDescrp];
             
         }
@@ -217,12 +219,8 @@
         
         [_imagePic sd_setImageWithURL:[NSURL URLWithString:homePage.picUrl] completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, NSURL *imageURL) {
             
-            CGFloat heightSize = image.size.height / image.size.width;
-            
             if (_delegate && [_delegate respondsToSelector:@selector(reloadTableviewDatas)]) {
-                
                 [self.delegate reloadTableviewDatas];
-                
             }
             
         }];
@@ -279,9 +277,8 @@
         
         [setString  addAttribute:NSParagraphStyleAttributeName value:paragraphStyle range:NSMakeRange(0, [_homePageEntity.textInfo length])];
         
-        _labTextInfor.frame = CGRectMake(FULL_WIDTH / 2 + 15, _labTime.top, FULL_WIDTH - 30, 0);
+        _labTextInfor.frame = CGRectMake(_imageAvtar.left, _labTime.bottom + 15, FULL_WIDTH - 30, 0);
 
-        
         _labTextInfor.attributedText = setString;
         
         _labTextInfor.numberOfLines = 0;
@@ -340,7 +337,7 @@
             
             heightLab += labComment.height + 10;
             
-            [self addSubview:_labComment];
+            [self.contentView addSubview:_labComment];
             
         }
         
