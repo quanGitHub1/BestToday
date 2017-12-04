@@ -103,6 +103,29 @@
 }
 
 
+- (void)loadqueryFollowUser:(NSInteger)followedUserId completion:(void(^)(BOOL isSuccess, BOOL isCache))completion{
+
+    NSString *urlString = [NSString stringWithFormat:@"%@?followedUserId=%ld",BTqueryFollowUser, followedUserId];
+    
+    [NetworkHelper GET:urlString parameters:nil responseCache:^(id responseCache) {
+        
+        
+    } success:^(id responseObject) {
+        
+        if (([responseObject[@"code"] integerValue] == 0)) {
+            
+            completion(YES,NO);
+            
+        }else {
+            completion(NO,NO);
+        }
+        
+    } failure:^(NSError *error) {
+        completion(NO,NO);
+    }];
+}
+
+
 /** 查询我的关注用户列表数据 */
 - (BOOL)handleListData:(id)respones {
     

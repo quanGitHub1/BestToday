@@ -60,6 +60,10 @@
     
     self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     
+    [self.tableView hiddenFreshHead];
+
+    [self.tableView hiddenFreshFooter];
+    
     [self.view addSubview:_tableView];
     
 }
@@ -73,7 +77,13 @@
 
     [self.meService loadqueryMyFansUsersCompletion:^(BOOL isSuccess, BOOL isCache) {
         
+        [self.tableView stop];
         
+        if (isSuccess) {
+            
+            [self.tableView reloadData];
+            
+        }
         
     }];
     
@@ -86,7 +96,7 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
     
-    return 20;
+    return self.meService.arrUserVoList.count ;
 }
 
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -106,6 +116,8 @@
         cell = [[BTAttentionTableViewCell alloc]initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:cellID];
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
     }
+    
+    [cell makeCellData:[self.meService.arrUserVoList objectAtIndex:indexPath.row]];
     
     return cell;
 }

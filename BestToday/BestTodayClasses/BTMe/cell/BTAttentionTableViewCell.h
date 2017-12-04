@@ -7,6 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "BTMeEntity.h"
 
 @interface BTAttentionTableViewCell : UITableViewCell
 
@@ -15,5 +16,7 @@
 @property(nonatomic,strong)UIImageView *imageAvtar; //
 
 @property(nonatomic,strong)UIButton *btnAttention; //
+
+- (void)makeCellData:(BTMeEntity*)meEntity;
 
 @end

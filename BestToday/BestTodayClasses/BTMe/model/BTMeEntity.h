@@ -8,6 +8,15 @@
 
 #import <Foundation/Foundation.h>
 
+/**
+ 用户状态更新
+ */
+typedef enum {
+    BTUserStatusLogout = 0, //登出状态
+    BTUserStatusLogin = 1, //登录状态
+} BTUserStatus;
+
+
 @interface BTMeEntity : NSObject
 
 @property (nonatomic, strong) NSString *userId;  // 用户ID
@@ -40,6 +49,13 @@
 
 @property (nonatomic, strong) NSString *publishCount;  // 发表数量
 
++ (BTMeEntity *)shareSingleton;
 
+/**
+ *  是否登录
+ */
+@property (nonatomic, assign) BOOL isLogin;
+
+@property (nonatomic, assign) BTUserStatus userStatus;
 
 @end

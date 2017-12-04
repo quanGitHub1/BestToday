@@ -49,15 +49,15 @@
     [self loadData];
 
 
-//    BTLoginsViewController *loginvc = [[BTLoginsViewController alloc] init];
-//    
-//    
-//    MGJNavigationController *navigationController = [[MGJNavigationController alloc] initWithRootViewController:loginvc];
-//    
-//    [self presentViewController:navigationController animated:YES completion:^{
-//        
-//        
-//    }];
+    BTLoginsViewController *loginvc = [[BTLoginsViewController alloc] init];
+    
+    
+    MGJNavigationController *navigationController = [[MGJNavigationController alloc] initWithRootViewController:loginvc];
+    
+    [self presentViewController:navigationController animated:YES completion:^{
+        
+        
+    }];
     
 }
 
@@ -139,7 +139,7 @@
     
 }
 
-/** 关注我的接口 */
+/** 查询我的关注用户列表接口 */
 - (void)requestAnnouncementData{
     
     [self.homePageService loadqueryMyFollowedUsers:1 completion:^(BOOL isSuccess, BOOL isCache) {
@@ -158,6 +158,7 @@
     }];
 }
 
+/** 分页查询首页已关注图片资源列表接口 */
 - (void)requestQueryFollowedResource{
 
     [self.homePageService loadqueryFollowedResource:0 pageAssistParam:_pageAssistParam completion:^(BOOL isSuccess, BOOL isCache, NSString* pageAssistParam) {
@@ -259,39 +260,6 @@
 }
 
 
-//- (void)configureCell:(BTHomePageTableViewCell *)cell atIndexPath:(NSIndexPath *)indexPath {
-//    
-//    BTHomePageEntity *pageEntity = [self.homePageService.arrFollowedResource objectAtIndex:indexPath.row];
-//    
-//    NSString *imgURL = pageEntity.picUrl;
-//    
-//    UIImage *cachedImage = [[SDImageCache sharedImageCache] imageFromDiskCacheForKey:imgURL];
-//    
-//    if ( !cachedImage ) {
-//        
-//        [self downloadImage:pageEntity.picUrl forIndexPath:indexPath];
-//        
-//        [cell.imagePic setImage:cachedImage];
-//        
-//    } else {
-//        
-//        [cell.imagePic setImage:cachedImage];
-//    }
-//}
-
-- (void)downloadImage:(NSString *)imageURL forIndexPath:(NSIndexPath *)indexPath {
-    // 利用 SDWebImage 框架提供的功能下载图片
-    [[SDWebImageDownloader sharedDownloader] downloadImageWithURL:[NSURL URLWithString:imageURL] options:SDWebImageDownloaderUseNSURLCache progress:^(NSInteger receivedSize, NSInteger expectedSize) {
-        // do nothing
-    } completed:^(UIImage *image, NSData *data, NSError *error, BOOL finished) {
-        [[SDImageCache sharedImageCache] storeImage:image forKey:imageURL toDisk:YES];
-        dispatch_async(dispatch_get_main_queue(), ^{
-            [self.tableView reloadData];
-        });
-    }];
-}
-
-
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
 
     BTHomePageDetailViewController *homePagedetail = [[BTHomePageDetailViewController alloc] init];
@@ -306,27 +274,32 @@
 
 - (void)onclickBtnAtten:(UIButton *)btn{
 
-    UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"" message:@"" preferredStyle:UIAlertControllerStyleAlert];
-    
-    UIAlertAction *canAction = [UIAlertAction actionWithTitle:@"取消关注" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+    if ([btn.titleLabel.text isEqualToString:@"..."]) {
+        UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"" message:@"" preferredStyle:UIAlertControllerStyleAlert];
         
-        [self requestUnFollowUser:btn.tag];
+        UIAlertAction *canAction = [UIAlertAction actionWithTitle:@"取消关注" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+            
+            [self requestUnFollowUser:btn.tag];
+            
+        }];
         
-    }];
-    
-    UIAlertAction *destructiveAction = [UIAlertAction actionWithTitle:@"置顶该用户" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+        UIAlertAction *destructiveAction = [UIAlertAction actionWithTitle:@"置顶该用户" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+            
+            [self requestSetTopUser:btn.tag isTopped:1];
+            
+        }];
         
-        [self requestSetTopUser:btn.tag isTopped:1];
+        UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleCancel handler:nil];
         
-    }];
+        [alertController addAction:canAction];
+        [alertController addAction:destructiveAction];
+        [alertController addAction:cancelAction];
+        [self presentViewController:alertController animated:YES completion:nil];
+    }else {
     
-    UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleCancel handler:nil];
-    
-    [alertController addAction:canAction];
-    [alertController addAction:destructiveAction];
-    [alertController addAction:cancelAction];
-    [self presentViewController:alertController animated:YES completion:nil];
-    
+        [self requestFollowUser:btn.tag];
+    }
+   
 }
 
 // 置顶用户/取消置顶接口
@@ -339,14 +312,14 @@
     
     [self.homePageService loadquerySetTopUser:isTopped followedUserId:[userEntity.userId integerValue] completion:^(BOOL isSuccess, BOOL isCache) {
         
-        
+        [self requestAnnouncementData];
         
     }];
     
 }
 
 
-// 置顶用户/取消置顶接口
+// 取消关注接口
 - (void)requestUnFollowUser:(NSInteger)index{
     
     BTHomePageEntity *pageEntity = [_homePageService.arrFollowedResource objectAtIndex:index];
@@ -355,6 +328,20 @@
     
     [self.homePageService loadqueryUnFollowUser:[userEntity.userId integerValue] completion:^(BOOL isSuccess, BOOL isCache) {
         
+        
+        
+    }];
+}
+
+
+// 关注接口
+- (void)requestFollowUser:(NSInteger)index{
+    
+    BTHomePageEntity *pageEntity = [_homePageService.arrFollowedResource objectAtIndex:index];
+    
+    BTHomeUserEntity *userEntity = [BTHomeUserEntity yy_modelWithJSON:pageEntity.userVo];
+    
+    [self.homePageService loadqueryFollowUser:[userEntity.userId integerValue] completion:^(BOOL isSuccess, BOOL isCache) {
         
         
     }];

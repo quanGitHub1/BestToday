@@ -41,9 +41,7 @@
             _btnAtten.backgroundColor = [UIColor whiteColor];
             
             [_btnAtten addTarget:self action:@selector(onclickBtnAtten:) forControlEvents:UIControlEventTouchUpInside];
-            
-            [_btnAtten setTitle:@"..." forState:UIControlStateNormal];
-            
+                        
             [_btnAtten setTitleColor:[UIColor colorWithHexString:@"#616161"] forState:UIControlStateNormal];
             
             _btnAtten.titleLabel.font = [UIFont systemFontOfSize:20];

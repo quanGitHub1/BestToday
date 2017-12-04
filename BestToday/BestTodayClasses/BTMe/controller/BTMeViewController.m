@@ -106,9 +106,13 @@
     
     _btnPublish.titleLabel.textAlignment = NSTextAlignmentLeft;
     
+    [_btnPublish addTarget:self action:@selector(onclickFans:) forControlEvents:UIControlEventTouchUpInside];
+    
     [_btnPublish setTitleColor:[UIColor colorWithHexString:@"#969696"] forState:UIControlStateNormal];
 
     [_btnPublish.titleLabel sizeToFit];
+    
+    _btnPublish.backgroundColor = [UIColor yellowColor];
     
     // 粉丝
     _btnFans = [[UIButton alloc] initWithFrame:CGRectMake(_btnPublish.right + 40, _btnPublish.top, 65, 0)];
@@ -121,7 +125,6 @@
     
     [_btnFans.titleLabel sizeToFit];
     
-    
     // 关注
     _btnfollow = [[UIButton alloc] initWithFrame:CGRectMake(_btnFans.right + 40, _btnPublish.top, 65, 0)];
     
@@ -133,8 +136,10 @@
     
     [_btnfollow.titleLabel sizeToFit];
     
+    _btnfollow.userInteractionEnabled = YES;
     
     _labDes = [UILabel mlt_labelWithText:@"" color:[UIColor mlt_colorWithHexString:@"#212121" alpha:1] align:NSTextAlignmentLeft font:[UIFont systemFontOfSize:14] bkColor:nil frame:CGRectMake(_imageAvtar.left, _imageAvtar.bottom + 17, FULL_WIDTH - 30, 0)];
+    
     // 设置label的行间距
     NSMutableParagraphStyle  *paragraphStyle = [[NSMutableParagraphStyle alloc] init];
     
@@ -166,8 +171,6 @@
     
     [viewHeaer addSubview:_btnModify];
     
-    [viewHeaer addSubview:_btnPublish];
-
     [viewHeaer addSubview:_btnFans];
     
     [viewHeaer addSubview:_btnfollow];
@@ -176,6 +179,8 @@
     
     [viewHeaer addSubview:_labTag];
     
+    [viewHeaer addSubview:_btnPublish];
+
     [viewHeaer addSubview:_viewLine];
     
     return viewHeaer;
@@ -200,9 +205,7 @@
     
     _collectionViewTwo = [[BTMeLikeCollectionView alloc] initWithFrame:CGRectMake(0, _segementView.bottom, FULL_WIDTH, FULL_HEIGHT - _segementView.bottom - MLTTabbarHeight)];
 
-    
     [self.view addSubview:_segementView];
-    
     
     [self.view addSubview:_collectionViewTwo];
     
@@ -242,14 +245,40 @@
     UIImage *imageName = [UIImage imageNamed:@"My_Modify"];
 
     _btnModify.frame = CGRectMake(_labName.right + 5 , 21, imageName.size.width, imageName.size.height);
+    
 
     [_btnPublish setTitle:[NSString stringWithFormat:@"发表  %@", meEntity.publishCount] forState:UIControlStateNormal];
     
+    CGSize titleSize = [_btnPublish.titleLabel.text sizeWithAttributes:@{NSFontAttributeName: [UIFont fontWithName:_btnPublish.titleLabel.font.fontName size:_btnPublish.titleLabel.font.pointSize]}];
+    
+    titleSize.height = 20;
+    
+    titleSize.width += 20;
+
+    _btnPublish.frame = CGRectMake(_imageAvtar.right + 5, 61, titleSize.width, titleSize.height);
+
+    
     [_btnFans setTitle:[NSString stringWithFormat:@"粉丝  %@", meEntity.fansCount] forState:UIControlStateNormal];
+    
+    CGSize titleSizeTwo = [_btnFans.titleLabel.text sizeWithAttributes:@{NSFontAttributeName: [UIFont fontWithName:_btnFans.titleLabel.font.fontName size:_btnFans.titleLabel.font.pointSize]}];
+    
+    titleSizeTwo.height = 20;
+    
+    titleSizeTwo.width += 20;
+    
+    _btnFans.frame = CGRectMake(_btnPublish.right + 40, 61, titleSizeTwo.width, titleSizeTwo.height);
+    
     
     [_btnfollow setTitle:[NSString stringWithFormat:@"关注  %@", meEntity.followCount] forState:UIControlStateNormal];
     
-    [_btnPublish setBackgroundColor:[UIColor redColor]];
+    
+    CGSize titleSizeThree = [_btnfollow.titleLabel.text sizeWithAttributes:@{NSFontAttributeName: [UIFont fontWithName:_btnfollow.titleLabel.font.fontName size:_btnfollow.titleLabel.font.pointSize]}];
+    
+    titleSizeThree.height = 20;
+    
+    titleSizeThree.width += 20;
+    
+    _btnfollow.frame = CGRectMake(_btnFans.right + 40, 61, titleSizeThree.width, titleSizeThree.height);
     
     
     _labDes.text = meEntity.introduction;

@@ -148,7 +148,7 @@ static AFHTTPSessionManager *_sessionManager;
     //        [parameters setValue:@"iOS" forKey:@"appType"];
     [parameters setValue:version forKey:@"appVersion"];
     [parameters setValue:version forKey:@"osVersion"];
-    [parameters setValue:@"abc1005" forKey:@"cSessionId"];
+//    [parameters setValue:@"abc1005" forKey:@"cSessionId"];
     [parameters setValue:[MLTUtils getCurrentDevicePlatform] forKey:@"phoneModel"];
     
     //读取缓存

@@ -36,17 +36,15 @@
             
             _labName = [UILabel mlt_labelWithText:@"" color:[UIColor mlt_colorWithHexString:@"#212121" alpha:1] align:NSTextAlignmentLeft font:[UIFont systemFontOfSize:16] bkColor:nil frame:CGRectMake(_imageAvtar.right + 10, _imageAvtar.top + (_imageAvtar.height - 18)/2, 200, 18)];
             
-            _btnAtten = [[UIButton alloc] initWithFrame:CGRectMake(FULL_WIDTH - 35, 10, 30, 20)];
+            _btnAtten = [[UIButton alloc] initWithFrame:CGRectMake(FULL_WIDTH - 65, 15, 50, 25)];
             
             _btnAtten.backgroundColor = [UIColor whiteColor];
             
             [_btnAtten addTarget:self action:@selector(onclickBtnAtten:) forControlEvents:UIControlEventTouchUpInside];
             
-            [_btnAtten setTitle:@"..." forState:UIControlStateNormal];
-            
             [_btnAtten setTitleColor:[UIColor colorWithHexString:@"#616161"] forState:UIControlStateNormal];
             
-            _btnAtten.titleLabel.font = [UIFont systemFontOfSize:20];
+            _btnAtten.titleLabel.font = [UIFont systemFontOfSize:13];
             
             _imagePic = [[UIImageView alloc] initWithFrame:CGRectMake(0, _imageAvtar.bottom + 15, FULL_WIDTH, ScaleHeight(350))];
             
@@ -191,34 +189,8 @@
                                               
                                               //回调
                                           }];
-//    __weak typeof(self) weakSelf = self;
-//
-//    //显示分享面板
-//    [UMSocialUIManager showShareMenuViewInWindowWithPlatformSelectionBlock:^(UMSocialPlatformType platformType, NSDictionary *userInfo)
-//     {
-//        // 根据获取的platformType确定所选平台进行下一步操作
-//         [weakSelf shareTextToPlatformType:platformType];
-//
-//    }];
-    
 }
 
-//分享文本
-- (void)shareTextToPlatformType:(UMSocialPlatformType)platformType
-{
-    //创建分享消息对象
-    UMSocialMessageObject *messageObject = [UMSocialMessageObject messageObject];
-    //设置文本
-    messageObject.text = @"社会化组件UShare将各大社交平台接入您的应用，快速武装App。";
-    //调用分享接口
-    [[UMSocialManager defaultManager] shareToPlatform:platformType messageObject:messageObject currentViewController:self completion:^(id data, NSError *error) {
-        if (error) {
-            NSLog(@"************Share fail with error %@*********",error);
-        }else{
-            NSLog(@"response data is %@",data);
-        }
-    }];
-}
 
 
 - (void)makeDatacellData:(BTHomePageEntity *)homePage index:(NSInteger)indexpath{
@@ -229,6 +201,36 @@
     _homePageEntity = homePage;
     
     BTHomeUserEntity *userEntity = [BTHomeUserEntity yy_modelWithJSON:homePage.userVo];
+    
+    if ([userEntity.isFollowed integerValue] == 0) {
+        
+        _btnAtten.frame = CGRectMake(FULL_WIDTH - 65, 15, 50, 25);
+        [_btnAtten setTitle:@"+关注" forState:UIControlStateNormal];
+        
+        _btnAtten.layer.borderColor = [UIColor colorWithHexString:@"#fd8671"].CGColor;
+        
+        _btnAtten.layer.borderWidth = 1;
+        
+        _btnAtten.layer.cornerRadius = 1.5;
+
+        
+        [_btnAtten setTitleColor:[UIColor colorWithHexString:@"#fd8671"] forState:UIControlStateNormal];
+        
+        
+    }else {
+        
+        [_btnAtten setTitle:@"..." forState:UIControlStateNormal];
+        
+        _btnAtten.frame = CGRectMake(FULL_WIDTH - 35, 13, 30, 20);
+
+        
+        [_btnAtten setTitleColor:[UIColor colorWithHexString:@"#616161"] forState:UIControlStateNormal];
+        
+        _btnAtten.layer.borderColor = [UIColor whiteColor].CGColor;
+        
+        _btnAtten.layer.borderWidth = 0;
+
+    }
 
     _labName.text = userEntity.nickName;
     

@@ -21,19 +21,15 @@
         
         _imageAvtar.contentMode = UIViewContentModeScaleAspectFit;
         
-        _imageAvtar.backgroundColor = [UIColor redColor];
+        _imageAvtar.backgroundColor = [UIColor whiteColor];
         
         _imageAvtar.layer.cornerRadius = ScaleWidth(20);
         
         _imageAvtar.clipsToBounds = YES;
         
-        _labName = [UILabel mlt_labelWithText:@"" color:[UIColor mlt_colorWithHexString:@"#212121" alpha:1] align:NSTextAlignmentLeft font:[UIFont systemFontOfSize:16] bkColor:nil frame:CGRectMake(_imageAvtar.right + 15, (cellHeight - 20)/2, 200, 20)];
-        _labName.text = @"北冥有鱼";
+        _labName = [UILabel mlt_labelWithText:@"" color:[UIColor mlt_colorWithHexString:@"#212121" alpha:1] align:NSTextAlignmentLeft font:[UIFont systemFontOfSize:16] bkColor:nil frame:CGRectMake(_imageAvtar.right + 15, (cellHeight - 20)/2 + 2, 200, 20)];
         
-        _btnAttention = [[UIButton alloc] initWithFrame:CGRectMake(FULL_WIDTH - 75, (cellHeight - 26)/2, 60, 26)];
-        
-        [_btnAttention setTitle:@"+关注" forState:UIControlStateNormal];
-        [_btnAttention setTitle:@"已关注" forState:UIControlStateSelected];
+        _btnAttention = [[UIButton alloc] initWithFrame:CGRectMake(FULL_WIDTH - 75, (cellHeight - 26)/2 + 2, 60, 26)];
         
         _btnAttention.layer.borderColor = [UIColor colorWithHexString:@"#969696"].CGColor;
         
@@ -59,6 +55,24 @@
         
     }
     return self;
+}
+
+- (void)makeCellData:(BTMeEntity*)meEntity{
+
+    _labName.text = meEntity.nickName;
+    
+    [_imageAvtar sd_setImageWithURL:[NSURL URLWithString:meEntity.avatarUrl] placeholderImage:nil];
+    
+    if ([meEntity.isFollowed integerValue] == 0) {
+        
+        [_btnAttention setTitle:@"+关注" forState:UIControlStateNormal];
+
+    }else {
+    
+        [_btnAttention setTitle:@"已关注" forState:UIControlStateNormal];
+
+    }
+    
 }
 
 
