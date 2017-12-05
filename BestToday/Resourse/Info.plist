@@ -5,7 +5,7 @@
 	<key>CFBundleDevelopmentRegion</key>
 	<string>en</string>
 	<key>CFBundleDisplayName</key>
-	<string>今日最佳</string>
+	<string>今日最佳V</string>
 	<key>CFBundleExecutable</key>
 	<string>$(EXECUTABLE_NAME)</string>
 	<key>CFBundleIdentifier</key>
@@ -27,7 +27,7 @@
 			<string>wechat</string>
 			<key>CFBundleURLSchemes</key>
 			<array>
-				<string>wx30f3f81ec604dfd4</string>
+				<string>wx8910bc5d166f699a</string>
 			</array>
 		</dict>
 		<dict>

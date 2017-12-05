@@ -36,17 +36,15 @@
             
             _labName = [UILabel mlt_labelWithText:@"" color:[UIColor mlt_colorWithHexString:@"#212121" alpha:1] align:NSTextAlignmentLeft font:[UIFont systemFontOfSize:16] bkColor:nil frame:CGRectMake(_imageAvtar.right + 10, _imageAvtar.top + (_imageAvtar.height - 18)/2, 200, 18)];
             
-            _btnAtten = [[UIButton alloc] initWithFrame:CGRectMake(FULL_WIDTH - 35, 10, 30, 20)];
+            _btnAtten = [[UIButton alloc] initWithFrame:CGRectMake(FULL_WIDTH - 65, 15, 50, 25)];
             
             _btnAtten.backgroundColor = [UIColor whiteColor];
             
             [_btnAtten addTarget:self action:@selector(onclickBtnAtten:) forControlEvents:UIControlEventTouchUpInside];
             
-            [_btnAtten setTitle:@"..." forState:UIControlStateNormal];
-            
             [_btnAtten setTitleColor:[UIColor colorWithHexString:@"#616161"] forState:UIControlStateNormal];
             
-            _btnAtten.titleLabel.font = [UIFont systemFontOfSize:20];
+            _btnAtten.titleLabel.font = [UIFont systemFontOfSize:13];
             
             _imagePic = [[UIImageView alloc] initWithFrame:CGRectMake(0, _imageAvtar.bottom + 15, FULL_WIDTH, ScaleHeight(350))];
             
@@ -58,7 +56,6 @@
             _labFabulous = [UILabel mlt_labelWithText:@"" color:[UIColor mlt_colorWithHexString:@"#bdbdbd" alpha:1] align:NSTextAlignmentRight font:[UIFont systemFontOfSize:12] bkColor:nil frame:CGRectMake(FULL_WIDTH / 2, _labTime.top, 50, 15)];
             
             _labTextInfor = [UILabel mlt_labelWithText:@"" color:[UIColor mlt_colorWithHexString:@"#bdbdbd" alpha:1] align:NSTextAlignmentLeft font:[UIFont systemFontOfSize:12] bkColor:nil frame:CGRectMake(FULL_WIDTH / 2 + 15, _labTime.top, FULL_WIDTH - 30, 0)];
-
             
             
             _btnCollection = [[UIButton alloc] init];
@@ -185,41 +182,15 @@
 
     [WYShareView showShareViewWithPublishContent:@{@"text" :@"11111",
                                                    @"desc":@"2222",
-                                                   @"image":@[[UIImage imageNamed:@"iconShare"]],
-                                                   @"url"  :@"http://t.finance.le.com/news/1548202501019"}
+                                                   @"image":@[_imagePic.image],
+                                                   @"url"  :@""}
                                           Result:^(ShareType type, BOOL isSuccess) {
                                               
                                               
                                               //回调
                                           }];
-//    __weak typeof(self) weakSelf = self;
-//
-//    //显示分享面板
-//    [UMSocialUIManager showShareMenuViewInWindowWithPlatformSelectionBlock:^(UMSocialPlatformType platformType, NSDictionary *userInfo)
-//     {
-//        // 根据获取的platformType确定所选平台进行下一步操作
-//         [weakSelf shareTextToPlatformType:platformType];
-//
-//    }];
-    
 }
 
-//分享文本
-- (void)shareTextToPlatformType:(UMSocialPlatformType)platformType
-{
-    //创建分享消息对象
-    UMSocialMessageObject *messageObject = [UMSocialMessageObject messageObject];
-    //设置文本
-    messageObject.text = @"社会化组件UShare将各大社交平台接入您的应用，快速武装App。";
-    //调用分享接口
-    [[UMSocialManager defaultManager] shareToPlatform:platformType messageObject:messageObject currentViewController:self completion:^(id data, NSError *error) {
-        if (error) {
-            NSLog(@"************Share fail with error %@*********",error);
-        }else{
-            NSLog(@"response data is %@",data);
-        }
-    }];
-}
 
 
 - (void)makeDatacellData:(BTHomePageEntity *)homePage index:(NSInteger)indexpath{
@@ -230,6 +201,36 @@
     _homePageEntity = homePage;
     
     BTHomeUserEntity *userEntity = [BTHomeUserEntity yy_modelWithJSON:homePage.userVo];
+    
+    if ([userEntity.isFollowed integerValue] == 0) {
+        
+        _btnAtten.frame = CGRectMake(FULL_WIDTH - 65, 15, 50, 25);
+        [_btnAtten setTitle:@"+关注" forState:UIControlStateNormal];
+        
+        _btnAtten.layer.borderColor = [UIColor colorWithHexString:@"#fd8671"].CGColor;
+        
+        _btnAtten.layer.borderWidth = 1;
+        
+        _btnAtten.layer.cornerRadius = 1.5;
+
+        
+        [_btnAtten setTitleColor:[UIColor colorWithHexString:@"#fd8671"] forState:UIControlStateNormal];
+        
+        
+    }else {
+        
+        [_btnAtten setTitle:@"..." forState:UIControlStateNormal];
+        
+        _btnAtten.frame = CGRectMake(FULL_WIDTH - 35, 13, 30, 20);
+
+        
+        [_btnAtten setTitleColor:[UIColor colorWithHexString:@"#616161"] forState:UIControlStateNormal];
+        
+        _btnAtten.layer.borderColor = [UIColor whiteColor].CGColor;
+        
+        _btnAtten.layer.borderWidth = 0;
+
+    }
 
     _labName.text = userEntity.nickName;
     
@@ -239,148 +240,176 @@
     
     _labFabulous.text = [NSString stringWithFormat:@"%@赞",homePage.likeCount];
     
-    
-    [_imagePic sd_setImageWithURL:[NSURL URLWithString:homePage.picUrl] placeholderImage:nil];
-    
-    UIImage *iamgeshare = [UIImage imageNamed:@"share"];
-    
-    UIImage *iamgeInformation = [UIImage imageNamed:@"information"];
+    UIImage *cachedImage = [[SDImageCache sharedImageCache] imageFromDiskCacheForKey:homePage.picUrl];
 
-    UIImage *iamgeCollectionSelect = [UIImage imageNamed:@"collection_select"];
-    
-    UIImage *iamgeCollection = [UIImage imageNamed:@"collection"];
-    
-    
-
-    // 是否已经点赞
-    _btnCollection.selected = [homePage.isLiked boolValue];
-    
-    [_btnCollection setImage:iamgeCollection forState:UIControlStateNormal];
-    
-    [_btnCollection setImage:iamgeCollectionSelect forState:UIControlStateSelected];
-
-    _btnCollection.frame = CGRectMake(_labFabulous.right + 15, _imagePic.bottom + 12, iamgeCollection.size.width, iamgeCollection.size.height);
-    
-    
-    [_btnComment setImage:iamgeInformation forState:UIControlStateNormal];
-
-    _btnComment.frame = CGRectMake(_btnCollection.right + 24, _imagePic.bottom + 12, iamgeCollection.size.width, iamgeCollection.size.height);
-    
-    _btnComment.frame = CGRectMake(_btnCollection.right + 24, _imagePic.bottom + 12, 22, 22);
-    
-    [_btnShare setImage:iamgeshare forState:UIControlStateNormal];
-
-    _btnShare.frame = CGRectMake(_btnComment.right + 24, _imagePic.bottom + 12, iamgeCollection.size.width, iamgeCollection.size.height);
-    
-    NSMutableArray *arrCommentList = [NSMutableArray array];
-    
-    if (homePage.partCommentList.count > 0) {
+    if (!cachedImage) {
         
-        for (NSDictionary *dicList in homePage.partCommentList) {
+        [_imagePic sd_setImageWithURL:[NSURL URLWithString:homePage.picUrl] completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, NSURL *imageURL) {
             
-            BTHomeComment *homeComment = [BTHomeComment yy_modelWithJSON:dicList];
+            if (_delegate && [_delegate respondsToSelector:@selector(reloadTableviewDatas)]) {
+                
+                [self.delegate reloadTableviewDatas];
+                
+            }
             
-            [arrCommentList addObject:homeComment];
-            
-        }
+        }];
         
-    }
-    
-    CGFloat heightLab = 0.0;
-    
-    CGFloat heightLabTwo = 0.0;
-    
-    for (int i = 0; i < arrCommentList.count; i++) {
-        
-        BTHomeComment *comment = [arrCommentList objectAtIndex:i];
-        
-        UILabel *labComment = [[UILabel alloc] initWithFrame:CGRectMake(_imageAvtar.left, heightLab + _labDescrp.bottom + 15, FULL_WIDTH - 30, 0)];
-        
-        // 设置label的行间距
-        NSMutableParagraphStyle  *paragraphStyle = [[NSMutableParagraphStyle alloc] init];
-        
-        
-        [paragraphStyle  setLineSpacing:8];
-        
-        NSMutableAttributedString  *setString;
-        
-        setString = [[NSMutableAttributedString alloc] initWithString:comment.content];
-        
-        [setString  addAttribute:NSParagraphStyleAttributeName value:paragraphStyle range:NSMakeRange(0, [comment.content length])];
-        
-        labComment.attributedText = setString;
-        
-        labComment.numberOfLines = 3;
-        
-        labComment.font = [UIFont systemFontOfSize:14];
-        
-        [labComment sizeToFit];
-        
-        heightLab += labComment.height + 10;
-        
-        // 可能会有问题还需要修改
-        if (i == arrCommentList.count - 1 && i > 1) {
-            
-            heightLabTwo = heightLab + labComment.height;
-        }else {
-        
-            heightLabTwo = heightLab;
-        }
-        
-    }
-    
-    
-    _labTextInfor.text = homePage.textInfo;
-    
-    NSArray *textArry = [self getSeparatedLinesFromLabel:_labTextInfor];
-    
-    int font = 15;
-    
-    CGFloat height = 0.0;
-    
-    
-    // 没有评论和描述高度为0
-    if (arrCommentList.count == 0 && homePage.textInfo.length == 0) {
-        
-        height = 0;
-
     }else {
         
-        height = font * (textArry.count + 1) + heightLabTwo + 10;
+        if (cachedImage) {
+            
+            CGFloat heightSize = cachedImage.size.height / cachedImage.size.width;
+            
+            _imagePic.frame = CGRectMake(0, _imageAvtar.bottom + 15, FULL_WIDTH, FULL_WIDTH * heightSize);
+            
+            [_imagePic setImage:cachedImage];
+            
+            _labTime.frame = CGRectMake(_imageAvtar.left, _imagePic.bottom + 15, 150, 18);
+            
+            _labFabulous.frame = CGRectMake(FULL_WIDTH / 2, _labTime.top, 50, 15);
+            
+            _labTextInfor.frame = CGRectMake(FULL_WIDTH / 2 + 15, _labTime.top, FULL_WIDTH - 30, 0);
+            
+            
+            UIImage *iamgeshare = [UIImage imageNamed:@"share"];
+            
+            UIImage *iamgeInformation = [UIImage imageNamed:@"information"];
+            
+            UIImage *iamgeCollectionSelect = [UIImage imageNamed:@"collection_select"];
+            
+            UIImage *iamgeCollection = [UIImage imageNamed:@"collection"];
+            
+            
+            // 是否已经点赞
+            _btnCollection.selected = [homePage.isLiked boolValue];
+            
+            [_btnCollection setImage:iamgeCollection forState:UIControlStateNormal];
+            
+            [_btnCollection setImage:iamgeCollectionSelect forState:UIControlStateSelected];
+            
+            _btnCollection.frame = CGRectMake(_labFabulous.right + 15, _imagePic.bottom + 12, iamgeCollection.size.width, iamgeCollection.size.height);
+            
+            [_btnComment setImage:iamgeInformation forState:UIControlStateNormal];
+            
+            _btnComment.frame = CGRectMake(_btnCollection.right + 24, _imagePic.bottom + 12, iamgeCollection.size.width, iamgeCollection.size.height);
+            
+            _btnComment.frame = CGRectMake(_btnCollection.right + 24, _imagePic.bottom + 12, 22, 22);
+            
+            [_btnShare setImage:iamgeshare forState:UIControlStateNormal];
+            
+            _btnShare.frame = CGRectMake(_btnComment.right + 24, _imagePic.bottom + 12, iamgeCollection.size.width, iamgeCollection.size.height);
+            
+            NSMutableArray *arrCommentList = [NSMutableArray array];
+            
+            if (homePage.partCommentList.count > 0) {
+                
+                for (NSDictionary *dicList in homePage.partCommentList) {
+                    
+                    BTHomeComment *homeComment = [BTHomeComment yy_modelWithJSON:dicList];
+                    
+                    [arrCommentList addObject:homeComment];
+                    
+                }
+                
+            }
+            
+            CGFloat heightLab = 0.0;
+            
+            CGFloat heightLabTwo = 0.0;
+            
+            for (int i = 0; i < arrCommentList.count; i++) {
+                
+                BTHomeComment *comment = [arrCommentList objectAtIndex:i];
+                
+                UILabel *labComment = [[UILabel alloc] initWithFrame:CGRectMake(_imageAvtar.left, heightLab + _labDescrp.bottom + 15, FULL_WIDTH - 30, 0)];
+                
+                // 设置label的行间距
+                NSMutableParagraphStyle  *paragraphStyle = [[NSMutableParagraphStyle alloc] init];
+                
+                
+                [paragraphStyle  setLineSpacing:8];
+                
+                NSMutableAttributedString  *setString;
+                
+                setString = [[NSMutableAttributedString alloc] initWithString:comment.content];
+                
+                [setString  addAttribute:NSParagraphStyleAttributeName value:paragraphStyle range:NSMakeRange(0, [comment.content length])];
+                
+                labComment.attributedText = setString;
+                
+                labComment.numberOfLines = 3;
+                
+                labComment.font = [UIFont systemFontOfSize:14];
+                
+                [labComment sizeToFit];
+                
+                heightLab += labComment.height + 10;
+                
+                // 可能会有问题还需要修改
+                if (i == arrCommentList.count - 1 && i > 1) {
+                    
+                    heightLabTwo = heightLab + labComment.height;
+                }else {
+                    
+                    heightLabTwo = heightLab;
+                }
+                
+            }
+            
+            
+            _labTextInfor.text = homePage.textInfo;
+            
+            NSArray *textArry = [self getSeparatedLinesFromLabel:_labTextInfor];
+            
+            int font = 15;
+            
+            CGFloat height = 0.0;
+            
+            
+            // 没有评论和描述高度为0
+            if (arrCommentList.count == 0 && homePage.textInfo.length == 0) {
+                
+                height = 0;
+                
+            }else {
+                
+                height = font * (textArry.count + 1) + heightLabTwo + 10;
+                
+            }
+            
+            _labDescrp = [OpenDetailsView initWithFrame:CGRectMake(_imageAvtar.left, _labTime.bottom + 15, FULL_WIDTH - 30, height) text:homePage.textInfo totalCommentMsg:homePage.totalCommentMsg comment:arrCommentList font:font numberOfRow:(int)textArry.count + 1 indexPath:indexpath block:^(CGFloat height, NSInteger indexpath) {
+                
+                _labDescrp.frame = CGRectMake(_imageAvtar.left, _labTime.bottom + 15, FULL_WIDTH - 30, height);
+                
+                if (_delegate && [_delegate respondsToSelector:@selector(reloadTableView:height:)]) {
+                    
+                    _heightCell = _labDescrp.bottom + 20;
+                    
+                    [self.delegate reloadTableView:indexpath height:_heightCell];
+                    
+                }
+                
+            }];
+            
+            
+            [self.contentView addSubview:_labDescrp];
+            
+            if (_heightCell == 0) {
+                
+                _heightCell = _labDescrp.bottom + 10;
+                
+            }
+            
+            if (_delegate && [_delegate respondsToSelector:@selector(reloadTableViewheight:)]) {
+                
+                _heightCell = _labDescrp.bottom + 20;
+                
+                [self.delegate reloadTableViewheight:_heightCell];
+                
+            }
+        }
 
     }
-    
-    _labDescrp = [OpenDetailsView initWithFrame:CGRectMake(_imageAvtar.left, _labTime.bottom + 15, FULL_WIDTH - 30, height) text:homePage.textInfo totalCommentMsg:homePage.totalCommentMsg comment:arrCommentList font:font numberOfRow:(int)textArry.count + 1 indexPath:indexpath block:^(CGFloat height, NSInteger indexpath) {
-        
-        _labDescrp.frame = CGRectMake(_imageAvtar.left, _labTime.bottom + 15, FULL_WIDTH - 30, height);
-        
-        if (_delegate && [_delegate respondsToSelector:@selector(reloadTableView:height:)]) {
-            
-            _heightCell = _labDescrp.bottom + 20;
-
-            [self.delegate reloadTableView:indexpath height:_heightCell];
-        
-        }
-        
-    }];
-    
-    
-    [self.contentView addSubview:_labDescrp];
-    
-        if (_heightCell == 0) {
-            
-            _heightCell = _labDescrp.bottom + 10;
-            
-        }
-    
-    if (_delegate && [_delegate respondsToSelector:@selector(reloadTableViewheight:)]) {
-        
-        _heightCell = _labDescrp.bottom + 20;
-        
-        [self.delegate reloadTableViewheight:_heightCell];
-        
-    }
-
     
 }
 

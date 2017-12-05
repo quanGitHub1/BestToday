@@ -20,11 +20,17 @@
             // code 等于200 就代表请求成功
             NSString *code = responseObject[@"code"];
             
-            if ([code integerValue] == 200) {
+            if ([code integerValue] == 0) {
                 
                 NSDictionary *dicData = responseObject[@"data"];
                 
                 if (dicData && [dicData isKindOfClass:[NSDictionary class]]) {
+                                        
+                    BTMeEntity *userEntity = [BTMeEntity yy_modelWithJSON:dicData];
+                    
+                    [BTLoginService keyedArchiver:userEntity key:@"SaveUserEntity" path:kSaveUserEntityPath];
+                    
+                    [[BTMeEntity shareSingleton] manageLoginData];
                     
                     completion(YES);
                     

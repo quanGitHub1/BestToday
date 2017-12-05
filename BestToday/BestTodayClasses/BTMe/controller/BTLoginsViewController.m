@@ -7,16 +7,16 @@
 //
 
 #import "BTLoginsViewController.h"
-//#import "WXApiRequestHandler.h"
-//#import "WXApiManager.h"
 #import "BTLoginService.h"
 #import "WechatAuthSDK.h"
+#import "WXApiRequestHandler.h"
+#import "WXApiManager.h"
 
 static NSString *kAuthScope = @"snsapi_message,snsapi_userinfo,snsapi_friend,snsapi_contact";
-static NSString *kAuthOpenID = @"0c806938e2413ce73eef92cc3";
-static NSString *kAuthState = @"xxx";
+static NSString *kAuthOpenID = @"wx8910bc5d166f699a";
+static NSString *kAuthState = @"今日最佳";
 
-@interface BTLoginsViewController ()<WechatAuthAPIDelegate>
+@interface BTLoginsViewController ()<WechatAuthAPIDelegate, WXApiManagerDelegate>
 
 @property (nonatomic, strong) BTLoginService *loginService;
 
@@ -36,7 +36,6 @@ static NSString *kAuthState = @"xxx";
     
     self.navigationBar.hidden = YES;
     
-//    [WXApiManager sharedManager].delegate = self;
     
     _loginImage.userInteractionEnabled = YES;
     //创建手势 使用initWithTarget:action:的方法创建
@@ -51,37 +50,55 @@ static NSString *kAuthState = @"xxx";
     //别忘了添加到testView上
     [_loginImage addGestureRecognizer:tap];
     
-  
+    [WXApiManager sharedManager].delegate = self;
+
     
 
     // Do any additional setup after loading the view from its nib.
 }
 
+//成功登录
+- (void)onAuthFinish:(int)errCode AuthCode:(NSString *)authCode
+{
+    NSLog(@"onAuthFinish");
+    
+    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"onAuthFinish"
+                                                    message:[NSString stringWithFormat:@"authCode:%@ errCode:%d", authCode, errCode]
+                                                   delegate:self
+                                          cancelButtonTitle:@"OK"
+                                          otherButtonTitles:nil, nil];
+    [alert show];
+}
+
 - (void)tapView:(UITapGestureRecognizer*)gesTap{
 
-//    [WXApiRequestHandler sendAuthRequestScope: kAuthScope
-//                                        State:kAuthState
-//                                       OpenID:kAuthOpenID
-//                             InViewController:self];
+    [WXApiRequestHandler sendAuthRequestScope: kAuthScope
+                                        State:kAuthState
+                                       OpenID:kAuthOpenID
+                             InViewController:self];
     
 }
 
-//- (void)managerDidRecvAuthResponse:(SendAuthResp *)response {
-//
-////    NSDictionary *dic = @{
-////                          @"appType": @"iOS",
-////                          @"code":response.code,
-////                          @"phoneModel":[MLTUtils getCurrentDevicePlatform],
-////                          @"appVersion":[MLTUtils appVersion]
-////                          };
-////
-////    [self.loginService thirdPartyLogin:dic completion:^(BOOL isSuccess) {
-////
-////        NSLog(@"1111111298908080-8");
-////
-////    }];
-//    
-//}
+
+#pragma mark - WXApiManagerDelegate
+
+- (void)managerDidRecvAuthResponse:(SendAuthResp *)response {
+
+    NSMutableDictionary *dic = [NSMutableDictionary dictionary];
+    
+    [dic setValue:response.code forKey:@"code"];
+
+    [self.loginService thirdPartyLogin:dic completion:^(BOOL isSuccess) {
+        
+        [self dismissViewControllerAnimated:YES completion:^{
+            
+            self.loginCallBack(@"1111");
+            
+        }];
+
+    }];
+    
+}
 
 
 #pragma mark - lazy

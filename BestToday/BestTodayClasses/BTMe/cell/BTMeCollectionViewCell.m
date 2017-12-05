@@ -36,7 +36,7 @@
 
 - (void)makeLiveFiannceCellData:(BTMeResourceVoList *)resourceVolist{
 
-    [_imagePic sd_setImageWithURL:[NSURL URLWithString:resourceVolist.picUrl] placeholderImage:nil];
+    [_imagePic sd_setImageWithURL:[NSURL URLWithString:resourceVolist.smallPicUrl] placeholderImage:nil];
 
     _imagePic.backgroundColor = [UIColor colorWithHexString:resourceVolist.backgroundColor];
 }

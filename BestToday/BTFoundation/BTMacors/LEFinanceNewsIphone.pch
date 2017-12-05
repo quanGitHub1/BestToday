@@ -34,4 +34,5 @@
 #import "Header.h"
 #import "UIImageView+WebCache.h"
 #import "SVProgressHUD.h"
+#import "BTMeEntity.h"
 #endif /* LEFinanceNewsIphone_pch */

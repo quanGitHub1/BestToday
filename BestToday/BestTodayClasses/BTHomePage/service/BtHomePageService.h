@@ -31,4 +31,8 @@
 - (void)loadqueryUnFollowUser:(NSInteger)followedUserId completion:(void(^)(BOOL isSuccess, BOOL isCache))completion;
 
 
+// 关注接口
+- (void)loadqueryFollowUser:(NSInteger)followedUserId completion:(void(^)(BOOL isSuccess, BOOL isCache))completion;
+
+
 @end

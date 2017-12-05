@@ -20,9 +20,12 @@
 
 - (void)reloadTableViewheight:(CGFloat)height;
 
-
+- (void)reloadTableviewDatas;
 
 @end
+
+typedef void(^updateCellBlock)(NSInteger indexpathRow);
+
 
 @interface BTHomePageTableViewCell : UITableViewCell<UMSocialShareMenuViewDelegate>
 
@@ -65,6 +68,9 @@
 @property (nonatomic, strong) BTHomePageEntity *homePageEntity;
 
 @property (nonatomic) BOOL cell;
+
+@property (nonatomic, copy) updateCellBlock updateCellBlock;
+
 
 - (void)makeDatacellData:(BTHomePageEntity *)homePage index:(NSInteger)indexpath;
 

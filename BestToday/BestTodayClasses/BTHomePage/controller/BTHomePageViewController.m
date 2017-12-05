@@ -39,26 +39,35 @@
     self.view.backgroundColor = [UIColor whiteColor];
     self.navigationBar.title = @"今日最佳";
     
-    _dicCell = [[NSMutableDictionary alloc] init];
+    if ([BTMeEntity shareSingleton].isLogin) {
+        _dicCell = [[NSMutableDictionary alloc] init];
+        
+        [[BTHomeOpenHander shareHomeOpenHander] initDataArry];
+        
+        [self setupTableView];
+        
+        [self loadData];
+    }else {
+    
+        BTLoginsViewController *loginvc = [[BTLoginsViewController alloc] init];
+    
+        MGJNavigationController *navigationController = [[MGJNavigationController alloc] initWithRootViewController:loginvc];
+    
+        [self presentViewController:navigationController animated:YES completion:^{
     
     
-    [[BTHomeOpenHander shareHomeOpenHander] initDataArry];
-
-    [self setupTableView];
+        }];
     
-    [self loadData];
-
-
-//    BTLoginsViewController *loginvc = [[BTLoginsViewController alloc] init];
-//    
-//    
-//    MGJNavigationController *navigationController = [[MGJNavigationController alloc] initWithRootViewController:loginvc];
-//    
-//    [self presentViewController:navigationController animated:YES completion:^{
-//        
-//        
-//    }];
+       loginvc.loginCallBack = ^(NSString *fromViewController) {
     
+           [[BTHomeOpenHander shareHomeOpenHander] initDataArry];
+    
+           [self setupTableView];
+           
+           [self loadData];
+           
+       };
+    }
 }
 
 - (void)setupTableView{
@@ -139,7 +148,7 @@
     
 }
 
-/** 关注我的接口 */
+/** 查询我的关注用户列表接口 */
 - (void)requestAnnouncementData{
     
     [self.homePageService loadqueryMyFollowedUsers:1 completion:^(BOOL isSuccess, BOOL isCache) {
@@ -158,6 +167,7 @@
     }];
 }
 
+/** 分页查询首页已关注图片资源列表接口 */
 - (void)requestQueryFollowedResource{
 
     [self.homePageService loadqueryFollowedResource:0 pageAssistParam:_pageAssistParam completion:^(BOOL isSuccess, BOOL isCache, NSString* pageAssistParam) {
@@ -174,6 +184,12 @@
         }
     }];
 }
+
+
+- (void)reloadTableviewDatas{
+    [self.tableView reloadData];
+}
+
 
 #pragma mark - BTHomepageViewDelegate
 
@@ -200,7 +216,14 @@
         
         BTHomePageTableViewCell *announcementCell = [_dicCell objectForKey:[NSString stringWithFormat:@"indexPath%ld", indexPath.row]];
         
-        return announcementCell.heightCell;
+        if (announcementCell.heightCell > 0) {
+            return announcementCell.heightCell;
+
+        }else {
+        
+            return 800;
+        }
+        
     }
     
     return 0;
@@ -230,14 +253,21 @@
     
     [cell makeDatacellData:[self.homePageService.arrFollowedResource objectAtIndex:indexPath.row] index:indexPath.row];
     
+    
     if (![[_dicCell allKeys] containsObject:[NSString stringWithFormat:@"indexPath%ld", indexPath.row]]) {
         
-        [_dicCell setObject:cell forKey:[NSString stringWithFormat:@"indexPath%ld", indexPath.row]];
+        [_dicCell setObject: cell forKey:[NSString stringWithFormat:@"indexPath%ld", indexPath.row]];
         
     }
     
+    cell.updateCellBlock = ^(NSInteger indexpathRow) {
+        
+        [self.tableView reloadData];
+    };
+    
     return cell;
 }
+
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
 
@@ -253,27 +283,32 @@
 
 - (void)onclickBtnAtten:(UIButton *)btn{
 
-    UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"" message:@"" preferredStyle:UIAlertControllerStyleAlert];
-    
-    UIAlertAction *canAction = [UIAlertAction actionWithTitle:@"取消关注" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+    if ([btn.titleLabel.text isEqualToString:@"..."]) {
+        UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"" message:@"" preferredStyle:UIAlertControllerStyleAlert];
         
-        [self requestUnFollowUser:btn.tag];
+        UIAlertAction *canAction = [UIAlertAction actionWithTitle:@"取消关注" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+            
+            [self requestUnFollowUser:btn.tag];
+            
+        }];
         
-    }];
-    
-    UIAlertAction *destructiveAction = [UIAlertAction actionWithTitle:@"置顶该用户" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+        UIAlertAction *destructiveAction = [UIAlertAction actionWithTitle:@"置顶该用户" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+            
+            [self requestSetTopUser:btn.tag isTopped:1];
+            
+        }];
         
-        [self requestSetTopUser:btn.tag isTopped:1];
+        UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleCancel handler:nil];
         
-    }];
+        [alertController addAction:canAction];
+        [alertController addAction:destructiveAction];
+        [alertController addAction:cancelAction];
+        [self presentViewController:alertController animated:YES completion:nil];
+    }else {
     
-    UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleCancel handler:nil];
-    
-    [alertController addAction:canAction];
-    [alertController addAction:destructiveAction];
-    [alertController addAction:cancelAction];
-    [self presentViewController:alertController animated:YES completion:nil];
-    
+        [self requestFollowUser:btn.tag];
+    }
+   
 }
 
 // 置顶用户/取消置顶接口
@@ -286,14 +321,14 @@
     
     [self.homePageService loadquerySetTopUser:isTopped followedUserId:[userEntity.userId integerValue] completion:^(BOOL isSuccess, BOOL isCache) {
         
-        
+        [self requestAnnouncementData];
         
     }];
     
 }
 
 
-// 置顶用户/取消置顶接口
+// 取消关注接口
 - (void)requestUnFollowUser:(NSInteger)index{
     
     BTHomePageEntity *pageEntity = [_homePageService.arrFollowedResource objectAtIndex:index];
@@ -302,6 +337,20 @@
     
     [self.homePageService loadqueryUnFollowUser:[userEntity.userId integerValue] completion:^(BOOL isSuccess, BOOL isCache) {
         
+        
+        
+    }];
+}
+
+
+// 关注接口
+- (void)requestFollowUser:(NSInteger)index{
+    
+    BTHomePageEntity *pageEntity = [_homePageService.arrFollowedResource objectAtIndex:index];
+    
+    BTHomeUserEntity *userEntity = [BTHomeUserEntity yy_modelWithJSON:pageEntity.userVo];
+    
+    [self.homePageService loadqueryFollowUser:[userEntity.userId integerValue] completion:^(BOOL isSuccess, BOOL isCache) {
         
         
     }];

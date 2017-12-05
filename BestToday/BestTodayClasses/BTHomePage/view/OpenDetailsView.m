@@ -71,7 +71,12 @@
             
             NSString *str = [NSString stringWithFormat:@"%@",_textArr[row - 2]];
             int number = (int)str.length;
-            str = [str substringToIndex:number - 8];
+            
+            if (str.length > 8) {
+                
+                str = [str substringToIndex:number - 8];
+
+            }
             
             NSString *showStr1 = [NSString stringWithFormat:@"%@...",str];
             CGFloat width = showStr1.length * 16;
