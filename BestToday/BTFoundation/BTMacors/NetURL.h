@@ -9,7 +9,7 @@
 #ifndef NetURL_h
 #define NetURL_h
 
-#ifdef DEBUG    //// 测试环境
+//#ifdef DEBUG    //// 测试环境
 
 // 用户登录
 #define BTUserLogin   @"http://zuijia365.com/todayHot/app/user/wxAppUserLogin.json"
@@ -47,7 +47,6 @@
 // 查询关注我的用户(粉丝)列表接口
 #define BTqueryMyFansUsers   @"http://zuijia365.com/todayHot/app/user/queryMyFansUsers.json"
 
-
 // 我点赞过的图片资源接口
 #define BTqueryCommentResourceByPage  @"http://zuijia365.com/todayHot/app/resource/queryCommentResourceByPage.json"
 
@@ -65,11 +64,11 @@
 #define BTqueryMeMessage   @"http://zuijia365.com/todayHot/app/message/queryMyMessages.json"
 
 
-#else         //////// 线上环境
-
-
-
-#endif
+//#else         //////// 线上环境
+//
+//
+//
+//#endif
 
 
 #endif /* NetURL_h */

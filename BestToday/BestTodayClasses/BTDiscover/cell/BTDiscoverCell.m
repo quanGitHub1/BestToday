@@ -24,11 +24,11 @@
     return self;
 }
 
-- (void)setImageUrl:(NSString *)imageUrl
-{
+- (void)setImageUrl:(NSString *)imageUrl{
     //注意cell里面的控件 使用的位置 是相对于cell 的位置的 所以使用bounds
     _imageView = [[UIImageView alloc]initWithFrame:self.bounds];
-    _imageView.backgroundColor = kClickColor;
+    _imageView.backgroundColor =[UIColor clearColor];
+//    _imageView.contentMode = UIViewContentModeScaleAspectFit;
     [_imageView sd_setImageWithURL:[NSURL URLWithString:imageUrl]];
     [self addSubview:_imageView];
 }
