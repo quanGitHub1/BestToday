@@ -8,6 +8,7 @@
 
 #import "BTPublishViewController.h"
 #import "SQButtonTagView.h"
+#import "BTPhotoService.h"
 
 @interface BTPublishViewController ()
 
@@ -15,6 +16,7 @@
 @property (nonatomic, strong) UITextView *contentTextView;
 @property (nonatomic, strong) SQButtonTagView * classTagView;
 @property (nonatomic, strong) SQButtonTagView * subClassTagView;
+@property (nonatomic, strong) BTPhotoService * photoService;
 
 @end
 
@@ -23,7 +25,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
-    [self.navigationBar setLeftBarButton:[UIButton mlt_rightBarButtonWithImage:[UIImage imageNamed:@"info_backs"] highlightedImage:nil target:self action:@selector(navigationBackButtonClicked:) forControlEvents:UIControlEventTouchUpInside]];
+    [self.navigationBar setLeftBarButton:[UIButton mlt_rightBarButtonWithImage:[UIImage imageNamed:@"info_backs"] highlightedImage:nil target:self action:@selector(navigationBackButtonClicked) forControlEvents:UIControlEventTouchUpInside]];
     UIButton *rightBarButton = [UIButton mlt_buttonWithTitle:@"发布" image:nil highlightedImage:nil target:self action:@selector(submitAction) forControlEvents:UIControlEventTouchUpInside];
     [rightBarButton setTitleColor:[UIColor colorWithHexString:@"#fd8671"] forState:UIControlStateNormal];
     [self.navigationBar setRightBarButton:rightBarButton];
@@ -31,22 +33,25 @@
     [self setUpUI];
 }
 
-- (void)navigationBackButtonClicked:(UIButton *)button {
-    [self.navigationController popViewControllerAnimated:YES];
+- (void)navigationBackButtonClicked {
+    [self dismissViewControllerAnimated:YES completion:nil];
     UINavigationController *navC = (UINavigationController *)AppWindow.rootViewController;
     MLTTabBarController *tabBarVC = navC.viewControllers[0];
     [tabBarVC selectAtIndex:0];
 }
 
 - (void)submitAction{
-    
+    __weak __typeof(self)weakSelf = self;
+    [self.photoService uploadImage:_imageSource text:_contentTextView.text categoryId:@"" tagIdList:@"" completion:^(BOOL isSuccess, NSString *message) {
+        if (isSuccess) {
+            [weakSelf navigationBackButtonClicked];
+        }
+    }];
 }
 
 - (void)setUpUI{
     _submitImageView = [[UIImageView alloc] initWithFrame:CGRectMake(20, 100, 80, 80)];
-    
     [self.view addSubview:_submitImageView];
-    
     _contentTextView = [[UITextView alloc] initWithFrame:CGRectMake(120, 80, screenWidth-140, 120)];
     [self.view addSubview:_contentTextView];
     
@@ -56,6 +61,12 @@
     [self.view addSubview:_classTagView];
 }
 
+- (BTPhotoService *)homePageService {
+    if (!_photoService) {
+        _photoService = [[BTPhotoService alloc] init];
+    }
+    return _photoService;
+}
 
 
 - (void)didReceiveMemoryWarning {

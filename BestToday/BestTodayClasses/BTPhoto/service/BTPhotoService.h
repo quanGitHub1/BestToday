@@ -10,4 +10,8 @@
 
 @interface BTPhotoService : NSObject
 
+
+- (void)uploadImage:(UIImage *)image text:(NSString *)text categoryId:(NSString *)categoryId tagIdList:(NSString *)tagIdList completion:(void(^)(BOOL isSuccess, NSString *message))completion;
+
+
 @end

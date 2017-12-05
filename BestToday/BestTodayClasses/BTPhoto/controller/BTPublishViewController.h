@@ -10,4 +10,6 @@
 
 @interface BTPublishViewController : BTViewController
 
+@property (nonatomic, strong)UIImage *imageSource;
+
 @end
