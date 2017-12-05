@@ -10,6 +10,7 @@
 		4FF0E10CAF40BC06CA5E3585 /* libPods-BestToday.a in Frameworks */ = {isa = PBXBuildFile; fileRef = F2068EBEC2B2F928846BAA88 /* libPods-BestToday.a */; };
 		744DF52E1FB09EA700CF8796 /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 744DF52D1FB09EA700CF8796 /* Info.plist */; };
 		745581071FD3BAFF0062B561 /* BTHomeDetailPageTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 745581061FD3BAFF0062B561 /* BTHomeDetailPageTableViewCell.m */; };
+		7A1509E21FD68286000A3BEC /* BTUserEntity.m in Sources */ = {isa = PBXBuildFile; fileRef = 7A1509E11FD68286000A3BEC /* BTUserEntity.m */; };
 		7A16B9E11FB5899900E7EC3A /* MLTSegementView.m in Sources */ = {isa = PBXBuildFile; fileRef = 7A16B9E01FB5899900E7EC3A /* MLTSegementView.m */; };
 		7A16B9E41FB5979500E7EC3A /* MLTWaterflowLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = 7A16B9E31FB5979500E7EC3A /* MLTWaterflowLayout.m */; };
 		7A16B9E71FB597FB00E7EC3A /* BTMeCollectionView.m in Sources */ = {isa = PBXBuildFile; fileRef = 7A16B9E61FB597FB00E7EC3A /* BTMeCollectionView.m */; };
@@ -280,6 +281,8 @@
 		744DF52D1FB09EA700CF8796 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		745581051FD3BAFF0062B561 /* BTHomeDetailPageTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BTHomeDetailPageTableViewCell.h; sourceTree = "<group>"; };
 		745581061FD3BAFF0062B561 /* BTHomeDetailPageTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BTHomeDetailPageTableViewCell.m; sourceTree = "<group>"; };
+		7A1509E01FD68286000A3BEC /* BTUserEntity.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BTUserEntity.h; sourceTree = "<group>"; };
+		7A1509E11FD68286000A3BEC /* BTUserEntity.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BTUserEntity.m; sourceTree = "<group>"; };
 		7A16B9DF1FB5899900E7EC3A /* MLTSegementView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MLTSegementView.h; sourceTree = "<group>"; };
 		7A16B9E01FB5899900E7EC3A /* MLTSegementView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MLTSegementView.m; sourceTree = "<group>"; };
 		7A16B9E21FB5979500E7EC3A /* MLTWaterflowLayout.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MLTWaterflowLayout.h; sourceTree = "<group>"; };
@@ -1822,6 +1825,8 @@
 				7AA2BD3B1FAAFF8900864753 /* BTMeEntity.m */,
 				7A2429BE1FCBB5D500EE7948 /* BTMeResourceVoList.h */,
 				7A2429BF1FCBB5D500EE7948 /* BTMeResourceVoList.m */,
+				7A1509E01FD68286000A3BEC /* BTUserEntity.h */,
+				7A1509E11FD68286000A3BEC /* BTUserEntity.m */,
 			);
 			path = model;
 			sourceTree = "<group>";
@@ -2433,6 +2438,7 @@
 				7AA2BDA91FB15C4E00864753 /* GetMessageFromWXResp+responseWithTextOrMediaMessage.m in Sources */,
 				7AA2BDBA1FB1B0CA00864753 /* OpenDetailsView.m in Sources */,
 				7AA2BD301FAAFF3C00864753 /* BTPhotoEntity.m in Sources */,
+				7A1509E21FD68286000A3BEC /* BTUserEntity.m in Sources */,
 				7AA2BD571FAFFD3900864753 /* BTSpreadTableView.m in Sources */,
 				CBCD2EAA1FB4657100994037 /* FSAlbumView.swift in Sources */,
 				7AA2BDC51FB2D88E00864753 /* BTHomeComment.m in Sources */,

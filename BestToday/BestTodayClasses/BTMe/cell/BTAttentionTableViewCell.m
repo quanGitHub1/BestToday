@@ -57,7 +57,7 @@
     return self;
 }
 
-- (void)makeCellData:(BTMeEntity*)meEntity{
+- (void)makeCellData:(BTUserEntity *)meEntity{
 
     _labName.text = meEntity.nickName;
     

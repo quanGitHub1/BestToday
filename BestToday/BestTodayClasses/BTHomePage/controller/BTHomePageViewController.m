@@ -41,24 +41,31 @@
     
     _dicCell = [[NSMutableDictionary alloc] init];
     
-    
-    [[BTHomeOpenHander shareHomeOpenHander] initDataArry];
+   [[BTHomeOpenHander shareHomeOpenHander] initDataArry];
 
-    [self setupTableView];
-    
-    [self loadData];
+   [self setupTableView];
 
+   [self loadData];
 
-    BTLoginsViewController *loginvc = [[BTLoginsViewController alloc] init];
-    
-    
-    MGJNavigationController *navigationController = [[MGJNavigationController alloc] initWithRootViewController:loginvc];
-    
-    [self presentViewController:navigationController animated:YES completion:^{
-        
-        
-    }];
-    
+      
+//    BTLoginsViewController *loginvc = [[BTLoginsViewController alloc] init];
+//    
+//    MGJNavigationController *navigationController = [[MGJNavigationController alloc] initWithRootViewController:loginvc];
+//    
+//    [self presentViewController:navigationController animated:YES completion:^{
+//        
+//        
+//    }];
+//    
+//   loginvc.loginCallBack = ^(NSString *fromViewController) {
+//       
+//       [[BTHomeOpenHander shareHomeOpenHander] initDataArry];
+//       
+//       [self setupTableView];
+//       
+//       [self loadData];
+//       
+//   };
 }
 
 - (void)setupTableView{

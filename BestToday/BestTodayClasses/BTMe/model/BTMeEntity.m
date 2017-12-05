@@ -24,126 +24,105 @@
     return tManager;
 }
 
+- (instancetype)init {
+    
+    self = [super init];
+    
+    if (self) {
+        
+        BTMeEntity *userModel = [BTMeEntity keyedUnarchiver:@"SaveUserEntity"  path:kSaveUserEntityPath];
+        
+        self.nickName = !userModel.nickName ? @"":userModel.nickName;
+        
+        self.csessionId = !userModel.csessionId ? @"":userModel.csessionId;
 
-//- (instancetype)init {
-//    
-//    self = [super init];
-//    
-//    if (self) {
-//        
-////        LEMeUserEntity *userModel = [LEMeUserEntity keyedUnarchiver:@"SaveUserEntity"  path:kSaveUserEntityPath];
-////        
-////        self.userName = !userModel.userName ? @"":userModel.userName;
-////        
-////        self.userId = !userModel.userId ? @"":userModel.userId;
-////        
-////        self.userSex = !userModel.userSex ? @"":userModel.userSex;
-////        
-////        self.userDescribe = !userModel.userDescribe?@"":userModel.userDescribe;
-////        
-////        self.avatarUrl = !userModel.avatarUrl ? @"":userModel.avatarUrl;
-////        
-////        self.userPhone= !userModel.userPhone ? @"":userModel.userPhone;
-////        
-////        self.userSign= !userModel.userSign ? @"":userModel.userSign;
-////        
-////        self.isLogin = userModel.userId.length > 0 ? 1 : 0;
-//    }
-//    return self;
-//}
-//
-//- (void)manageLoginData{
-//    
-////    LEMeUserEntity *userModel = [LEMeUserEntity keyedUnarchiver:@"SaveUserEntity"  path:kSaveUserEntityPath];
-////    
-////    self.userName = !userModel.userName ? @"":userModel.userName;
-////    
-////    self.userId = !userModel.userId ? @"":userModel.userId;
-////    
-////    self.userSex = !userModel.userSex ? @"":userModel.userSex;
-////    
-////    self.userDescribe = !userModel.userDescribe?@"":userModel.userDescribe;
-////    
-////    self.avatarUrl = !userModel.avatarUrl ? @"":userModel.avatarUrl;
-////    
-////    self.userPhone= !userModel.userPhone ? @"":userModel.userPhone;
-////    
-////    self.userSign= !userModel.userSign ? @"":userModel.userSign;
-////    
-////    self.isLogin = userModel.userId.length > 0 ? 1 : 0;
-////    
-////    // 登录成功 发通知
-////    if (self.isLogin) {
-////        [[NSNotificationCenter defaultCenter] postNotificationName:LeTVLoginSDKUserDidLoginNotification object:nil];
-////    }
-//}
-//
-//- (void)logout{
-//    
-//    NSError * error = nil;
-//    
-//    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-//    
-//    NSString *thirdLogin = [defaults valueForKey:@"thirdLogins"];
-//    
-//    switch ([thirdLogin integerValue]) {
-//        case 1:
-//            [ShareSDK cancelAuthorize:SSDKPlatformTypeWechat];
-//            break;
-//        case 2:
-//            [ShareSDK cancelAuthorize:SSDKPlatformTypeQQ];
-//            break;
-//        case 3:
-//            [ShareSDK cancelAuthorize:SSDKPlatformTypeSinaWeibo];
-//            break;
-//        default:
-//            break;
-//    }
-//    
-//    if ([[NSFileManager defaultManager] fileExistsAtPath:kSaveUserEntityPath]) {
-//        
-//        [[NSFileManager defaultManager]removeItemAtPath:kSaveUserEntityPath error:&error];//删除
-//        
-//        [self manageLoginData];
-//        
-//        // 退出登录成功 发通知
-//        [[NSNotificationCenter defaultCenter] postNotificationName:LeTVLoginSDKUserDidLogoutNotification object:nil];
-//        
-//    }
-//    
-//}
-//
-//
-//- (id)initWithCoder:(NSCoder *)aDecoder
-//{
-//    NSLog(@"调用了initWithCoder方法");
-//    if (self = [super init]) {
-//        self.userName = [aDecoder decodeObjectForKey:@"nickName"];
-//        self.userId = [aDecoder decodeObjectForKey:@"uid"];
-//        self.userSex = [aDecoder decodeObjectForKey:@"sex"];
-//        self.userDescribe = [aDecoder decodeObjectForKey:@"intro"];
-//        self.avatarUrl = [aDecoder decodeObjectForKey:@"avatar"];
-//        self.userPhone = [aDecoder decodeObjectForKey:@"phone"];
-//        self.userSign = [aDecoder decodeObjectForKey:@"sign"];
-//        self.isLogin = [aDecoder decodeObjectForKey:@"isLogin"];
-//        
-//    }
-//    
-//    return self;
-//}
-//
-//- (void)encodeWithCoder:(NSCoder *)aCoder
-//{
-//    NSLog(@"调用了encodeWithCoder方法");
-//    [aCoder encodeObject:self.userName forKey:@"nickName"];
-//    [aCoder encodeObject:self.userId forKey:@"uid"];
-//    [aCoder encodeObject:self.avatarUrl forKey:@"avatar"];
-//    [aCoder encodeObject:self.userDescribe forKey:@"intro"];
-//    [aCoder encodeObject:self.userSex forKey:@"sex"];
-//    [aCoder encodeObject:self.userPhone forKey:@"phone"];
-//    [aCoder encodeObject:self.userSign forKey:@"sign"];
-//    [aCoder encodeBool:self.isLogin forKey:@"isLogin"];
-//    
-//}
+        self.userId = !userModel.userId ? @"":userModel.userId;
+        
+        self.gender = !userModel.gender ? @"":userModel.gender;
+        
+        self.introduction = !userModel.introduction?@"":userModel.introduction;
+        
+        self.avatarUrl = !userModel.avatarUrl ? @"":userModel.avatarUrl;
+        
+        self.country = !userModel.country ? @"":userModel.country;
+        
+        self.isLogin = userModel.userId.length > 0 ? 1 : 0;
+    }
+    return self;
+}
+
+- (void)manageLoginData{
+    
+    BTMeEntity *userModel = [BTMeEntity keyedUnarchiver:@"SaveUserEntity"  path:kSaveUserEntityPath];
+    
+    self.nickName = !userModel.nickName ? @"":userModel.nickName;
+    
+    self.csessionId = !userModel.csessionId ? @"":userModel.csessionId;
+    
+    self.userId = !userModel.userId ? @"":userModel.userId;
+    
+    self.gender = !userModel.gender ? @"":userModel.gender;
+    
+    self.introduction = !userModel.introduction?@"":userModel.introduction;
+    
+    self.avatarUrl = !userModel.avatarUrl ? @"":userModel.avatarUrl;
+    
+    self.country = !userModel.country ? @"":userModel.country;
+    
+    self.isLogin = userModel.userId.length > 0 ? 1 : 0;
+    
+    // 登录成功 发通知
+    if (self.isLogin) {
+        [[NSNotificationCenter defaultCenter] postNotificationName:@"LoginSDKUserDidLoginNotification" object:nil];
+    }
+}
+
+- (void)logout{
+    
+    NSError * error = nil;
+    
+    if ([[NSFileManager defaultManager] fileExistsAtPath:kSaveUserEntityPath]) {
+        
+        [[NSFileManager defaultManager]removeItemAtPath:kSaveUserEntityPath error:&error];//删除
+        
+        [self manageLoginData];
+        
+        // 退出登录成功 发通知
+        [[NSNotificationCenter defaultCenter] postNotificationName:@"LoginSDKUserDidLogoutNotification" object:nil];
+        
+    }
+    
+}
+
+
+- (id)initWithCoder:(NSCoder *)aDecoder
+{
+    NSLog(@"调用了initWithCoder方法");
+    if (self = [super init]) {
+        self.nickName = [aDecoder decodeObjectForKey:@"nickName"];
+        self.userId = [aDecoder decodeObjectForKey:@"userId"];
+        self.csessionId = [aDecoder decodeObjectForKey:@"ionId"];
+        self.gender = [aDecoder decodeObjectForKey:@"gender"];
+        self.introduction = [aDecoder decodeObjectForKey:@"introduction"];
+        self.avatarUrl = [aDecoder decodeObjectForKey:@"avatarUrl"];
+        self.country = [aDecoder decodeObjectForKey:@"country"];
+        self.isLogin = [aDecoder decodeObjectForKey:@"isLogin"];
+    }
+    
+    return self;
+}
+
+- (void)encodeWithCoder:(NSCoder *)aCoder
+{
+    NSLog(@"调用了encodeWithCoder方法");
+    [aCoder encodeObject:self.nickName forKey:@"nickName"];
+    [aCoder encodeObject:self.userId forKey:@"userId"];
+    [aCoder encodeObject:self.csessionId forKey:@"ionId"];
+    [aCoder encodeObject:self.avatarUrl forKey:@"avatar"];
+    [aCoder encodeObject:self.introduction forKey:@"introduction"];
+    [aCoder encodeObject:self.gender forKey:@"gender"];
+    [aCoder encodeObject:self.country forKey:@"country"];
+    [aCoder encodeBool:self.isLogin forKey:@"isLogin"];
+}
 
 @end

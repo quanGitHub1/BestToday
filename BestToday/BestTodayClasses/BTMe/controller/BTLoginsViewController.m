@@ -89,8 +89,12 @@ static NSString *kAuthState = @"今日最佳";
     [dic setValue:response.code forKey:@"code"];
 
     [self.loginService thirdPartyLogin:dic completion:^(BOOL isSuccess) {
-
-        NSLog(@"1111111298908080-8");
+        
+        [self dismissViewControllerAnimated:YES completion:^{
+            
+            self.loginCallBack(@"1111");
+            
+        }];
 
     }];
     

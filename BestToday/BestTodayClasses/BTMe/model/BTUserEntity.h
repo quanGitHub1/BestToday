@@ -1,29 +1,16 @@
 //
-//  BTMeEntity.h
+//  BTUserEntity.h
 //  BestToday
 //
-//  Created by leeco on 2017/11/2.
+//  Created by leeco on 2017/12/5.
 //  Copyright © 2017年 leeco. All rights reserved.
 //
 
 #import <Foundation/Foundation.h>
 
-/**
- 用户状态更新
- */
-typedef enum {
-    BTUserStatusLogout = 0, //登出状态
-    BTUserStatusLogin = 1, //登录状态
-} BTUserStatus;
-
-
-@interface BTMeEntity : NSObject
+@interface BTUserEntity : NSObject
 
 @property (nonatomic, strong) NSString *userId;  // 用户ID
-
-@property (nonatomic, strong) NSString *csessionId;
-
-@property (nonatomic, strong) NSString *stockId;
 
 @property (nonatomic, strong) NSString *nickName;  // 用户昵称
 
@@ -52,20 +39,5 @@ typedef enum {
 @property (nonatomic, strong) NSString *followCount;  // 关注数量
 
 @property (nonatomic, strong) NSString *publishCount;  // 发表数量
-
-
-+ (BTMeEntity *)shareSingleton;
-
-/**
- *  是否登录
- */
-@property (nonatomic, assign) BOOL isLogin;
-
-@property (nonatomic, assign) BTUserStatus userStatus;
-
-- (void)logout;
-
-// 管理数据
-- (void)manageLoginData;
 
 @end

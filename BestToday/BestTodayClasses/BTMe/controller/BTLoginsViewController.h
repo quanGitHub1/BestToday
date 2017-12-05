@@ -8,6 +8,12 @@
 
 #import "BTViewController.h"
 
+typedef  void(^callBackLoginIn)(NSString *fromViewController);
+
+
 @interface BTLoginsViewController : BTViewController
+
+@property (nonatomic, copy) callBackLoginIn loginCallBack;
+
 
 @end

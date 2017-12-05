@@ -287,9 +287,10 @@
         
         for (int i = 0; i < [_homePageEntity.partCommentList count]; i++) {
             
-            BTHomeComment *comment = [_homePageEntity.partCommentList objectAtIndex:i];
+            NSDictionary *dicpart = [_homePageEntity.partCommentList objectAtIndex:i];
             
-            UILabel *labComment;
+            BTHomeComment *comment = [BTHomeComment yy_modelWithJSON:dicpart];
+            
             
             // 如果没有描述 评论重0开始添加
             if (_labTextInfor.text.length == 0) {
@@ -303,7 +304,6 @@
             _labComment.textColor = [UIColor colorWithHexString:@"#616161"];
             
             _labComment.font = [UIFont systemFontOfSize:15];
-            
             
             // 把名字和评论拼接上
             NSString *strComment = [NSString stringWithFormat:@"%@： %@", comment.commentNickName, comment.content];
@@ -327,13 +327,13 @@
             [setString addAttribute:NSFontAttributeName value:[UIFont boldSystemFontOfSize:15] range:range];
             
             
-            labComment.attributedText = setString;
+            _labComment.attributedText = setString;
             
-            labComment.numberOfLines = 3;
+            _labComment.numberOfLines = 3;
             
-            [labComment sizeToFit];
+            [_labComment sizeToFit];
             
-            heightLab += labComment.height + 10;
+            heightLab += _labComment.height + 10;
             
             [self.contentView addSubview:_labComment];
             

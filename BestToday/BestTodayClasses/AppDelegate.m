@@ -39,7 +39,7 @@
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     // Override point for customization after application launch.
     
-//    [self shareSDKConfiguration];
+    [self shareSDKConfiguration];
 
     // APP入口
     [MLTUISkeletonModule shareInstance];

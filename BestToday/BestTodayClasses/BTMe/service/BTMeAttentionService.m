@@ -7,7 +7,7 @@
 //
 
 #import "BTMeAttentionService.h"
-#import "BTMeEntity.h"
+#import "BTUserEntity.h"
 
 @implementation BTMeAttentionService
 
@@ -47,7 +47,7 @@
 
                 for (NSDictionary *dic in datas) {
 
-                    BTMeEntity *userEntity = [BTMeEntity yy_modelWithDictionary:dic];
+                    BTUserEntity *userEntity = [BTUserEntity yy_modelWithDictionary:dic];
                     
                     [self.arrUserVoList addObject:userEntity];
                 }

@@ -9,7 +9,7 @@
 #import "BTAttentionMeViewController.h"
 #import "BTAttentionTableViewCell.h"
 #import "BTMeAttentionService.h"
-#import "BTMeEntity.h"
+#import "BTUserEntity.h"
 
 @interface BTAttentionMeViewController ()<UITableViewDelegate, UITableViewDataSource, LEBaseTableViewDelegate>
 
