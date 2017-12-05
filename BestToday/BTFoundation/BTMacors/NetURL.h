@@ -27,7 +27,7 @@
 #define BTqueryUnFollowUser   @"http://zuijia365.com/todayHot/app/user/unFollowUser.json"
 
 // 关注接口
-#define BTqueryFollowUser   @"http://zuijia365.com/todayHot/app/user/FollowUser.json"
+#define BTqueryFollowUser   @"http://zuijia365.com/todayHot/app/user/followUser.json"
 
 // 详情页随便看看
 #define BTqueryRecommendResourceByPage   @"http://zuijia365.com/todayHot/app/recommend/recommendResourceByPage.json"
