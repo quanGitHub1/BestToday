@@ -13,5 +13,53 @@
             stopOnStyle = "0">
          </BreakpointContent>
       </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "BestToday/BestTodayClasses/BTHomePage/controller/BTHomePageViewController.m"
+            timestampString = "534170011.816937"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "353"
+            endingLineNumber = "353"
+            landmarkName = "-requestFollowUser:"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "-[BTHomePageViewController requestFollowUser:]"
+                  moduleName = "BestToday"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/wangfaquan/Documents/BestToday/BestToday/BestTodayClasses/BTHomePage/controller/BTHomePageViewController.m"
+                  timestampString = "534172225.717954"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "353"
+                  endingLineNumber = "353"
+                  offsetFromSymbolStart = "244">
+               </Location>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "__46-[BTHomePageViewController requestFollowUser:]_block_invoke"
+                  moduleName = "BestToday"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/wangfaquan/Documents/BestToday/BestToday/BestTodayClasses/BTHomePage/controller/BTHomePageViewController.m"
+                  timestampString = "534172225.719614"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "356"
+                  endingLineNumber = "356"
+                  offsetFromSymbolStart = "20">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
    </Breakpoints>
 </Bucket>
