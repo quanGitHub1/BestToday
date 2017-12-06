@@ -18,6 +18,7 @@
 #import "BTHomeUserEntity.h"
 
 
+
 @interface BTHomePageViewController ()<LEBaseTableViewDelegate,UITableViewDataSource, UITableViewDelegate, BTSpreadTableViewDelegate, BTHomepageViewDelegate>
 
 @property (nonatomic, strong)BTTableview *tableView;
@@ -47,25 +48,24 @@
 
    [self loadData];
 
-      
-//    BTLoginsViewController *loginvc = [[BTLoginsViewController alloc] init];
-//    
-//    MGJNavigationController *navigationController = [[MGJNavigationController alloc] initWithRootViewController:loginvc];
-//    
-//    [self presentViewController:navigationController animated:YES completion:^{
-//        
-//        
-//    }];
-//    
-//   loginvc.loginCallBack = ^(NSString *fromViewController) {
-//       
-//       [[BTHomeOpenHander shareHomeOpenHander] initDataArry];
-//       
-//       [self setupTableView];
-//       
-//       [self loadData];
-//       
-//   };
+    BTLoginsViewController *loginvc = [[BTLoginsViewController alloc] init];
+    
+    MGJNavigationController *navigationController = [[MGJNavigationController alloc] initWithRootViewController:loginvc];
+    
+    [self presentViewController:navigationController animated:YES completion:^{
+        
+        
+    }];
+    
+   loginvc.loginCallBack = ^(NSString *fromViewController) {
+       
+       [[BTHomeOpenHander shareHomeOpenHander] initDataArry];
+       
+       [self setupTableView];
+       
+       [self loadData];
+       
+   };
 }
 
 - (void)setupTableView{
@@ -234,16 +234,12 @@
     static NSString * const cellID = @"mindCell";
     
     BTHomePageTableViewCell *cell = [tableView cellForRowAtIndexPath:indexPath]; //根据indexPath准确地取出一行，而不是从cell重用队列中取出
-    
-    
-    if (!cell) {
         
-        cell = [[BTHomePageTableViewCell alloc]initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:cellID];
-        
-        cell.delegate = self;
+    cell = [[BTHomePageTableViewCell alloc]initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:cellID];
+    
+    cell.delegate = self;
 
-        cell.selectionStyle=UITableViewCellSelectionStyleNone;
-    }
+    cell.selectionStyle=UITableViewCellSelectionStyleNone;
     
     [cell.btnAtten addTarget:self action:@selector(onclickBtnAtten:) forControlEvents:UIControlEventTouchUpInside];
     

@@ -221,7 +221,7 @@
 
 - (void)requestqueryUserById{
     
-    [self.meService loadqueryUserById:1001 completion:^(BOOL isSuccess, BOOL isCache) {
+    [self.meService loadqueryUserById:[[BTMeEntity shareSingleton].userId integerValue] completion:^(BOOL isSuccess, BOOL isCache) {
         
         if (isSuccess) {
             
@@ -235,6 +235,10 @@
 - (void)refreshHeaderView{
     
     
+    if (self.meService.arrByUser.count == 0) {
+        
+        return;
+    }
     BTMeEntity *meEntity = [self.meService.arrByUser objectAtIndex:0];
     
     [_imageAvtar sd_setImageWithURL:[NSURL URLWithString:meEntity.avatarUrl] placeholderImage:nil];
