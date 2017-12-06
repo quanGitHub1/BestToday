@@ -57,6 +57,10 @@
             
             _labTextInfor = [UILabel mlt_labelWithText:@"" color:[UIColor mlt_colorWithHexString:@"#bdbdbd" alpha:1] align:NSTextAlignmentLeft font:[UIFont systemFontOfSize:12] bkColor:nil frame:CGRectMake(FULL_WIDTH / 2 + 15, _labTime.top, FULL_WIDTH - 30, 0)];
             
+            
+            _viewLine = [[UIView alloc] initWithFrame:CGRectMake(0, _labTextInfor.bottom , FULL_WIDTH - 20, 10)];
+
+            
             _btnCollection = [[UIButton alloc] init];
             
             [_btnCollection addTarget:self action:@selector(onclickBtnCollection:) forControlEvents:UIControlEventTouchUpInside];
@@ -87,12 +91,12 @@
             
             [self.contentView addSubview:_btnShare];
             
-            [self.contentView addSubview:_viewLine];
-            
             [self.contentView addSubview:_labTextInfor];
             
             [self.contentView addSubview:_labDescrp];
             
+            [self.contentView addSubview:_viewLine];
+
         }
         return self;
         
@@ -425,7 +429,7 @@
     NSMutableParagraphStyle  *paragraphStyle = [[NSMutableParagraphStyle alloc] init];
     
     
-    [paragraphStyle  setLineSpacing:8];
+    [paragraphStyle  setLineSpacing:5];
     
     NSMutableAttributedString  *setString;
     
@@ -441,9 +445,13 @@
     
     [_labTextInfor sizeToFit];
     
+    _viewLine.frame = CGRectMake(_imageAvtar.left,  _labTextInfor.bottom + 2, FULL_WIDTH - 2 * _imageAvtar.left, 0.6);
+
+    _viewLine.backgroundColor = [UIColor colorWithHexString:@"#eeeeee"];
+
     CGFloat heightLab = 0.0;
     
-    for (int i = 0; i < [_homePageEntity.partCommentList count]; i++) {
+    for (int i = 0; i < ([_homePageEntity.partCommentList count] > 3 ? 3 : _homePageEntity.partCommentList.count); i++) {
         
         NSDictionary *dicpart = [_homePageEntity.partCommentList objectAtIndex:i];
         
@@ -452,10 +460,17 @@
         // 如果没有描述 评论重0开始添加
         if (_labTextInfor.text.length == 0) {
             
-            _labComment = [[UILabel alloc] initWithFrame:CGRectMake(_imageAvtar.left, _labTextInfor.bottom + 13.6 , FULL_WIDTH - 30, 0)];
+            _labComment = [[UILabel alloc] initWithFrame:CGRectMake(_imageAvtar.left, _labTextInfor.bottom + 13.6 + heightLab, FULL_WIDTH - 30, 0)];
+            
+            _viewLine.frame = CGRectMake(_imageAvtar.left,  _labTextInfor.bottom , FULL_WIDTH - 20, 0.6);
+            
+            
         }else {
             
-            _labComment = [[UILabel alloc] initWithFrame:CGRectMake(_imageAvtar.left, _labTextInfor.bottom +  26, FULL_WIDTH - 30, 0)];
+            _labComment = [[UILabel alloc] initWithFrame:CGRectMake(_imageAvtar.left, _labTextInfor.bottom +  26 + heightLab, FULL_WIDTH - 30, 0)];
+            
+            _viewLine.frame = CGRectMake(_imageAvtar.left,  _labTextInfor.bottom + 13, FULL_WIDTH - 20, 0.6);
+
         }
         
         _labComment.textColor = [UIColor colorWithHexString:@"#616161"];
@@ -468,7 +483,7 @@
         // 设置label的行间距
         NSMutableParagraphStyle  *paragraphStyle = [[NSMutableParagraphStyle alloc] init];
         
-        [paragraphStyle  setLineSpacing:8];
+        [paragraphStyle  setLineSpacing:5];
         
         NSMutableAttributedString  *setString;
         
@@ -490,14 +505,14 @@
         
         [_labComment sizeToFit];
         
-        heightLab += _labComment.height + 10;
+        heightLab += _labComment.height + 7;
         
         [self.contentView addSubview:_labComment];
         
     }
     
     // 全部几条评论
-    UIButton *btnComment = [[UIButton alloc] initWithFrame:CGRectMake(_imageAvtar.left, _labTextInfor.bottom + heightLab + 4, FULL_WIDTH - 20, 20)];
+    UIButton *btnComment = [[UIButton alloc] initWithFrame:CGRectMake(_imageAvtar.left, _labTextInfor.bottom + heightLab + 30, FULL_WIDTH - 20, 16)];
     
     [btnComment setTitle:_homePageEntity.totalCommentMsg forState:UIControlStateNormal];
     
@@ -509,7 +524,7 @@
         
         btnComment.frame = CGRectMake(0, 0, 0, 0);
         
-        _heightCell = _labTextInfor.bottom;
+        _heightCell = _labTextInfor.bottom + 3;
         
     }else {
         
@@ -527,8 +542,6 @@
         [self.delegate reloadTableViewheight:_heightCell];
         
     }
-
-
     
 }
 
