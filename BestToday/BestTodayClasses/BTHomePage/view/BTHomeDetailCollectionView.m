@@ -191,6 +191,7 @@ static NSString *const headerId = @"headerId";
     
     _heightCell = height;
     
+    // 创建collectionView
     [self setUpCollectionViewWithFrame:_frames];
     
     [self loadData];

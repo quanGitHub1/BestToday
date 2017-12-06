@@ -31,6 +31,8 @@
 
 @property (nonatomic, strong) NSString *pageAssistParam;
 
+@property (nonatomic, assign) NSInteger nextPage;
+
 @end
 
 @implementation BTHomePageViewController
@@ -39,9 +41,12 @@
     [super viewDidLoad];
     self.view.backgroundColor = [UIColor whiteColor];
     self.navigationBar.title = @"今日最佳";
+    self.nextPage = 1;
+    
+    _dicCell = [[NSMutableDictionary alloc] init];
+
     
     if ([BTMeEntity shareSingleton].isLogin) {
-        _dicCell = [[NSMutableDictionary alloc] init];
         
         [[BTHomeOpenHander shareHomeOpenHander] initDataArry];
         
@@ -128,6 +133,8 @@
     
     _pageAssistParam = @"";
     
+    _nextPage = 0;
+    
     [self loadData];
 }
 
@@ -171,12 +178,14 @@
 /** 分页查询首页已关注图片资源列表接口 */
 - (void)requestQueryFollowedResource{
 
-    [self.homePageService loadqueryFollowedResource:0 pageAssistParam:_pageAssistParam completion:^(BOOL isSuccess, BOOL isCache, NSString* pageAssistParam) {
+    [self.homePageService loadqueryFollowedResource:_nextPage pageAssistParam:_pageAssistParam completion:^(BOOL isSuccess, BOOL isCache, NSString* pageAssistParam, NSString *nextPage) {
         
         
         [self.tableView stop];
         
         _pageAssistParam = pageAssistParam;
+        
+        _nextPage = [nextPage integerValue];
         
         if (isSuccess) {
             

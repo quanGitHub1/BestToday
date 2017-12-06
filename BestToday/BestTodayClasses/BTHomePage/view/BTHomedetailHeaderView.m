@@ -55,7 +55,7 @@
     self.tableView.dataSource = self;
     self.tableView.estimatedRowHeight = 400;
     
-    self.tableView.backgroundColor = [UIColor redColor];
+    self.tableView.backgroundColor = [UIColor whiteColor];
     [self.tableView hiddenFreshFooter];
     
     _tableView.scrollEnabled = NO;
@@ -138,7 +138,6 @@
         [cell makeDatacellData:[self.detailService.arrDetailResource objectAtIndex:indexPath.row] index:indexPath.row];
 
     }
-    
     
     _heightCells = cell.heightCell;
     

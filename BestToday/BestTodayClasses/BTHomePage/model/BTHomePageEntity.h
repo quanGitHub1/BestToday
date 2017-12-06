@@ -36,6 +36,9 @@
 
 @property (nonatomic, strong) NSString *resourceId;  // 图片资源ID
 
+@property (nonatomic, strong) NSString *picWidth;  // 图片宽
+
+@property (nonatomic, strong) NSString *picHeight;  // 图片高度
 
 
 @end

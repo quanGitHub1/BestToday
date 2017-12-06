@@ -33,7 +33,7 @@
 }
 
 // 分页查询首页已关注图片资源列表接口
-- (void)loadqueryFollowedResource:(NSInteger)pageIndex pageAssistParam:(NSString *)pageAssistParam completion:(void(^)(BOOL isSuccess, BOOL isCache, NSString *pageAssistParam))completion{
+- (void)loadqueryFollowedResource:(NSInteger)pageIndex pageAssistParam:(NSString *)pageAssistParam completion:(void(^)(BOOL isSuccess, BOOL isCache, NSString *pageAssistParam, NSString *nextPage))completion{
 
     NSString *urlString = [NSString stringWithFormat:@"%@?pageIndex=%ld&pageAssistParam=%@",BTqueryFollowedResource,pageIndex,pageAssistParam];
 
@@ -50,10 +50,10 @@
         
         [self handleFollowedResourceListData:responseObject];
         
-        completion(YES,NO, _pageAssistParam);
+        completion(YES,NO, _pageAssistParam, _nextPage);
         
     } failure:^(NSError *error) {
-        completion(NO,NO, _pageAssistParam);
+        completion(NO,NO, _pageAssistParam, _nextPage);
     }];
 
 }
@@ -175,6 +175,13 @@
             NSArray *resDetailVoList = dicData[@"resDetailVoList"];
             
             _pageAssistParam = dicData[@"pageAssistParam"];
+            
+            _nextPage = dicData[@"nextPage"];
+            
+            if (![resDetailVoList isKindOfClass:[NSArray class]]) {
+                
+                return NO;
+            }
             
             for (NSDictionary *dic in resDetailVoList) {
                 

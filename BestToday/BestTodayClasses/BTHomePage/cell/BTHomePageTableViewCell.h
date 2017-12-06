@@ -18,8 +18,6 @@
 
 - (void)reloadTableView:(NSInteger)indexpath height:(CGFloat)height;
 
-- (void)reloadTableViewheight:(CGFloat)height;
-
 - (void)reloadTableviewDatas;
 
 @end

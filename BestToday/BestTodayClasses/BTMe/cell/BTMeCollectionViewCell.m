@@ -19,7 +19,7 @@
         
         _imagePic.contentMode  = UIViewContentModeScaleAspectFit;
         
-        _imagePic.backgroundColor = [UIColor redColor];
+        _imagePic.backgroundColor = [UIColor whiteColor];
         
         _imagePic.userInteractionEnabled = YES;
         
