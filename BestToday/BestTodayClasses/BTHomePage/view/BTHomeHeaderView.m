@@ -110,16 +110,6 @@
     }];
 }
 
-#pragma mark - BTHomepageViewDelegate
-- (void)reloadTableView:(NSInteger)indexpath height:(CGFloat)height {
-    
-    BTHomeDetailPageTableViewCell *announcementCell = [_dicCell objectForKey:[NSString stringWithFormat:@"indexPath%ld", indexpath]];
-    
-    announcementCell.heightCell = height;
-    
-    [self.tableView reloadData];
-    
-}
 
 #pragma mark - tableViewDelegate
 
@@ -141,7 +131,7 @@
     static NSString * const cellID = @"BTHomePageTableViewCell";
     
     BTHomeDetailPageTableViewCell *cell = [tableView cellForRowAtIndexPath:indexPath]; //根据indexPath准确地取出一行，而不是从cell重用队列中取出
-    cell.backgroundColor = [UIColor redColor];
+    cell.backgroundColor = [UIColor whiteColor];
     
     if (!cell) {
         
