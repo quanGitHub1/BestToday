@@ -70,17 +70,36 @@
                     }
                     completion(YES,responseObject[@"msg"]);
                 }else{
-                    completion(NO,@"错误的返回类型");
+                    completion(NO,responseObject[@"msg"]);
                 }
             }else{
                 completion(NO,responseObject[@"msg"]);
             }
         }else{
-            completion(NO,@"错误的返回类型");
+            completion(NO,responseObject[@"msg"]);
         }
     } failure:^(NSError *error) {
-        completion(NO,@"请求失败");
+        completion(NO,error.localizedDescription);
     }];
+}
+
+
+- (void)feedBackInfoWithContent:(NSString *)content Completion:(void(^)(BOOL isSuccess, NSString *message))completion{
+    
+    NSString *urlString = [NSString stringWithFormat:@"%@",BTFeedBackInfo];
+
+    [NetworkHelper GET:urlString parameters:@{@"content":content} success:^(id responseObject) {
+        if ([responseObject[@"code"] integerValue] == 0) {
+            completion(YES,responseObject[@"msg"]);
+        }else{
+            completion(NO,responseObject[@"msg"]);
+
+        }
+    } failure:^(NSError *error) {
+        completion(NO,error.localizedDescription);
+    }];
+    
+    
 }
 
 

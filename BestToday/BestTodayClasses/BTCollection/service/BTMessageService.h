@@ -18,4 +18,6 @@
 // 获取个人消息
 - (void)loadQueryMeMessageResourceCompletion:(void(^)(BOOL isSuccess, NSString *message))completion;
 
+- (void)feedBackInfoWithContent:(NSString *)content Completion:(void(^)(BOOL isSuccess, NSString *message))completion;
+
 @end

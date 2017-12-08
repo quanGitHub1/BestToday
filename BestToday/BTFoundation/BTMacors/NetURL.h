@@ -62,9 +62,12 @@
 // 发现
 #define BTqueryDiscoverResourceByPage   @"http://zuijia365.com/todayHot/app/resource/queryForDetection.json"
 
+// 查询系统消息
 #define BTquerySystemMessage   @"http://zuijia365.com/todayHot/app/message/querySystemMessages.json"
-
+// 查询个人消息
 #define BTqueryMeMessage   @"http://zuijia365.com/todayHot/app/message/queryMyMessages.json"
+// 反馈消息
+#define BTFeedBackInfo    @"http://zuijia365.com/todayHot/app/message/saveFeedBackInfo.json"
 
 
 //#else         //////// 线上环境

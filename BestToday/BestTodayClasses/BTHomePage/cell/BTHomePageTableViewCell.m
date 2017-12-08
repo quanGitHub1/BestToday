@@ -223,7 +223,6 @@
         
         _btnAtten.frame = CGRectMake(FULL_WIDTH - 35, 13, 30, 20);
 
-        
         [_btnAtten setTitleColor:[UIColor colorWithHexString:@"#616161"] forState:UIControlStateNormal];
         
         _btnAtten.layer.borderColor = [UIColor whiteColor].CGColor;

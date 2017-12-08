@@ -2244,7 +2244,7 @@
 					7AA2BB2F1FAAAE5500864753 = {
 						CreatedOnToolsVersion = 8.3.3;
 						DevelopmentTeam = EX2P3FAGBZ;
-						ProvisioningStyle = Manual;
+						ProvisioningStyle = Automatic;
 					};
 					7AA2BB481FAAAE5500864753 = {
 						CreatedOnToolsVersion = 8.3.3;
@@ -2740,6 +2740,8 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_IDENTITY = "iPhone Developer: JiaJian Jiang (28EB4JSXK8)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = EX2P3FAGBZ;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -2810,8 +2812,8 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.TodayBest.iphone;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "98700b89-6edf-4b9c-99ca-f3e94333f4c5";
-				PROVISIONING_PROFILE_SPECIFIER = com.TestTodayBest.iphone;
+				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "BestToday/BestToday-Bridging-Header.h";
 				SWIFT_VERSION = 3.0;
 				TARGETED_DEVICE_FAMILY = 1;
@@ -2825,7 +2827,8 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_IDENTITY = "iPhone Distribution: Beijing Jiangxinhuiyan Science and Technology Ltd. (EX2P3FAGBZ)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Beijing Jiangxinhuiyan Science and Technology Ltd. (EX2P3FAGBZ)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = EX2P3FAGBZ;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -2896,8 +2899,8 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.TodayBest.iphone;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "278c0e7f-71f2-45e3-9c55-7c9704238ac4";
-				PROVISIONING_PROFILE_SPECIFIER = com.TodayBest.iphone;
+				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "BestToday/BestToday-Bridging-Header.h";
 				SWIFT_VERSION = 3.0;
 				TARGETED_DEVICE_FAMILY = 1;
