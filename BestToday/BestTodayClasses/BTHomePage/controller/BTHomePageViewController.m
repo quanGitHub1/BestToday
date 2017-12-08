@@ -259,6 +259,11 @@
     
     [cell makeDatacellData:[self.homePageService.arrFollowedResource objectAtIndex:indexPath.row] index:indexPath.row];
     
+    cell.updateCellAttention = ^(NSInteger indexpathRow) {
+        
+        
+        
+    };
     
     if (![[_dicCell allKeys] containsObject:[NSString stringWithFormat:@"indexPath%ld", indexPath.row]]) {
         
@@ -290,7 +295,7 @@
 - (void)onclickBtnAtten:(UIButton *)btn{
 
     if ([btn.titleLabel.text isEqualToString:@"..."]) {
-        UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"" message:@"" preferredStyle:UIAlertControllerStyleAlert];
+        UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"今日最佳APP" message:@"" preferredStyle:UIAlertControllerStyleAlert];
         
         UIAlertAction *canAction = [UIAlertAction actionWithTitle:@"取消关注" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
             
@@ -320,30 +325,52 @@
 // 置顶用户/取消置顶接口
 - (void)requestSetTopUser:(NSInteger)index isTopped:(NSInteger)isTopped{
     
-    BTHomePageEntity *pageEntity = [_homePageService.arrFollowedResource objectAtIndex:index];
+    BTHomePageEntity *pageEntity = [_homePageService.arrFollowedResource objectAtIndex:index - 10000];
     
     BTHomeUserEntity *userEntity = [BTHomeUserEntity yy_modelWithJSON:pageEntity.userVo];
-
     
     [self.homePageService loadquerySetTopUser:isTopped followedUserId:[userEntity.userId integerValue] completion:^(BOOL isSuccess, BOOL isCache) {
         
         [self requestAnnouncementData];
         
+        
     }];
-    
 }
-
 
 // 取消关注接口
 - (void)requestUnFollowUser:(NSInteger)index{
     
-    BTHomePageEntity *pageEntity = [_homePageService.arrFollowedResource objectAtIndex:index];
+    UIButton *btnAtten = (UIButton *)[self.view viewWithTag:index];
+    
+    BTHomePageEntity *pageEntity = [_homePageService.arrFollowedResource objectAtIndex:index - 10000];
     
     BTHomeUserEntity *userEntity = [BTHomeUserEntity yy_modelWithJSON:pageEntity.userVo];
     
     [self.homePageService loadqueryUnFollowUser:[userEntity.userId integerValue] completion:^(BOOL isSuccess, BOOL isCache) {
         
+        [SVProgressHUD showWithStatus:@"取消关注成功"];
         
+//        pageEntity.userVo[@"isFollowed"] = @"0";
+        
+        [pageEntity.userVo setValue:@"0" forKey:@"isFollowed"];
+        
+//        userEntity.isFollowed = @"0";
+        
+        btnAtten.frame = CGRectMake(FULL_WIDTH - 65, 15, 50, 25);
+        
+        [btnAtten setTitle:@"+关注" forState:UIControlStateNormal];
+        
+        btnAtten.layer.borderColor = [UIColor colorWithHexString:@"#fd8671"].CGColor;
+        
+        btnAtten.layer.borderWidth = 1;
+        
+        btnAtten.layer.cornerRadius = 1.5;
+        
+        [btnAtten setTitleColor:[UIColor colorWithHexString:@"#fd8671"] forState:UIControlStateNormal];
+        
+        [SVProgressHUD dismissWithDelay:0.3f];
+                
+        [self requestAnnouncementData];
         
     }];
 }
@@ -352,12 +379,33 @@
 // 关注接口
 - (void)requestFollowUser:(NSInteger)index{
     
-    BTHomePageEntity *pageEntity = [_homePageService.arrFollowedResource objectAtIndex:index];
+    UIButton *btnAtten = (UIButton *)[self.view viewWithTag:index];
+    
+    BTHomePageEntity *pageEntity = [_homePageService.arrFollowedResource objectAtIndex:index - 10000];
     
     BTHomeUserEntity *userEntity = [BTHomeUserEntity yy_modelWithJSON:pageEntity.userVo];
     
     [self.homePageService loadqueryFollowUser:[userEntity.userId integerValue] completion:^(BOOL isSuccess, BOOL isCache) {
         
+        
+        [btnAtten setTitle:@"..." forState:UIControlStateNormal];
+        
+        btnAtten.frame = CGRectMake(FULL_WIDTH - 35, 13, 30, 20);
+        
+        
+        [btnAtten setTitleColor:[UIColor colorWithHexString:@"#616161"] forState:UIControlStateNormal];
+        
+        btnAtten.layer.borderColor = [UIColor whiteColor].CGColor;
+        
+        btnAtten.layer.borderWidth = 0;
+        
+        [pageEntity.userVo setValue:@"1" forKey:@"isFollowed"];
+
+        [SVProgressHUD showWithStatus:@"添加关注成功"];
+        
+        [SVProgressHUD dismissWithDelay:0.3f];
+        
+        [self requestAnnouncementData];
         
     }];
 }

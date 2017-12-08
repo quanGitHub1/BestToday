@@ -14,4 +14,8 @@
 
 - (void)loadqueryMyFansUsersCompletion:(void(^)(BOOL isSuccess, BOOL isCache))completion;
 
+
+- (void)loadqueryMyFollowedUsers:(void(^)(BOOL isSuccess, BOOL isCache))completion;
+
+
 @end

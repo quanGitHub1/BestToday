@@ -12,6 +12,7 @@
 #import "BTMeLikeCollectionView.h"
 #import "BTMeEditInforViewController.h"
 #import "BTAttentionMeViewController.h"
+#import "BTMeAttentionViewController.h"
 #import "BTMeService.h"
 #import "BTMeEntity.h"
 
@@ -365,7 +366,7 @@
 
 - (void)onclickFollow:(UIButton *)btn{
     
-    BTAttentionMeViewController *Attention = [[BTAttentionMeViewController alloc] init];
+    BTMeAttentionViewController *Attention = [[BTMeAttentionViewController alloc] init];
     
     Attention.navTitle = @"我关注的";
     

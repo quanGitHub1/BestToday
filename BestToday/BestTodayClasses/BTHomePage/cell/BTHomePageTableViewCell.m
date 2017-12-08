@@ -104,8 +104,7 @@
 
 - (void)onclickBtnAtten:(UIButton *)btn{
     
-
-}
+   }
 
 - (void)onclickBtnCollection:(UIButton *)btn{
     
@@ -126,9 +125,7 @@
 
                 
                 _labFabulous.text = [NSString stringWithFormat:@"%ld赞",[_labFabulous.text integerValue] - 1];
-                
-
-                
+                                
             }else {
                 
                 [SVProgressHUD showInfoWithStatus:@"取消点赞失败"];
@@ -148,8 +145,6 @@
                 _homePageEntity.likeCount = [NSString stringWithFormat:@"%ld",[_labFabulous.text integerValue] + 1];
 
                 _labFabulous.text = [NSString stringWithFormat:@"%ld赞",[_labFabulous.text integerValue] + 1];
-               
-
                 
             }else {
                 
@@ -201,6 +196,9 @@
     _homePageEntity = homePage;
     
     BTHomeUserEntity *userEntity = [BTHomeUserEntity yy_modelWithJSON:homePage.userVo];
+    
+    _btnAtten.tag = indexpath + 10000;
+
     
     if ([userEntity.isFollowed integerValue] == 0) {
         
@@ -486,7 +484,6 @@
             // 设置label的行间距
             NSMutableParagraphStyle  *paragraphStyle = [[NSMutableParagraphStyle alloc] init];
             
-            
             [paragraphStyle  setLineSpacing:8];
             
             NSMutableAttributedString  *setString;
@@ -509,6 +506,7 @@
             if (i == arrCommentList.count - 1 && i > 1) {
                 
                 heightLabTwo = heightLab + labComment.height;
+                
             }else {
                 
                 heightLabTwo = heightLab;
@@ -592,6 +590,7 @@
     }
     return linesArray;
 }
+
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {
     [super setSelected:selected animated:animated];
