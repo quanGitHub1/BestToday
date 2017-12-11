@@ -85,6 +85,8 @@
         
         NSDictionary *dicData = respones[@"data"];
         
+        [self.arrByUser removeAllObjects];
+        
         if (dicData && [dicData isKindOfClass:[NSDictionary class]]) {
             
             BTMeEntity *userEntity = [BTMeEntity yy_modelWithDictionary:dicData];

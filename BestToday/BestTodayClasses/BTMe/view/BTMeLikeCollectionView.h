@@ -10,4 +10,7 @@
 
 @interface BTMeLikeCollectionView : UIView
 
+- (void)loadData;
+
+
 @end

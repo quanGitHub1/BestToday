@@ -18,7 +18,7 @@
 
 @property (nonatomic, strong) UITextField *textViewName;
 
-@property (nonatomic, strong) UITextField *textProduct;
+@property (nonatomic, strong) UITextView *textProduct;
 
 @property (nonatomic, strong)  UIImageView *imageView;
 
@@ -59,6 +59,7 @@
     
     btnLeft.backgroundColor = [UIColor redColor];
 
+     [self.navigationBar setLeftBarButton:[UIButton mlt_rightBarButtonWithImage:[UIImage imageNamed:@"info_backs"] highlightedImage:nil target:self action:@selector(navigationBackButtonClicked:) forControlEvents:UIControlEventTouchUpInside]];
     
     UIButton *btnRight = [[UIButton alloc] initWithFrame:CGRectMake(FULL_WIDTH - 55, 35, 50, 30)];
     
@@ -126,7 +127,7 @@
     _textViewName.textColor = [UIColor colorWithHexString:@"#212121"];
     
     
-    _textProduct = [[UITextField alloc] initWithFrame:CGRectMake(_labProduct.right + 30, _labProduct.top - 8, FULL_WIDTH - _labProduct.right - 45, 40)];
+    _textProduct = [[UITextView alloc] initWithFrame:CGRectMake(_labProduct.right + 30, _labProduct.top - 15, FULL_WIDTH - _labProduct.right - 45, 70)];
     
     _textProduct.textColor = [UIColor colorWithHexString:@"#212121"];
 
@@ -140,7 +141,7 @@
     viewLine.backgroundColor = [UIColor colorWithHexString:@"#eeeeee"];
     
     
-    UIView *viewLineTwo = [[UIView alloc] initWithFrame:CGRectMake(_labProduct.right + 15, _labProduct.bottom + 15, FULL_WIDTH - _labProduct.right - 30, 1)];
+    UIView *viewLineTwo = [[UIView alloc] initWithFrame:CGRectMake(_labProduct.right + 15, _textProduct.bottom + 1, FULL_WIDTH - _labProduct.right - 30, 1)];
     
     viewLineTwo.backgroundColor = [UIColor colorWithHexString:@"#eeeeee"];
     
@@ -228,7 +229,9 @@
     [self loadData];
 }
 
-
+- (void)navigationBackButtonClicked:(UIButton *)btn {
+    [self.navigationController popViewControllerAnimated:YES];
+}
 
 - (void)onclickBtnCancel:(UIButton *)btn{
     
@@ -239,6 +242,7 @@
 - (void)onclickBtnSure:(UIButton *)btn{
     
     NSArray *arr = @[@"美术"];
+    
     [self.editService loadqueryUpdateUserwithName:_textViewName.text introduction:_textProduct.text personalTags:arr completion:^(BOOL isSuccess, BOOL isCache) {
             
         self.updateInforBlock(_textViewName.text, _textProduct.text, _imageView.image);

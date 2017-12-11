@@ -63,9 +63,8 @@
     
    [self.view addSubview:headView];
     
-   [self creatSegment];
     
-   
+   [self creatSegment];   
 }
 
 -(void)viewWillAppear:(BOOL)animated{
@@ -73,6 +72,8 @@
     [super viewWillAppear:animated];
     
     [self loadData];
+
+    [_collectionViewTwo loadData];
     
 }
 
@@ -111,6 +112,13 @@
     
     [_btnModify addTarget:self action:@selector(onclickModify:) forControlEvents:UIControlEventTouchUpInside];
     
+    UIButton *btnModifys = [[UIButton alloc] initWithFrame:CGRectMake(_imageAvtar.right + 5, 21, 100, imageName.size.height)];
+
+    [btnModifys addTarget:self action:@selector(onclickModify:) forControlEvents:UIControlEventTouchUpInside];
+    
+    btnModifys.backgroundColor = [UIColor clearColor];
+    
+    [viewHeaer addSubview:btnModifys];
     
     // 发表
     _btnPublish = [[UIButton alloc] initWithFrame:CGRectMake(_imageAvtar.right + 5, 61, 65, 0)];
@@ -269,9 +277,8 @@
     [_labName sizeToFit];
     
     UIImage *imageName = [UIImage imageNamed:@"My_Modify"];
-
-    _btnModify.frame = CGRectMake(_labName.right + 5 , 21, imageName.size.width, imageName.size.height);
     
+    _btnModify.frame = CGRectMake(_labName.right + 5 , 21, imageName.size.width, imageName.size.height);
 
     [_btnPublish setTitle:[NSString stringWithFormat:@"发表  %@", meEntity.publishCount] forState:UIControlStateNormal];
     
@@ -283,7 +290,6 @@
 
     _btnPublish.frame = CGRectMake(_imageAvtar.right + 5, 61, titleSize.width, titleSize.height);
 
-    
     [_btnFans setTitle:[NSString stringWithFormat:@"粉丝  %@", meEntity.fansCount] forState:UIControlStateNormal];
     
     CGSize titleSizeTwo = [_btnFans.titleLabel.text sizeWithAttributes:@{NSFontAttributeName: [UIFont fontWithName:_btnFans.titleLabel.font.fontName size:_btnFans.titleLabel.font.pointSize]}];
@@ -372,8 +378,26 @@
         
         _labName.text = nikeName;
         
+        [_labName sizeToFit];
+
+        UIImage *imageName = [UIImage imageNamed:@"My_Modify"];
+
+        _btnModify.frame = CGRectMake(_labName.right + 5 , 21, imageName.size.width, imageName.size.height);
+        
+        _labDes.frame = CGRectMake(_imageAvtar.left, _imageAvtar.bottom + 17, FULL_WIDTH - 30, 0);
+
         _labDes.text = introduction;
         
+        [_labDes sizeToFit];
+        
+        _labTag.frame = CGRectMake(_imageAvtar.left, _labDes.bottom + 16, FULL_WIDTH - 30, 0);
+        
+        for (int i = 0; i < meEntity.personalTags.count; i++) {
+            _labTag.text = [NSString stringWithFormat:@"%@ %@",_labTag.text, meEntity.personalTags[i]];
+        }
+        
+        [_labTag sizeToFit];
+
     };
     
     [self.navigationController pushViewController:editInfor animated:YES];
