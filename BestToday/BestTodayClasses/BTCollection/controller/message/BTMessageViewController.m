@@ -11,6 +11,8 @@
 #import "BTChatToolBar.h"
 #import "EaseBaseMessageCell.h"
 #import "EaseMessageModel.h"
+#import "BTLikeCommentService.h"
+#import "BTHomeCommentEntity.h"
 
 @interface BTMessageViewController ()<UITableViewDelegate,UITableViewDataSource,BTChatToolbarDelegate>
 
@@ -21,6 +23,7 @@
  */
 @property (strong, nonatomic) BTChatToolBar *chatToolbar;
 
+@property (nonatomic, strong) BTLikeCommentService *commentService;
 
 @end
 
@@ -29,7 +32,6 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.view.backgroundColor = [UIColor whiteColor];
-    self.navigationBar.title = @"系统消息";
      [self.navigationBar setLeftBarButton:[UIButton mlt_rightBarButtonWithImage:[UIImage imageNamed:@"info_backs"] highlightedImage:nil target:self action:@selector(navigationBackButtonClicked:) forControlEvents:UIControlEventTouchUpInside]];
     self.dataArray = [NSMutableArray array];
     CGFloat chatbarHeight = [BTChatToolBar defaultHeight];
@@ -43,7 +45,13 @@
     [_tableView hiddenFreshFooter];
     [self.view addSubview:_tableView];
     
-    [self setDataForMessage:self.messageEntity];
+    if (_isComment) {
+        self.navigationBar.title = @"评论";
+        [self setDataForCommentList];
+    }else{
+        self.navigationBar.title = @"系统消息";
+        [self setDataForMessage:self.messageEntity];
+    }
     
     self.chatToolbar = [[BTChatToolBar alloc] initWithFrame:CGRectMake(0, self.view.frame.size.height - chatbarHeight, self.view.frame.size.width, chatbarHeight)];
     self.chatToolbar.delegate = self;
@@ -93,6 +101,24 @@
 }
 
 #pragma mark - setter
+
+- (void)setDataForCommentList{
+    __weak __typeof(self)weakSelf = self;
+    [self.commentService loadqueryCommentListResource:_resourceId pageindex:@"0" completion:^(BOOL isSuccess, BOOL isCache) {
+        if (isSuccess) {
+            for (BTHomeCommentEntity *entity in weakSelf.commentService.arrCommentList) {
+                NSDictionary * dic = [NSDictionary dictionaryWithObjectsAndKeys:entity.isOwn,@"isSender",entity.commentNickName,@"nickname",entity.commentAvatarUrl,@"avatarurl",entity.content,@"text", nil];
+                NSLog(@"%@",dic);
+                EaseMessageModel * model = [[EaseMessageModel alloc] initWithMessage:dic];
+                [weakSelf.dataArray addObject:model];
+            }
+            [weakSelf.tableView reloadData];
+        }else{
+            
+        }
+    }];
+}
+
 
 - (void)setIsViewDidAppear:(BOOL)isViewDidAppear
 {
@@ -201,6 +227,14 @@
         [self.dataArray addObject:model];
         [self.tableView reloadData];
     }
+}
+
+
+- (BTLikeCommentService *)commentService {
+    if (!_commentService) {
+        _commentService = [[BTLikeCommentService alloc] init];
+    }
+    return _commentService;
 }
 
 

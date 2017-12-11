@@ -38,6 +38,9 @@
 // 取消喜欢
 #define BTqueryDelLikeResource  @"http://zuijia365.com/todayHot/app/comment/delLikeResource.json"
 
+// 评论列表
+#define BTqueryCommentList  @"http://zuijia365.com/todayHot/app/comment/queryCommentByPage.json"
+
 // 用户信息
 #define BTqueryUserById  @"http://zuijia365.com/todayHot/app/user/queryUserById.json"
 

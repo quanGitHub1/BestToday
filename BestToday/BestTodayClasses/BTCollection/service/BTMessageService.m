@@ -16,7 +16,6 @@
 - (void)loadQuerySystemMessageResourceCompletion:(void(^)(BOOL isSuccess, NSString *message))completion{
     
     NSString *urlString = [NSString stringWithFormat:@"%@",BTquerySystemMessage];
-    NSLog(@"%@",urlString);
     [NetworkHelper GET:urlString parameters:nil responseCache:^(id responseCache) {
         
         
@@ -34,7 +33,7 @@
                     }
                     completion(YES,responseObject[@"msg"]);
                 }else{
-                    completion(NO,@"错误的返回类型");
+                    completion(NO,responseObject[@"msg"]);
                 }
             }else{
                 completion(NO,responseObject[@"msg"]);

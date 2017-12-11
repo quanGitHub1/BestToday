@@ -239,6 +239,7 @@
 		CB670E071FC6B9FD004BDCEA /* BTDiscoverCell.m in Sources */ = {isa = PBXBuildFile; fileRef = CB670E061FC6B9FD004BDCEA /* BTDiscoverCell.m */; };
 		CB670E0A1FC817DF004BDCEA /* BTMessageEntity.m in Sources */ = {isa = PBXBuildFile; fileRef = CB670E091FC817DF004BDCEA /* BTMessageEntity.m */; };
 		CB670E0D1FC81821004BDCEA /* BTMessageUserEntity.m in Sources */ = {isa = PBXBuildFile; fileRef = CB670E0C1FC81821004BDCEA /* BTMessageUserEntity.m */; };
+		CB8AEEAD1FDEC6CA00D70B0E /* BTHomeCommentEntity.m in Sources */ = {isa = PBXBuildFile; fileRef = CB8AEEAC1FDEC6CA00D70B0E /* BTHomeCommentEntity.m */; };
 		CB926A481FCEAA27003AB4D5 /* SQButtonTagView.m in Sources */ = {isa = PBXBuildFile; fileRef = CB926A461FCEAA27003AB4D5 /* SQButtonTagView.m */; };
 		CBCD2EA91FB4657100994037 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CBCD2E9A1FB4657100994037 /* Assets.xcassets */; };
 		CBCD2EAA1FB4657100994037 /* FSAlbumView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBCD2E9B1FB4657100994037 /* FSAlbumView.swift */; };
@@ -743,6 +744,8 @@
 		CB670E091FC817DF004BDCEA /* BTMessageEntity.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BTMessageEntity.m; sourceTree = "<group>"; };
 		CB670E0B1FC81821004BDCEA /* BTMessageUserEntity.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BTMessageUserEntity.h; sourceTree = "<group>"; };
 		CB670E0C1FC81821004BDCEA /* BTMessageUserEntity.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BTMessageUserEntity.m; sourceTree = "<group>"; };
+		CB8AEEAB1FDEC6CA00D70B0E /* BTHomeCommentEntity.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BTHomeCommentEntity.h; sourceTree = "<group>"; };
+		CB8AEEAC1FDEC6CA00D70B0E /* BTHomeCommentEntity.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BTHomeCommentEntity.m; sourceTree = "<group>"; };
 		CB926A461FCEAA27003AB4D5 /* SQButtonTagView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SQButtonTagView.m; sourceTree = "<group>"; };
 		CB926A471FCEAA27003AB4D5 /* SQButtonTagView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SQButtonTagView.h; sourceTree = "<group>"; };
 		CB926A491FCEAE8F003AB4D5 /* BestToday-Bridging-Header.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "BestToday-Bridging-Header.h"; sourceTree = "<group>"; };
@@ -1627,6 +1630,8 @@
 				7A16BA7B1FC4304800E7EC3A /* BTHomeUserEntity.m */,
 				7A16BA7D1FC5714500E7EC3A /* BTHomeDetailLookEntity.h */,
 				7A16BA7E1FC5714500E7EC3A /* BTHomeDetailLookEntity.m */,
+				CB8AEEAB1FDEC6CA00D70B0E /* BTHomeCommentEntity.h */,
+				CB8AEEAC1FDEC6CA00D70B0E /* BTHomeCommentEntity.m */,
 			);
 			path = model;
 			sourceTree = "<group>";
@@ -2589,6 +2594,7 @@
 				CB670DFC1FC2E0BD004BDCEA /* EaseEmotionManager.m in Sources */,
 				7AA2BC231FAAB4CC00864753 /* MLTImageBadgeView.m in Sources */,
 				7AA2BCA71FAAC07400864753 /* AMTTabbarIconManager.m in Sources */,
+				CB8AEEAD1FDEC6CA00D70B0E /* BTHomeCommentEntity.m in Sources */,
 				7A2429C31FCBC0F900EE7948 /* BTMeLikeCollectionView.m in Sources */,
 				CB670D941FC28E78004BDCEA /* EaseTextView.m in Sources */,
 				CB670DE51FC2DFC0004BDCEA /* EMSDWebImageManager.m in Sources */,

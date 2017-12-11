@@ -12,6 +12,7 @@
 #import "CoreText/CoreText.h"
 #import "WYShareView.h"
 #import "BTMeViewController.h"
+#import "BTMessageViewController.h"
 
 @implementation BTHomePageTableViewCell
 
@@ -159,14 +160,11 @@
 
 - (void)onclickBtnComment:(UIButton *)btn{
     
-    //设置用户自定义的平台
-    [UMSocialUIManager setPreDefinePlatforms:@[@(UMSocialPlatformType_WechatSession),
-                                               @(UMSocialPlatformType_WechatTimeLine),
-                                               @(UMSocialPlatformType_WechatFavorite),
-                                               @(UMSocialPlatformType_Tim),
-                                               ]];
-    
-    [UMSocialUIManager setShareMenuViewDelegate:self];
+    BTMessageViewController *messageVC = [[BTMessageViewController alloc] init];
+    messageVC.isComment = YES;
+    messageVC.resourceId = _resourceId;
+    [[self viewController].navigationController pushViewController:messageVC animated:YES];
+
 }
 
 - (void)onclickBtnShare:(UIButton *)btn{

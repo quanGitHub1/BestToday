@@ -25,21 +25,24 @@
     
     if (self) {
         _avatarImageView = [[UIImageView alloc] initWithFrame:CGRectMake(20, 10, 40, 40)];
-        _avatarImageView.backgroundColor = kRedColor;
+        _avatarImageView.layer.masksToBounds = YES;
+        _avatarImageView.layer.cornerRadius = 20;
         [self addSubview:_avatarImageView];
         
         _titleLabel = [[UILabel alloc] initWithFrame:CGRectMake(80, 15,screenWidth-160, 30)];
+        _titleLabel.font = [UIFont systemFontOfSize:13];
+        _titleLabel.adjustsFontSizeToFitWidth = YES;
         [self addSubview:_titleLabel];
         
-        _followLabel = [[UILabel alloc] initWithFrame:CGRectMake(screenWidth-70, 15, 50, 30)];
+        _followLabel = [[UILabel alloc] initWithFrame:CGRectMake(screenWidth-70, 17.5, 50, 25)];
         _followLabel.text = @"+ 关注";
-        _followLabel.font = [UIFont systemFontOfSize:14];
+        _followLabel.font = [UIFont systemFontOfSize:12];
         _followLabel.textAlignment = NSTextAlignmentCenter;
-        _followLabel.textColor = [UIColor redColor];
+        _followLabel.textColor = HEX(@"fd8671");
         _followLabel.layer.masksToBounds = YES;
-        _followLabel.layer.borderColor = [UIColor redColor].CGColor;
-        _followLabel.layer.borderWidth = .5f;
-        [self addSubview:_followLabel];
+        _followLabel.layer.borderColor = HEX(@"fd8671").CGColor;
+        _followLabel.layer.borderWidth = 1.0f;
+        _followLabel.layer.cornerRadius = 3;
         
         _photoImageView = [[UIImageView alloc] initWithFrame:CGRectMake(screenWidth-60, 10, 40, 40)];
         _photoImageView.backgroundColor = kRedColor;
@@ -50,8 +53,20 @@
 }
 
 - (void)setDataForCell:(BTMessageEntity *)entity{
+    //1:表示图片，2:表示显示“关注”按钮
+    if ([entity.showType integerValue] == 1) {
+        [_followLabel removeFromSuperview];
+        [self addSubview:_photoImageView];
+
+    }else if ([entity.showType integerValue] == 2){
+        [_photoImageView removeFromSuperview];
+        [self addSubview:_followLabel];
+    }else{
+        [_photoImageView removeFromSuperview];
+        [_followLabel removeFromSuperview];
+    }
      [_avatarImageView sd_setImageWithURL:[NSURL URLWithString:entity.userEntity.avatarUrl]];
-    _titleLabel.text = entity.content;
+    _titleLabel.text = [NSString stringWithFormat:@"%@%@  %@",entity.userEntity.nickName,entity.content,entity.createTimeShort];
     [_photoImageView sd_setImageWithURL:[NSURL URLWithString:entity.resourcePicUrl]];
 }
 

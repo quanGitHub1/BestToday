@@ -33,8 +33,8 @@
     ZFJSegmentedControl * segmentedControl = [[ZFJSegmentedControl alloc] initwithTitleArr:@[@"系统消息",@"你"] iconArr:nil SCType:SCType_Underline];
     segmentedControl.frame = CGRectMake(0, NAVBAR_HEIGHT, SCREEN_WIDTH, 40);
     segmentedControl.backgroundColor = [UIColor whiteColor];
-    segmentedControl.titleColor = [UIColor colorWithHexString:@"#212121"];
-    segmentedControl.selectTitleColor = [UIColor colorWithHexString:@"#969696"];
+    segmentedControl.titleColor = [UIColor colorWithHexString:@"#969696"];
+    segmentedControl.selectTitleColor = [UIColor colorWithHexString:@"#212121"];
     segmentedControl.selectBtnSpace = 5;//设置按钮间的间距
     segmentedControl.SCType_Underline_HEI = 2;//设置底部横线的高度
     segmentedControl.titleFont = [UIFont fontWithName:@"STHeitiSC-Light" size:16];
@@ -81,6 +81,8 @@
             [self.systemTableView stop];
             if (isSuccess) {
                 [self.systemTableView reloadData];
+            }else{
+                NSLog(@"%@",message);
             }
         }];
     }else{
@@ -88,6 +90,8 @@
             [self.meTableView stop];
             if (isSuccess) {
                 [self.meTableView reloadData];
+            }else{
+                NSLog(@"%@",message);
             }
         }];
     }
@@ -113,7 +117,7 @@
     }else{
         BTMeMessageCell *cell = [[BTMeMessageCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"metableView"];
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
-        BTMessageEntity *entity = self.messageService.arrSystemMessageResource[indexPath.row];
+        BTMessageEntity *entity = self.messageService.arrMeMessageResource[indexPath.row];
         [cell setDataForCell:entity];
 
         return cell;

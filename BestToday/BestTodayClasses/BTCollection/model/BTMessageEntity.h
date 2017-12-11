@@ -21,5 +21,10 @@
 @property (nonatomic, strong) NSString *createTimeShort;  // 资源id
 @property (nonatomic, strong) BTMessageUserEntity *userEntity;  // 发消息用户
 @property (nonatomic, strong) NSDictionary *userVo;  //
+@property (nonatomic, strong) NSString *senderUserId;
+@property (nonatomic, strong) NSString *title;
+@property (nonatomic, strong) NSString *showType;
+
+
 
 @end

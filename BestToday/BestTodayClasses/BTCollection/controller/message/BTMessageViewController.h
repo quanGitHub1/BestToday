@@ -13,6 +13,10 @@
 
 @interface BTMessageViewController : BTViewController
 
+@property (assign, nonatomic) BOOL isComment;
+
+@property (strong, nonatomic) NSString *resourceId;
+
 /*!
  @property
  @brief 当前页面显示时，是否滚动到最后一条
