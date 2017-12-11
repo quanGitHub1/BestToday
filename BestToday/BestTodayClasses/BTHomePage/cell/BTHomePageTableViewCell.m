@@ -163,11 +163,7 @@
     [UMSocialUIManager setPreDefinePlatforms:@[@(UMSocialPlatformType_WechatSession),
                                                @(UMSocialPlatformType_WechatTimeLine),
                                                @(UMSocialPlatformType_WechatFavorite),
-                                               @(UMSocialPlatformType_QQ),
                                                @(UMSocialPlatformType_Tim),
-                                               @(UMSocialPlatformType_Qzone),
-                                               @(UMSocialPlatformType_Sina),
-                                               @(UMSocialPlatformType_TencentWb),
                                                ]];
     
     [UMSocialUIManager setShareMenuViewDelegate:self];

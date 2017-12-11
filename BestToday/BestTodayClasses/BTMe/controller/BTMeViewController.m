@@ -65,15 +65,28 @@
     
    [self creatSegment];
     
-    [self loadData];
+   
 }
 
+-(void)viewWillAppear:(BOOL)animated{
+
+    [super viewWillAppear:animated];
+    
+    [self loadData];
+    
+}
 
 -(void)setNavgationBar{
 
     self.navigationBar.title = @"个人中心";
     // 添加右上角按钮
     [self.navigationBar setRightBarButton:[UIButton mlt_rightBarButtonWithImage:[UIImage imageNamed:@"addFriend"] highlightedImage:nil target:self action:@selector(addFriend:)forControlEvents:UIControlEventTouchUpInside]];
+    
+    if (_otherId == YES) {
+        
+        [self.navigationBar setLeftBarButton:[UIButton mlt_rightBarButtonWithImage:[UIImage imageNamed:@"info_backs"] highlightedImage:nil target:self action:@selector(navigationBackButtonClicked:) forControlEvents:UIControlEventTouchUpInside]];
+    }
+    
 }
 
 - (UIView *)creatHeaderView:(CGRect)frame{
@@ -81,8 +94,6 @@
     UIView *viewHeaer = [[UIView alloc] initWithFrame:frame];
     
     _imageAvtar = [[UIImageView alloc] initWithFrame:CGRectMake(15, 17, ScaleWidth(54), ScaleHeight(54))];
-    
-//    _imageAvtar.contentMode = UIViewContentModeScaleAspectFit;
     
     _imageAvtar.backgroundColor = [UIColor whiteColor];
     
@@ -320,6 +331,10 @@
 
     _collectionViewTwo.frame = CGRectMake(0, _segementView.bottom, FULL_WIDTH, FULL_HEIGHT - _segementView.bottom - MLTTabbarHeight);
 
+}
+
+- (void)navigationBackButtonClicked:(UIButton *)btn {
+    [self.navigationController popViewControllerAnimated:YES];
 }
 
 /** 点击工具栏选择 */

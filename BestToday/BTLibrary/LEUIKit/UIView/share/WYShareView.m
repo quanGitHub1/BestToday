@@ -64,12 +64,12 @@ static WYShareView *shareView = nil;
     [_titleArray addObject:@"朋友圈"];
     [_imageArray addObject:@"share_wechatTimeline.png"];
     [_typeArray addObject:@(SSDKPlatformSubTypeWechatTimeline)];
-    [_titleArray addObject:@"QQ"];
-    [_imageArray addObject:@"share_QQ.png"];
-    [_typeArray addObject:@(SSDKPlatformTypeQQ)];
-    [_titleArray addObject:@"新浪微博"];
-    [_imageArray addObject:@"share_sinaweibo.png"];
-    [_typeArray addObject:@(SSDKPlatformTypeSinaWeibo)];
+//    [_titleArray addObject:@"QQ"];
+//    [_imageArray addObject:@"share_QQ.png"];
+//    [_typeArray addObject:@(SSDKPlatformTypeQQ)];
+//    [_titleArray addObject:@"新浪微博"];
+//    [_imageArray addObject:@"share_sinaweibo.png"];
+//    [_typeArray addObject:@(SSDKPlatformTypeSinaWeibo)];
 }
 
 

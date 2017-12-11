@@ -43,6 +43,11 @@
     self.navigationBar.title = @"今日最佳";
     self.nextPage = 1;
     
+//      [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(notificationAction:) name:@"BTHomePageNSNotificationIsLike" object:@{@"isLiked":@"0",@"resourceId" : _homePageEntity.resourceId}];
+    
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(notificationIsLike:) name:@"BTHomePageNSNotificationIsLike" object:nil];
+
     _dicCell = [[NSMutableDictionary alloc] init];
 
     
@@ -75,6 +80,36 @@
        };
     }
 }
+
+- (void)notificationIsLike:(NSNotification *)notify{
+    
+    NSString *isLike = notify.userInfo[@"isLiked"];
+    
+    NSString *resourceId = notify.userInfo[@"resourceId"];
+    
+    for (int i = 0; i < _homePageService.arrFollowedResource.count; i++) {
+        
+        BTHomePageEntity *pageEntity = [_homePageService.arrFollowedResource objectAtIndex:i];
+        
+        if ([pageEntity.resourceId isEqualToString:resourceId]) {
+            
+            pageEntity.isLiked = isLike;
+            
+            if ([isLike isEqualToString:@"1"]) {
+                pageEntity.likeCount = [NSString stringWithFormat:@"%ld",[pageEntity.likeCount integerValue] + 1];
+
+            }else {
+                pageEntity.likeCount = [NSString stringWithFormat:@"%ld",[pageEntity.likeCount integerValue] - 1];
+
+            }
+            
+            [self.tableView reloadData];
+            
+        }
+    }
+    
+}
+
 
 - (void)setupTableView{
     
@@ -262,7 +297,6 @@
     cell.updateCellAttention = ^(NSInteger indexpathRow) {
         
         
-        
     };
     
     if (![[_dicCell allKeys] containsObject:[NSString stringWithFormat:@"indexPath%ld", indexPath.row]]) {
@@ -418,6 +452,13 @@
     }
     return _homePageService;
 }
+
+-(void)dealloc{
+
+    //移除观察者
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
+}
+
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
