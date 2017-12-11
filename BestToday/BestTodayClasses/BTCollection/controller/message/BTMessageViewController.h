@@ -7,7 +7,7 @@
 //
 
 #import "BTViewController.h"
-
+#import "BTMessageEntity.h"
 /** @brief tabeleView的cell高度 */
 #define KCELLDEFAULTHEIGHT 50.0
 
@@ -43,5 +43,9 @@
 @property (nonatomic) NSTimeInterval messageTimeIntervalTag;
 
 @property (strong, nonatomic) NSMutableArray *dataArray;
+
+@property (strong, nonatomic) BTMessageEntity *messageEntity;
+
+
 
 @end

@@ -13,7 +13,7 @@
 #import "BTMeMessageCell.h"
 #import "BTMessageViewController.h"
 #import "BTMessageService.h"
-
+#import "EaseMessageModel.h"
 @interface BTCollectionViewController ()<UITableViewDelegate,UITableViewDataSource,LEBaseTableViewDelegate>
 {
     BOOL messageType;
@@ -126,10 +126,10 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     if (tableView == _systemTableView) {
+        BTMessageEntity *entity = self.messageService.arrSystemMessageResource[indexPath.row];
         BTMessageViewController *messageVC = [[BTMessageViewController alloc] init];
+        messageVC.messageEntity = entity;
         [self.navigationController pushViewController:messageVC animated:YES];
-    }else{
-        
     }
 }
 

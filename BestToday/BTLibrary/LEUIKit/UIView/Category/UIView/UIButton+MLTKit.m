@@ -90,7 +90,7 @@
     UIFont *titleFont = [UIFont boldSystemFontOfSize:14.0f];
     CGSize titleSize = [title sizeWithAttributes:@{NSFontAttributeName : titleFont}];
     
-    button.frame = CGRectMake(0.0f, 0.0f, titleSize.width + 24, image.size.height);
+    button.frame = CGRectMake(0.0f, 0.0f, titleSize.width + 24, image.size.height +20);
     button.titleLabel.font = titleFont;
     [button setTitle:title forState:UIControlStateNormal];
     [button setTitleColor:RGB(241.0f, 122.0f, 167.0f) forState:UIControlStateNormal];

@@ -10,8 +10,16 @@
 
 @interface BTPhotoService : NSObject
 
+@property (nonatomic, strong) NSMutableArray *tagsArray;  // 我的消息
 
-- (void)uploadImage:(UIImage *)image text:(NSString *)text categoryId:(NSString *)categoryId tagIdList:(NSString *)tagIdList completion:(void(^)(BOOL isSuccess, NSString *message))completion;
+@property (nonatomic, strong) NSMutableArray *categoryArray;  // 我的消息
 
+
+- (void)uploadImage:(UIImage *)image text:(NSString *)text categoryId:(NSString *)categoryId tagIdList:(NSString *)tagIdList tagName:(NSString *)tagName completion:(void(^)(BOOL isSuccess, NSString *message))completion;
+
+
+- (void)getUploadPictureTagscompletion:(void(^)(BOOL isSuccess, NSString *message))completion;
+
+- (void)getUploadPictureTagsByCategoryId:(NSString *)categoryId categoryName:(NSString *)categoryName Cacompletion:(void(^)(BOOL isSuccess, NSString *message))completion;
 
 @end

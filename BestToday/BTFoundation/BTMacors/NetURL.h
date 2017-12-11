@@ -69,6 +69,14 @@
 // 反馈消息
 #define BTFeedBackInfo    @"http://zuijia365.com/todayHot/app/message/saveFeedBackInfo.json"
 
+// 上传图片
+
+#define BTUploadPicture   @"http://zuijia365.com/todayHot/app/resource/uploadResource.json"
+
+// 获取分类
+#define BTGetTagsList   @"http://zuijia365.com/todayHot/app/tag/queryCategorys.json"
+// 获取二级分类
+#define BTGetTagsCategory   @"http://zuijia365.com/todayHot/app/tag/queryTagsByCategory.json"
 
 //#else         //////// 线上环境
 //

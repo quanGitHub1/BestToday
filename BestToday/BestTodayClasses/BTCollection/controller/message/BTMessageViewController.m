@@ -43,6 +43,7 @@
     [_tableView hiddenFreshFooter];
     [self.view addSubview:_tableView];
     
+    [self setDataForMessage:self.messageEntity];
     
     self.chatToolbar = [[BTChatToolBar alloc] initWithFrame:CGRectMake(0, self.view.frame.size.height - chatbarHeight, self.view.frame.size.width, chatbarHeight)];
     self.chatToolbar.delegate = self;
@@ -58,6 +59,15 @@
     [[EaseBaseMessageCell appearance] setAvatarCornerRadius:20.f];
     // Do any additional setup after loading the view.
 }
+- (void)setDataForMessage:(BTMessageEntity *)entity{
+    NSDictionary * dic = [NSDictionary dictionaryWithObjectsAndKeys:entity.isOwn,@"isSender",entity.userEntity.nickName,@"nickname",entity.userEntity.avatarUrl,@"avatarurl",entity.content,@"text", nil];
+    NSLog(@"%@",dic);
+    EaseMessageModel * model = [[EaseMessageModel alloc] initWithMessage:dic];
+    [self.dataArray addObject:model];
+    [self.tableView reloadData];
+    
+}
+
 
 - (void)viewWillAppear:(BOOL)animated
 {

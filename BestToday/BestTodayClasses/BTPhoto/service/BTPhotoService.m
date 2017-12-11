@@ -8,10 +8,11 @@
 
 #import "BTPhotoService.h"
 #import "AFHTTPSessionManager.h"
+#import "BTPhotoEntity.h"
 
 @implementation BTPhotoService
 
-- (void)uploadImage:(UIImage *)image text:(NSString *)text categoryId:(NSString *)categoryId tagIdList:(NSString *)tagIdList completion:(void(^)(BOOL isSuccess, NSString *message))completion{
+- (void)uploadImage:(UIImage *)image text:(NSString *)text categoryId:(NSString *)categoryId tagIdList:(NSString *)tagIdList tagName:(NSString *)tagName completion:(void(^)(BOOL isSuccess, NSString *message))completion{
     
     NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
     formatter.dateFormat = @"yyyyMMddHHmmss";
@@ -28,20 +29,22 @@
     NSString *version = [[[NSBundle mainBundle] infoDictionary] objectForKey:@"CFBundleShortVersionString"];
     [parameters setValue:version forKey:@"appVersion"];
     [parameters setValue:version forKey:@"osVersion"];
-    [parameters setValue:@"abc1005" forKey:@"cSessionId"];
+    [parameters setValue:[BTMeEntity shareSingleton].csessionId forKey:@"cSessionId"];
     [parameters setValue:[MLTUtils getCurrentDevicePlatform] forKey:@"phoneModel"];
     [parameters setValue:text forKey:@"textInfo"];
-    [parameters setValue:text forKey:@"categoryId"];
-    [parameters setValue:text forKey:@"tagIdList"];
+    [parameters setValue:categoryId forKey:@"categoryId"];
+    [parameters setValue:tagIdList forKey:@"tagIdList"];
+    [parameters setValue:tagName forKey:@"tagName"];
 
-    [manager POST:BTqueryUpdateAvatar parameters:parameters constructingBodyWithBlock:^(id<AFMultipartFormData>  _Nonnull formData) {
+    [manager POST:BTUploadPicture parameters:parameters constructingBodyWithBlock:^(id<AFMultipartFormData>  _Nonnull formData) {
         NSData *data =UIImageJPEGRepresentation(image,0.5);
         [formData appendPartWithFileData:data
-                                    name:imageName
+                                    name:@"picFile"
                                 fileName:fileName
                                 mimeType:@"image/jpeg"];
     } progress:^(NSProgress * _Nonnull uploadProgress) {
-        
+        NSLog(@"downLoadProcess = %@",uploadProgress);
+
     } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
         if ([responseObject[@"code"] integerValue] == 0) {
             completion(YES,responseObject[@"msg"]);
@@ -52,10 +55,87 @@
     } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
         completion(NO,error.localizedDescription);
     }];
-  
-
-    
-    
     
 }
+
+- (void)getUploadPictureTagscompletion:(void(^)(BOOL isSuccess, NSString *message))completion{
+    NSString *urlString = [NSString stringWithFormat:@"%@",BTGetTagsList];
+    NSLog(@"%@",urlString);
+
+    [NetworkHelper GET:urlString parameters:nil responseCache:^(id responseCache) {
+        
+        
+    } success:^(id responseObject) {
+        if (responseObject && [responseObject isKindOfClass:[NSDictionary class]]) {
+            if ([responseObject[@"code"] integerValue] == 0) {
+                NSDictionary *dicData = responseObject[@"data"];
+                if (dicData && [dicData isKindOfClass:[NSDictionary class]]) {
+                    NSArray *resDetailVoList = dicData[@"categoryVoList"];
+                    for (NSDictionary *dic in resDetailVoList) {
+                        BTPhotoEntity *tagEntity = [BTPhotoEntity yy_modelWithDictionary:dic];
+                        [self.categoryArray addObject:tagEntity];
+                    }
+                    completion(YES,responseObject[@"msg"]);
+                }else{
+                    completion(NO,responseObject[@"msg"]);
+                }
+            }else{
+                completion(NO,responseObject[@"msg"]);
+            }
+        }else{
+            completion(NO,responseObject[@"msg"]);
+        }
+    } failure:^(NSError *error) {
+        completion(NO,error.localizedDescription);
+    }];
+    
+}
+
+- (void)getUploadPictureTagsByCategoryId:(NSString *)categoryId categoryName:(NSString *)categoryName Cacompletion:(void(^)(BOOL isSuccess, NSString *message))completion{
+    
+    NSString *urlString = [NSString stringWithFormat:@"%@",BTGetTagsCategory];
+    
+    [NetworkHelper GET:urlString parameters:@{@"categoryId":categoryId,@"categoryName":categoryName} responseCache:^(id responseCache) {
+        
+        
+    }success:^(id responseObject) {
+        if (responseObject && [responseObject isKindOfClass:[NSDictionary class]]) {
+            if ([responseObject[@"code"] integerValue] == 0) {
+                NSDictionary *dicData = responseObject[@"data"];
+                if (dicData && [dicData isKindOfClass:[NSDictionary class]]) {
+                    NSArray *resDetailVoList = dicData[@"tagVoList"];
+                    for (NSDictionary *dic in resDetailVoList) {
+                        BTPhotoEntity *tagEntity = [BTPhotoEntity yy_modelWithDictionary:dic];
+                        [self.tagsArray addObject:tagEntity];
+                    }
+                    completion(YES,responseObject[@"msg"]);
+                }else{
+                    completion(NO,responseObject[@"msg"]);
+                }
+            }else{
+                completion(NO,responseObject[@"msg"]);
+            }
+        }else{
+            completion(NO,responseObject[@"msg"]);
+        }
+    } failure:^(NSError *error) {
+        completion(NO,error.localizedDescription);
+    }];
+    
+}
+
+- (NSMutableArray *)tagsArray{
+    if (!_tagsArray) {
+        _tagsArray = [[NSMutableArray alloc]init];
+    }
+    return _tagsArray;
+}
+
+- (NSMutableArray *)categoryArray{
+    if (!_categoryArray) {
+        _categoryArray = [[NSMutableArray alloc]init];
+    }
+    return _categoryArray;
+}
+
 @end

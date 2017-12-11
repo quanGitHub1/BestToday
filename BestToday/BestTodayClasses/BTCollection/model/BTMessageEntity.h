@@ -13,8 +13,8 @@
 @interface BTMessageEntity : NSObject
 
 @property (nonatomic, strong) NSString *messageId;  // 资源id
-@property (nonatomic, strong) NSString *content;  // 资源id
-@property (nonatomic, strong) NSString *isOwn;  // 资源id
+@property (nonatomic, strong) NSString *content;  // 发表的文字
+@property (nonatomic, strong) NSString *isOwn;  // 是否是自己发的
 @property (nonatomic, strong) NSString *resourceId;  // 资源id
 @property (nonatomic, strong) NSString *resourcePicUrl;
 @property (nonatomic, strong) NSString *createTime;  // 资源id
