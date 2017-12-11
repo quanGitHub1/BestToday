@@ -51,7 +51,7 @@
     NSString *version = [[[NSBundle mainBundle] infoDictionary] objectForKey:@"CFBundleShortVersionString"];
     [parameters setValue:version forKey:@"appVersion"];
     [parameters setValue:version forKey:@"osVersion"];
-    [parameters setValue:@"abc1005" forKey:@"cSessionId"];
+    [parameters setValue:[BTMeEntity shareSingleton].csessionId forKey:@"cSessionId"];
     
     [parameters setValue:[MLTUtils getCurrentDevicePlatform] forKey:@"phoneModel"];
     
