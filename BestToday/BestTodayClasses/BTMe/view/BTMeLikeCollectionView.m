@@ -27,6 +27,9 @@
 
 @property (nonatomic, strong) NSString *pageAssistParam;
 
+@property (nonatomic, assign) NSInteger nextPage;
+
+
 @end
 
 @implementation BTMeLikeCollectionView
@@ -79,6 +82,8 @@
     
     _pageAssistParam = @""; //时表示默认请求第一页
     
+    _nextPage = 1;
+    
     [_collectionView resetNoMoreData];
     
     [self loadData];
@@ -102,11 +107,13 @@
 
 - (void)requestqueryMyResourceByPage{
     
-    [self.meService loadqueryCommentResourceByPage:1 pageAssistParam:_pageAssistParam completion:^(BOOL isSuccess, BOOL isCache, NSString *pageAssistParam) {
+    [self.meService loadqueryCommentResourceByPage:_nextPage pageAssistParam:_pageAssistParam completion:^(BOOL isSuccess, BOOL isCache, NSString *pageAssistParam, NSString *nextPage) {
         
         [self.collectionView stop];
         
         _pageAssistParam = pageAssistParam;
+        
+        _nextPage = [nextPage integerValue];
         
         if (isSuccess) {
             

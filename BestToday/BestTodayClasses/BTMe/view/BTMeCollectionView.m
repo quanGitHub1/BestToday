@@ -27,6 +27,7 @@
 
 @property (nonatomic, strong) NSString *pageAssistParam;
 
+@property (nonatomic, assign) NSInteger nextPage;
 
 @end
 
@@ -39,6 +40,9 @@
     if (self) {
         
         self.backgroundColor = [UIColor whiteColor];
+        
+        self.nextPage = 1;
+
         
         [self creatTableview];
         
@@ -79,7 +83,9 @@
 
 - (void)requestDataSource{
     
-    _pageAssistParam = @""; //时表示默认请求第一页
+    _pageAssistParam = @"";
+    
+    _nextPage = 0;
     
     [_collectionView resetNoMoreData];
     
@@ -104,11 +110,14 @@
 
 - (void)requestqueryMyResourceByPage{
 
-    [self.meService loadqueryMyResourceByPage:1 pageAssistParam:_pageAssistParam completion:^(BOOL isSuccess, BOOL isCache, NSString *pageAssistParam) {
+    [self.meService loadqueryMyResourceByPage:_nextPage pageAssistParam:_pageAssistParam completion:^(BOOL isSuccess, BOOL isCache, NSString *pageAssistParam, NSString *nextPage) {
         
         [self.collectionView stop];
         
         _pageAssistParam = pageAssistParam;
+        
+        _nextPage = [nextPage integerValue];
+
         
         if (isSuccess) {
             

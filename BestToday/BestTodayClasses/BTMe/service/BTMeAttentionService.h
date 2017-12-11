@@ -12,10 +12,9 @@
 
 @property (nonatomic, strong) NSMutableArray *arrUserVoList;
 
-- (void)loadqueryMyFansUsersCompletion:(void(^)(BOOL isSuccess, BOOL isCache))completion;
+- (void)loadqueryMyFansUsersId:(NSInteger )userId Completion:(void(^)(BOOL isSuccess, BOOL isCache))completion;
 
-
-- (void)loadqueryMyFollowedUsers:(void(^)(BOOL isSuccess, BOOL isCache))completion;
+//- (void)loadqueryMyFollowedUsers:(void(^)(BOOL isSuccess, BOOL isCache))completion;
 
 
 @end

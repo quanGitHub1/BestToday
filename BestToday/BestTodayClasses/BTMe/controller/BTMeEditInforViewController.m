@@ -83,7 +83,7 @@
     
     _imageView.backgroundColor = [UIColor whiteColor];
     
-    _imageView.contentMode = UIViewContentModeScaleAspectFit;
+//    _imageView.contentMode = UIViewContentModeScaleAspectFit;
     
     _imageView.layer.cornerRadius = ScaleWidth(81/2);
     

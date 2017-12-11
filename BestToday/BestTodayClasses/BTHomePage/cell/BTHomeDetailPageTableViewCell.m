@@ -26,7 +26,7 @@
             
             _imageAvtar = [[UIImageView alloc] initWithFrame:CGRectMake(15, 9, ScaleWidth(32), ScaleHeight(32))];
             
-            _imageAvtar.contentMode = UIViewContentModeScaleAspectFit;
+//            _imageAvtar.contentMode = UIViewContentModeScaleAspectFit;
             
             _imageAvtar.backgroundColor = [UIColor whiteColor];
             
@@ -55,7 +55,7 @@
             
             _labFabulous = [UILabel mlt_labelWithText:@"" color:[UIColor mlt_colorWithHexString:@"#bdbdbd" alpha:1] align:NSTextAlignmentRight font:[UIFont systemFontOfSize:12] bkColor:nil frame:CGRectMake(FULL_WIDTH / 2, _labTime.top, 50, 15)];
             
-            _labTextInfor = [UILabel mlt_labelWithText:@"" color:[UIColor mlt_colorWithHexString:@"#bdbdbd" alpha:1] align:NSTextAlignmentLeft font:[UIFont systemFontOfSize:12] bkColor:nil frame:CGRectMake(FULL_WIDTH / 2 + 15, _labTime.top, FULL_WIDTH - 30, 0)];
+            _labTextInfor = [UILabel mlt_labelWithText:@"" color:[UIColor mlt_colorWithHexString:@"#616161" alpha:1] align:NSTextAlignmentLeft font:[UIFont systemFontOfSize:15] bkColor:nil frame:CGRectMake(FULL_WIDTH / 2 + 15, _labTime.top, FULL_WIDTH - 30, 0)];
             
             
             _viewLine = [[UIView alloc] initWithFrame:CGRectMake(0, _labTextInfor.bottom , FULL_WIDTH - 20, 10)];
@@ -445,7 +445,12 @@
     
     [_labTextInfor sizeToFit];
     
-    _viewLine.frame = CGRectMake(_imageAvtar.left,  _labTextInfor.bottom + 2, FULL_WIDTH - 2 * _imageAvtar.left, 0.6);
+    if (_labTextInfor.height > 40) {
+        
+        _viewLine.frame = CGRectMake(_imageAvtar.left,  _labTextInfor.bottom + 6, FULL_WIDTH - 2 * _imageAvtar.left, 0.6);
+
+    }
+    
 
     _viewLine.backgroundColor = [UIColor colorWithHexString:@"#eeeeee"];
 
@@ -524,7 +529,7 @@
         
         btnComment.frame = CGRectMake(0, 0, 0, 0);
         
-        _heightCell = _labTextInfor.bottom + 3;
+        _heightCell = _labTextInfor.bottom + 7;
         
     }else {
         

@@ -19,11 +19,10 @@
         
         _imageAvtar = [[UIImageView alloc] initWithFrame:CGRectMake(15, 12, ScaleWidth(40), ScaleHeight(40))];
         
-        _imageAvtar.contentMode = UIViewContentModeScaleAspectFit;
         
         _imageAvtar.backgroundColor = [UIColor whiteColor];
         
-        _imageAvtar.layer.cornerRadius = ScaleWidth(20);
+        _imageAvtar.layer.cornerRadius = _imageAvtar.size.width * 0.5;
         
         _imageAvtar.clipsToBounds = YES;
         

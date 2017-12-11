@@ -85,8 +85,8 @@
 }
 
 - (void)requestqueryUser{
-
-    [self.meService loadqueryMyFansUsersCompletion:^(BOOL isSuccess, BOOL isCache) {
+    
+    [self.meService loadqueryMyFansUsersId:[self.userId integerValue] Completion:^(BOOL isSuccess, BOOL isCache) {
         
         [self.tableView stop];
         
@@ -95,9 +95,7 @@
             [self.tableView reloadData];
             
         }
-        
     }];
-    
 }
 
 

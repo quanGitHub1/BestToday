@@ -11,9 +11,9 @@
 
 @implementation BTMeAttentionService
 
-- (void)loadqueryMyFansUsersCompletion:(void(^)(BOOL isSuccess, BOOL isCache))completion{
+- (void)loadqueryMyFansUsersId:(NSInteger)userId Completion:(void(^)(BOOL isSuccess, BOOL isCache))completion{
 
-    NSString *urlString = [NSString stringWithFormat:@"%@",BTqueryMyFansUsers];
+    NSString *urlString = [NSString stringWithFormat:@"%@?userId=%ld",BTqueryMyFansUsers,userId];
     
     [NetworkHelper GET:urlString parameters:nil responseCache:^(id responseCache) {
         
