@@ -12,6 +12,7 @@
 #import "BTMeLikeCollectionView.h"
 #import "BTMeEditInforViewController.h"
 #import "BTAttentionMeViewController.h"
+#import "BTMeAttentionViewController.h"
 #import "BTMeService.h"
 #import "BTMeEntity.h"
 
@@ -64,15 +65,28 @@
     
    [self creatSegment];
     
-    [self loadData];
+   
 }
 
+-(void)viewWillAppear:(BOOL)animated{
+
+    [super viewWillAppear:animated];
+    
+    [self loadData];
+    
+}
 
 -(void)setNavgationBar{
 
     self.navigationBar.title = @"个人中心";
     // 添加右上角按钮
     [self.navigationBar setRightBarButton:[UIButton mlt_rightBarButtonWithImage:[UIImage imageNamed:@"addFriend"] highlightedImage:nil target:self action:@selector(addFriend:)forControlEvents:UIControlEventTouchUpInside]];
+    
+    if (_otherId == YES) {
+        
+        [self.navigationBar setLeftBarButton:[UIButton mlt_rightBarButtonWithImage:[UIImage imageNamed:@"info_backs"] highlightedImage:nil target:self action:@selector(navigationBackButtonClicked:) forControlEvents:UIControlEventTouchUpInside]];
+    }
+    
 }
 
 - (UIView *)creatHeaderView:(CGRect)frame{
@@ -80,8 +94,6 @@
     UIView *viewHeaer = [[UIView alloc] initWithFrame:frame];
     
     _imageAvtar = [[UIImageView alloc] initWithFrame:CGRectMake(15, 17, ScaleWidth(54), ScaleHeight(54))];
-    
-    _imageAvtar.contentMode = UIViewContentModeScaleAspectFit;
     
     _imageAvtar.backgroundColor = [UIColor whiteColor];
     
@@ -107,16 +119,12 @@
     
     _btnPublish.titleLabel.textAlignment = NSTextAlignmentLeft;
     
-    [_btnPublish addTarget:self action:@selector(onclickFans:) forControlEvents:UIControlEventTouchUpInside];
-    
     [_btnPublish setTitleColor:[UIColor colorWithHexString:@"#969696"] forState:UIControlStateNormal];
 
     [_btnPublish.titleLabel sizeToFit];
     
-    _btnPublish.backgroundColor = [UIColor yellowColor];
-    
     // 粉丝
-    _btnFans = [[UIButton alloc] initWithFrame:CGRectMake(_btnPublish.right + 40, _btnPublish.top, 65, 0)];
+    _btnFans = [[UIButton alloc] initWithFrame:CGRectMake(_btnPublish.right + ScaleWidth(35), _btnPublish.top, 65, 0)];
     
     [_btnFans setTitleColor:[UIColor colorWithHexString:@"#969696"] forState:UIControlStateNormal];
     
@@ -127,7 +135,7 @@
     [_btnFans.titleLabel sizeToFit];
     
     // 关注
-    _btnfollow = [[UIButton alloc] initWithFrame:CGRectMake(_btnFans.right + 40, _btnPublish.top, 65, 0)];
+    _btnfollow = [[UIButton alloc] initWithFrame:CGRectMake(_btnFans.right + ScaleWidth(35), _btnPublish.top, 65, 0)];
     
     [_btnfollow addTarget:self action:@selector(onclickFollow:) forControlEvents:UIControlEventTouchUpInside];
     
@@ -220,20 +228,33 @@
 }
 
 - (void)requestqueryUserById{
-    
-    [self.meService loadqueryUserById:[[BTMeEntity shareSingleton].userId integerValue] completion:^(BOOL isSuccess, BOOL isCache) {
+    if (_otherId == YES) {
         
-        if (isSuccess) {
+        [self.meService loadqueryUserById:[_userId integerValue] completion:^(BOOL isSuccess, BOOL isCache) {
             
-            [self refreshHeaderView];
-        }
+            if (isSuccess) {
+                
+                [self refreshHeaderView];
+            }
+            
+        }];
         
-    }];
+    }else {
+    
+        [self.meService loadqueryUserById:[[BTMeEntity shareSingleton].userId integerValue] completion:^(BOOL isSuccess, BOOL isCache) {
+            
+            if (isSuccess) {
+                
+                [self refreshHeaderView];
+            }
+            
+        }];
+    }
+   
 }
 
 // 刷新头部试图
 - (void)refreshHeaderView{
-    
     
     if (self.meService.arrByUser.count == 0) {
         
@@ -312,6 +333,10 @@
 
 }
 
+- (void)navigationBackButtonClicked:(UIButton *)btn {
+    [self.navigationController popViewControllerAnimated:YES];
+}
+
 /** 点击工具栏选择 */
 - (void)touchLabelWithIndex:(NSInteger)index{
     
@@ -365,7 +390,7 @@
 
 - (void)onclickFollow:(UIButton *)btn{
     
-    BTAttentionMeViewController *Attention = [[BTAttentionMeViewController alloc] init];
+    BTMeAttentionViewController *Attention = [[BTMeAttentionViewController alloc] init];
     
     Attention.navTitle = @"我关注的";
     
@@ -375,6 +400,16 @@
 - (void)onclickFans:(UIButton *)btn{
 
     BTAttentionMeViewController *Attention = [[BTAttentionMeViewController alloc] init];
+    
+    BTMeEntity *meEntity;
+    
+    if (self.meService.arrByUser.count > 0) {
+        
+       meEntity = [self.meService.arrByUser objectAtIndex:0];
+        
+    }
+    
+    Attention.userId = meEntity.userId;
     
     Attention.navTitle = @"关注我的";
     

@@ -22,7 +22,7 @@
             
             _imagePic = [[UIImageView alloc] initWithFrame:CGRectMake(15, 13, ScaleWidth(60), ScaleHeight(60))];
             
-            _imagePic.contentMode = UIViewContentModeScaleAspectFit;
+//            _imagePic.contentMode = UIViewContentModeScaleAspectFit;
             
             _imagePic.backgroundColor = [UIColor whiteColor];
             

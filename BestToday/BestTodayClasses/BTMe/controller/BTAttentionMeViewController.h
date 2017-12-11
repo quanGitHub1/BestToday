@@ -10,6 +10,8 @@
 
 @interface BTAttentionMeViewController : BTViewController
 
-@property (nonatomic, strong)NSString *navTitle;
+@property (nonatomic, strong) NSString *navTitle;
+
+@property (nonatomic, strong) NSString *userId;
 
 @end

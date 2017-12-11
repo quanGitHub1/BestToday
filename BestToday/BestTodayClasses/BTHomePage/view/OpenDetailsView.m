@@ -66,24 +66,28 @@
         
         _textArr = [self getSeparatedLinesFromLabel:textLabel];
     
-        if (_textArr.count >= 2) {
+        if (_textArr.count > 3) {
             
+            NSString *str = [NSString stringWithFormat:@"%@",_textArr[2]];
             
-            NSString *str = [NSString stringWithFormat:@"%@",_textArr[row - 2]];
             int number = (int)str.length;
             
             if (str.length > 8) {
-                
+            
                 str = [str substringToIndex:number - 8];
 
             }
             
             NSString *showStr1 = [NSString stringWithFormat:@"%@...",str];
-            CGFloat width = showStr1.length * 16;
             
-            _width = width;
+            CGSize detailSize = [showStr1 sizeWithFont:[UIFont systemFontOfSize:15] constrainedToSize:CGSizeMake(FULL_WIDTH - 80, MAXFLOAT) lineBreakMode:UILineBreakModeWordWrap];
+
             
-            NSString *showStr = [NSString stringWithFormat:@"%@%@%@...",_textArr[0],_textArr[1],str];
+//            CGFloat width = showStr1.length * 15;
+            
+            _width = detailSize.width;
+            
+            NSString *showStr = [NSString stringWithFormat:@"%@\n%@\n%@...",_textArr[0],_textArr[1],str];
             
             textLabel.text = showStr;
             
@@ -116,14 +120,11 @@
         
         [paragraphStyle  setLineSpacing:8];
         
-        
         NSMutableAttributedString  *setString;
-        
         
         setString = [[NSMutableAttributedString alloc] initWithString:text];
         
         [setString  addAttribute:NSParagraphStyleAttributeName value:paragraphStyle range:NSMakeRange(0, text.length)];
-        
         
         _textLabel.attributedText = setString;
         
@@ -133,17 +134,19 @@
         
         [self creatLabData:@"YES"];
 
-        
         return;
 
      }
 
-    if (_textArr.count >= 2) {
+    if (_textArr.count > 3) {
         
         UIButton *openBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-        openBtn.frame = CGRectMake(_width - 20, font * 3 + 8, screenWidth - _width - 10, font );
-        openBtn.backgroundColor = [UIColor whiteColor];
+        openBtn.frame = CGRectMake(_width + 20, font * 3 + 12, screenWidth - _width - 20, font);
+        
+        openBtn.contentHorizontalAlignment = UIControlContentHorizontalAlignmentLeft;
+        
         [openBtn setTitle:@"更多" forState:0];
+        
         openBtn.titleLabel.font = [UIFont systemFontOfSize:15];
         
         [openBtn setTitleColor:[UIColor colorWithHexString:@"#616161"] forState:UIControlStateNormal];

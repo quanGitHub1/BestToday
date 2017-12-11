@@ -15,7 +15,7 @@
 
 - (void)loadqueryUserById:(NSInteger)userID completion:(void(^)(BOOL isSuccess, BOOL isCache))completion{
 
-    NSString *urlString = [NSString stringWithFormat:@"%@?userID=%ld",BTqueryUserById,userID];
+    NSString *urlString = [NSString stringWithFormat:@"%@?userId=%ld",BTqueryUserById,userID];
     
     [NetworkHelper GET:urlString parameters:nil responseCache:^(id responseCache) {
         
@@ -31,47 +31,46 @@
     
 }
 
-- (void)loadqueryMyResourceByPage:(NSInteger)pageIndex pageAssistParam:(NSString *)pageAssistParam completion:(void(^)(BOOL isSuccess, BOOL isCache, NSString* pageAssistParam))completion{
+- (void)loadqueryMyResourceByPage:(NSInteger)pageIndex pageAssistParam:(NSString *)pageAssistParam completion:(void(^)(BOOL isSuccess, BOOL isCache, NSString* pageAssistParam, NSString *nextPage))completion{
 
-    NSString *urlString = [NSString stringWithFormat:@"%@?userID=%ld",BTqueryMyResourceByPage,pageIndex];
+    NSString *urlString = [NSString stringWithFormat:@"%@?pageIndex=%ld",BTqueryMyResourceByPage,pageIndex];
     
     [NetworkHelper GET:urlString parameters:nil responseCache:^(id responseCache) {
         
     } success:^(id responseObject) {
         
-        if (!pageAssistParam) {
+        if ([pageAssistParam isEqualToString:@""]) {
             
             [self.arrMyResource removeAllObjects];
         }
         [self handleRequestSourceListData:responseObject];
         
-        completion(YES,NO,_pageAssistParam);
+        completion(YES,NO,_pageAssistParam, _nextPage);
         
     } failure:^(NSError *error) {
-        completion(NO,NO, _pageAssistParam);
+        completion(NO,NO, _pageAssistParam, _nextPage);
     }];
 }
 
-- (void)loadqueryCommentResourceByPage:(NSInteger)pageIndex pageAssistParam:(NSString *)pageAssistParam completion:(void(^)(BOOL isSuccess, BOOL isCache, NSString* pageAssistParam))completion{
+- (void)loadqueryCommentResourceByPage:(NSInteger)pageIndex pageAssistParam:(NSString *)pageAssistParam completion:(void(^)(BOOL isSuccess, BOOL isCache, NSString* pageAssistParam, NSString *nextPage))completion{
 
-
-    NSString *urlString = [NSString stringWithFormat:@"%@?userID=%ld",BTqueryCommentResourceByPage,pageIndex];
+    NSString *urlString = [NSString stringWithFormat:@"%@?pageIndex=%ld",BTqueryCommentResourceByPage,pageIndex];
     
     [NetworkHelper GET:urlString parameters:nil responseCache:^(id responseCache) {
         
     } success:^(id responseObject) {
         
-        if (pageAssistParam) {
+        if ([pageAssistParam isEqualToString:@""]) {
             
             [self.arrCommentResource removeAllObjects];
             
         }
         [self handleRequestLikeSourceListData:responseObject];
         
-        completion(YES,NO,_pageAssistParam);
+        completion(YES,NO,_pageAssistParam, _nextPageTwo);
         
     } failure:^(NSError *error) {
-        completion(NO,NO, _pageAssistParam);
+        completion(NO,NO, _pageAssistParam, _nextPageTwo);
     }];
 }
 
@@ -114,6 +113,10 @@
             
             NSArray *datas = dicData[@"resourceVoList"];
             
+            _nextPage = dicData[@"nextPage"];
+
+            _pageAssistParam = dicData[@"pageAssistParam"];
+
             if (datas && [datas isKindOfClass:[NSArray class]]) {
                 for (NSDictionary *dic in datas) {
                     
@@ -143,6 +146,12 @@
         if (dicData && [dicData isKindOfClass:[NSDictionary class]]) {
             
             NSArray *datas = dicData[@"resourceVoList"];
+            
+            _pageAssistParam = dicData[@"pageAssistParam"];
+
+            
+            _nextPage = dicData[@"nextPage"];
+
             
             if (datas && [datas isKindOfClass:[NSArray class]]) {
                 for (NSDictionary *dic in datas) {

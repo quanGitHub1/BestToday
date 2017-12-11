@@ -10,4 +10,8 @@
 
 @interface BTMeViewController : BTViewController
 
+@property (nonatomic, strong) NSString *userId;
+
+@property (nonatomic) BOOL otherId;
+
 @end

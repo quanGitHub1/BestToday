@@ -83,7 +83,7 @@
     
     _imageView.backgroundColor = [UIColor whiteColor];
     
-    _imageView.contentMode = UIViewContentModeScaleAspectFit;
+//    _imageView.contentMode = UIViewContentModeScaleAspectFit;
     
     _imageView.layer.cornerRadius = ScaleWidth(81/2);
     
@@ -115,12 +115,12 @@
     
     _labName = [UILabel mlt_labelWithText:@"昵称" color:[UIColor mlt_colorWithHexString:@"#969696" alpha:1] align:NSTextAlignmentLeft font:[UIFont systemFontOfSize:15] bkColor:nil frame:CGRectMake(15, labChange.bottom + 50, 40, 16)];
     
-    _labProduct = [UILabel mlt_labelWithText:@"简介" color:[UIColor mlt_colorWithHexString:@"#969696" alpha:1] align:NSTextAlignmentLeft font:[UIFont systemFontOfSize:15] bkColor:nil frame:CGRectMake(15, _labName.bottom + 30, 40, 16)];
+    _labProduct = [UILabel mlt_labelWithText:@"简介" color:[UIColor mlt_colorWithHexString:@"#969696" alpha:1] align:NSTextAlignmentLeft font:[UIFont systemFontOfSize:15] bkColor:nil frame:CGRectMake(15, _labName.bottom + 50, 40, 16)];
     
     _textViewName = [[UITextField alloc] initWithFrame:CGRectMake(_labName.right + 30, _labName.top - 8, FULL_WIDTH - _labName.right - 45, 40)];
     
     _textViewName.text = self.nikeName;
-    
+        
     _textViewName.font = [UIFont systemFontOfSize:15];
     
     _textViewName.textColor = [UIColor colorWithHexString:@"#212121"];

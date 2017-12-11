@@ -11,6 +11,7 @@
 #import "BTHomeComment.h"
 #import "CoreText/CoreText.h"
 #import "WYShareView.h"
+#import "BTMeViewController.h"
 
 @implementation BTHomePageTableViewCell
 
@@ -26,7 +27,7 @@
             
             _imageAvtar = [[UIImageView alloc] initWithFrame:CGRectMake(15, 9, ScaleWidth(32), ScaleHeight(32))];
             
-            _imageAvtar.contentMode = UIViewContentModeScaleAspectFit;
+//            _imageAvtar.contentMode = UIViewContentModeScaleAspectFit;
             
             _imageAvtar.backgroundColor = [UIColor whiteColor];
             
@@ -34,13 +35,22 @@
             
             _imageAvtar.clipsToBounds = YES;
             
+            _imageAvtar.userInteractionEnabled = YES;
+            
+            //创建手势 使用initWithTarget:action:的方法创建
+            UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(tapView:)];
+            
+            //设置属性
+            tap.numberOfTouchesRequired = 1;
+            
+            //别忘了添加到testView上
+            [_imageAvtar addGestureRecognizer:tap];
+            
             _labName = [UILabel mlt_labelWithText:@"" color:[UIColor mlt_colorWithHexString:@"#212121" alpha:1] align:NSTextAlignmentLeft font:[UIFont systemFontOfSize:16] bkColor:nil frame:CGRectMake(_imageAvtar.right + 10, _imageAvtar.top + (_imageAvtar.height - 18)/2, 200, 18)];
             
             _btnAtten = [[UIButton alloc] initWithFrame:CGRectMake(FULL_WIDTH - 65, 15, 50, 25)];
             
             _btnAtten.backgroundColor = [UIColor whiteColor];
-            
-            [_btnAtten addTarget:self action:@selector(onclickBtnAtten:) forControlEvents:UIControlEventTouchUpInside];
             
             [_btnAtten setTitleColor:[UIColor colorWithHexString:@"#616161"] forState:UIControlStateNormal];
             
@@ -55,7 +65,7 @@
             
             _labFabulous = [UILabel mlt_labelWithText:@"" color:[UIColor mlt_colorWithHexString:@"#bdbdbd" alpha:1] align:NSTextAlignmentRight font:[UIFont systemFontOfSize:12] bkColor:nil frame:CGRectMake(FULL_WIDTH / 2, _labTime.top, 50, 15)];
             
-            _labTextInfor = [UILabel mlt_labelWithText:@"" color:[UIColor mlt_colorWithHexString:@"#bdbdbd" alpha:1] align:NSTextAlignmentLeft font:[UIFont systemFontOfSize:12] bkColor:nil frame:CGRectMake(FULL_WIDTH / 2 + 15, _labTime.top, FULL_WIDTH - 30, 0)];
+            _labTextInfor = [UILabel mlt_labelWithText:@"" color:[UIColor mlt_colorWithHexString:@"#bdbdbd" alpha:1] align:NSTextAlignmentLeft font:[UIFont systemFontOfSize:15] bkColor:nil frame:CGRectMake(FULL_WIDTH / 2 + 15, _labTime.top, FULL_WIDTH - 30, 0)];
             
             
             _btnCollection = [[UIButton alloc] init];
@@ -90,21 +100,11 @@
             
             [self.contentView addSubview:_btnShare];
             
-//            [self.contentView addSubview:_viewLine];
-
-//            [self.contentView addSubview:_labDescrp];
-            
         }
         return self;
         
     }
     return self;
-}
-
-
-- (void)onclickBtnAtten:(UIButton *)btn{
-    
-
 }
 
 - (void)onclickBtnCollection:(UIButton *)btn{
@@ -126,9 +126,7 @@
 
                 
                 _labFabulous.text = [NSString stringWithFormat:@"%ld赞",[_labFabulous.text integerValue] - 1];
-                
-
-                
+                                
             }else {
                 
                 [SVProgressHUD showInfoWithStatus:@"取消点赞失败"];
@@ -148,8 +146,6 @@
                 _homePageEntity.likeCount = [NSString stringWithFormat:@"%ld",[_labFabulous.text integerValue] + 1];
 
                 _labFabulous.text = [NSString stringWithFormat:@"%ld赞",[_labFabulous.text integerValue] + 1];
-               
-
                 
             }else {
                 
@@ -167,11 +163,7 @@
     [UMSocialUIManager setPreDefinePlatforms:@[@(UMSocialPlatformType_WechatSession),
                                                @(UMSocialPlatformType_WechatTimeLine),
                                                @(UMSocialPlatformType_WechatFavorite),
-                                               @(UMSocialPlatformType_QQ),
                                                @(UMSocialPlatformType_Tim),
-                                               @(UMSocialPlatformType_Qzone),
-                                               @(UMSocialPlatformType_Sina),
-                                               @(UMSocialPlatformType_TencentWb),
                                                ]];
     
     [UMSocialUIManager setShareMenuViewDelegate:self];
@@ -191,7 +183,19 @@
                                           }];
 }
 
+- (void)tapView:(UITapGestureRecognizer*)gesTap{
+    
+    BTMeViewController *meView = [[BTMeViewController alloc] init];
+    
+    BTHomeUserEntity *userEntity = [BTHomeUserEntity yy_modelWithJSON:_homePageEntity.userVo];
 
+    meView.userId = userEntity.userId;
+    
+    meView.otherId = YES;
+    
+    [[self viewController].navigationController pushViewController:meView animated:YES];
+    
+}
 
 - (void)makeDatacellData:(BTHomePageEntity *)homePage index:(NSInteger)indexpath{
     
@@ -201,6 +205,9 @@
     _homePageEntity = homePage;
     
     BTHomeUserEntity *userEntity = [BTHomeUserEntity yy_modelWithJSON:homePage.userVo];
+    
+    _btnAtten.tag = indexpath + 10000;
+
     
     if ([userEntity.isFollowed integerValue] == 0) {
         
@@ -485,7 +492,6 @@
             // 设置label的行间距
             NSMutableParagraphStyle  *paragraphStyle = [[NSMutableParagraphStyle alloc] init];
             
-            
             [paragraphStyle  setLineSpacing:8];
             
             NSMutableAttributedString  *setString;
@@ -508,6 +514,7 @@
             if (i == arrCommentList.count - 1 && i > 1) {
                 
                 heightLabTwo = heightLab + labComment.height;
+                
             }else {
                 
                 heightLabTwo = heightLab;
@@ -536,7 +543,7 @@
             
         }
         
-        _labDescrp = [OpenDetailsView initWithFrame:CGRectMake(_imageAvtar.left, _labTime.bottom + 15, FULL_WIDTH - 30, height) text:_homePageEntity.textInfo totalCommentMsg:_homePageEntity.totalCommentMsg comment:arrCommentList font:font numberOfRow:(int)textArry.count + 1 indexPath:indexpath block:^(CGFloat height, NSInteger indexpath) {
+        _labDescrp = [OpenDetailsView initWithFrame:CGRectMake(_imageAvtar.left, _labTime.bottom + 15, FULL_WIDTH - 30, height) text:_homePageEntity.textInfo totalCommentMsg:_homePageEntity.totalCommentMsg comment:arrCommentList font:font numberOfRow:(int)textArry.count indexPath:indexpath block:^(CGFloat height, NSInteger indexpath) {
             
             _labDescrp.frame = CGRectMake(_imageAvtar.left, _labTime.bottom + 15, FULL_WIDTH - 30, height);
             
@@ -561,6 +568,16 @@
     
 }
 
+//获取View所在的Viewcontroller方法
+- (UIViewController *)viewController {
+    for (UIView* next = [self superview]; next; next = next.superview) {
+        UIResponder *nextResponder = [next nextResponder];
+        if ([nextResponder isKindOfClass:[UIViewController class]]) {
+            return (UIViewController *)nextResponder;
+        }
+    }
+    return nil;
+}
 
 
 - (NSArray *)getSeparatedLinesFromLabel:(UILabel *)label
@@ -591,6 +608,7 @@
     }
     return linesArray;
 }
+
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {
     [super setSelected:selected animated:animated];

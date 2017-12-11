@@ -30,7 +30,7 @@
 
 @property (nonatomic, strong) NSArray *partCommentList; //显示在详情页的部分评论列表(最多为3条评论)
 
-@property (nonatomic, strong) NSDictionary *userVo; //用户相关信息
+@property (nonatomic, strong) NSMutableDictionary *userVo; //用户相关信息
 
 @property (nonatomic, strong) NSString *createTimeShort;  // 图片发表时间简短格式
 

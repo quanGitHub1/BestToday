@@ -24,6 +24,8 @@
 
 typedef void(^updateCellBlock)(NSInteger indexpathRow);
 
+typedef void (^updateCellAttention)(NSInteger indexpathRow);
+
 
 @interface BTHomePageTableViewCell : UITableViewCell<UMSocialShareMenuViewDelegate>
 
@@ -68,6 +70,8 @@ typedef void(^updateCellBlock)(NSInteger indexpathRow);
 @property (nonatomic) BOOL cell;
 
 @property (nonatomic, copy) updateCellBlock updateCellBlock;
+
+@property (nonatomic, copy) updateCellAttention updateCellAttention;
 
 
 - (void)makeDatacellData:(BTHomePageEntity *)homePage index:(NSInteger)indexpath;

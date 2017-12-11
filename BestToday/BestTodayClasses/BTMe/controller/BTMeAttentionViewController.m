@@ -1,19 +1,17 @@
 //
-//  BTAttentionMeViewController.m
+//  LEMeAttentionViewController.m
 //  BestToday
 //
-//  Created by leeco on 2017/11/15.
+//  Created by leeco on 2017/12/8.
 //  Copyright © 2017年 leeco. All rights reserved.
 //
 
-#import "BTAttentionMeViewController.h"
+#import "BTMeAttentionViewController.h"
 #import "BTAttentionTableViewCell.h"
-#import "BTMeAttentionService.h"
 #import "BTUserEntity.h"
 #import "BtHomePageService.h"
 
-
-@interface BTAttentionMeViewController ()<UITableViewDelegate, UITableViewDataSource, LEBaseTableViewDelegate>
+@interface BTMeAttentionViewController ()<UITableViewDelegate, UITableViewDataSource, LEBaseTableViewDelegate>
 
 @property (nonatomic, strong)BTTableview *tableView;
 
@@ -21,14 +19,13 @@
 
 @property (nonatomic) BOOL isPullup;
 
-@property (nonatomic, strong) BTMeAttentionService *meService;
 
 @property (nonatomic, strong) BtHomePageService *homePageService;
 
 
 @end
 
-@implementation BTAttentionMeViewController
+@implementation BTMeAttentionViewController
 
 - (void)viewDidLoad {
     
@@ -66,7 +63,7 @@
     self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     
     [self.tableView hiddenFreshHead];
-
+    
     [self.tableView hiddenFreshFooter];
     
     [self.view addSubview:_tableView];
@@ -75,27 +72,7 @@
 
 - (void)loadData{
     
-    if ([self.navigationBar.title isEqualToString:@"关注我的"]) {
-        [self requestqueryUser];
-
-    }else {
-    
         [self requestAnnouncementData];
-    }
-}
-
-- (void)requestqueryUser{
-    
-    [self.meService loadqueryMyFansUsersId:[self.userId integerValue] Completion:^(BOOL isSuccess, BOOL isCache) {
-        
-        [self.tableView stop];
-        
-        if (isSuccess) {
-            
-            [self.tableView reloadData];
-            
-        }
-    }];
 }
 
 
@@ -121,7 +98,7 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
     
-    return self.meService.arrUserVoList.count ;
+    return self.homePageService.arrFollowedUsers.count ;
 }
 
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -142,18 +119,12 @@
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
     }
     
-    [cell makeCellData:[self.meService.arrUserVoList objectAtIndex:indexPath.row]];
+    [cell makeCellData:[self.homePageService.arrFollowedUsers objectAtIndex:indexPath.row]];
     
     return cell;
 }
 
 #pragma mark - lazy
-- (BTMeAttentionService *)meService {
-    if (!_meService) {
-        _meService = [[BTMeAttentionService alloc] init];
-    }
-    return _meService;
-}
 
 - (BtHomePageService *)homePageService {
     if (!_homePageService) {

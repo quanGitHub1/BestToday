@@ -8,6 +8,7 @@
 
 #import "BTSpreadTableView.h"
 #import "BTRecomendUserTableViewCell.h"
+#import "BTMeViewController.h"
 
 @interface BTSpreadTableView()<UITableViewDataSource,UITableViewDelegate, UIGestureRecognizerDelegate>
 {
@@ -163,8 +164,34 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
+    if (self.type == BTSpreadTableViewStyleImageText) {
+        
+        BTHomeUserEntity *userEntity = [_dataArr objectAtIndex:indexPath.row];
+        
+        BTMeViewController *meView = [[BTMeViewController alloc] init];
+        
+        meView.userId = userEntity.userId;
+        
+        meView.otherId = YES;
+        
+        [[self viewController].navigationController pushViewController:meView animated:YES];
+        
+    }
     
 }
+
+
+//获取View所在的Viewcontroller方法
+- (UIViewController *)viewController {
+    for (UIView* next = [self superview]; next; next = next.superview) {
+        UIResponder *nextResponder = [next nextResponder];
+        if ([nextResponder isKindOfClass:[UIViewController class]]) {
+            return (UIViewController *)nextResponder;
+        }
+    }
+    return nil;
+}
+
 
 - (void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView{
     

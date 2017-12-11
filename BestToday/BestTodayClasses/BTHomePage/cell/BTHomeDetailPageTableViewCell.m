@@ -11,6 +11,7 @@
 #import "BTHomeComment.h"
 #import "CoreText/CoreText.h"
 #import "WYShareView.h"
+#import "BtHomePageService.h"
 
 @implementation BTHomeDetailPageTableViewCell
 
@@ -26,7 +27,7 @@
             
             _imageAvtar = [[UIImageView alloc] initWithFrame:CGRectMake(15, 9, ScaleWidth(32), ScaleHeight(32))];
             
-            _imageAvtar.contentMode = UIViewContentModeScaleAspectFit;
+//            _imageAvtar.contentMode = UIViewContentModeScaleAspectFit;
             
             _imageAvtar.backgroundColor = [UIColor whiteColor];
             
@@ -36,15 +37,22 @@
             
             _labName = [UILabel mlt_labelWithText:@"" color:[UIColor mlt_colorWithHexString:@"#212121" alpha:1] align:NSTextAlignmentLeft font:[UIFont systemFontOfSize:16] bkColor:nil frame:CGRectMake(_imageAvtar.right + 10, _imageAvtar.top + (_imageAvtar.height - 18)/2, 200, 18)];
             
-            _btnAtten = [[UIButton alloc] initWithFrame:CGRectMake(FULL_WIDTH - 35, 10, 30, 20)];
+            _btnAtten = [[UIButton alloc] initWithFrame:CGRectMake(FULL_WIDTH - ScaleWidth(50) - 15, 10, ScaleWidth(50), ScaleWidth(25))];
             
-            _btnAtten.backgroundColor = [UIColor whiteColor];
+            [_btnAtten setTitle:@"已关注" forState:UIControlStateNormal];
             
-            [_btnAtten addTarget:self action:@selector(onclickBtnAtten:) forControlEvents:UIControlEventTouchUpInside];
-                        
+            _btnAtten.layer.borderColor = [UIColor colorWithHexString:@"#bdbdbd"].CGColor;
+            
+            _btnAtten.layer.borderWidth = 1;
+            
             [_btnAtten setTitleColor:[UIColor colorWithHexString:@"#616161"] forState:UIControlStateNormal];
             
-            _btnAtten.titleLabel.font = [UIFont systemFontOfSize:20];
+            _btnAtten.layer.cornerRadius = 1.5;
+            
+            _btnAtten.titleLabel.font = [UIFont systemFontOfSize:13];
+            
+            [_btnAtten addTarget:self action:@selector(onclickBtnAtten:) forControlEvents:UIControlEventTouchUpInside];
+
             
             _imagePic = [[UIImageView alloc] initWithFrame:CGRectMake(0, _imageAvtar.bottom + 15, FULL_WIDTH, ScaleHeight(350))];
             
@@ -55,10 +63,10 @@
             
             _labFabulous = [UILabel mlt_labelWithText:@"" color:[UIColor mlt_colorWithHexString:@"#bdbdbd" alpha:1] align:NSTextAlignmentRight font:[UIFont systemFontOfSize:12] bkColor:nil frame:CGRectMake(FULL_WIDTH / 2, _labTime.top, 50, 15)];
             
-            _labTextInfor = [UILabel mlt_labelWithText:@"" color:[UIColor mlt_colorWithHexString:@"#bdbdbd" alpha:1] align:NSTextAlignmentLeft font:[UIFont systemFontOfSize:12] bkColor:nil frame:CGRectMake(FULL_WIDTH / 2 + 15, _labTime.top, FULL_WIDTH - 30, 0)];
+            _labTextInfor = [UILabel mlt_labelWithText:@"" color:[UIColor mlt_colorWithHexString:@"#616161" alpha:1] align:NSTextAlignmentLeft font:[UIFont systemFontOfSize:15] bkColor:nil frame:CGRectMake(FULL_WIDTH / 2 + 15, _labTime.top, FULL_WIDTH - 30, 0)];
             
             
-            _viewLine = [[UIView alloc] initWithFrame:CGRectMake(0, _labTextInfor.bottom , FULL_WIDTH - 20, 10)];
+            _viewLine = [[UIView alloc] initWithFrame:CGRectMake(0, _labTextInfor.bottom , FULL_WIDTH - 20, 0.6)];
 
             
             _btnCollection = [[UIButton alloc] init];
@@ -79,6 +87,8 @@
             
             [self.contentView addSubview:_btnAtten];
             
+            [self.contentView addSubview:_viewLine];
+            
             [self.contentView addSubview:_imagePic];
             
             [self.contentView addSubview:_labTime];
@@ -95,7 +105,6 @@
             
             [self.contentView addSubview:_labDescrp];
             
-            [self.contentView addSubview:_viewLine];
 
         }
         return self;
@@ -107,6 +116,7 @@
 
 - (void)onclickBtnAtten:(UIButton *)btn{
     
+    [self requestFollowUser];
     
 }
 
@@ -119,7 +129,7 @@
         [likeService loadqueryCancelSaveLikeResource:_resourceId completion:^(BOOL isSuccess, BOOL isCache) {
             
             if (isSuccess) {
-                
+            
                 btn.selected = NO;
                 
                 _homePageEntity.isLiked = @"0";
@@ -129,6 +139,9 @@
                 
                 
                 _labFabulous.text = [NSString stringWithFormat:@"%ld赞",[_labFabulous.text integerValue] - 1];
+                
+                [[NSNotificationCenter defaultCenter] postNotificationName:@"BTHomePageNSNotificationIsLike" object:nil userInfo:@{@"isLiked":@"0",@"resourceId" : _homePageEntity.resourceId}];
+
                 
             }else {
                 
@@ -150,7 +163,7 @@
                 
                 _labFabulous.text = [NSString stringWithFormat:@"%ld赞",[_labFabulous.text integerValue] + 1];
                 
-                
+                   [[NSNotificationCenter defaultCenter] postNotificationName:@"BTHomePageNSNotificationIsLike" object:nil userInfo:@{@"isLiked":@"1",@"resourceId" : _homePageEntity.resourceId}];
                 
             }else {
                 
@@ -163,7 +176,27 @@
 }
 
 - (void)onclickBtnComment:(UIButton *)btn{
+ 
     
+}
+
+
+// 关注接口
+- (void)requestFollowUser{
+    
+    BtHomePageService *pageService = [BtHomePageService new];
+    
+    BTHomeUserEntity *userEntity = [BTHomeUserEntity yy_modelWithJSON:_homePageEntity.userVo];
+    
+    [pageService loadqueryFollowUser:[userEntity.userId integerValue] completion:^(BOOL isSuccess, BOOL isCache) {
+        
+        [_btnAtten setTitle:@"已关注" forState:UIControlStateNormal];
+        
+        [SVProgressHUD showWithStatus:@"添加关注成功"];
+        
+        [SVProgressHUD dismissWithDelay:0.3f];
+        
+    }];
 }
 
 - (void)onclickBtnShare:(UIButton *)btn{
@@ -210,6 +243,16 @@
     _labName.text = userEntity.nickName;
     
     [_imageAvtar sd_setImageWithURL:[NSURL URLWithString:userEntity.avatarUrl] placeholderImage:nil];
+    
+    
+    if ([userEntity.isFollowed integerValue] == 0) {
+        
+        [_btnAtten setTitle:@"+关注" forState:UIControlStateNormal];
+        
+    }else {
+        [_btnAtten setTitle:@"已关注" forState:UIControlStateNormal];
+
+    }
     
     _labTime.text = homePage.createTime;
     
@@ -276,7 +319,6 @@
             
             // 设置label的行间距
             NSMutableParagraphStyle  *paragraphStyle = [[NSMutableParagraphStyle alloc] init];
-            
             
             [paragraphStyle  setLineSpacing:8];
             
@@ -445,7 +487,11 @@
     
     [_labTextInfor sizeToFit];
     
-    _viewLine.frame = CGRectMake(_imageAvtar.left,  _labTextInfor.bottom + 2, FULL_WIDTH - 2 * _imageAvtar.left, 0.6);
+    if (_labTextInfor.height > 40) {
+        
+        _viewLine.frame = CGRectMake(_imageAvtar.left,  _labTextInfor.bottom + 6, FULL_WIDTH - 2 * _imageAvtar.left, 0.6);
+
+    }
 
     _viewLine.backgroundColor = [UIColor colorWithHexString:@"#eeeeee"];
 
@@ -524,7 +570,7 @@
         
         btnComment.frame = CGRectMake(0, 0, 0, 0);
         
-        _heightCell = _labTextInfor.bottom + 3;
+        _heightCell = _labTextInfor.bottom + 7;
         
     }else {
         
