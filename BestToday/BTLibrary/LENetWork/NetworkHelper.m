@@ -174,12 +174,11 @@ static AFHTTPSessionManager *_sessionManager;
                   success:(HttpRequestSuccess)success
                   failure:(HttpRequestFailed)failure {
     //读取缓存
-    
     if (!parameters) {
         
         parameters = [NSMutableDictionary dictionaryWithCapacity:10];
         NSString *version = [[[NSBundle mainBundle] infoDictionary] objectForKey:@"CFBundleShortVersionString"];
-//        [parameters setValue:@"iOS" forKey:@"appType"];
+        [parameters setValue:@"2" forKey:@"appType"];
         [parameters setValue:version forKey:@"appVersion"];
         [parameters setValue:version forKey:@"osVersion"];
         [parameters setValue:[BTMeEntity shareSingleton].csessionId forKey:@"cSessionId"];

@@ -70,6 +70,8 @@
 
 @property (nonatomic) BOOL cell;
 
+@property (nonatomic, assign) NSInteger indexpath;
+
 
 - (void)makeDatacellData:(BTHomePageEntity *)homePage index:(NSInteger)indexpath;
 

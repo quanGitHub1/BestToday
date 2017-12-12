@@ -128,9 +128,14 @@
 
 - (void)onclickBtnAtten:(UIButton *)btn{
     
-    [self requestFollowUser];
+    if ([btn.titleLabel.text isEqualToString:@"+关注"]) {
+        [self requestFollowUser];
+    }else {
+        [self requestUnFollowUser];
+    }
     
 }
+
 
 - (void)onclickBtnCollection:(UIButton *)btn{
     
@@ -208,8 +213,30 @@
         
         [_btnAtten setTitle:@"已关注" forState:UIControlStateNormal];
         
+        [[NSNotificationCenter defaultCenter] postNotificationName:@"BTHomePageNSNotificationIsFollow" object:nil userInfo:@{@"isFollow":@"1",@"resourceId" : _homePageEntity.resourceId, @"indexPath": [NSString stringWithFormat:@"%ld",_indexpath + 10000]}];
+
         [SVProgressHUD showWithStatus:@"添加关注成功"];
         
+        [SVProgressHUD dismissWithDelay:0.3f];
+        
+    }];
+}
+
+
+// 取消关注接口
+- (void)requestUnFollowUser{
+    
+    BtHomePageService *pageService = [BtHomePageService new];
+    
+    BTHomeUserEntity *userEntity = [BTHomeUserEntity yy_modelWithJSON:_homePageEntity.userVo];
+
+    [pageService loadqueryUnFollowUser:[userEntity.userId integerValue] completion:^(BOOL isSuccess, BOOL isCache) {
+        
+        [_btnAtten setTitle:@"+关注" forState:UIControlStateNormal];
+        
+        [[NSNotificationCenter defaultCenter] postNotificationName:@"BTHomePageNSNotificationIsFollow" object:nil userInfo:@{@"isFollow":@"0",@"resourceId" : _homePageEntity.resourceId, @"indexPath": [NSString stringWithFormat:@"%ld",_indexpath + 10000]}];
+
+        [SVProgressHUD showWithStatus:@"取消关注成功"];
         [SVProgressHUD dismissWithDelay:0.3f];
         
     }];
@@ -253,6 +280,8 @@
     _resourceId = homePage.resourceId;
     
     _homePageEntity = homePage;
+    
+    _indexpath = indexpath;
     
     BTHomeUserEntity *userEntity = [BTHomeUserEntity yy_modelWithJSON:homePage.userVo];
     
