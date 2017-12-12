@@ -47,6 +47,9 @@
     
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(notificationIsLike:) name:@"BTHomePageNSNotificationIsLike" object:nil];
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(notificationIsFollow:) name:@"BTHomePageNSNotificationIsFollow" object:nil];
+
 
     _dicCell = [[NSMutableDictionary alloc] init];
 
@@ -110,6 +113,64 @@
     }
     
 }
+
+/** 修改关注方法 */
+- (void)notificationIsFollow:(NSNotification *)notify{
+    
+    NSString *isFollow = notify.userInfo[@"isFollow"];
+    
+    NSString *resourceId = notify.userInfo[@"resourceId"];
+    
+    NSString *indexPath = notify.userInfo[@"indexPath"];
+    
+    UIButton *btnAtten = (UIButton *)[self.view viewWithTag:[indexPath integerValue]];
+
+    for (int i = 0; i < _homePageService.arrFollowedResource.count; i++) {
+        
+        BTHomePageEntity *pageEntity = [_homePageService.arrFollowedResource objectAtIndex:i];
+        
+        BTHomeUserEntity *userEntity = [BTHomeUserEntity yy_modelWithJSON:pageEntity.userVo];
+
+        if ([pageEntity.resourceId isEqualToString:resourceId]) {
+            
+            userEntity.isFollowed = isFollow;
+            
+            if ([isFollow isEqualToString:@"1"]) {
+                
+                [btnAtten setTitle:@"..." forState:UIControlStateNormal];
+                
+                btnAtten.frame = CGRectMake(FULL_WIDTH - 35, 13, 30, 20);
+                
+                [btnAtten setTitleColor:[UIColor colorWithHexString:@"#616161"] forState:UIControlStateNormal];
+                
+                btnAtten.layer.borderColor = [UIColor whiteColor].CGColor;
+                
+                btnAtten.layer.borderWidth = 0;
+                
+            }else {
+
+                btnAtten.frame = CGRectMake(FULL_WIDTH - 65, 15, 50, 25);
+                
+                [btnAtten setTitle:@"+关注" forState:UIControlStateNormal];
+                
+                btnAtten.layer.borderColor = [UIColor colorWithHexString:@"#fd8671"].CGColor;
+                
+                btnAtten.layer.borderWidth = 1;
+                
+                btnAtten.layer.cornerRadius = 1.5;
+                
+                [btnAtten setTitleColor:[UIColor colorWithHexString:@"#fd8671"] forState:UIControlStateNormal];
+
+                
+            }
+            
+            [self.tableView reloadData];
+            
+        }
+    }
+    
+}
+
 
 
 - (void)setupTableView{

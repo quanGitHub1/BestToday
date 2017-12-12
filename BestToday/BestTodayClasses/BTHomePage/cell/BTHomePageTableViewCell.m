@@ -506,15 +506,7 @@
             
             heightLab += labComment.height + 10;
             
-            // 可能会有问题还需要修改
-            if (i == arrCommentList.count - 1 && i > 1) {
-                
-                heightLabTwo = heightLab + labComment.height;
-                
-            }else {
-                
-                heightLabTwo = heightLab;
-            }
+            heightLabTwo = heightLab;
             
         }
         
@@ -533,11 +525,17 @@
             
             height = 0;
             
-        }else {
-            
+        }else if(arrCommentList.count > 0 && _homePageEntity.textInfo.length == 0) {
             // 计算高度 如果评论多于3条只算3条的高度
-            height = font * ((textArry.count > 3 ? 3:textArry.count) + 1) + heightLabTwo + 50;
+            height = font * ((textArry.count > 3 ? 3:textArry.count) + 1) + heightLabTwo + 40;
             
+        }else if(arrCommentList.count == 0 && _homePageEntity.textInfo.length > 0) {
+            // 计算高度 如果评论多于3条只算3条的高度
+            height = font * ((textArry.count > 3 ? 3:textArry.count) + 1) + heightLabTwo + 10;
+        }
+        else {
+            // 计算高度 如果评论多于3条只算3条的高度
+            height = font * ((textArry.count > 3 ? 3:textArry.count) + 1) + heightLabTwo + 70;
         }
         
         _labDescrp = [OpenDetailsView initWithFrame:CGRectMake(_imageAvtar.left, _labTime.bottom + 15, FULL_WIDTH - 30, height) text:_homePageEntity.textInfo totalCommentMsg:_homePageEntity.totalCommentMsg comment:arrCommentList font:font numberOfRow:(int)textArry.count indexPath:indexpath block:^(CGFloat height, NSInteger indexpath) {
