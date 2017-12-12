@@ -537,7 +537,8 @@
             
         }else {
             
-            height = font * (textArry.count + 1) + heightLabTwo + 50;
+            // 计算高度 如果评论多于3条只算3条的高度
+            height = font * ((textArry.count > 3 ? 3:textArry.count) + 1) + heightLabTwo + 50;
             
         }
         

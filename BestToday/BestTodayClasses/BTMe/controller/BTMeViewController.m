@@ -37,6 +37,8 @@
 
 @property (nonatomic, strong) UIView *viewLine;    // 线
 
+@property (nonatomic, strong) UIButton *btn;     //
+
 @property (nonatomic, strong) MLTSegementView *segementView;
 
 @property (nonatomic) CGFloat heightHeader;
@@ -44,6 +46,8 @@
 @property (nonatomic,strong) BTMeCollectionView *collectionView;
 
 @property (nonatomic,strong) BTMeLikeCollectionView *collectionViewTwo;
+
+@property (nonatomic, strong) UIButton *btnAtten;  // 点击关注
 
 @property (nonatomic, strong)BTMeService *meService;
 
@@ -118,7 +122,22 @@
     
     btnModifys.backgroundColor = [UIColor clearColor];
     
+    btnModifys.hidden = YES;
+    
     [viewHeaer addSubview:btnModifys];
+    
+    
+    _btnAtten = [[UIButton alloc] initWithFrame:CGRectMake(_labName.right, 16, ScaleWidth(50), ScaleWidth(25))];
+    
+    _btnAtten.backgroundColor = [UIColor whiteColor];
+    
+    [_btnAtten setTitleColor:[UIColor colorWithHexString:@"#969696"] forState:UIControlStateNormal];
+    
+    _btnAtten.titleLabel.font = [UIFont systemFontOfSize:13];
+    
+    _btnAtten.hidden = YES;
+    
+    [viewHeaer addSubview:_btnAtten];
     
     // 发表
     _btnPublish = [[UIButton alloc] initWithFrame:CGRectMake(_imageAvtar.right + 5, 61, 65, 0)];
@@ -276,9 +295,46 @@
     
     [_labName sizeToFit];
     
-    UIImage *imageName = [UIImage imageNamed:@"My_Modify"];
+    if (_otherId == YES) {
+        
+        _btnModify.hidden = YES;
+        
+        _btnAtten.hidden = NO;
+        
+        if ([meEntity.isFollowed isEqualToString:@"1"]) {
+            [_btnAtten setTitle:@"已关注" forState:UIControlStateNormal];
+            
+            _btnAtten.layer.borderColor = [UIColor colorWithHexString:@"#bdbdbd"].CGColor;
+            
+            _btnAtten.layer.borderWidth = 1;
+            
+            [_btnAtten setTitleColor:[UIColor colorWithHexString:@"#969696"] forState:UIControlStateNormal];
+
+            
+        }else {
+            [_btnAtten setTitle:@"+关注" forState:UIControlStateNormal];
+            
+            _btnAtten.layer.borderColor = [UIColor colorWithHexString:@"#fd8671"].CGColor;
+            
+            _btnAtten.layer.borderWidth = 1;
+            
+            [_btnAtten setTitleColor:[UIColor colorWithHexString:@"#fd8671"] forState:UIControlStateNormal];
+
+
+        }
+        
+    }else {
+        UIImage *imageName = [UIImage imageNamed:@"My_Modify"];
+        
+        _btnModify.frame = CGRectMake(_labName.right + 5 , 21, imageName.size.width, imageName.size.height);
+        
+        
+        _btnModify.hidden = NO;
+        
+        _btnAtten.hidden = YES;
+    }
     
-    _btnModify.frame = CGRectMake(_labName.right + 5 , 21, imageName.size.width, imageName.size.height);
+   
 
     [_btnPublish setTitle:[NSString stringWithFormat:@"发表  %@", meEntity.publishCount] forState:UIControlStateNormal];
     
@@ -299,7 +355,6 @@
     titleSizeTwo.width += 20;
     
     _btnFans.frame = CGRectMake(_btnPublish.right + 40, 61, titleSizeTwo.width, titleSizeTwo.height);
-    
     
     [_btnfollow setTitle:[NSString stringWithFormat:@"关注  %@", meEntity.followCount] forState:UIControlStateNormal];
     

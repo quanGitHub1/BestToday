@@ -81,6 +81,7 @@
     }
 }
 
+/** 修改点赞方法 */
 - (void)notificationIsLike:(NSNotification *)notify{
     
     NSString *isLike = notify.userInfo[@"isLiked"];
@@ -163,6 +164,8 @@
     if (_dicCell.count > 0) {
         [_dicCell removeAllObjects];
     }
+    
+    [[BTHomeOpenHander shareHomeOpenHander] removDataArry];
     
     [_tableView resetNoMoreData];
     

@@ -12,6 +12,8 @@
 #import "CoreText/CoreText.h"
 #import "WYShareView.h"
 #import "BtHomePageService.h"
+#import "BTMessageViewController.h"
+#import "BTMeViewController.h"
 
 @implementation BTHomeDetailPageTableViewCell
 
@@ -34,6 +36,16 @@
             _imageAvtar.layer.cornerRadius = ScaleWidth(16);
             
             _imageAvtar.clipsToBounds = YES;
+            
+            //创建手势 使用initWithTarget:action:的方法创建
+            UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(tapView:)];
+            
+            //设置属性
+            tap.numberOfTouchesRequired = 1;
+            
+            //别忘了添加到testView上
+            [_imageAvtar addGestureRecognizer:tap];
+
             
             _labName = [UILabel mlt_labelWithText:@"" color:[UIColor mlt_colorWithHexString:@"#212121" alpha:1] align:NSTextAlignmentLeft font:[UIFont systemFontOfSize:16] bkColor:nil frame:CGRectMake(_imageAvtar.right + 10, _imageAvtar.top + (_imageAvtar.height - 18)/2, 200, 18)];
             
@@ -177,7 +189,11 @@
 
 - (void)onclickBtnComment:(UIButton *)btn{
  
-    
+    BTMessageViewController *messageVC = [[BTMessageViewController alloc] init];
+    messageVC.isComment = YES;
+    messageVC.resourceId = _resourceId;
+    [[self viewController].navigationController pushViewController:messageVC animated:YES];
+
 }
 
 
@@ -426,6 +442,19 @@
     }
 }
 
+- (void)tapView:(UITapGestureRecognizer*)gesTap{
+    
+    BTMeViewController *meView = [[BTMeViewController alloc] init];
+    
+    BTHomeUserEntity *userEntity = [BTHomeUserEntity yy_modelWithJSON:_homePageEntity.userVo];
+    
+    meView.userId = userEntity.userId;
+    
+    meView.otherId = YES;
+    
+    [[self viewController].navigationController pushViewController:meView animated:YES];
+    
+}
 
 - (void)makeDatacellindex:(NSInteger)indexpath{
     
