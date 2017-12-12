@@ -15,6 +15,7 @@
 #import "BTMeAttentionViewController.h"
 #import "BTMeService.h"
 #import "BTMeEntity.h"
+#import "BtHomePageService.h"
 
 
 @interface BTMeViewController ()<MLTTouchLabelDelegate>
@@ -126,7 +127,6 @@
     
     [viewHeaer addSubview:btnModifys];
     
-    
     _btnAtten = [[UIButton alloc] initWithFrame:CGRectMake(_labName.right, 16, ScaleWidth(50), ScaleWidth(25))];
     
     _btnAtten.backgroundColor = [UIColor whiteColor];
@@ -136,6 +136,8 @@
     _btnAtten.titleLabel.font = [UIFont systemFontOfSize:13];
     
     _btnAtten.hidden = YES;
+    
+    [_btnAtten addTarget:self action:@selector(onclickBtnAtten:) forControlEvents:UIControlEventTouchUpInside];
     
     [viewHeaer addSubview:_btnAtten];
     
@@ -301,6 +303,8 @@
         
         _btnAtten.hidden = NO;
         
+        _btnAtten.frame = CGRectMake(_labName.right + 10, 16, ScaleWidth(50), ScaleWidth(25));
+
         if ([meEntity.isFollowed isEqualToString:@"1"]) {
             [_btnAtten setTitle:@"已关注" forState:UIControlStateNormal];
             
@@ -493,6 +497,64 @@
     Attention.navTitle = @"关注我的";
     
     [self.navigationController pushViewController:Attention animated:YES];
+}
+
+
+// 关注接口
+- (void)requestFollowUser{
+    
+    BtHomePageService *pageService = [BtHomePageService new];
+    
+    BTMeEntity *meEntity;
+    
+    if (self.meService.arrByUser.count > 0) {
+        
+        meEntity = [self.meService.arrByUser objectAtIndex:0];
+        
+    }
+    
+    [pageService loadqueryFollowUser:[meEntity.userId integerValue] completion:^(BOOL isSuccess, BOOL isCache) {
+        
+        [_btnAtten setTitle:@"已关注" forState:UIControlStateNormal];
+        
+        [SVProgressHUD showWithStatus:@"添加关注成功"];
+        
+        [SVProgressHUD dismissWithDelay:0.3f];
+        
+    }];
+}
+
+// 取消关注接口
+- (void)requestUnFollowUser{
+    
+    BtHomePageService *pageService = [BtHomePageService new];
+    
+    BTMeEntity *meEntity;
+    
+    if (self.meService.arrByUser.count > 0) {
+        
+        meEntity = [self.meService.arrByUser objectAtIndex:0];
+    }
+    
+    
+    [pageService loadqueryUnFollowUser:[meEntity.userId integerValue] completion:^(BOOL isSuccess, BOOL isCache) {
+        
+        [_btnAtten setTitle:@"+关注" forState:UIControlStateNormal];
+        [SVProgressHUD showWithStatus:@"取消关注成功"];
+        [SVProgressHUD dismissWithDelay:0.3f];
+
+        
+    }];
+}
+
+- (void)onclickBtnAtten:(UIButton *)btn{
+    
+    if ([btn.titleLabel.text isEqualToString:@"+关注"]) {
+        [self requestFollowUser];
+    }else {
+        [self requestUnFollowUser];
+    }
+    
 }
 
 

@@ -472,11 +472,9 @@
                 BTHomeComment *homeComment = [BTHomeComment yy_modelWithJSON:dicList];
                 
                 [arrCommentList addObject:homeComment];
-                
             }
-            
         }
-        
+    
         CGFloat heightLab = 0.0;
         
         CGFloat heightLabTwo = 0.0;
