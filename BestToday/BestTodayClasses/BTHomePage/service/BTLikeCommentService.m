@@ -95,8 +95,27 @@
     } failure:^(NSError *error) {
         completion(NO,NO);
     }];
-    
-    
+}
+
+- (void)upLoadCommentResource:(NSString*)resourceId content:(NSString *)content completion:(void(^)(BOOL isSuccess, BOOL isCache))completion{
+    NSString *contentEncode = [content stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
+    NSString *urlString = [NSString stringWithFormat:@"%@?resourceId=%@&content=%@",BTUpLoadComment,resourceId,contentEncode];
+    NSLog(@"%@",urlString);
+    [NetworkHelper GET:urlString parameters:nil responseCache:^(id responseCache) {
+        
+    } success:^(id responseObject) {
+        if (responseObject && [responseObject isKindOfClass:[NSDictionary class]]) {
+            if ([responseObject[@"code"] integerValue] == 0) {
+                    completion(YES,NO);
+            }else{
+                completion(NO,NO);
+            }
+        }else {
+            completion(NO,NO);
+        }
+    } failure:^(NSError *error) {
+        completion(NO,NO);
+    }];
 }
 
 - (NSMutableArray *)arrCommentList{

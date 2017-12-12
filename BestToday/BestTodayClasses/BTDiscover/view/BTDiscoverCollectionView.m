@@ -80,7 +80,7 @@ static NSString *const cellId = @"cellId";
 {
     BTDiscoverEntity *entity = _dataArray[indexPath.row];
     BTDiscoverCell *cell = [_collectionView dequeueReusableCellWithReuseIdentifier:cellId forIndexPath:indexPath];
-    cell.backgroundColor = [UIColor colorWithHexString:entity.backgroundColor];
+//    cell.backgroundColor = [UIColor colorWithHexString:entity.backgroundColor];
     cell.imageUrl = entity.smallPicUrl;
     return cell;
 }

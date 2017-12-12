@@ -239,6 +239,7 @@
 		CB670E071FC6B9FD004BDCEA /* BTDiscoverCell.m in Sources */ = {isa = PBXBuildFile; fileRef = CB670E061FC6B9FD004BDCEA /* BTDiscoverCell.m */; };
 		CB670E0A1FC817DF004BDCEA /* BTMessageEntity.m in Sources */ = {isa = PBXBuildFile; fileRef = CB670E091FC817DF004BDCEA /* BTMessageEntity.m */; };
 		CB670E0D1FC81821004BDCEA /* BTMessageUserEntity.m in Sources */ = {isa = PBXBuildFile; fileRef = CB670E0C1FC81821004BDCEA /* BTMessageUserEntity.m */; };
+		CB8A55D61FDFD73A008EC03C /* XXTextView.m in Sources */ = {isa = PBXBuildFile; fileRef = CB8A55D41FDFD73A008EC03C /* XXTextView.m */; };
 		CB8AEEAD1FDEC6CA00D70B0E /* BTHomeCommentEntity.m in Sources */ = {isa = PBXBuildFile; fileRef = CB8AEEAC1FDEC6CA00D70B0E /* BTHomeCommentEntity.m */; };
 		CB926A481FCEAA27003AB4D5 /* SQButtonTagView.m in Sources */ = {isa = PBXBuildFile; fileRef = CB926A461FCEAA27003AB4D5 /* SQButtonTagView.m */; };
 		CBCD2EA91FB4657100994037 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CBCD2E9A1FB4657100994037 /* Assets.xcassets */; };
@@ -744,6 +745,8 @@
 		CB670E091FC817DF004BDCEA /* BTMessageEntity.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BTMessageEntity.m; sourceTree = "<group>"; };
 		CB670E0B1FC81821004BDCEA /* BTMessageUserEntity.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BTMessageUserEntity.h; sourceTree = "<group>"; };
 		CB670E0C1FC81821004BDCEA /* BTMessageUserEntity.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BTMessageUserEntity.m; sourceTree = "<group>"; };
+		CB8A55D41FDFD73A008EC03C /* XXTextView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XXTextView.m; sourceTree = "<group>"; };
+		CB8A55D51FDFD73A008EC03C /* XXTextView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XXTextView.h; sourceTree = "<group>"; };
 		CB8AEEAB1FDEC6CA00D70B0E /* BTHomeCommentEntity.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BTHomeCommentEntity.h; sourceTree = "<group>"; };
 		CB8AEEAC1FDEC6CA00D70B0E /* BTHomeCommentEntity.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BTHomeCommentEntity.m; sourceTree = "<group>"; };
 		CB926A461FCEAA27003AB4D5 /* SQButtonTagView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SQButtonTagView.m; sourceTree = "<group>"; };
@@ -1798,6 +1801,8 @@
 		7AA2BD001FAAFD5000864753 /* view */ = {
 			isa = PBXGroup;
 			children = (
+				CB8A55D51FDFD73A008EC03C /* XXTextView.h */,
+				CB8A55D41FDFD73A008EC03C /* XXTextView.m */,
 				CB926A471FCEAA27003AB4D5 /* SQButtonTagView.h */,
 				CB926A461FCEAA27003AB4D5 /* SQButtonTagView.m */,
 				7AA2BD341FAAFF5C00864753 /* BTPhotoView.h */,
@@ -2253,7 +2258,7 @@
 				TargetAttributes = {
 					7AA2BB2F1FAAAE5500864753 = {
 						CreatedOnToolsVersion = 8.3.3;
-						DevelopmentTeam = ML77R3AZAP;
+						DevelopmentTeam = 39ZFSPP22R;
 						ProvisioningStyle = Automatic;
 					};
 					7AA2BB481FAAAE5500864753 = {
@@ -2482,6 +2487,7 @@
 				7AA2BD5A1FAFFDEE00864753 /* UILabel+MLTKit.m in Sources */,
 				CB670DFA1FC2E0BD004BDCEA /* EaseEmojiEmoticons.m in Sources */,
 				7AA2BCB51FAAC07400864753 /* NSCalendar+YU.m in Sources */,
+				CB8A55D61FDFD73A008EC03C /* XXTextView.m in Sources */,
 				CBCD2EB01FB4657100994037 /* FSConstants.swift in Sources */,
 				7A9CC11B1FCD622C00A1666E /* BTMeEditInforService.m in Sources */,
 				CBCD2EC31FB97D1500994037 /* ZFJSegmentedControl.m in Sources */,
@@ -2754,7 +2760,7 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer: JiaJian Jiang (28EB4JSXK8)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = ML77R3AZAP;
+				DEVELOPMENT_TEAM = 39ZFSPP22R;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/BestToday/BTFoundation/ShareSDK",
@@ -2841,7 +2847,7 @@
 				CODE_SIGN_IDENTITY = "iPhone Distribution: Beijing Jiangxinhuiyan Science and Technology Ltd. (EX2P3FAGBZ)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = ML77R3AZAP;
+				DEVELOPMENT_TEAM = 39ZFSPP22R;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/BestToday/BTFoundation/ShareSDK",

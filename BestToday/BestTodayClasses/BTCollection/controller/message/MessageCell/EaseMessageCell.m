@@ -97,7 +97,6 @@ NSString *const EaseMessageCellIdentifierSendText = @"EaseMessageCellSendText";
     _avatarView.backgroundColor = [UIColor clearColor];
     _avatarView.clipsToBounds = YES;
     _avatarView.userInteractionEnabled = YES;
-    _avatarView.backgroundColor = kRedColor;
     [self.contentView addSubview:_avatarView];
     
     

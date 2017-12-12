@@ -41,6 +41,9 @@
 // 评论列表
 #define BTqueryCommentList  @"http://zuijia365.com/todayHot/app/comment/queryCommentByPage.json"
 
+// 上传评论
+#define BTUpLoadComment @"http://zuijia365.com/todayHot/app/comment/saveCommentResource.json"
+
 // 用户信息
 #define BTqueryUserById  @"http://zuijia365.com/todayHot/app/user/queryUserById.json"
 

@@ -20,17 +20,15 @@
 {
     self = [super initWithFrame:frame];
     if (self) {
+        _imageView = [[UIImageView alloc]initWithFrame:CGRectMake(0, 0, frame.size.width, frame.size.height)];
+        _imageView.backgroundColor =[UIColor clearColor];
+        [self addSubview:_imageView];
     }
     return self;
 }
 
 - (void)setImageUrl:(NSString *)imageUrl{
-    //注意cell里面的控件 使用的位置 是相对于cell 的位置的 所以使用bounds
-    _imageView = [[UIImageView alloc]initWithFrame:self.bounds];
-    _imageView.backgroundColor =[UIColor clearColor];
-//    _imageView.contentMode = UIViewContentModeScaleAspectFit;
     [_imageView sd_setImageWithURL:[NSURL URLWithString:imageUrl]];
-    [self addSubview:_imageView];
 }
 
 

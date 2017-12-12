@@ -13,6 +13,7 @@
 #import "EaseMessageModel.h"
 #import "BTLikeCommentService.h"
 #import "BTHomeCommentEntity.h"
+#import "BTMessageService.h"
 
 @interface BTMessageViewController ()<UITableViewDelegate,UITableViewDataSource,BTChatToolbarDelegate>
 
@@ -24,6 +25,9 @@
 @property (strong, nonatomic) BTChatToolBar *chatToolbar;
 
 @property (nonatomic, strong) BTLikeCommentService *commentService;
+
+@property (nonatomic, strong) BTMessageService *messageService;
+
 
 @end
 
@@ -222,13 +226,43 @@
 - (void)didSendText:(NSString *)text
 {
     if (text && text.length > 0) {
-        NSDictionary * dic = [NSDictionary dictionaryWithObjectsAndKeys:@"1",@"isSender",@"我",@"nickname",@"",@"avatarurl",text,@"text", nil];
-        EaseMessageModel * model = [[EaseMessageModel alloc] initWithMessage:dic];
-        [self.dataArray addObject:model];
-        [self.tableView reloadData];
+        if (_isComment) {
+            [self uploadCommentWithContent:text];
+        }else{
+            [self uploadMessageWithContent:text];
+        }
     }
 }
 
+- (void)uploadCommentWithContent:(NSString *)content{
+    __weak __typeof(self)weakSelf = self;
+    [self.commentService upLoadCommentResource:_resourceId content:content completion:^(BOOL isSuccess, BOOL isCache) {
+        if (isSuccess) {
+            [weakSelf uploadUIForCell:content];
+        }else{
+            
+        }
+    }];
+}
+
+- (void)uploadMessageWithContent:(NSString *)content{
+    __weak __typeof(self)weakSelf = self;
+    [self.messageService feedBackInfoWithContent:content Completion:^(BOOL isSuccess, NSString *message) {
+        if (isSuccess) {
+            [weakSelf uploadUIForCell:content];
+        }else{
+            NSLog(@"%@",message);
+        }
+    }];
+}
+
+- (void)uploadUIForCell:(NSString *)content{
+    NSLog(@"%@,%@",[BTMeEntity shareSingleton].nickName,[BTMeEntity shareSingleton].avatarUrl);
+    NSDictionary * dic = [NSDictionary dictionaryWithObjectsAndKeys:@"1",@"isSender",[BTMeEntity shareSingleton].nickName,@"nickname",[BTMeEntity shareSingleton].avatarUrl,@"avatarurl",content,@"text", nil];
+    EaseMessageModel * model = [[EaseMessageModel alloc] initWithMessage:dic];
+    [self.dataArray addObject:model];
+    [self.tableView reloadData];
+}
 
 - (BTLikeCommentService *)commentService {
     if (!_commentService) {
@@ -237,6 +271,12 @@
     return _commentService;
 }
 
+- (BTMessageService *)messageService {
+    if (!_messageService) {
+        _messageService = [[BTMessageService alloc] init];
+    }
+    return _messageService;
+}
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];

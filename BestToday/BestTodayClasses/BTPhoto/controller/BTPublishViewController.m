@@ -10,6 +10,8 @@
 #import "SQButtonTagView.h"
 #import "BTPhotoService.h"
 #import "BTPhotoEntity.h"
+#import "XXTextView.h"
+
 @interface BTPublishViewController ()
 
 @property (nonatomic, strong) NSString *uploadCategoryId;
@@ -17,7 +19,7 @@
 @property (nonatomic, strong) NSString *uploadtagName;
 
 @property (nonatomic, strong) UIImageView *submitImageView;
-@property (nonatomic, strong) UITextView *contentTextView;
+@property (nonatomic, strong) XXTextView *contentTextView;
 @property (nonatomic, strong) SQButtonTagView * classTagView;
 @property (nonatomic, strong) SQButtonTagView * subClassTagView;
 @property (nonatomic, strong) BTPhotoService * photoService;
@@ -51,9 +53,10 @@
 
 - (void)submitAction{
     
-    
-    
-    
+    if ([_contentTextView.text isEqualToString:@"添加照片说明"]) {
+        return;
+    }
+
     __weak __typeof(self)weakSelf = self;
     [self.photoService uploadImage:_imageSource text:_contentTextView.text categoryId:_uploadCategoryId tagIdList:self.uploadtagId tagName:self.uploadtagName completion:^(BOOL isSuccess, NSString *message) {
         if (isSuccess) {
@@ -69,8 +72,8 @@
     _submitImageView.image = _imageSource;
     [self.view addSubview:_submitImageView];
     
-    _contentTextView = [[UITextView alloc] initWithFrame:CGRectMake(120, 80, screenWidth-140, 120)];
-    
+    _contentTextView = [[XXTextView alloc] initWithFrame:CGRectMake(120, 80, screenWidth-140, 120)];
+    _contentTextView.xx_placeholder = @"添加照片说明";
     [self.view addSubview:_contentTextView];
    
 }
