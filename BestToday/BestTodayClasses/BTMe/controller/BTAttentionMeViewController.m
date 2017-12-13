@@ -102,7 +102,7 @@
 /** 查询我的关注用户列表接口 */
 - (void)requestAnnouncementData{
     
-    [self.homePageService loadqueryMyFollowedUsers:3 completion:^(BOOL isSuccess, BOOL isCache) {
+    [self.homePageService loadqueryMyFollowedUsers:3 userId:[self.userId integerValue] completion:^(BOOL isSuccess, BOOL isCache) {
         
         [self.tableView stop];
         

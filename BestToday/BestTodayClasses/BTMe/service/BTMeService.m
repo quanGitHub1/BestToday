@@ -31,6 +31,13 @@
     
 }
 
+- (void)loadqueryUserOtherId:(NSInteger)userID completion:(void(^)(BOOL isSuccess, BOOL isCache))completion{
+
+
+    
+}
+
+
 - (void)loadqueryMyResourceByPage:(NSInteger)pageIndex pageAssistParam:(NSString *)pageAssistParam completion:(void(^)(BOOL isSuccess, BOOL isCache, NSString* pageAssistParam, NSString *nextPage))completion{
 
     NSString *urlString = [NSString stringWithFormat:@"%@?pageIndex=%ld",BTqueryMyResourceByPage,pageIndex];
@@ -97,9 +104,9 @@
 
             [self.arrByUser addObject:userEntity];
             
-            [BTMeService keyedArchiver:userEntity key:@"SaveUserEntity" path:kSaveUserEntityPath];
-            
-            [[BTMeEntity shareSingleton] manageLoginData];
+//            [BTMeService keyedArchiver:userEntity key:@"SaveUserEntity" path:kSaveUserEntityPath];
+//            
+//            [[BTMeEntity shareSingleton] manageLoginData];
             
             return YES;
             

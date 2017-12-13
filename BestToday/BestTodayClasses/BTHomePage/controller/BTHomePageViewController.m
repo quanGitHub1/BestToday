@@ -323,7 +323,7 @@
 /** 查询我的关注用户列表接口 */
 - (void)requestAnnouncementData{
     
-    [self.homePageService loadqueryMyFollowedUsers:1 completion:^(BOOL isSuccess, BOOL isCache) {
+    [self.homePageService loadqueryMyFollowedUsers:1 userId:[[BTMeEntity shareSingleton].userId integerValue] completion:^(BOOL isSuccess, BOOL isCache) {
         
         [self.tableView stop];
         

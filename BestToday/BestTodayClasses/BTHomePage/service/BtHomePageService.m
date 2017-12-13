@@ -13,9 +13,9 @@
 
 @implementation BtHomePageService
 
-- (void)loadqueryMyFollowedUsers:(NSInteger)tag completion:(void(^)(BOOL isSuccess, BOOL isCache))completion{
+- (void)loadqueryMyFollowedUsers:(NSInteger)tag userId:(NSInteger)userId completion:(void(^)(BOOL isSuccess, BOOL isCache))completion{
 
-    NSString *urlString = [NSString stringWithFormat:@"%@?appType=%ld",BTQueryMyFollowedUsers,tag];
+    NSString *urlString = [NSString stringWithFormat:@"%@?callFrom=%ld&userId=%ld",BTQueryMyFollowedUsers,tag, userId];
     
     [NetworkHelper GET:urlString parameters:nil responseCache:^(id responseCache) {
         
