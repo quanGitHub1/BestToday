@@ -80,6 +80,8 @@
 
     [_collectionViewTwo loadData];
     
+    [_collectionView loadData];
+    
 }
 
 -(void)setNavgationBar{
@@ -241,7 +243,15 @@
     
     _collectionView = [[BTMeCollectionView alloc] initWithFrame:CGRectMake(0, _segementView.bottom, FULL_WIDTH, FULL_HEIGHT - _segementView.bottom - MLTTabbarHeight)];
     
+    _collectionView.userId = _userId;
+    
+    [_collectionView loadData];
+    
     _collectionViewTwo = [[BTMeLikeCollectionView alloc] initWithFrame:CGRectMake(0, _segementView.bottom, FULL_WIDTH, FULL_HEIGHT - _segementView.bottom - MLTTabbarHeight)];
+    
+    _collectionViewTwo.userId = _userId;
+
+    [_collectionViewTwo loadData];
 
     [self.view addSubview:_segementView];
     

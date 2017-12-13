@@ -15,9 +15,6 @@
 #import "BTMessageViewController.h"
 #import "BTHomePageDetailViewController.h"
 
-static NSString* const UMS_THUMB_IMAGE = @"https://mobile.umeng.com/images/pic/home/social/img-1.png";
-static NSString* const UMS_IMAGE = @"https://mobile.umeng.com/images/pic/home/social/img-1.png";
-
 @implementation BTHomePageTableViewCell
 
 - (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier
@@ -541,7 +538,7 @@ static NSString* const UMS_IMAGE = @"https://mobile.umeng.com/images/pic/home/so
             
             BTHomeComment *comment = [arrCommentList objectAtIndex:i];
             
-            UILabel *labComment = [[UILabel alloc] initWithFrame:CGRectMake(_imageAvtar.left, heightLab + _labDescrp.bottom + 15, FULL_WIDTH - 30, 0)];
+            UILabel *labComment = [[UILabel alloc] initWithFrame:CGRectMake(_imageAvtar.left, heightLab + _labDescrp.bottom + 8, FULL_WIDTH - 30, 0)];
             
             // 设置label的行间距
             NSMutableParagraphStyle  *paragraphStyle = [[NSMutableParagraphStyle alloc] init];
@@ -562,14 +559,22 @@ static NSString* const UMS_IMAGE = @"https://mobile.umeng.com/images/pic/home/so
             
             [labComment sizeToFit];
             
-            heightLab += labComment.height + 10;
+            if (labComment.height > 40) {
+                
+                heightLab += labComment.height + 25;
+
+            }else {
+            
+                heightLab += labComment.height + 10;
+
+            }
+            
             
             heightLabTwo = heightLab;
-            
         }
-        
     
-         _homePageEntity.textInfo = [ _homePageEntity.textInfo stringByReplacingOccurrencesOfString:@"\n" withString:@""];
+          // 去掉换行／n
+//         _homePageEntity.textInfo = [ _homePageEntity.textInfo stringByReplacingOccurrencesOfString:@"\n" withString:@""];
     
         _labTextInfor.text = _homePageEntity.textInfo;
         
@@ -608,6 +613,7 @@ static NSString* const UMS_IMAGE = @"https://mobile.umeng.com/images/pic/home/so
         }
         else {
             // 计算高度 如果评论多于3条只算3条的高度
+            
             height = font * ((textArry.count > 3 ? 3:textArry.count) + 1) + heightLabTwo + 70;
         }
         
@@ -673,6 +679,9 @@ static NSString* const UMS_IMAGE = @"https://mobile.umeng.com/images/pic/home/so
         CFRange lineRange = CTLineGetStringRange(lineRef);
         NSRange range = NSMakeRange(lineRange.location, lineRange.length);
         NSString *lineString = [text substringWithRange:range];
+        
+        lineString = [lineString stringByReplacingOccurrencesOfString:@"\n" withString:@""];
+        
         [linesArray addObject:lineString];
     }
     return linesArray;

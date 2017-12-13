@@ -77,6 +77,7 @@
                 str = [str substringToIndex:number - 8];
 
             }
+
             
             NSString *showStr1 = [NSString stringWithFormat:@"%@...",str];
             
@@ -186,6 +187,8 @@
         CFRange lineRange = CTLineGetStringRange(lineRef);
         NSRange range = NSMakeRange(lineRange.location, lineRange.length);
         NSString *lineString = [text substringWithRange:range];
+        lineString = [lineString stringByReplacingOccurrencesOfString:@"\n" withString:@""];
+
         [linesArray addObject:lineString];
     }
     return linesArray;

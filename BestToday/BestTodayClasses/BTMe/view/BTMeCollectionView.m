@@ -42,11 +42,10 @@
         self.backgroundColor = [UIColor whiteColor];
         
         self.nextPage = 1;
-
         
         [self creatTableview];
         
-        [self loadData];
+//        [self loadData];
 
     }
     
@@ -110,7 +109,7 @@
 
 - (void)requestqueryMyResourceByPage{
 
-    [self.meService loadqueryMyResourceByPage:_nextPage pageAssistParam:_pageAssistParam completion:^(BOOL isSuccess, BOOL isCache, NSString *pageAssistParam, NSString *nextPage) {
+    [self.meService loadqueryMyResourceByPage:_nextPage pageAssistParam:_pageAssistParam userId:[_userId integerValue] completion:^(BOOL isSuccess, BOOL isCache, NSString *pageAssistParam, NSString *nextPage) {
         
         [self.collectionView stop];
         
