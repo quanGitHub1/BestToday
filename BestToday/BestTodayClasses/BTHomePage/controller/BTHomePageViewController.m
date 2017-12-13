@@ -161,7 +161,6 @@
                 
                 [btnAtten setTitleColor:[UIColor colorWithHexString:@"#fd8671"] forState:UIControlStateNormal];
 
-                
             }
             
             [self.tableView reloadData];
@@ -308,9 +307,14 @@
 
     announcementCell.heightCell = height;
     
-    [self.tableView reloadData];
+    NSIndexPath *indexPath=[NSIndexPath indexPathForRow:indexpath inSection:0];
+    
+    [self.tableView reloadRowsAtIndexPaths:[NSArray arrayWithObjects:indexPath,nil] withRowAnimation:UITableViewRowAnimationNone];
+    
+//    [self.tableView reloadData];
     
 }
+
 
 #pragma mark - tableViewDelegate
 
@@ -336,8 +340,28 @@
     }
     
     return 0;
-    
 }
+
+    
+- (CGFloat)tableView:(UITableView *)tableView estimatedHeightForRowAtIndexPath:(NSIndexPath *)indexPath{
+
+    if (_dicCell.count > indexPath.row) {
+        
+        BTHomePageTableViewCell *announcementCell = [_dicCell objectForKey:[NSString stringWithFormat:@"indexPath%ld", indexPath.row]];
+        
+        if (announcementCell.heightCell > 0) {
+            return announcementCell.heightCell;
+            
+        }else {
+            
+            return 800;
+        }
+        
+    }
+    
+    return 0;
+}
+
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     
@@ -380,14 +404,6 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
 
-    BTHomePageDetailViewController *homePagedetail = [[BTHomePageDetailViewController alloc] init];
-    
-    BTHomePageEntity *pageEntity = [_homePageService.arrFollowedResource objectAtIndex:indexPath.row];
-    
-    homePagedetail.resourceId = pageEntity.resourceId;
-    
-    [self.navigationController pushViewController:homePagedetail animated:YES];
-    
 }
 
 - (void)onclickBtnAtten:(UIButton *)btn{

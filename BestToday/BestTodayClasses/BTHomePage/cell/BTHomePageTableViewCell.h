@@ -74,6 +74,7 @@ typedef void (^updateCellAttention)(NSInteger indexpathRow);
 @property (nonatomic, copy) updateCellAttention updateCellAttention;
 
 
+
 - (void)makeDatacellData:(BTHomePageEntity *)homePage index:(NSInteger)indexpath;
 
 

@@ -13,6 +13,7 @@
 #import "WYShareView.h"
 #import "BTMeViewController.h"
 #import "BTMessageViewController.h"
+#import "BTHomePageDetailViewController.h"
 
 @implementation BTHomePageTableViewCell
 
@@ -49,6 +50,16 @@
             
             _labName = [UILabel mlt_labelWithText:@"" color:[UIColor mlt_colorWithHexString:@"#212121" alpha:1] align:NSTextAlignmentLeft font:[UIFont systemFontOfSize:16] bkColor:nil frame:CGRectMake(_imageAvtar.right + 10, _imageAvtar.top + (_imageAvtar.height - 18)/2, 200, 18)];
             
+            _labName.userInteractionEnabled = YES;
+            
+            //创建手势 使用initWithTarget:action:的方法创建
+            UITapGestureRecognizer *tapLab = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(tapViewName:)];
+            
+            //设置属性
+            tapLab.numberOfTouchesRequired = 1;
+            
+            [_labName addGestureRecognizer:tapLab];
+            
             _btnAtten = [[UIButton alloc] initWithFrame:CGRectMake(FULL_WIDTH - 65, 15, 50, 25)];
             
             _btnAtten.backgroundColor = [UIColor whiteColor];
@@ -60,6 +71,17 @@
             _imagePic = [[UIImageView alloc] initWithFrame:CGRectMake(0, _imageAvtar.bottom + 15, FULL_WIDTH, ScaleHeight(350))];
             
             _imagePic.backgroundColor = [UIColor whiteColor];
+            
+            _imagePic.userInteractionEnabled = YES;
+            
+            //创建手势 使用initWithTarget:action:的方法创建
+            UITapGestureRecognizer *tapPic = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(tapViewPic:)];
+            
+            //设置属性
+            tapPic.numberOfTouchesRequired = 1;
+            
+            
+            [_imagePic addGestureRecognizer:tapPic];
             
             _labTime = [UILabel mlt_labelWithText:@"" color:[UIColor mlt_colorWithHexString:@"#bdbdbd" alpha:1] align:NSTextAlignmentLeft font:[UIFont systemFontOfSize:12] bkColor:nil frame:CGRectMake(_imageAvtar.left, _imagePic.bottom + 15, 150, 18)];
         
@@ -181,6 +203,7 @@
                                           }];
 }
 
+/** 点击啊头像 */
 - (void)tapView:(UITapGestureRecognizer*)gesTap{
     
     BTMeViewController *meView = [[BTMeViewController alloc] init];
@@ -195,6 +218,32 @@
     
 }
 
+/** 点击姓名 */
+- (void)tapViewName:(UITapGestureRecognizer*)gesTap{
+    
+    BTMeViewController *meView = [[BTMeViewController alloc] init];
+    
+    BTHomeUserEntity *userEntity = [BTHomeUserEntity yy_modelWithJSON:_homePageEntity.userVo];
+    
+    meView.userId = userEntity.userId;
+    
+    meView.otherId = YES;
+    
+    [[self viewController].navigationController pushViewController:meView animated:YES];
+    
+}
+
+/** 点击大图*/
+- (void)tapViewPic:(UITapGestureRecognizer*)gesTap{
+    
+    BTHomePageDetailViewController *homePagedetail = [[BTHomePageDetailViewController alloc] init];
+    
+    homePagedetail.resourceId = _homePageEntity.resourceId;
+    
+    [[self viewController].navigationController pushViewController:homePagedetail animated:YES];
+    
+}
+
 - (void)makeDatacellData:(BTHomePageEntity *)homePage index:(NSInteger)indexpath{
     
     //  拿到id 点赞关注评论都有用
@@ -206,7 +255,6 @@
     
     _btnAtten.tag = indexpath + 10000;
 
-    
     if ([userEntity.isFollowed integerValue] == 0) {
         
         _btnAtten.frame = CGRectMake(FULL_WIDTH - 65, 15, 50, 25);
@@ -218,9 +266,7 @@
         
         _btnAtten.layer.cornerRadius = 1.5;
 
-        
         [_btnAtten setTitleColor:[UIColor colorWithHexString:@"#fd8671"] forState:UIControlStateNormal];
-        
         
     }else {
         
@@ -367,6 +413,7 @@
                     
                 }
                 
+                homePage.textInfo = [ homePage.textInfo stringByReplacingOccurrencesOfString:@"\n" withString:@""];
                 
                 _labTextInfor.text = homePage.textInfo;
                 
@@ -375,7 +422,6 @@
                 int font = 15;
                 
                 CGFloat height = 0.0;
-                
                 
                 // 没有评论和描述高度为0
                 if (arrCommentList.count == 0 && homePage.textInfo.length == 0) {
@@ -414,7 +460,6 @@
             }
             
         }
-
     
     }
     
@@ -510,7 +555,9 @@
             
         }
         
-        
+    
+         _homePageEntity.textInfo = [ _homePageEntity.textInfo stringByReplacingOccurrencesOfString:@"\n" withString:@""];
+    
         _labTextInfor.text = _homePageEntity.textInfo;
         
         NSArray *textArry = [self getSeparatedLinesFromLabel:_labTextInfor];
@@ -531,7 +578,20 @@
             
         }else if(arrCommentList.count == 0 && _homePageEntity.textInfo.length > 0) {
             // 计算高度 如果评论多于3条只算3条的高度
-            height = font * ((textArry.count > 3 ? 3:textArry.count) + 1) + heightLabTwo + 10;
+            if (textArry.count == 1) {
+                height = font * (textArry.count + 1) + heightLabTwo + 10;
+
+            }else if (textArry.count == 2){
+                
+                height = font * (textArry.count + 1) + heightLabTwo + 10;
+
+            }else if (textArry.count >= 3){
+            
+//                height = font * (textArry.count + 1) + heightLabTwo + 30;
+
+                height = font * ((textArry.count > 3 ? 3:textArry.count) + 1) + heightLabTwo + 30;
+            
+            }
         }
         else {
             // 计算高度 如果评论多于3条只算3条的高度
@@ -551,7 +611,8 @@
             }
             
         }];
-        
+    
+       _labDescrp.resourceId = _resourceId;
         
         [self.contentView addSubview:_labDescrp];
         
@@ -587,7 +648,7 @@
     CTFramesetterRef frameSetter = CTFramesetterCreateWithAttributedString((__bridge CFAttributedStringRef)attStr);
     
     CGMutablePathRef path = CGPathCreateMutable();
-    CGPathAddRect(path, NULL, CGRectMake(0,0,rect.size.width,100000));
+    CGPathAddRect(path, NULL, CGRectMake(0,0,rect.size.width - 35,100000));
     
     CTFrameRef frame = CTFramesetterCreateFrame(frameSetter, CFRangeMake(0, 0), path, NULL);
     

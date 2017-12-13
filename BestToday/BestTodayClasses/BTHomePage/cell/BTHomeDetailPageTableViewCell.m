@@ -618,6 +618,9 @@
     // 全部几条评论
     UIButton *btnComment = [[UIButton alloc] initWithFrame:CGRectMake(_imageAvtar.left, _labTextInfor.bottom + heightLab + 30, FULL_WIDTH - 20, 16)];
     
+    [btnComment addTarget:self action:@selector(onclickBtnComment:) forControlEvents:UIControlEventTouchUpInside];
+
+    
     [btnComment setTitle:_homePageEntity.totalCommentMsg forState:UIControlStateNormal];
     
     [btnComment setTitleColor:[UIColor colorWithHexString:@"#969696"] forState:UIControlStateNormal];
