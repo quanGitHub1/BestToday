@@ -15,6 +15,8 @@ pod 'SwipeView' , '~> 1.3.2'
 pod "Masonry", "~> 0.6.4"
 pod 'YYText', '~> 1.0.2'
 pod 'UMengUShare/UI'
+pod 'UMengUShare/Social/ReducedWeChat'
+
 
 #pod 'mob_sharesdk'
 #

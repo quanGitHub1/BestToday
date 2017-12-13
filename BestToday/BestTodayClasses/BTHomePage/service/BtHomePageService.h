@@ -21,7 +21,7 @@
 
 
 // 查询我的关注用户列表接口
-- (void)loadqueryMyFollowedUsers:(NSInteger)tag completion:(void(^)(BOOL isSuccess, BOOL isCache))completion;
+- (void)loadqueryMyFollowedUsers:(NSInteger)tag userId:(NSInteger)userId completion:(void(^)(BOOL isSuccess, BOOL isCache))completion;
 
 
 // 分页查询首页已关注图片资源列表接口

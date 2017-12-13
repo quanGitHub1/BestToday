@@ -80,6 +80,8 @@
 
     [_collectionViewTwo loadData];
     
+    [_collectionView loadData];
+    
 }
 
 -(void)setNavgationBar{
@@ -241,7 +243,15 @@
     
     _collectionView = [[BTMeCollectionView alloc] initWithFrame:CGRectMake(0, _segementView.bottom, FULL_WIDTH, FULL_HEIGHT - _segementView.bottom - MLTTabbarHeight)];
     
+    _collectionView.userId = _userId;
+    
+    [_collectionView loadData];
+    
     _collectionViewTwo = [[BTMeLikeCollectionView alloc] initWithFrame:CGRectMake(0, _segementView.bottom, FULL_WIDTH, FULL_HEIGHT - _segementView.bottom - MLTTabbarHeight)];
+    
+    _collectionViewTwo.userId = _userId;
+
+    [_collectionViewTwo loadData];
 
     [self.view addSubview:_segementView];
     
@@ -254,9 +264,11 @@
 - (void)loadData{
 
     [self requestqueryUserById];
+    
 }
 
 - (void)requestqueryUserById{
+    
     if (_otherId == YES) {
         
         [self.meService loadqueryUserById:[_userId integerValue] completion:^(BOOL isSuccess, BOOL isCache) {
@@ -466,6 +478,15 @@
     
     BTAttentionMeViewController *Attention = [[BTAttentionMeViewController alloc] init];
     
+    BTMeEntity *meEntity;
+    
+    if (self.meService.arrByUser.count > 0) {
+        
+        meEntity = [self.meService.arrByUser objectAtIndex:0];
+        
+    }
+    
+    Attention.userId = meEntity.userId;
     Attention.navTitle = @"关注我的";
     
     [self.navigationController pushViewController:Attention animated:YES];
@@ -474,8 +495,18 @@
 - (void)onclickFollow:(UIButton *)btn{
     
     BTMeAttentionViewController *Attention = [[BTMeAttentionViewController alloc] init];
+    BTMeEntity *meEntity;
+
+    if (self.meService.arrByUser.count > 0) {
+        
+        meEntity = [self.meService.arrByUser objectAtIndex:0];
+        
+    }
     
+    Attention.userId = meEntity.userId;
+
     Attention.navTitle = @"我关注的";
+    
     
     [self.navigationController pushViewController:Attention animated:YES];
 }

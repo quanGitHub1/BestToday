@@ -65,6 +65,9 @@
 // 编辑用户信息接口
 #define BTqueryUpdateUser  @"http://zuijia365.com/todayHot/app/user/updateUser.json"
 
+// 获取分享图片
+#define BTqueryGetSharePic  @"http://zuijia365.com/todayHot/app/resource/getSharePic.json"
+
 // 发现
 #define BTqueryDiscoverResourceByPage   @"http://zuijia365.com/todayHot/app/resource/queryForDetection.json"
 

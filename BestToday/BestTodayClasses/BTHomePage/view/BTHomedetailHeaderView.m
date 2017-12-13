@@ -146,6 +146,76 @@
 }
 
 
+- (void)shareUM:(NSString *)picUrl;
+{
+    _picUrl = picUrl;
+    [UMSocialShareUIConfig shareInstance].sharePageGroupViewConfig.sharePageGroupViewPostionType = UMSocialSharePageGroupViewPositionType_Bottom;
+    
+    [UMSocialShareUIConfig shareInstance].sharePageScrollViewConfig.shareScrollViewPageItemStyleType = UMSocialPlatformItemViewBackgroudType_None;
+    
+    [UMSocialUIManager showShareMenuViewInWindowWithPlatformSelectionBlock:^(UMSocialPlatformType platformType, NSDictionary *userInfo) {
+        
+        [self shareImageURLToPlatformType:UMSocialPlatformType_WechatSession];
+        
+    }];
+}
+
+//分享网络图片
+- (void)shareImageURLToPlatformType:(UMSocialPlatformType)platformType
+{
+    //创建分享消息对象
+    UMSocialMessageObject *messageObject = [UMSocialMessageObject messageObject];
+    
+    //创建图片内容对象
+    UMShareImageObject *shareObject = [[UMShareImageObject alloc] init];
+    //如果有缩略图，则设置缩略图
+    shareObject.thumbImage = _picUrl;
+    
+    [shareObject setShareImage:_picUrl];
+    
+    // 设置Pinterest参数
+    if (platformType == UMSocialPlatformType_Pinterest) {
+        [self setPinterstInfo:messageObject];
+    }
+    
+    // 设置Kakao参数
+    if (platformType == UMSocialPlatformType_KakaoTalk) {
+        messageObject.moreInfo = @{@"permission" : @1}; // @1 = KOStoryPermissionPublic
+    }
+    
+    //分享消息对象设置分享内容对象
+    messageObject.shareObject = shareObject;
+    
+    //调用分享接口
+    [[UMSocialManager defaultManager] shareToPlatform:platformType messageObject:messageObject currentViewController:self completion:^(id data, NSError *error) {
+        if (error) {
+            UMSocialLogInfo(@"************Share fail with error %@*********",error);
+        }else{
+            if ([data isKindOfClass:[UMSocialShareResponse class]]) {
+                UMSocialShareResponse *resp = data;
+                //分享结果消息
+                UMSocialLogInfo(@"response message is %@",resp.message);
+                //第三方原始返回的数据
+                UMSocialLogInfo(@"response originalResponse data is %@",resp.originalResponse);
+                
+            }else{
+                UMSocialLogInfo(@"response data is %@",data);
+            }
+        }
+        //            [self alertWithError:error];
+    }];
+}
+
+
+- (void)setPinterstInfo:(UMSocialMessageObject *)messageObj
+{
+    messageObj.moreInfo = @{@"source_url":_picUrl ,
+                            @"app_name": @"今日最佳",
+                            @"suggested_board_name": @"UShareProduce",
+                            @"description": @"U-Share: best social bridge"};
+}
+
+
 - (void)onclickBtnAtten:(UIButton *)btn{
     
     UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"" message:@"" preferredStyle:UIAlertControllerStyleAlert];

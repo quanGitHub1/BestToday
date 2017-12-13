@@ -31,9 +31,16 @@
     
 }
 
-- (void)loadqueryMyResourceByPage:(NSInteger)pageIndex pageAssistParam:(NSString *)pageAssistParam completion:(void(^)(BOOL isSuccess, BOOL isCache, NSString* pageAssistParam, NSString *nextPage))completion{
+- (void)loadqueryUserOtherId:(NSInteger)userID completion:(void(^)(BOOL isSuccess, BOOL isCache))completion{
 
-    NSString *urlString = [NSString stringWithFormat:@"%@?pageIndex=%ld",BTqueryMyResourceByPage,pageIndex];
+
+    
+}
+
+
+- (void)loadqueryMyResourceByPage:(NSInteger)pageIndex pageAssistParam:(NSString *)pageAssistParam userId:(NSInteger)userId completion:(void(^)(BOOL isSuccess, BOOL isCache, NSString* pageAssistParam, NSString *nextPage))completion{
+
+    NSString *urlString = [NSString stringWithFormat:@"%@?pageIndex=%ld&userId=%ld",BTqueryMyResourceByPage,pageIndex,userId];
     
     [NetworkHelper GET:urlString parameters:nil responseCache:^(id responseCache) {
         
@@ -52,9 +59,9 @@
     }];
 }
 
-- (void)loadqueryCommentResourceByPage:(NSInteger)pageIndex pageAssistParam:(NSString *)pageAssistParam completion:(void(^)(BOOL isSuccess, BOOL isCache, NSString* pageAssistParam, NSString *nextPage))completion{
+- (void)loadqueryCommentResourceByPage:(NSInteger)pageIndex pageAssistParam:(NSString *)pageAssistParam userId:(NSInteger)userId completion:(void(^)(BOOL isSuccess, BOOL isCache, NSString* pageAssistParam, NSString *nextPage))completion{
 
-    NSString *urlString = [NSString stringWithFormat:@"%@?pageIndex=%ld",BTqueryCommentResourceByPage,pageIndex];
+    NSString *urlString = [NSString stringWithFormat:@"%@?pageIndex=%ld&userId=%ld",BTqueryCommentResourceByPage,pageIndex,userId];
     
     [NetworkHelper GET:urlString parameters:nil responseCache:^(id responseCache) {
         
@@ -79,8 +86,12 @@
 - (BOOL)handleListData:(id)respones {
     
     if (respones && [respones isKindOfClass:[NSDictionary class]]) {
+        
         if (!([respones[@"code"] integerValue] == 0)) {
             return NO;
+        }else if (([respones[@"code"] integerValue] == 1002)){
+        
+            [[BTMeEntity shareSingleton] logout];
         }
         
         NSDictionary *dicData = respones[@"data"];
@@ -92,6 +103,10 @@
             BTMeEntity *userEntity = [BTMeEntity yy_modelWithDictionary:dicData];
 
             [self.arrByUser addObject:userEntity];
+            
+//            [BTMeService keyedArchiver:userEntity key:@"SaveUserEntity" path:kSaveUserEntityPath];
+//            
+//            [[BTMeEntity shareSingleton] manageLoginData];
             
             return YES;
             

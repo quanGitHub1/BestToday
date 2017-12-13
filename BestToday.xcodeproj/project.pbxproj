@@ -2258,7 +2258,7 @@
 				TargetAttributes = {
 					7AA2BB2F1FAAAE5500864753 = {
 						CreatedOnToolsVersion = 8.3.3;
-						DevelopmentTeam = 39ZFSPP22R;
+						DevelopmentTeam = ML77R3AZAP;
 						ProvisioningStyle = Automatic;
 					};
 					7AA2BB481FAAAE5500864753 = {
@@ -2760,7 +2760,7 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer: JiaJian Jiang (28EB4JSXK8)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 39ZFSPP22R;
+				DEVELOPMENT_TEAM = ML77R3AZAP;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/BestToday/BTFoundation/ShareSDK",
@@ -2768,6 +2768,8 @@
 					"$(PROJECT_DIR)/BestToday/BTFoundation/ShareSDK/Support/PlatformConnector",
 					"$(PROJECT_DIR)/BestToday/BTFoundation/ShareSDK/Support/PlatformSDK/QQSDK",
 					"$(PROJECT_DIR)/BestToday/BTFoundation/ShareSDK/Support/Required",
+					"$(PROJECT_DIR)/BestToday/BTFoundation/UMSocial/UMSocialSDK",
+					"$(PROJECT_DIR)/BestToday/BTFoundation/UMSocial/UMSocialUI",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "$(SRCROOT)/BestToday/BTFoundation/BTMacors/LEFinanceNewsIphone.pch";
@@ -2782,6 +2784,11 @@
 					"$(PROJECT_DIR)/BestToday/BTFoundation/ShareSDK/Support/PlatformSDK/SinaWeiboSDK",
 					"$(PROJECT_DIR)/BestToday/BTFoundation/ShareSDK/Support/PlatformSDK/WeChatSDK",
 					"$(PROJECT_DIR)/BestToday/BTFoundation/OpenSDK1.8.1_WithoutPay",
+					"$(PROJECT_DIR)/BestToday/BTFoundation/UMSocial/SocialLibraries/QQ",
+					"$(PROJECT_DIR)/BestToday/BTFoundation/UMSocial/SocialLibraries/Sina",
+					"$(PROJECT_DIR)/BestToday/BTFoundation/UMSocial/SocialLibraries/WeChat",
+					"$(PROJECT_DIR)/BestToday/BTFoundation/UMSocial/SocialLibraries/WeChat/WechatSDK",
+					"$(PROJECT_DIR)/BestToday/BTFoundation/UMSocial/UMSocialSDKPlugin",
 				);
 				OTHER_LDFLAGS = (
 					"$(inherited)",
@@ -2847,7 +2854,7 @@
 				CODE_SIGN_IDENTITY = "iPhone Distribution: Beijing Jiangxinhuiyan Science and Technology Ltd. (EX2P3FAGBZ)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 39ZFSPP22R;
+				DEVELOPMENT_TEAM = ML77R3AZAP;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/BestToday/BTFoundation/ShareSDK",
@@ -2855,6 +2862,8 @@
 					"$(PROJECT_DIR)/BestToday/BTFoundation/ShareSDK/Support/PlatformConnector",
 					"$(PROJECT_DIR)/BestToday/BTFoundation/ShareSDK/Support/PlatformSDK/QQSDK",
 					"$(PROJECT_DIR)/BestToday/BTFoundation/ShareSDK/Support/Required",
+					"$(PROJECT_DIR)/BestToday/BTFoundation/UMSocial/UMSocialSDK",
+					"$(PROJECT_DIR)/BestToday/BTFoundation/UMSocial/UMSocialUI",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "$(SRCROOT)/BestToday/BTFoundation/BTMacors/LEFinanceNewsIphone.pch";
@@ -2869,6 +2878,11 @@
 					"$(PROJECT_DIR)/BestToday/BTFoundation/ShareSDK/Support/PlatformSDK/SinaWeiboSDK",
 					"$(PROJECT_DIR)/BestToday/BTFoundation/ShareSDK/Support/PlatformSDK/WeChatSDK",
 					"$(PROJECT_DIR)/BestToday/BTFoundation/OpenSDK1.8.1_WithoutPay",
+					"$(PROJECT_DIR)/BestToday/BTFoundation/UMSocial/SocialLibraries/QQ",
+					"$(PROJECT_DIR)/BestToday/BTFoundation/UMSocial/SocialLibraries/Sina",
+					"$(PROJECT_DIR)/BestToday/BTFoundation/UMSocial/SocialLibraries/WeChat",
+					"$(PROJECT_DIR)/BestToday/BTFoundation/UMSocial/SocialLibraries/WeChat/WechatSDK",
+					"$(PROJECT_DIR)/BestToday/BTFoundation/UMSocial/UMSocialSDKPlugin",
 				);
 				OTHER_LDFLAGS = (
 					"$(inherited)",

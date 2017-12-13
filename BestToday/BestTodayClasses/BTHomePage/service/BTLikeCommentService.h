@@ -12,6 +12,8 @@
 
 @property (nonatomic, strong) NSMutableArray *arrCommentList;  //关注用户列表接口
 
+@property (nonatomic, strong) NSString *picUrl;
+
 // 点赞
 - (void)loadquerySaveLikeResource:(NSString*)resourceId completion:(void(^)(BOOL isSuccess, BOOL isCache))completion;
 
@@ -23,4 +25,8 @@
 
 // 上传评论
 - (void)upLoadCommentResource:(NSString*)resourceId content:(NSString *)content completion:(void(^)(BOOL isSuccess, BOOL isCache))completion;
+
+// 获取图片
+- (void)loadqueryGetSharePic:(NSString*)resourceId completion:(void(^)(BOOL isSuccess, BOOL isCache, NSString *picUrl))completion;
+
 @end

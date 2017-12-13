@@ -17,8 +17,6 @@
 #import "BTHomePageEntity.h"
 #import "BTHomeUserEntity.h"
 
-
-
 @interface BTHomePageViewController ()<LEBaseTableViewDelegate,UITableViewDataSource, UITableViewDelegate, BTSpreadTableViewDelegate, BTHomepageViewDelegate>
 
 @property (nonatomic, strong)BTTableview *tableView;
@@ -161,7 +159,6 @@
                 
                 [btnAtten setTitleColor:[UIColor colorWithHexString:@"#fd8671"] forState:UIControlStateNormal];
 
-                
             }
             
             [self.tableView reloadData];
@@ -171,6 +168,74 @@
     
 }
 
+- (void)shareUM:(NSString *)picUrl;
+{
+    _picUrl = picUrl;
+    [UMSocialShareUIConfig shareInstance].sharePageGroupViewConfig.sharePageGroupViewPostionType = UMSocialSharePageGroupViewPositionType_Bottom;
+    
+    [UMSocialShareUIConfig shareInstance].sharePageScrollViewConfig.shareScrollViewPageItemStyleType = UMSocialPlatformItemViewBackgroudType_None;
+    
+    [UMSocialUIManager showShareMenuViewInWindowWithPlatformSelectionBlock:^(UMSocialPlatformType platformType, NSDictionary *userInfo) {
+        
+        [self shareImageURLToPlatformType:UMSocialPlatformType_WechatSession];
+        
+    }];
+}
+
+//分享网络图片
+- (void)shareImageURLToPlatformType:(UMSocialPlatformType)platformType
+{
+    //创建分享消息对象
+    UMSocialMessageObject *messageObject = [UMSocialMessageObject messageObject];
+    
+    //创建图片内容对象
+    UMShareImageObject *shareObject = [[UMShareImageObject alloc] init];
+    //如果有缩略图，则设置缩略图
+    shareObject.thumbImage = _picUrl;
+    
+    [shareObject setShareImage:_picUrl];
+    
+    // 设置Pinterest参数
+    if (platformType == UMSocialPlatformType_Pinterest) {
+        [self setPinterstInfo:messageObject];
+    }
+    
+    // 设置Kakao参数
+    if (platformType == UMSocialPlatformType_KakaoTalk) {
+        messageObject.moreInfo = @{@"permission" : @1}; // @1 = KOStoryPermissionPublic
+    }
+    
+    //分享消息对象设置分享内容对象
+    messageObject.shareObject = shareObject;
+    
+    //调用分享接口
+    [[UMSocialManager defaultManager] shareToPlatform:platformType messageObject:messageObject currentViewController:self completion:^(id data, NSError *error) {
+        if (error) {
+            UMSocialLogInfo(@"************Share fail with error %@*********",error);
+        }else{
+            if ([data isKindOfClass:[UMSocialShareResponse class]]) {
+                UMSocialShareResponse *resp = data;
+                //分享结果消息
+                UMSocialLogInfo(@"response message is %@",resp.message);
+                //第三方原始返回的数据
+                UMSocialLogInfo(@"response originalResponse data is %@",resp.originalResponse);
+                
+            }else{
+                UMSocialLogInfo(@"response data is %@",data);
+            }
+        }
+        //            [self alertWithError:error];
+    }];
+}
+
+
+- (void)setPinterstInfo:(UMSocialMessageObject *)messageObj
+{
+    messageObj.moreInfo = @{@"source_url":_picUrl ,
+                            @"app_name": @"今日最佳",
+                            @"suggested_board_name": @"UShareProduce",
+                            @"description": @"U-Share: best social bridge"};
+}
 
 
 - (void)setupTableView{
@@ -258,7 +323,7 @@
 /** 查询我的关注用户列表接口 */
 - (void)requestAnnouncementData{
     
-    [self.homePageService loadqueryMyFollowedUsers:1 completion:^(BOOL isSuccess, BOOL isCache) {
+    [self.homePageService loadqueryMyFollowedUsers:1 userId:[[BTMeEntity shareSingleton].userId integerValue] completion:^(BOOL isSuccess, BOOL isCache) {
         
         [self.tableView stop];
         
@@ -308,9 +373,12 @@
 
     announcementCell.heightCell = height;
     
-    [self.tableView reloadData];
+    NSIndexPath *indexPath=[NSIndexPath indexPathForRow:indexpath inSection:0];
+    
+    [self.tableView reloadRowsAtIndexPaths:[NSArray arrayWithObjects:indexPath,nil] withRowAnimation:UITableViewRowAnimationNone];
     
 }
+
 
 #pragma mark - tableViewDelegate
 
@@ -336,8 +404,28 @@
     }
     
     return 0;
-    
 }
+
+    
+- (CGFloat)tableView:(UITableView *)tableView estimatedHeightForRowAtIndexPath:(NSIndexPath *)indexPath{
+
+    if (_dicCell.count > indexPath.row) {
+        
+        BTHomePageTableViewCell *announcementCell = [_dicCell objectForKey:[NSString stringWithFormat:@"indexPath%ld", indexPath.row]];
+        
+        if (announcementCell.heightCell > 0) {
+            return announcementCell.heightCell;
+            
+        }else {
+            
+            return 800;
+        }
+        
+    }
+    
+    return 0;
+}
+
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     
@@ -380,14 +468,6 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
 
-    BTHomePageDetailViewController *homePagedetail = [[BTHomePageDetailViewController alloc] init];
-    
-    BTHomePageEntity *pageEntity = [_homePageService.arrFollowedResource objectAtIndex:indexPath.row];
-    
-    homePagedetail.resourceId = pageEntity.resourceId;
-    
-    [self.navigationController pushViewController:homePagedetail animated:YES];
-    
 }
 
 - (void)onclickBtnAtten:(UIButton *)btn{

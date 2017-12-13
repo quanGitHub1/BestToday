@@ -130,6 +130,19 @@
     
     labChange.textAlignment = NSTextAlignmentCenter;
     
+    labChange.userInteractionEnabled = YES;
+    /**
+     *  添加手势：也就是当用户点击头像了之后，对这个操作进行反应
+     */
+    //允许用户交互
+    _imageView.userInteractionEnabled = YES;
+    //初始化一个手势
+    UITapGestureRecognizer *labTap = [[UITapGestureRecognizer alloc]initWithTarget:self
+                                                                               action:@selector(alterHeadPortrait:)];
+    //给ImageView添加手势
+    [labChange addGestureRecognizer:labTap];
+    
+    
     _labName = [[UILabel alloc] initWithFrame:CGRectMake(15, labChange.bottom + 50, 40, 16)];
     
     _labName = [UILabel mlt_labelWithText:@"昵称" color:[UIColor mlt_colorWithHexString:@"#969696" alpha:1] align:NSTextAlignmentLeft font:[UIFont systemFontOfSize:15] bkColor:nil frame:CGRectMake(15, labChange.bottom + 50, 40, 16)];
@@ -353,7 +366,6 @@
         self.updateInforBlock(_textViewName.text, _textProduct.text, _imageView.image);
         
         [self.navigationController popViewControllerAnimated:YES];
-
         
     }];
 }

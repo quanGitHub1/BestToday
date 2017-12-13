@@ -37,6 +37,8 @@
             
             _imageAvtar.clipsToBounds = YES;
             
+            _imageAvtar.userInteractionEnabled = YES;
+            
             //创建手势 使用initWithTarget:action:的方法创建
             UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(tapView:)];
             
@@ -48,6 +50,16 @@
 
             
             _labName = [UILabel mlt_labelWithText:@"" color:[UIColor mlt_colorWithHexString:@"#212121" alpha:1] align:NSTextAlignmentLeft font:[UIFont systemFontOfSize:16] bkColor:nil frame:CGRectMake(_imageAvtar.right + 10, _imageAvtar.top + (_imageAvtar.height - 18)/2, 200, 18)];
+            
+            _labName.userInteractionEnabled = YES;
+            
+            //创建手势 使用initWithTarget:action:的方法创建
+            UITapGestureRecognizer *tapLab = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(tapViewName:)];
+            
+            //设置属性
+            tapLab.numberOfTouchesRequired = 1;
+            
+            [_labName addGestureRecognizer:tapLab];
             
             _btnAtten = [[UIButton alloc] initWithFrame:CGRectMake(FULL_WIDTH - ScaleWidth(50) - 15, 10, ScaleWidth(50), ScaleWidth(25))];
             
@@ -201,6 +213,36 @@
 
 }
 
+/** 点击啊头像 */
+- (void)tapView:(UITapGestureRecognizer*)gesTap{
+    
+    BTMeViewController *meView = [[BTMeViewController alloc] init];
+    
+    BTHomeUserEntity *userEntity = [BTHomeUserEntity yy_modelWithJSON:_homePageEntity.userVo];
+    
+    meView.userId = userEntity.userId;
+    
+    meView.otherId = YES;
+    
+    [[self viewController].navigationController pushViewController:meView animated:YES];
+    
+}
+
+/** 点击姓名 */
+- (void)tapViewName:(UITapGestureRecognizer*)gesTap{
+    
+    BTMeViewController *meView = [[BTMeViewController alloc] init];
+    
+    BTHomeUserEntity *userEntity = [BTHomeUserEntity yy_modelWithJSON:_homePageEntity.userVo];
+    
+    meView.userId = userEntity.userId;
+    
+    meView.otherId = YES;
+    
+    [[self viewController].navigationController pushViewController:meView animated:YES];
+    
+}
+
 
 // 关注接口
 - (void)requestFollowUser{
@@ -245,15 +287,26 @@
 - (void)onclickBtnShare:(UIButton *)btn{
     
     
-    [WYShareView showShareViewWithPublishContent:@{@"text" :@"11111",
-                                                   @"desc":@"2222",
-                                                   @"image":@[_imagePic.image],
-                                                   @"url"  :@""}
-                                          Result:^(ShareType type, BOOL isSuccess) {
-                                              
-                                              
-                                              //回调
-                                          }];
+//    [WYShareView showShareViewWithPublishContent:@{@"text" :@"11111",
+//                                                   @"desc":@"2222",
+//                                                   @"image":@[_imagePic.image],
+//                                                   @"url"  :@""}
+//                                          Result:^(ShareType type, BOOL isSuccess) {
+//                                              
+//                                              
+//                                              //回调
+//                                          }];
+    
+    BTLikeCommentService *likeService = [BTLikeCommentService new];
+    
+    [likeService loadqueryGetSharePic:_resourceId completion:^(BOOL isSuccess, BOOL isCache, NSString *picUrl) {
+        
+        if (_delegate && [_delegate respondsToSelector:@selector(shareUM:)]) {
+            
+            [_delegate shareUM:picUrl];
+        }
+        
+    }];
 }
 
 //分享文本
@@ -471,19 +524,6 @@
     }
 }
 
-- (void)tapView:(UITapGestureRecognizer*)gesTap{
-    
-    BTMeViewController *meView = [[BTMeViewController alloc] init];
-    
-    BTHomeUserEntity *userEntity = [BTHomeUserEntity yy_modelWithJSON:_homePageEntity.userVo];
-    
-    meView.userId = userEntity.userId;
-    
-    meView.otherId = YES;
-    
-    [[self viewController].navigationController pushViewController:meView animated:YES];
-    
-}
 
 - (void)makeDatacellindex:(NSInteger)indexpath{
     
@@ -617,6 +657,9 @@
     
     // 全部几条评论
     UIButton *btnComment = [[UIButton alloc] initWithFrame:CGRectMake(_imageAvtar.left, _labTextInfor.bottom + heightLab + 30, FULL_WIDTH - 20, 16)];
+    
+    [btnComment addTarget:self action:@selector(onclickBtnComment:) forControlEvents:UIControlEventTouchUpInside];
+
     
     [btnComment setTitle:_homePageEntity.totalCommentMsg forState:UIControlStateNormal];
     
