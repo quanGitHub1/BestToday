@@ -21,13 +21,8 @@
 
 #import <UMSocialCore/UMSocialCore.h>
 
-#define UMAppKey            @"5861e5daf5ade41326001eab"
-
-//#define WeChatAppId         @"wxd930ea5d5a258f4f"
-//#define WeChatAppSecret     @"795a6f7b8986109c002085a52759df68"
-//#define QQAppID             @"1105274162"
-//#define QQAppKey            @"U7L3TNEJdW12VOp6"
-
+#import "BTMeService.h"
+#import "BTMeEntity.h"
 
 @interface AppDelegate ()
 
@@ -38,6 +33,9 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     // Override point for customization after application launch.
+    
+    
+    [self requestqueryUserById];
     
     [self shareSDKConfiguration];
 
@@ -54,14 +52,49 @@
     
     
     /* 打开调试日志 */
-//    [[UMSocialManager defaultManager] openLog:YES];
+    [[UMSocialManager defaultManager] openLog:YES];
     
     /* 设置友盟appkey */
-//    [[UMSocialManager defaultManager] setUmSocialAppkey:UMAppKey];
+    [[UMSocialManager defaultManager] setUmSocialAppkey:@"5a2ff4eeb27b0a39e7000513"];
+
+    [self configUSharePlatforms];
+    
     
     return YES;
 }
 
+- (void)requestqueryUserById{
+    
+    BTMeService *meService = [BTMeService new];
+    
+     [meService loadqueryUserById:[[BTMeEntity shareSingleton].userId integerValue] completion:^(BOOL isSuccess, BOOL isCache){
+            
+
+    }];
+            
+}
+    
+
+- (void)configUSharePlatforms
+{
+    /*
+     设置微信的appKey和appSecret
+     [微信平台从U-Share 4/5升级说明]http://dev.umeng.com/social/ios/%E8%BF%9B%E9%98%B6%E6%96%87%E6%A1%A3#1_1
+     */
+    [[UMSocialManager defaultManager] setPlaform:UMSocialPlatformType_WechatSession appKey:@"wx8910bc5d166f699a" appSecret:@"9743c6757c2d1cdac5a94b179b7b597d" redirectURL:nil];
+    /*
+     * 移除相应平台的分享，如微信收藏
+     */
+    [[UMSocialManager defaultManager] removePlatformProviderWithPlatformTypes:@[@(UMSocialPlatformType_WechatFavorite)]];
+    
+    /* 设置分享到QQ互联的appID
+     * U-Share SDK为了兼容大部分平台命名，统一用appKey和appSecret进行参数设置，而QQ平台仅需将appID作为U-Share的appKey参数传进即可。
+     100424468.no permission of union id
+     [QQ/QZone平台集成说明]http://dev.umeng.com/social/ios/%E8%BF%9B%E9%98%B6%E6%96%87%E6%A1%A3#1_3
+     */
+    [[UMSocialManager defaultManager] setPlaform:UMSocialPlatformType_QQ appKey:@"1106178838"/*设置QQ平台的appID*/  appSecret:nil redirectURL:@"http://mobile.umeng.com/social"];
+
+}
 
 - (void)shareSDKConfiguration{
     /**

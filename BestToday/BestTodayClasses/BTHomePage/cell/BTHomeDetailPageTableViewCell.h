@@ -21,6 +21,8 @@
 
 - (void)reloadTableviewDatas;
 
+- (void)shareUM:(NSString *)picUrl;
+
 
 @end
 

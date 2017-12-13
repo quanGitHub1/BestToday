@@ -79,8 +79,12 @@
 - (BOOL)handleListData:(id)respones {
     
     if (respones && [respones isKindOfClass:[NSDictionary class]]) {
+        
         if (!([respones[@"code"] integerValue] == 0)) {
             return NO;
+        }else if (([respones[@"code"] integerValue] == 1002)){
+        
+            [[BTMeEntity shareSingleton] logout];
         }
         
         NSDictionary *dicData = respones[@"data"];
@@ -92,6 +96,10 @@
             BTMeEntity *userEntity = [BTMeEntity yy_modelWithDictionary:dicData];
 
             [self.arrByUser addObject:userEntity];
+            
+            [BTMeService keyedArchiver:userEntity key:@"SaveUserEntity" path:kSaveUserEntityPath];
+            
+            [[BTMeEntity shareSingleton] manageLoginData];
             
             return YES;
             

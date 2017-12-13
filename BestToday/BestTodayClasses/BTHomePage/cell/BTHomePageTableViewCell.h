@@ -20,6 +20,8 @@
 
 - (void)reloadTableviewDatas;
 
+- (void)shareUM:(NSString *)picUrl;
+
 @end
 
 typedef void(^updateCellBlock)(NSInteger indexpathRow);
@@ -73,6 +75,7 @@ typedef void (^updateCellAttention)(NSInteger indexpathRow);
 
 @property (nonatomic, copy) updateCellAttention updateCellAttention;
 
+@property (nonatomic, assign) UMSocialPlatformType platform;
 
 
 - (void)makeDatacellData:(BTHomePageEntity *)homePage index:(NSInteger)indexpath;

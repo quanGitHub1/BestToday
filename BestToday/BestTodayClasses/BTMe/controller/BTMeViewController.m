@@ -254,6 +254,7 @@
 - (void)loadData{
 
     [self requestqueryUserById];
+    
 }
 
 - (void)requestqueryUserById{

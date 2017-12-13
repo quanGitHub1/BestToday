@@ -2768,6 +2768,8 @@
 					"$(PROJECT_DIR)/BestToday/BTFoundation/ShareSDK/Support/PlatformConnector",
 					"$(PROJECT_DIR)/BestToday/BTFoundation/ShareSDK/Support/PlatformSDK/QQSDK",
 					"$(PROJECT_DIR)/BestToday/BTFoundation/ShareSDK/Support/Required",
+					"$(PROJECT_DIR)/BestToday/BTFoundation/UMSocial/UMSocialSDK",
+					"$(PROJECT_DIR)/BestToday/BTFoundation/UMSocial/UMSocialUI",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "$(SRCROOT)/BestToday/BTFoundation/BTMacors/LEFinanceNewsIphone.pch";
@@ -2782,6 +2784,11 @@
 					"$(PROJECT_DIR)/BestToday/BTFoundation/ShareSDK/Support/PlatformSDK/SinaWeiboSDK",
 					"$(PROJECT_DIR)/BestToday/BTFoundation/ShareSDK/Support/PlatformSDK/WeChatSDK",
 					"$(PROJECT_DIR)/BestToday/BTFoundation/OpenSDK1.8.1_WithoutPay",
+					"$(PROJECT_DIR)/BestToday/BTFoundation/UMSocial/SocialLibraries/QQ",
+					"$(PROJECT_DIR)/BestToday/BTFoundation/UMSocial/SocialLibraries/Sina",
+					"$(PROJECT_DIR)/BestToday/BTFoundation/UMSocial/SocialLibraries/WeChat",
+					"$(PROJECT_DIR)/BestToday/BTFoundation/UMSocial/SocialLibraries/WeChat/WechatSDK",
+					"$(PROJECT_DIR)/BestToday/BTFoundation/UMSocial/UMSocialSDKPlugin",
 				);
 				OTHER_LDFLAGS = (
 					"$(inherited)",
@@ -2855,6 +2862,8 @@
 					"$(PROJECT_DIR)/BestToday/BTFoundation/ShareSDK/Support/PlatformConnector",
 					"$(PROJECT_DIR)/BestToday/BTFoundation/ShareSDK/Support/PlatformSDK/QQSDK",
 					"$(PROJECT_DIR)/BestToday/BTFoundation/ShareSDK/Support/Required",
+					"$(PROJECT_DIR)/BestToday/BTFoundation/UMSocial/UMSocialSDK",
+					"$(PROJECT_DIR)/BestToday/BTFoundation/UMSocial/UMSocialUI",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "$(SRCROOT)/BestToday/BTFoundation/BTMacors/LEFinanceNewsIphone.pch";
@@ -2869,6 +2878,11 @@
 					"$(PROJECT_DIR)/BestToday/BTFoundation/ShareSDK/Support/PlatformSDK/SinaWeiboSDK",
 					"$(PROJECT_DIR)/BestToday/BTFoundation/ShareSDK/Support/PlatformSDK/WeChatSDK",
 					"$(PROJECT_DIR)/BestToday/BTFoundation/OpenSDK1.8.1_WithoutPay",
+					"$(PROJECT_DIR)/BestToday/BTFoundation/UMSocial/SocialLibraries/QQ",
+					"$(PROJECT_DIR)/BestToday/BTFoundation/UMSocial/SocialLibraries/Sina",
+					"$(PROJECT_DIR)/BestToday/BTFoundation/UMSocial/SocialLibraries/WeChat",
+					"$(PROJECT_DIR)/BestToday/BTFoundation/UMSocial/SocialLibraries/WeChat/WechatSDK",
+					"$(PROJECT_DIR)/BestToday/BTFoundation/UMSocial/UMSocialSDKPlugin",
 				);
 				OTHER_LDFLAGS = (
 					"$(inherited)",

@@ -33,9 +33,7 @@ static NSString *kAuthState = @"今日最佳";
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    
     self.navigationBar.hidden = YES;
-    
     
     _loginImage.userInteractionEnabled = YES;
     //创建手势 使用initWithTarget:action:的方法创建

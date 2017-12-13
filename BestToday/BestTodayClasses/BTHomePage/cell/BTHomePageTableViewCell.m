@@ -15,6 +15,9 @@
 #import "BTMessageViewController.h"
 #import "BTHomePageDetailViewController.h"
 
+static NSString* const UMS_THUMB_IMAGE = @"https://mobile.umeng.com/images/pic/home/social/img-1.png";
+static NSString* const UMS_IMAGE = @"https://mobile.umeng.com/images/pic/home/social/img-1.png";
+
 @implementation BTHomePageTableViewCell
 
 - (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier
@@ -192,16 +195,29 @@
 - (void)onclickBtnShare:(UIButton *)btn{
     
 
-    [WYShareView showShareViewWithPublishContent:@{@"text" :@"11111",
-                                                   @"desc":@"2222",
-                                                   @"image":@[_imagePic.image],
-                                                   @"url"  :@""}
-                                          Result:^(ShareType type, BOOL isSuccess) {
-                                              
-                                              
-                                              //回调
-                                          }];
+//    [WYShareView showShareViewWithPublishContent:@{@"text" :@"11111",
+//                                                   @"desc":@"2222",
+//                                                   @"image":@[_imagePic.image],
+//                                                   @"url"  :@""}
+//                                          Result:^(ShareType type, BOOL isSuccess) {
+//                                              
+//                                              
+//                                              //回调
+//                                          }];
+    
+    
+        BTLikeCommentService *likeService = [BTLikeCommentService new];
+
+        [likeService loadqueryGetSharePic:_resourceId completion:^(BOOL isSuccess, BOOL isCache, NSString *picUrl) {
+            
+            if (_delegate && [_delegate respondsToSelector:@selector(shareUM:)]) {
+
+               [_delegate shareUM:picUrl];
+            }
+
+        }];
 }
+
 
 /** 点击啊头像 */
 - (void)tapView:(UITapGestureRecognizer*)gesTap{
@@ -290,7 +306,6 @@
     
     _labFabulous.text = [NSString stringWithFormat:@"%@赞",homePage.likeCount];
     
-    
     if (_homePageEntity.picWidth > 0 && _homePageEntity.picHeight > 0) {
         
         [self makeDatacellindex:indexpath];
@@ -304,9 +319,7 @@
             [_imagePic sd_setImageWithURL:[NSURL URLWithString:homePage.picUrl] completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, NSURL *imageURL) {
                 
                 if (_delegate && [_delegate respondsToSelector:@selector(reloadTableviewDatas)]) {
-                    
                     [self.delegate reloadTableviewDatas];
-                    
                 }
                 
             }];

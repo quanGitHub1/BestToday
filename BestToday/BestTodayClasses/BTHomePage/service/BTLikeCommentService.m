@@ -118,6 +118,45 @@
     }];
 }
 
+- (void)loadqueryGetSharePic:(NSString*)resourceId completion:(void(^)(BOOL isSuccess, BOOL isCache, NSString *picUrl))completion{
+
+    NSString *urlString = [NSString stringWithFormat:@"%@?resourceId=%@",BTqueryGetSharePic,resourceId];
+    
+    [NetworkHelper GET:urlString parameters:nil responseCache:^(id responseCache) {
+        
+    } success:^(id responseObject) {
+        if (responseObject && [responseObject isKindOfClass:[NSDictionary class]]) {
+            if ([responseObject[@"code"] integerValue] == 0) {
+                
+                NSDictionary *data = responseObject[@"data"];
+               
+                if ([data isKindOfClass:[NSNull class]]) {
+                    return ;
+                }
+                if (data && [data isKindOfClass:[NSDictionary class]]) {
+                    
+                    _picUrl = data[@"sharePicUrl"];
+                }
+                completion(YES,NO,_picUrl);
+                
+            }else{
+                
+                completion(NO,NO,_picUrl);
+            }
+            
+        }else {
+            
+            completion(NO,NO,_picUrl);
+            
+        }
+        
+    } failure:^(NSError *error) {
+        completion(NO,NO,_picUrl);
+    }];
+
+}
+
+
 - (NSMutableArray *)arrCommentList{
     if (!_arrCommentList) {
         _arrCommentList = [[NSMutableArray alloc]init];
