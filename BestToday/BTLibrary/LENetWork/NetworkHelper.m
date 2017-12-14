@@ -145,7 +145,7 @@ static AFHTTPSessionManager *_sessionManager;
     
     
     NSString *version = [[[NSBundle mainBundle] infoDictionary] objectForKey:@"CFBundleShortVersionString"];
-    //        [parameters setValue:@"iOS" forKey:@"appType"];
+    [parameters setValue:@"2" forKey:@"appType"];
     [parameters setValue:version forKey:@"appVersion"];
     [parameters setValue:version forKey:@"osVersion"];
     [parameters setValue:[BTMeEntity shareSingleton].csessionId forKey:@"cSessionId"];
