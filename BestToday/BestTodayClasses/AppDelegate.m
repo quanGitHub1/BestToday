@@ -67,7 +67,8 @@
     
     BTMeService *meService = [BTMeService new];
     
-     [meService loadqueryUserById:[[BTMeEntity shareSingleton].userId integerValue] completion:^(BOOL isSuccess, BOOL isCache){
+     [meService loadqueryUserById:[[BTMeEntity shareSingleton].userId integerValue] completion:^
+       (BOOL isSuccess, BOOL isCache){
             
 
     }];

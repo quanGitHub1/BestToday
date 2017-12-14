@@ -36,18 +36,18 @@
 - (void)loadqueryFollowedResource:(NSInteger)pageIndex pageAssistParam:(NSString *)pageAssistParam completion:(void(^)(BOOL isSuccess, BOOL isCache, NSString *pageAssistParam, NSString *nextPage))completion{
 
     NSString *urlString = [NSString stringWithFormat:@"%@?pageIndex=%ld&pageAssistParam=%@",BTqueryFollowedResource,pageIndex,pageAssistParam];
+    
+    if ([pageAssistParam isEqualToString:@""]) {
+        
+        [_arrFollowedResource removeAllObjects];
+        
+    }
 
     [NetworkHelper GET:urlString parameters:nil responseCache:^(id responseCache) {
         
         
     } success:^(id responseObject) {
-        
-        if ([pageAssistParam isEqualToString:@""]) {
-            
-            [_arrFollowedResource removeAllObjects];
-            
-        }
-        
+                
         [self handleFollowedResourceListData:responseObject];
         
         completion(YES,NO, _pageAssistParam, _nextPage);

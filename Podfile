@@ -17,7 +17,6 @@ pod 'YYText', '~> 1.0.2'
 pod 'UMengUShare/UI'
 pod 'UMengUShare/Social/ReducedWeChat'
 
-
 #pod 'mob_sharesdk'
 #
 ## UI模块(非必须，需要用到ShareSDK提供的分享菜单栏和分享编辑页面需要以下1行)

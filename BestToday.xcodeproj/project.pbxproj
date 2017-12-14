@@ -2258,7 +2258,7 @@
 				TargetAttributes = {
 					7AA2BB2F1FAAAE5500864753 = {
 						CreatedOnToolsVersion = 8.3.3;
-						DevelopmentTeam = ML77R3AZAP;
+						DevelopmentTeam = EX2P3FAGBZ;
 						ProvisioningStyle = Automatic;
 					};
 					7AA2BB481FAAAE5500864753 = {
@@ -2357,7 +2357,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
 			showEnvVarsInLog = 0;
 		};
 		8AD334D677B03F816E4EF663 /* [CP] Embed Pods Frameworks */ = {
@@ -2760,7 +2760,7 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer: JiaJian Jiang (28EB4JSXK8)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = ML77R3AZAP;
+				DEVELOPMENT_TEAM = EX2P3FAGBZ;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/BestToday/BTFoundation/ShareSDK",
@@ -2854,7 +2854,7 @@
 				CODE_SIGN_IDENTITY = "iPhone Distribution: Beijing Jiangxinhuiyan Science and Technology Ltd. (EX2P3FAGBZ)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = ML77R3AZAP;
+				DEVELOPMENT_TEAM = EX2P3FAGBZ;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/BestToday/BTFoundation/ShareSDK",

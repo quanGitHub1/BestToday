@@ -80,13 +80,17 @@
             //设置属性
             tapPic.numberOfTouchesRequired = 1;
             
-            
             [_imagePic addGestureRecognizer:tapPic];
             
             _labTime = [UILabel mlt_labelWithText:@"" color:[UIColor mlt_colorWithHexString:@"#bdbdbd" alpha:1] align:NSTextAlignmentLeft font:[UIFont systemFontOfSize:12] bkColor:nil frame:CGRectMake(_imageAvtar.left, _imagePic.bottom + 15, 150, 18)];
         
+            if (FULL_WIDTH > 380) {
+                 _labFabulous = [UILabel mlt_labelWithText:@"" color:[UIColor mlt_colorWithHexString:@"#bdbdbd" alpha:1] align:NSTextAlignmentRight font:[UIFont systemFontOfSize:12] bkColor:nil frame:CGRectMake(FULL_WIDTH / 2, _labTime.top, 50, 15)];
+            }else {
             
-            _labFabulous = [UILabel mlt_labelWithText:@"" color:[UIColor mlt_colorWithHexString:@"#bdbdbd" alpha:1] align:NSTextAlignmentRight font:[UIFont systemFontOfSize:12] bkColor:nil frame:CGRectMake(FULL_WIDTH / 2, _labTime.top, 50, 15)];
+                 _labFabulous = [UILabel mlt_labelWithText:@"" color:[UIColor mlt_colorWithHexString:@"#bdbdbd" alpha:1] align:NSTextAlignmentRight font:[UIFont systemFontOfSize:12] bkColor:nil frame:CGRectMake(FULL_WIDTH / 2 - 20, _labTime.top, 50, 15)];
+            }
+           
             
             _labTextInfor = [UILabel mlt_labelWithText:@"" color:[UIColor mlt_colorWithHexString:@"#bdbdbd" alpha:1] align:NSTextAlignmentLeft font:[UIFont systemFontOfSize:15] bkColor:nil frame:CGRectMake(FULL_WIDTH / 2 + 15, _labTime.top, FULL_WIDTH - 30, 0)];
             
@@ -484,9 +488,15 @@
         [_imagePic sd_setImageWithURL:[NSURL URLWithString:_homePageEntity.picUrl] placeholderImage:nil];
     
         _labTime.frame = CGRectMake(_imageAvtar.left, _imagePic.bottom + 15, 150, 18);
-        
+    
+    if (FULL_WIDTH > 380) {
         _labFabulous.frame = CGRectMake(FULL_WIDTH / 2, _labTime.top, 50, 15);
-        
+
+    }else {
+        _labFabulous.frame = CGRectMake(FULL_WIDTH / 2 - 20, _labTime.top, 50, 15);
+
+    }
+    
         _labTextInfor.frame = CGRectMake(FULL_WIDTH / 2 + 15, _labTime.top, FULL_WIDTH - 30, 0);
         
         
@@ -506,17 +516,17 @@
         
         [_btnCollection setImage:iamgeCollectionSelect forState:UIControlStateSelected];
         
-        _btnCollection.frame = CGRectMake(_labFabulous.right + 15, _imagePic.bottom + 12, iamgeCollection.size.width, iamgeCollection.size.height);
+        _btnCollection.frame = CGRectMake(_labFabulous.right + ScaleWidth(12), _imagePic.bottom + 12, iamgeCollection.size.width, iamgeCollection.size.height);
         
         [_btnComment setImage:iamgeInformation forState:UIControlStateNormal];
         
-        _btnComment.frame = CGRectMake(_btnCollection.right + 24, _imagePic.bottom + 12, iamgeCollection.size.width, iamgeCollection.size.height);
+        _btnComment.frame = CGRectMake(_btnCollection.right + ScaleWidth(21), _imagePic.bottom + 12, iamgeCollection.size.width, iamgeCollection.size.height);
         
-        _btnComment.frame = CGRectMake(_btnCollection.right + 24, _imagePic.bottom + 12, 22, 22);
+        _btnComment.frame = CGRectMake(_btnCollection.right + ScaleWidth(21), _imagePic.bottom + 12, 22, 22);
         
         [_btnShare setImage:iamgeshare forState:UIControlStateNormal];
         
-        _btnShare.frame = CGRectMake(_btnComment.right + 24, _imagePic.bottom + 12, iamgeCollection.size.width, iamgeCollection.size.height);
+        _btnShare.frame = CGRectMake(_btnComment.right + ScaleWidth(21), _imagePic.bottom + 12, iamgeCollection.size.width, iamgeCollection.size.height);
         
         NSMutableArray *arrCommentList = [NSMutableArray array];
         

@@ -48,9 +48,7 @@
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(notificationIsFollow:) name:@"BTHomePageNSNotificationIsFollow" object:nil];
 
-
     _dicCell = [[NSMutableDictionary alloc] init];
-
     
     if ([BTMeEntity shareSingleton].isLogin) {
         
@@ -98,6 +96,7 @@
             pageEntity.isLiked = isLike;
             
             if ([isLike isEqualToString:@"1"]) {
+                
                 pageEntity.likeCount = [NSString stringWithFormat:@"%ld",[pageEntity.likeCount integerValue] + 1];
 
             }else {
@@ -119,20 +118,20 @@
     
     NSString *resourceId = notify.userInfo[@"resourceId"];
     
-    NSString *indexPath = notify.userInfo[@"indexPath"];
+    NSString *indexPat = notify.userInfo[@"indexPath"];
     
-    UIButton *btnAtten = (UIButton *)[self.view viewWithTag:[indexPath integerValue]];
-
+    UIButton *btnAtten = (UIButton *)[self.view viewWithTag:[indexPat integerValue]];
+    
     for (int i = 0; i < _homePageService.arrFollowedResource.count; i++) {
         
         BTHomePageEntity *pageEntity = [_homePageService.arrFollowedResource objectAtIndex:i];
         
-        BTHomeUserEntity *userEntity = [BTHomeUserEntity yy_modelWithJSON:pageEntity.userVo];
+//        BTHomeUserEntity *userEntity = [BTHomeUserEntity yy_modelWithJSON:pageEntity.userVo];
 
         if ([pageEntity.resourceId isEqualToString:resourceId]) {
             
-            userEntity.isFollowed = isFollow;
-            
+            [pageEntity.userVo setValue:isFollow forKey:@"isFollowed"];
+
             if ([isFollow isEqualToString:@"1"]) {
                 
                 [btnAtten setTitle:@"..." forState:UIControlStateNormal];
@@ -161,7 +160,11 @@
 
             }
             
-            [self.tableView reloadData];
+//            [self.tableView reloadData];
+            
+            NSIndexPath *indexPath = [NSIndexPath indexPathForRow:[indexPat integerValue] - 10000 inSection:0];
+            [self.tableView reloadRowsAtIndexPaths:[NSArray arrayWithObjects:indexPath,nil] withRowAnimation:
+             UITableViewRowAnimationNone];
             
         }
     }
@@ -174,6 +177,8 @@
     [UMSocialShareUIConfig shareInstance].sharePageGroupViewConfig.sharePageGroupViewPostionType = UMSocialSharePageGroupViewPositionType_Bottom;
     
     [UMSocialShareUIConfig shareInstance].sharePageScrollViewConfig.shareScrollViewPageItemStyleType = UMSocialPlatformItemViewBackgroudType_None;
+    
+    [UMSocialUIManager setPreDefinePlatforms:@[@(UMSocialPlatformType_WechatTimeLine),@(UMSocialPlatformType_QQ),@(UMSocialPlatformType_WechatSession)]];
     
     [UMSocialUIManager showShareMenuViewInWindowWithPlatformSelectionBlock:^(UMSocialPlatformType platformType, NSDictionary *userInfo) {
         
@@ -286,18 +291,17 @@
 }
 
 - (void)requestDataSource{
-    
-    if (_dicCell.count > 0) {
-        [_dicCell removeAllObjects];
-    }
-    
+
     [[BTHomeOpenHander shareHomeOpenHander] removDataArry];
     
     [_tableView resetNoMoreData];
     
     _pageAssistParam = @"";
     
-    _nextPage = 0;
+    _nextPage = 1;
+    
+    [_dicCell removeAllObjects];
+    
     
     [self loadData];
 }
@@ -344,7 +348,6 @@
 
     [self.homePageService loadqueryFollowedResource:_nextPage pageAssistParam:_pageAssistParam completion:^(BOOL isSuccess, BOOL isCache, NSString* pageAssistParam, NSString *nextPage) {
         
-        
         [self.tableView stop];
         
         _pageAssistParam = pageAssistParam;
@@ -373,7 +376,7 @@
 
     announcementCell.heightCell = height;
     
-    NSIndexPath *indexPath=[NSIndexPath indexPathForRow:indexpath inSection:0];
+    NSIndexPath *indexPath = [NSIndexPath indexPathForRow:indexpath inSection:0];
     
     [self.tableView reloadRowsAtIndexPaths:[NSArray arrayWithObjects:indexPath,nil] withRowAnimation:UITableViewRowAnimationNone];
     
@@ -396,10 +399,9 @@
         if (announcementCell.heightCell > 0) {
             return announcementCell.heightCell;
 
-        }else {
-        
-            return 800;
         }
+        
+        return 800;
         
     }
     
@@ -416,10 +418,9 @@
         if (announcementCell.heightCell > 0) {
             return announcementCell.heightCell;
             
-        }else {
-            
-            return 800;
         }
+        
+        return 800;
         
     }
     

@@ -87,6 +87,12 @@
     
     if (respones && [respones isKindOfClass:[NSDictionary class]]) {
         
+        if (([respones[@"code"] integerValue] == 1002)){
+            
+            [[BTMeEntity shareSingleton] logout];
+            
+        }
+        
         if (!([respones[@"code"] integerValue] == 0)) {
             return NO;
         }else if (([respones[@"code"] integerValue] == 1002)){

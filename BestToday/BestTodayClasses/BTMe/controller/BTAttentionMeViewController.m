@@ -75,7 +75,7 @@
 
 - (void)loadData{
     
-    if ([self.navigationBar.title isEqualToString:@"关注我的"]) {
+    if ([self.navigationBar.title isEqualToString:@"粉丝"]) {
         [self requestqueryUser];
 
     }else {

@@ -144,7 +144,7 @@
         
         openBtn.contentHorizontalAlignment = UIControlContentHorizontalAlignmentLeft;
         
-        openBtn.backgroundColor = [UIColor redColor];
+        openBtn.backgroundColor = [UIColor whiteColor];
         
         [openBtn setTitle:@"更多" forState:0];
         
@@ -203,7 +203,15 @@
        viewLine = [[UIView alloc] initWithFrame:CGRectMake(0,  _textLabel.bottom , FULL_WIDTH - 20, 0.6)];
 
     }else {
-        viewLine = [[UIView alloc] initWithFrame:CGRectMake(0,  _textLabel.bottom + 13, FULL_WIDTH - 20, 0.6)];
+        if (_textArr.count == 1) {
+            
+            viewLine = [[UIView alloc] initWithFrame:CGRectMake(0, _textLabel.bottom , FULL_WIDTH - 20, 0.6)];
+
+        }else {
+            
+            viewLine = [[UIView alloc] initWithFrame:CGRectMake(0,  _textLabel.bottom + 13, FULL_WIDTH - 20, 0.6)];
+
+        }
 
     }
     

@@ -12,7 +12,7 @@
 #import "BTPhotoService.h"
 #import "BTPhotoEntity.h"
 
-@interface BTMeEditInforViewController ()<UINavigationControllerDelegate,UIImagePickerControllerDelegate>
+@interface BTMeEditInforViewController ()<UINavigationControllerDelegate,UIImagePickerControllerDelegate, UITextFieldDelegate>
 
 
 @property (nonatomic, strong) UILabel *labName;
@@ -150,6 +150,8 @@
     _labProduct = [UILabel mlt_labelWithText:@"简介" color:[UIColor mlt_colorWithHexString:@"#969696" alpha:1] align:NSTextAlignmentLeft font:[UIFont systemFontOfSize:15] bkColor:nil frame:CGRectMake(15, _labName.bottom + 50, 40, 16)];
     
     _textViewName = [[UITextField alloc] initWithFrame:CGRectMake(_labName.right + 30, _labName.top - 8, FULL_WIDTH - _labName.right - 45, 40)];
+    
+    _textViewName.delegate = self;
     
     _textViewName.text = self.nikeName;
         
@@ -369,6 +371,22 @@
         
     }];
 }
+
+- (BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string{
+
+    NSString * toBeString = [textField.text stringByReplacingCharactersInRange:range withString:string];
+    
+    if (self.textViewName == textField) {
+        if ([toBeString length] > 10) { //如果输入框内容大于10则弹出警告
+            textField.text = [toBeString substringToIndex:10];
+            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:nil message:@"超过最大字数不能输入了" delegate:nil cancelButtonTitle:@"Ok" otherButtonTitles:nil, nil];
+            [alert show];
+            return NO;
+        }
+    }
+    return YES;
+}
+
 
 #pragma mark - lazy
 - (BTMeEditInforService *)editService {

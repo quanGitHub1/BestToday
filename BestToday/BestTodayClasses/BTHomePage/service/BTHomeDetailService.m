@@ -12,7 +12,7 @@
 
 @implementation BTHomeDetailService
 
-- (void)loadRecommendResourceByPage:(NSInteger)pageIndex pageAssistParam:(NSString *)pageAssistParam resourceIds:(NSString *)resourceIds completion:(void(^)(BOOL isSuccess, BOOL isCache, NSString* pageAssistParam))completion{
+- (void)loadRecommendResourceByPage:(NSInteger)pageIndex pageAssistParam:(NSString *)pageAssistParam resourceIds:(NSString *)resourceIds completion:(void(^)(BOOL isSuccess, BOOL isCache, NSString* pageAssistParam, NSString *nextPage))completion{
 
     NSString *urlString = [NSString stringWithFormat:@"%@?pageIndex=%ld&pageAssistParam=%@&resourceIds=%@",BTqueryRecommendResourceByPage,pageIndex,pageAssistParam,resourceIds];
 
@@ -26,10 +26,10 @@
         
         [self handleListData:responseObject];
         
-        completion(YES,NO,_pageAssistParam);
+        completion(YES,NO,_pageAssistParam, _nextPage);
         
     } failure:^(NSError *error) {
-        completion(NO,NO, _pageAssistParam);
+        completion(NO,NO, _pageAssistParam, _nextPage);
     }];
 }
 
@@ -67,6 +67,13 @@
         if (dicData && [dicData isKindOfClass:[NSDictionary class]]) {
             
             NSArray *datas = dicData[@"resourceVoList"];
+            
+            _nextPage = dicData[@"nextPage"];
+
+            if ([datas isKindOfClass:[NSNull class]]) {
+                
+                return NO;
+            }
             
             for (NSDictionary *dic in datas) {
                 

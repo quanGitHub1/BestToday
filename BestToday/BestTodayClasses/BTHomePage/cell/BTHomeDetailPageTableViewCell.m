@@ -84,8 +84,13 @@
             
             _labTime = [UILabel mlt_labelWithText:@"" color:[UIColor mlt_colorWithHexString:@"#bdbdbd" alpha:1] align:NSTextAlignmentLeft font:[UIFont systemFontOfSize:12] bkColor:nil frame:CGRectMake(_imageAvtar.left, _imagePic.bottom + 15, 150, 18)];
             
+            if (FULL_WIDTH > 380) {
+
+                  _labFabulous = [UILabel mlt_labelWithText:@"" color:[UIColor mlt_colorWithHexString:@"#bdbdbd" alpha:1] align:NSTextAlignmentRight font:[UIFont systemFontOfSize:12] bkColor:nil frame:CGRectMake(FULL_WIDTH / 2, _labTime.top, 50, 15)];
+            }else {
             
-            _labFabulous = [UILabel mlt_labelWithText:@"" color:[UIColor mlt_colorWithHexString:@"#bdbdbd" alpha:1] align:NSTextAlignmentRight font:[UIFont systemFontOfSize:12] bkColor:nil frame:CGRectMake(FULL_WIDTH / 2, _labTime.top, 50, 15)];
+                _labFabulous = [UILabel mlt_labelWithText:@"" color:[UIColor mlt_colorWithHexString:@"#bdbdbd" alpha:1] align:NSTextAlignmentRight font:[UIFont systemFontOfSize:12] bkColor:nil frame:CGRectMake(FULL_WIDTH / 2 - 20, _labTime.top, 50, 15)];
+            }
             
             _labTextInfor = [UILabel mlt_labelWithText:@"" color:[UIColor mlt_colorWithHexString:@"#616161" alpha:1] align:NSTextAlignmentLeft font:[UIFont systemFontOfSize:15] bkColor:nil frame:CGRectMake(FULL_WIDTH / 2 + 15, _labTime.top, FULL_WIDTH - 30, 0)];
             
@@ -254,7 +259,10 @@
     [pageService loadqueryFollowUser:[userEntity.userId integerValue] completion:^(BOOL isSuccess, BOOL isCache) {
         
         [_btnAtten setTitle:@"已关注" forState:UIControlStateNormal];
-        
+        [_btnAtten setTitleColor:[UIColor colorWithHexString:@"#616161"] forState:UIControlStateNormal];
+
+        _btnAtten.layer.borderColor = [UIColor colorWithHexString:@"#bdbdbd"].CGColor;
+
         [[NSNotificationCenter defaultCenter] postNotificationName:@"BTHomePageNSNotificationIsFollow" object:nil userInfo:@{@"isFollow":@"1",@"resourceId" : _homePageEntity.resourceId, @"indexPath": [NSString stringWithFormat:@"%ld",_indexpath + 10000]}];
 
         [SVProgressHUD showWithStatus:@"添加关注成功"];
@@ -275,7 +283,9 @@
     [pageService loadqueryUnFollowUser:[userEntity.userId integerValue] completion:^(BOOL isSuccess, BOOL isCache) {
         
         [_btnAtten setTitle:@"+关注" forState:UIControlStateNormal];
-        
+        _btnAtten.layer.borderColor = [UIColor colorWithHexString:@"#fd8671"].CGColor;
+        [_btnAtten setTitleColor:[UIColor colorWithHexString:@"#fd8671"] forState:UIControlStateNormal];
+
         [[NSNotificationCenter defaultCenter] postNotificationName:@"BTHomePageNSNotificationIsFollow" object:nil userInfo:@{@"isFollow":@"0",@"resourceId" : _homePageEntity.resourceId, @"indexPath": [NSString stringWithFormat:@"%ld",_indexpath + 10000]}];
 
         [SVProgressHUD showWithStatus:@"取消关注成功"];
@@ -285,17 +295,6 @@
 }
 
 - (void)onclickBtnShare:(UIButton *)btn{
-    
-    
-//    [WYShareView showShareViewWithPublishContent:@{@"text" :@"11111",
-//                                                   @"desc":@"2222",
-//                                                   @"image":@[_imagePic.image],
-//                                                   @"url"  :@""}
-//                                          Result:^(ShareType type, BOOL isSuccess) {
-//                                              
-//                                              
-//                                              //回调
-//                                          }];
     
     BTLikeCommentService *likeService = [BTLikeCommentService new];
     
@@ -346,9 +345,15 @@
     if ([userEntity.isFollowed integerValue] == 0) {
         
         [_btnAtten setTitle:@"+关注" forState:UIControlStateNormal];
+        [_btnAtten setTitleColor:[UIColor colorWithHexString:@"#fd8671"] forState:UIControlStateNormal];
+
+        _btnAtten.layer.borderColor = [UIColor colorWithHexString:@"#fd8671"].CGColor;
+
         
     }else {
         [_btnAtten setTitle:@"已关注" forState:UIControlStateNormal];
+        _btnAtten.layer.borderColor = [UIColor colorWithHexString:@"#bdbdbd"].CGColor;
+        [_btnAtten setTitleColor:[UIColor colorWithHexString:@"#616161"] forState:UIControlStateNormal];
 
     }
     
@@ -535,7 +540,15 @@
     
     _labTime.frame = CGRectMake(_imageAvtar.left, _imagePic.bottom + 15, 150, 18);
     
-    _labFabulous.frame = CGRectMake(FULL_WIDTH / 2, _labTime.top, 50, 15);
+    if (FULL_WIDTH > 380) {
+        
+        _labFabulous.frame = CGRectMake(FULL_WIDTH / 2, _labTime.top, 50, 15);
+
+    }else {
+    
+        _labFabulous.frame = CGRectMake(FULL_WIDTH / 2 - 20, _labTime.top, 50, 15);
+
+    }
     
     
     UIImage *iamgeshare = [UIImage imageNamed:@"share"];
@@ -553,17 +566,17 @@
     
     [_btnCollection setImage:iamgeCollectionSelect forState:UIControlStateSelected];
     
-    _btnCollection.frame = CGRectMake(_labFabulous.right + 15, _imagePic.bottom + 12, iamgeCollection.size.width, iamgeCollection.size.height);
+    _btnCollection.frame = CGRectMake(_labFabulous.right + ScaleWidth(12), _imagePic.bottom + 12, iamgeCollection.size.width, iamgeCollection.size.height);
     
     [_btnComment setImage:iamgeInformation forState:UIControlStateNormal];
     
-    _btnComment.frame = CGRectMake(_btnCollection.right + 24, _imagePic.bottom + 12, iamgeCollection.size.width, iamgeCollection.size.height);
+    _btnComment.frame = CGRectMake(_btnCollection.right + ScaleWidth(21), _imagePic.bottom + 12, iamgeCollection.size.width, iamgeCollection.size.height);
     
-    _btnComment.frame = CGRectMake(_btnCollection.right + 24, _imagePic.bottom + 12, 22, 22);
+    _btnComment.frame = CGRectMake(_btnCollection.right + ScaleWidth(21), _imagePic.bottom + 12, 22, 22);
     
     [_btnShare setImage:iamgeshare forState:UIControlStateNormal];
     
-    _btnShare.frame = CGRectMake(_btnComment.right + 24, _imagePic.bottom + 12, iamgeCollection.size.width, iamgeCollection.size.height);
+    _btnShare.frame = CGRectMake(_btnComment.right + ScaleWidth(21), _imagePic.bottom + 12, iamgeCollection.size.width, iamgeCollection.size.height);
     
     // 设置label的行间距
     NSMutableParagraphStyle  *paragraphStyle = [[NSMutableParagraphStyle alloc] init];
