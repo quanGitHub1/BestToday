@@ -8,6 +8,7 @@
 
 #import "BTAttentionTableViewCell.h"
 #import "BTAttention.h"
+#import "BTMeViewController.h"
 
 #define cellHeight 65
 
@@ -27,7 +28,30 @@
         
         _imageAvtar.clipsToBounds = YES;
         
+        _imageAvtar.userInteractionEnabled = YES;
+        
+        //创建手势 使用initWithTarget:action:的方法创建
+        UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(tapView:)];
+        
+        //设置属性
+        tap.numberOfTouchesRequired = 1;
+        
+        tap.delegate = self;
+        
+        //别忘了添加到testView上
+        [_imageAvtar addGestureRecognizer:tap];
+
+        
         _labName = [UILabel mlt_labelWithText:@"" color:[UIColor mlt_colorWithHexString:@"#212121" alpha:1] align:NSTextAlignmentLeft font:[UIFont systemFontOfSize:16] bkColor:nil frame:CGRectMake(_imageAvtar.right + 15, (cellHeight - 20)/2 + 2, 200, 20)];
+        
+        _labName.userInteractionEnabled = YES;
+        
+        //创建手势 使用initWithTarget:action:的方法创建
+        UITapGestureRecognizer *tapLab = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(tapViewName:)];
+        
+        tapLab.delegate = self;
+        
+        [_labName addGestureRecognizer:tapLab];
         
         _btnAttention = [[UIButton alloc] initWithFrame:CGRectMake(FULL_WIDTH - 75, (cellHeight - 26)/2 + 2, 60, 26)];
         
@@ -108,6 +132,32 @@
             
         }];
     }
+    
+}
+
+/** 点击啊头像 */
+- (void)tapView:(UITapGestureRecognizer*)gesTap{
+    
+    BTMeViewController *meView = [[BTMeViewController alloc] init];
+    
+    meView.userId = self.meEntitys.userId;
+    
+    meView.otherId = YES;
+    
+    [[self viewController].navigationController pushViewController:meView animated:YES];
+    
+}
+
+/** 点击姓名 */
+- (void)tapViewName:(UITapGestureRecognizer*)gesTap{
+    
+    BTMeViewController *meView = [[BTMeViewController alloc] init];
+    
+    meView.userId = self.meEntitys.userId;
+    
+    meView.otherId = YES;
+    
+    [[self viewController].navigationController pushViewController:meView animated:YES];
     
 }
 
