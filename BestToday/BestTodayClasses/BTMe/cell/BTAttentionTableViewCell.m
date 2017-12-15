@@ -7,6 +7,7 @@
 //
 
 #import "BTAttentionTableViewCell.h"
+#import "BTAttention.h"
 
 #define cellHeight 65
 
@@ -40,6 +41,9 @@
         
         _btnAttention.layer.cornerRadius = 1.5;
         
+        [_btnAttention addTarget:self action:@selector(onclickBtnAtten:) forControlEvents:UIControlEventTouchUpInside];
+
+        
         UIView *viewLine = [[UIView alloc] initWithFrame:CGRectMake(0, 64.4, FULL_WIDTH, 0.6)];
         
         viewLine.backgroundColor = [UIColor colorWithHexString:@"#eeeeee"];
@@ -57,6 +61,8 @@
 }
 
 - (void)makeCellData:(BTUserEntity *)meEntity{
+    
+    self.meEntitys = meEntity;
 
     _labName.text = meEntity.nickName;
     
@@ -70,6 +76,37 @@
     
         [_btnAttention setTitle:@"已关注" forState:UIControlStateNormal];
 
+    }
+    
+}
+
+- (void)onclickBtnAtten:(UIButton *)btn{
+    
+    if ([btn.titleLabel.text isEqualToString:@"+关注"]) {
+        
+        [BTAttention requestFollowUser:self.meEntitys.userId success:^(BOOL isSuccess) {
+            
+            [_btnAttention setTitle:@"已关注" forState:UIControlStateNormal];
+
+            
+        } faild:^(BOOL failure) {
+            
+            
+            
+        }];
+        
+    }else {
+        
+        [BTAttention requestUnFollowUser:self.meEntitys.userId success:^(BOOL isSuccess) {
+            
+            [_btnAttention setTitle:@"+关注" forState:UIControlStateNormal];
+
+            
+        } faild:^(BOOL failure) {
+            
+            
+            
+        }];
     }
     
 }

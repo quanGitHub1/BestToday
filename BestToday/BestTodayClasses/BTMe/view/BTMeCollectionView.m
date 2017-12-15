@@ -45,8 +45,6 @@
         
         [self creatTableview];
         
-//        [self loadData];
-
     }
     
     return self;

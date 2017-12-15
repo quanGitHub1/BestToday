@@ -70,17 +70,17 @@
             
             _imagePic = [[UIImageView alloc] initWithFrame:CGRectMake(0, _imageAvtar.bottom + 15, FULL_WIDTH, ScaleHeight(350))];
             
-            _imagePic.backgroundColor = [UIColor whiteColor];
-            
-            _imagePic.userInteractionEnabled = YES;
-            
-            //创建手势 使用initWithTarget:action:的方法创建
-            UITapGestureRecognizer *tapPic = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(tapViewPic:)];
-            
-            //设置属性
-            tapPic.numberOfTouchesRequired = 1;
-            
-            [_imagePic addGestureRecognizer:tapPic];
+//            _imagePic.backgroundColor = [UIColor whiteColor];
+//            
+//            _imagePic.userInteractionEnabled = YES;
+//            
+//            //创建手势 使用initWithTarget:action:的方法创建
+//            UITapGestureRecognizer *tapPic = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(tapViewPic:)];
+//            
+//            //设置属性
+//            tapPic.numberOfTouchesRequired = 1;
+//            
+//            [_imagePic addGestureRecognizer:tapPic];
             
             _labTime = [UILabel mlt_labelWithText:@"" color:[UIColor mlt_colorWithHexString:@"#bdbdbd" alpha:1] align:NSTextAlignmentLeft font:[UIFont systemFontOfSize:12] bkColor:nil frame:CGRectMake(_imageAvtar.left, _imagePic.bottom + 15, 150, 18)];
         
@@ -250,16 +250,16 @@
     
 }
 
-/** 点击大图*/
-- (void)tapViewPic:(UITapGestureRecognizer*)gesTap{
-    
-    BTHomePageDetailViewController *homePagedetail = [[BTHomePageDetailViewController alloc] init];
-    
-    homePagedetail.resourceId = _homePageEntity.resourceId;
-    
-    [[self viewController].navigationController pushViewController:homePagedetail animated:YES];
-    
-}
+///** 点击大图*/
+//- (void)tapViewPic:(UITapGestureRecognizer*)gesTap{
+//    
+//    BTHomePageDetailViewController *homePagedetail = [[BTHomePageDetailViewController alloc] init];
+//    
+//    homePagedetail.resourceId = _homePageEntity.resourceId;
+//    
+//    [[self viewController].navigationController pushViewController:homePagedetail animated:YES];
+//    
+//}
 
 - (void)makeDatacellData:(BTHomePageEntity *)homePage index:(NSInteger)indexpath{
     
@@ -557,7 +557,7 @@
             
             NSMutableAttributedString  *setString;
             
-            setString = [[NSMutableAttributedString alloc] initWithString:comment.content];
+            setString = [[NSMutableAttributedString alloc] initWithString:[NSString stringWithFormat:@"%@%@", comment.commentNickName,comment.content]];
             
             [setString  addAttribute:NSParagraphStyleAttributeName value:paragraphStyle range:NSMakeRange(0, [comment.content length])];
             
@@ -578,7 +578,6 @@
                 heightLab += labComment.height + 10;
 
             }
-            
             
             heightLabTwo = heightLab;
         }

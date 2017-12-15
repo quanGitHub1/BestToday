@@ -12,7 +12,7 @@
 #import "BTPhotoService.h"
 #import "BTPhotoEntity.h"
 
-@interface BTMeEditInforViewController ()<UINavigationControllerDelegate,UIImagePickerControllerDelegate, UITextFieldDelegate>
+@interface BTMeEditInforViewController ()<UINavigationControllerDelegate,UIImagePickerControllerDelegate, UITextFieldDelegate, UITextViewDelegate>
 
 
 @property (nonatomic, strong) UILabel *labName;
@@ -168,6 +168,7 @@
     
     _textProduct.font = [UIFont systemFontOfSize:15];
     
+    _textProduct.delegate = self;
 
     UIView *viewLine = [[UIView alloc] initWithFrame:CGRectMake(_labName.right + 15, _labName.bottom + 15, FULL_WIDTH - _labName.right - 30, 1)];
     
@@ -386,6 +387,23 @@
     }
     return YES;
 }
+
+
+- (BOOL)textView:(UITextView *)textView shouldChangeTextInRange:(NSRange)range replacementText:(NSString *)text{
+    NSString * toBeString = [textView.text stringByReplacingCharactersInRange:range withString:text];
+    
+    if (self.textProduct == textView) {
+        if ([toBeString length] > 200) { //如果输入框内容大于10则弹出警告
+            textView.text = [toBeString substringToIndex:200];
+            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:nil message:@"超过最大字数不能输入了" delegate:nil cancelButtonTitle:@"Ok" otherButtonTitles:nil, nil];
+            [alert show];
+            return NO;
+        }
+    }
+    return YES;
+
+}
+
 
 
 #pragma mark - lazy

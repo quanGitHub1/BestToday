@@ -29,6 +29,9 @@
 // 关注接口
 #define BTqueryFollowUser   @"http://zuijia365.com/todayHot/app/user/followUser.json"
 
+// 佳人推荐接口
+#define BTqueryRecommendUsers   @"http://zuijia365.com/todayHot/app/user/recommendUsers.json?"
+
 // 详情页随便看看
 #define BTqueryRecommendResourceByPage   @"http://zuijia365.com/todayHot/app/recommend/recommendResourceByPage.json"
 

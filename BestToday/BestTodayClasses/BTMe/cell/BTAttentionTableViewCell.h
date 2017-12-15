@@ -17,6 +17,8 @@
 
 @property(nonatomic,strong)UIButton *btnAttention; //
 
+@property (nonatomic, strong)BTUserEntity *meEntitys;
+
 - (void)makeCellData:(BTUserEntity*)meEntity;
 
 @end

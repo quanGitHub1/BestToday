@@ -16,6 +16,7 @@
 #import "BTMeService.h"
 #import "BTMeEntity.h"
 #import "BtHomePageService.h"
+#import "BTGoodRecommentViewController.h"
 
 
 @interface BTMeViewController ()<MLTTouchLabelDelegate>
@@ -487,6 +488,17 @@
         }
         
         [_labTag sizeToFit];
+        
+        
+        _viewLine.frame = CGRectMake(0, _labTag.bottom + 16, FULL_WIDTH, 1);
+        
+        _heightHeader = _viewLine.bottom + NAVBAR_HEIGHT;
+        
+        _segementView.frame = CGRectMake(0, _heightHeader, FULL_WIDTH, 50);
+        
+        _collectionView.frame = CGRectMake(0, _segementView.bottom, FULL_WIDTH, FULL_HEIGHT - _segementView.bottom - MLTTabbarHeight);
+        
+        _collectionViewTwo.frame = CGRectMake(0, _segementView.bottom, FULL_WIDTH, FULL_HEIGHT - _segementView.bottom - MLTTabbarHeight);
 
     };
     
@@ -495,7 +507,7 @@
 
 - (void)addFriend:(UIButton *)btn{
     
-    BTAttentionMeViewController *Attention = [[BTAttentionMeViewController alloc] init];
+    BTGoodRecommentViewController *Attention = [[BTGoodRecommentViewController alloc] init];
     
     BTMeEntity *meEntity;
     
@@ -506,6 +518,7 @@
     }
     
     Attention.userId = meEntity.userId;
+    
     Attention.navTitle = @"佳人推荐";
     
     [self.navigationController pushViewController:Attention animated:YES];
@@ -585,7 +598,6 @@
         
         meEntity = [self.meService.arrByUser objectAtIndex:0];
     }
-    
     
     [pageService loadqueryUnFollowUser:[meEntity.userId integerValue] completion:^(BOOL isSuccess, BOOL isCache) {
         

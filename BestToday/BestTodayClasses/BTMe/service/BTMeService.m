@@ -31,16 +31,10 @@
     
 }
 
-- (void)loadqueryUserOtherId:(NSInteger)userID completion:(void(^)(BOOL isSuccess, BOOL isCache))completion{
-
-
-    
-}
-
 
 - (void)loadqueryMyResourceByPage:(NSInteger)pageIndex pageAssistParam:(NSString *)pageAssistParam userId:(NSInteger)userId completion:(void(^)(BOOL isSuccess, BOOL isCache, NSString* pageAssistParam, NSString *nextPage))completion{
 
-    NSString *urlString = [NSString stringWithFormat:@"%@?pageIndex=%ld&userId=%ld",BTqueryMyResourceByPage,pageIndex,userId];
+    NSString *urlString = [NSString stringWithFormat:@"%@?pageIndex=%ld&userId=%ld&pageAssistParam=%@",BTqueryMyResourceByPage,pageIndex,userId, pageAssistParam];
     
     [NetworkHelper GET:urlString parameters:nil responseCache:^(id responseCache) {
         
@@ -61,7 +55,7 @@
 
 - (void)loadqueryCommentResourceByPage:(NSInteger)pageIndex pageAssistParam:(NSString *)pageAssistParam userId:(NSInteger)userId completion:(void(^)(BOOL isSuccess, BOOL isCache, NSString* pageAssistParam, NSString *nextPage))completion{
 
-    NSString *urlString = [NSString stringWithFormat:@"%@?pageIndex=%ld&userId=%ld",BTqueryCommentResourceByPage,pageIndex,userId];
+    NSString *urlString = [NSString stringWithFormat:@"%@?pageIndex=%ld&userId=%ld&pageAssistParam=%@",BTqueryCommentResourceByPage,pageIndex,userId, pageAssistParam];
     
     [NetworkHelper GET:urlString parameters:nil responseCache:^(id responseCache) {
         
@@ -171,9 +165,8 @@
             NSArray *datas = dicData[@"resourceVoList"];
             
             _pageAssistParam = dicData[@"pageAssistParam"];
-
             
-            _nextPage = dicData[@"nextPage"];
+            _nextPageTwo = dicData[@"nextPage"];
 
             
             if (datas && [datas isKindOfClass:[NSArray class]]) {

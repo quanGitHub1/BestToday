@@ -17,7 +17,9 @@
         // 图片
         _imagePic = [[UIImageView alloc]initWithFrame:CGRectMake(0, 0, (FULL_WIDTH - 3)/3, (FULL_WIDTH - 3)/3)];
         
-        _imagePic.contentMode  = UIViewContentModeScaleAspectFit;
+//        _imagePic.contentMode  = UIViewContentModeScaleAspectFit;
+        
+        _imagePic.contentMode  = UIViewContentModeScaleAspectFill;
         
         _imagePic.backgroundColor = [UIColor whiteColor];
         

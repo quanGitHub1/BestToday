@@ -42,6 +42,10 @@
         
         self.backgroundColor = [UIColor whiteColor];
         
+        _nextPage = 1;
+        
+        _pageAssistParam = @"";
+
         [self creatTableview];
         
 //        [self loadData];

@@ -40,7 +40,9 @@
 		7A2429C01FCBB5D500EE7948 /* BTMeResourceVoList.m in Sources */ = {isa = PBXBuildFile; fileRef = 7A2429BF1FCBB5D500EE7948 /* BTMeResourceVoList.m */; };
 		7A2429C31FCBC0F900EE7948 /* BTMeLikeCollectionView.m in Sources */ = {isa = PBXBuildFile; fileRef = 7A2429C21FCBC0F900EE7948 /* BTMeLikeCollectionView.m */; };
 		7A2429C91FCD4F2E00EE7948 /* BTMeAttentionService.m in Sources */ = {isa = PBXBuildFile; fileRef = 7A2429C81FCD4F2D00EE7948 /* BTMeAttentionService.m */; };
+		7A37B8461FE2624200F2E8D3 /* BTGoodRecommentViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7A37B8451FE2624200F2E8D3 /* BTGoodRecommentViewController.m */; };
 		7A6576531FDA93540049D856 /* BTMeAttentionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7A6576521FDA93540049D856 /* BTMeAttentionViewController.m */; };
+		7A6AAD161FE361240010C71C /* BTAttention.m in Sources */ = {isa = PBXBuildFile; fileRef = 7A6AAD151FE361240010C71C /* BTAttention.m */; };
 		7A9CC11B1FCD622C00A1666E /* BTMeEditInforService.m in Sources */ = {isa = PBXBuildFile; fileRef = 7A9CC11A1FCD622C00A1666E /* BTMeEditInforService.m */; };
 		7AA2BB351FAAAE5500864753 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 7AA2BB341FAAAE5500864753 /* main.m */; };
 		7AA2BB4E1FAAAE5500864753 /* BestTodayTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 7AA2BB4D1FAAAE5500864753 /* BestTodayTests.m */; };
@@ -340,8 +342,12 @@
 		7A2429C21FCBC0F900EE7948 /* BTMeLikeCollectionView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BTMeLikeCollectionView.m; sourceTree = "<group>"; };
 		7A2429C71FCD4F2D00EE7948 /* BTMeAttentionService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BTMeAttentionService.h; sourceTree = "<group>"; };
 		7A2429C81FCD4F2D00EE7948 /* BTMeAttentionService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BTMeAttentionService.m; sourceTree = "<group>"; };
+		7A37B8441FE2624200F2E8D3 /* BTGoodRecommentViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BTGoodRecommentViewController.h; sourceTree = "<group>"; };
+		7A37B8451FE2624200F2E8D3 /* BTGoodRecommentViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BTGoodRecommentViewController.m; sourceTree = "<group>"; };
 		7A6576511FDA93540049D856 /* BTMeAttentionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BTMeAttentionViewController.h; sourceTree = "<group>"; };
 		7A6576521FDA93540049D856 /* BTMeAttentionViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BTMeAttentionViewController.m; sourceTree = "<group>"; };
+		7A6AAD141FE361240010C71C /* BTAttention.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BTAttention.h; sourceTree = "<group>"; };
+		7A6AAD151FE361240010C71C /* BTAttention.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BTAttention.m; sourceTree = "<group>"; };
 		7A9CC1191FCD622C00A1666E /* BTMeEditInforService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BTMeEditInforService.h; sourceTree = "<group>"; };
 		7A9CC11A1FCD622C00A1666E /* BTMeEditInforService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BTMeEditInforService.m; sourceTree = "<group>"; };
 		7AA2BB301FAAAE5500864753 /* BestToday.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BestToday.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -1049,6 +1055,8 @@
 				7A16B9F81FBC3CF400E7EC3A /* BTAttentionMeViewController.m */,
 				7A6576511FDA93540049D856 /* BTMeAttentionViewController.h */,
 				7A6576521FDA93540049D856 /* BTMeAttentionViewController.m */,
+				7A37B8441FE2624200F2E8D3 /* BTGoodRecommentViewController.h */,
+				7A37B8451FE2624200F2E8D3 /* BTGoodRecommentViewController.m */,
 			);
 			path = controller;
 			sourceTree = "<group>";
@@ -1872,6 +1880,8 @@
 				7A16B9E61FB597FB00E7EC3A /* BTMeCollectionView.m */,
 				7A2429C11FCBC0F900EE7948 /* BTMeLikeCollectionView.h */,
 				7A2429C21FCBC0F900EE7948 /* BTMeLikeCollectionView.m */,
+				7A6AAD141FE361240010C71C /* BTAttention.h */,
+				7A6AAD151FE361240010C71C /* BTAttention.m */,
 			);
 			path = view;
 			sourceTree = "<group>";
@@ -2537,6 +2547,7 @@
 				7AA2BD3F1FAAFF9600864753 /* BTMeService.m in Sources */,
 				7A16B9E11FB5899900E7EC3A /* MLTSegementView.m in Sources */,
 				7AA2BC151FAAB4CC00864753 /* UIButton+Font.m in Sources */,
+				7A6AAD161FE361240010C71C /* BTAttention.m in Sources */,
 				CBCD2EB71FB4657100994037 /* PhotoView.swift in Sources */,
 				7A16B9E71FB597FB00E7EC3A /* BTMeCollectionView.m in Sources */,
 				7AA2BC211FAAB4CC00864753 /* MLTBadgeView.m in Sources */,
@@ -2584,6 +2595,7 @@
 				7AB5120B1FD5504F008C0D17 /* WXApiManager.m in Sources */,
 				7AA2BCDB1FAAC31F00864753 /* LEHttpRequestManager.m in Sources */,
 				CB670DEE1FC2DFC0004BDCEA /* UIImageView+EMWebCache.m in Sources */,
+				7A37B8461FE2624200F2E8D3 /* BTGoodRecommentViewController.m in Sources */,
 				7AA2BC221FAAB4CC00864753 /* MLTDotBadgeView.m in Sources */,
 				7A2429B41FC66B1800EE7948 /* SVProgressAnimatedView.m in Sources */,
 				7AA2BD451FAB000100864753 /* BTHomePageViewModel.m in Sources */,

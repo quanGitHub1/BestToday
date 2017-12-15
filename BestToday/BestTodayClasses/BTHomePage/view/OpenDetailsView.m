@@ -268,9 +268,16 @@
         
         [labComment sizeToFit];
         
-        heightLab += labComment.height + 10;
-        
-        _heightLabTwo = labComment.bottom;
+        if (labComment.height > 35) {
+            
+            _heightLabTwo = labComment.bottom + 5;
+            
+        }else {
+            
+            heightLab += labComment.height + 10;
+            
+            _heightLabTwo = labComment.bottom;
+        }
         
         if ([isAdd isEqualToString:@"YES"]) {
             

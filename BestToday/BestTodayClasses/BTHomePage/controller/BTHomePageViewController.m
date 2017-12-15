@@ -40,9 +40,7 @@
     self.view.backgroundColor = [UIColor whiteColor];
     self.navigationBar.title = @"今日最佳";
     self.nextPage = 1;
-    
-//      [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(notificationAction:) name:@"BTHomePageNSNotificationIsLike" object:@{@"isLiked":@"0",@"resourceId" : _homePageEntity.resourceId}];
-    
+    self.pageAssistParam = @"";
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(notificationIsLike:) name:@"BTHomePageNSNotificationIsLike" object:nil];
     
@@ -182,7 +180,7 @@
     
     [UMSocialUIManager showShareMenuViewInWindowWithPlatformSelectionBlock:^(UMSocialPlatformType platformType, NSDictionary *userInfo) {
         
-        [self shareImageURLToPlatformType:UMSocialPlatformType_WechatSession];
+        [self shareImageURLToPlatformType:platformType];
         
     }];
 }

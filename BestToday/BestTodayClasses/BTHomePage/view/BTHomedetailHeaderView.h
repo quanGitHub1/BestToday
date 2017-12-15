@@ -23,7 +23,6 @@
 
 @property (nonatomic, strong) NSString *resourceId;
 
-@property (nonatomic, strong) NSString *picUrl;
 
 - (void)initCreatTableview;
 

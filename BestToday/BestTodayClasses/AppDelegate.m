@@ -34,14 +34,11 @@
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     // Override point for customization after application launch.
     
-    
     [self requestqueryUserById];
+
     
     [self shareSDKConfiguration];
 
-    // APP入口
-    [MLTUISkeletonModule shareInstance];
-    
 //    //向微信注册
     [WXApi registerApp:@"wx8910bc5d166f699a" enableMTA:YES];
 //
@@ -69,8 +66,11 @@
     
      [meService loadqueryUserById:[[BTMeEntity shareSingleton].userId integerValue] completion:^
        (BOOL isSuccess, BOOL isCache){
-            
+           
+           // APP入口
+           [MLTUISkeletonModule shareInstance];
 
+           
     }];
             
 }
