@@ -30,9 +30,7 @@
             
             _imagePic.clipsToBounds = YES;
             
-            _labName = [UILabel mlt_labelWithText:@"" color:[UIColor mlt_colorWithHexString:@"#616161" alpha:1] align:NSTextAlignmentCenter font:[UIFont systemFontOfSize:13] bkColor:nil frame:CGRectMake(_imagePic.left, _imagePic.bottom + 10, _imagePic.width, 18)];
-
-            _labName.text = @"罗密欧";
+            _labName = [UILabel mlt_labelWithText:@"" color:[UIColor mlt_colorWithHexString:@"#616161" alpha:1] align:NSTextAlignmentCenter font:[UIFont systemFontOfSize:13] bkColor:nil frame:CGRectMake(_imagePic.left - 10, _imagePic.bottom + 10, _imagePic.width + 20, 18)];
             
             [self.contentView addSubview:_imagePic];
             

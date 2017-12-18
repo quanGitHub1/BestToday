@@ -10,6 +10,6 @@
 
 @interface BTHomePageViewController : BTViewController
 
-
+@property (nonatomic, strong) NSString *picUrl;
 
 @end

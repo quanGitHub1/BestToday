@@ -11,7 +11,7 @@
 #import "BTHomeDetailService.h"
 
 
-@interface BTHomedetailHeaderView ()<UITableViewDataSource, UITableViewDelegate, BTHomepageDetailViewDelegate>
+@interface BTHomedetailHeaderView ()<UITableViewDataSource, UITableViewDelegate>
 
 @property (nonatomic, strong)BTTableview *tableView;
 

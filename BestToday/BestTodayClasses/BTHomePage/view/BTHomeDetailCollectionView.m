@@ -40,9 +40,9 @@ static NSString *const headerId = @"headerId";
 
 @property (nonatomic, assign) CGRect frames;
 
+@property (nonatomic, assign) NSInteger nextPage;
 
 @property (nonatomic, strong) BTHomeHeaderView *headerViews;
-
 
 @end
 
@@ -54,6 +54,8 @@ static NSString *const headerId = @"headerId";
         
         _frames = frame;
         
+        self.nextPage = 1;
+
         //   这个headerView是预估高度的
         _headerViews = [[BTHomeHeaderView alloc] initWithFrame:CGRectMake(0, 0, FULL_WIDTH, 800)];
         
@@ -101,11 +103,13 @@ static NSString *const headerId = @"headerId";
 /** 请求推荐图片 */
 - (void)requestRecommendResourceByPage{
    
-    [self.detailService loadRecommendResourceByPage:1 pageAssistParam:_pageAssistParam resourceIds:@"18301" completion:^(BOOL isSuccess, BOOL isCache, NSString *pageAssistParam) {
+    [self.detailService loadRecommendResourceByPage:_nextPage pageAssistParam:_pageAssistParam resourceIds:_resourceId completion:^(BOOL isSuccess, BOOL isCache, NSString *pageAssistParam,  NSString *nextPage) {
         
         [self.collectionView stop];
         
         _pageAssistParam = pageAssistParam;
+        
+        _nextPage = [nextPage integerValue];
         
         if (isSuccess) {
             
@@ -123,6 +127,8 @@ static NSString *const headerId = @"headerId";
     _pageAssistParam = @"";
     
     [_collectionView resetNoMoreData];
+
+    _nextPage = 1;
 
     
     [self loadData];

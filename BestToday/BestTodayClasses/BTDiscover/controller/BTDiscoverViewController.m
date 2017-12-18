@@ -71,7 +71,7 @@ static NSString *const headerId = @"headerId";
         }
     }];
     // 推荐关注列表
-    [self.homePageService loadqueryMyFollowedUsers:2 completion:^(BOOL isSuccess, BOOL isCache) {
+    [self.homePageService loadqueryMyFollowedUsers:2 userId:[[BTMeEntity shareSingleton].userId integerValue] completion:^(BOOL isSuccess, BOOL isCache) {
         if (isSuccess) {
             weakSelf.discoverHeaderView.spreadTableView.dataArr = weakSelf.homePageService.arrFollowedUsers;
         }

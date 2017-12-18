@@ -19,13 +19,29 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "BestToday/BestTodayClasses/BTHomePage/controller/BTHomePageViewController.m"
-            timestampString = "534170011.816937"
+            filePath = "BestToday/BestTodayClasses/BTHomePage/cell/BTHomeDetailPageTableViewCell.m"
+            timestampString = "534917190.917756"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "353"
-            endingLineNumber = "353"
-            landmarkName = "-requestFollowUser:"
+            startingLineNumber = "299"
+            endingLineNumber = "299"
+            landmarkName = "-onclickBtnShare:"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "BestToday/BestTodayClasses/BTHomePage/cell/BTHomeDetailPageTableViewCell.m"
+            timestampString = "534917237.45781"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "303"
+            endingLineNumber = "303"
+            landmarkName = "-onclickBtnShare:"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>

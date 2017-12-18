@@ -21,6 +21,8 @@
 
 - (void)reloadTableviewDatas;
 
+- (void)shareUM:(NSString *)picUrl;
+
 
 @end
 
@@ -57,7 +59,6 @@
 @property (nonatomic, strong) UILabel *labComment;
 
 
-
 @property (nonatomic, strong) BTHomeCommentView *homeCommentView;
 
 
@@ -71,6 +72,8 @@
 @property (nonatomic) BOOL cell;
 
 @property (nonatomic, assign) NSInteger indexpath;
+
+@property (nonatomic, strong) NSString *picUrl;
 
 
 - (void)makeDatacellData:(BTHomePageEntity *)homePage index:(NSInteger)indexpath;

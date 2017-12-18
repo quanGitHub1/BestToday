@@ -96,9 +96,9 @@
 		<true/>
 	</dict>
 	<key>NSCameraUsageDescription</key>
-	<string>The app will allow you to capture images from your device camera.</string>
+	<string>You will allow the app to capture images from your device camera.</string>
 	<key>NSPhotoLibraryUsageDescription</key>
-	<string>The app will allow you to choose images from your photo library.</string>
+	<string>You will allow the app to capture images from your device library.</string>
 	<key>UIMainStoryboardFile</key>
 	<string>Main</string>
 	<key>UIRequiredDeviceCapabilities</key>

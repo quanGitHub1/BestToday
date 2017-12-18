@@ -14,6 +14,8 @@
 
 @property (nonatomic, strong) NSMutableArray *arrFollowedResource;  // 分页查询首页
 
+@property (nonatomic, strong) NSMutableArray *arrRecommendUsers;  //佳人列表接口
+
 @property (nonatomic, strong) NSString *pageAssistParam;
 
 @property (nonatomic, strong) NSString *nextPage;
@@ -21,7 +23,7 @@
 
 
 // 查询我的关注用户列表接口
-- (void)loadqueryMyFollowedUsers:(NSInteger)tag completion:(void(^)(BOOL isSuccess, BOOL isCache))completion;
+- (void)loadqueryMyFollowedUsers:(NSInteger)tag userId:(NSInteger)userId completion:(void(^)(BOOL isSuccess, BOOL isCache))completion;
 
 
 // 分页查询首页已关注图片资源列表接口
@@ -38,5 +40,8 @@
 // 关注接口
 - (void)loadqueryFollowUser:(NSInteger)followedUserId completion:(void(^)(BOOL isSuccess, BOOL isCache))completion;
 
+
+// 佳人推荐接口
+- (void)loadqueryRecommendUsers:(NSInteger)userID completion:(void(^)(BOOL isSuccess, BOOL isCache))completion;
 
 @end

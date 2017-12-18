@@ -15,6 +15,8 @@
 
 @property (nonatomic, assign) CGFloat heightLabTwo;
 
+@property (nonatomic, strong) NSString *resourceId;
+
 /*
  frame  显示label大小
  text   显示内容

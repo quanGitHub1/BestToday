@@ -12,7 +12,7 @@
 #import "BTHomeDetailService.h"
 
 
-@interface BTHomeHeaderView ()<UITableViewDataSource, UITableViewDelegate, BTHomepageDetailViewDelegate>
+@interface BTHomeHeaderView ()<UITableViewDataSource, UITableViewDelegate, BTHomepageDetailViewDelegate, BTHomepageDetailViewDelegate>
 
 @property (nonatomic, strong)BTTableview *tableView;
 
@@ -169,6 +169,7 @@
     [alertController addAction:cancelAction];
     
 }
+
 
 #pragma mark - lazy
 - (BTHomeDetailService *)detailService{

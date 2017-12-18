@@ -16,6 +16,7 @@
 #import "BTMeService.h"
 #import "BTMeEntity.h"
 #import "BtHomePageService.h"
+#import "BTGoodRecommentViewController.h"
 
 
 @interface BTMeViewController ()<MLTTouchLabelDelegate>
@@ -68,8 +69,6 @@
     
    [self.view addSubview:headView];
     
-    
-   [self creatSegment];   
 }
 
 -(void)viewWillAppear:(BOOL)animated{
@@ -78,8 +77,6 @@
     
     [self loadData];
 
-    [_collectionViewTwo loadData];
-    
 }
 
 -(void)setNavgationBar{
@@ -99,11 +96,11 @@
     
     UIView *viewHeaer = [[UIView alloc] initWithFrame:frame];
     
-    _imageAvtar = [[UIImageView alloc] initWithFrame:CGRectMake(15, 17, ScaleWidth(54), ScaleHeight(54))];
+    _imageAvtar = [[UIImageView alloc] initWithFrame:CGRectMake(15, 17, ScaleWidth(60), ScaleHeight(60))];
     
     _imageAvtar.backgroundColor = [UIColor whiteColor];
     
-    _imageAvtar.layer.cornerRadius = ScaleWidth(27);
+    _imageAvtar.layer.cornerRadius = ScaleWidth(30);
     
     _imageAvtar.clipsToBounds = YES;
     
@@ -239,9 +236,36 @@
     
     _segementView.backgroundColor = [UIColor whiteColor];
     
-    _collectionView = [[BTMeCollectionView alloc] initWithFrame:CGRectMake(0, _segementView.bottom, FULL_WIDTH, FULL_HEIGHT - _segementView.bottom - MLTTabbarHeight)];
     
-    _collectionViewTwo = [[BTMeLikeCollectionView alloc] initWithFrame:CGRectMake(0, _segementView.bottom, FULL_WIDTH, FULL_HEIGHT - _segementView.bottom - MLTTabbarHeight)];
+  
+    
+    if (_otherId) {
+        
+        _collectionView = [[BTMeCollectionView alloc] initWithFrame:CGRectMake(0, _segementView.bottom, FULL_WIDTH, FULL_HEIGHT - _segementView.bottom )];
+        
+        
+        
+        _collectionViewTwo = [[BTMeLikeCollectionView alloc] initWithFrame:CGRectMake(0, _segementView.bottom, FULL_WIDTH, FULL_HEIGHT - _segementView.bottom)];
+        _collectionView.userId = _userId;
+        
+        _collectionViewTwo.userId = _userId;
+        
+        
+    }else {
+    
+        _collectionView = [[BTMeCollectionView alloc] initWithFrame:CGRectMake(0, _segementView.bottom, FULL_WIDTH, FULL_HEIGHT - _segementView.bottom - MLTTabbarHeight)];
+        
+        _collectionViewTwo = [[BTMeLikeCollectionView alloc] initWithFrame:CGRectMake(0, _segementView.bottom, FULL_WIDTH, FULL_HEIGHT - _segementView.bottom - MLTTabbarHeight)];
+        
+        _collectionView.userId = [BTMeEntity shareSingleton].userId;
+        
+        _collectionViewTwo.userId = [BTMeEntity shareSingleton].userId;
+
+    }
+   
+    [_collectionView loadData];
+
+    [_collectionViewTwo loadData];
 
     [self.view addSubview:_segementView];
     
@@ -254,9 +278,11 @@
 - (void)loadData{
 
     [self requestqueryUserById];
+    
 }
 
 - (void)requestqueryUserById{
+    
     if (_otherId == YES) {
         
         [self.meService loadqueryUserById:[_userId integerValue] completion:^(BOOL isSuccess, BOOL isCache) {
@@ -264,6 +290,9 @@
             if (isSuccess) {
                 
                 [self refreshHeaderView];
+                
+                [self creatSegment];
+
             }
             
         }];
@@ -275,6 +304,9 @@
             if (isSuccess) {
                 
                 [self refreshHeaderView];
+                
+                [self creatSegment];
+
             }
             
         }];
@@ -456,6 +488,17 @@
         }
         
         [_labTag sizeToFit];
+        
+        
+        _viewLine.frame = CGRectMake(0, _labTag.bottom + 16, FULL_WIDTH, 1);
+        
+        _heightHeader = _viewLine.bottom + NAVBAR_HEIGHT;
+        
+        _segementView.frame = CGRectMake(0, _heightHeader, FULL_WIDTH, 50);
+        
+        _collectionView.frame = CGRectMake(0, _segementView.bottom, FULL_WIDTH, FULL_HEIGHT - _segementView.bottom - MLTTabbarHeight);
+        
+        _collectionViewTwo.frame = CGRectMake(0, _segementView.bottom, FULL_WIDTH, FULL_HEIGHT - _segementView.bottom - MLTTabbarHeight);
 
     };
     
@@ -464,9 +507,19 @@
 
 - (void)addFriend:(UIButton *)btn{
     
-    BTAttentionMeViewController *Attention = [[BTAttentionMeViewController alloc] init];
+    BTGoodRecommentViewController *Attention = [[BTGoodRecommentViewController alloc] init];
     
-    Attention.navTitle = @"关注我的";
+    BTMeEntity *meEntity;
+    
+    if (self.meService.arrByUser.count > 0) {
+        
+        meEntity = [self.meService.arrByUser objectAtIndex:0];
+        
+    }
+    
+    Attention.userId = meEntity.userId;
+    
+    Attention.navTitle = @"佳人推荐";
     
     [self.navigationController pushViewController:Attention animated:YES];
 }
@@ -474,8 +527,18 @@
 - (void)onclickFollow:(UIButton *)btn{
     
     BTMeAttentionViewController *Attention = [[BTMeAttentionViewController alloc] init];
+    BTMeEntity *meEntity;
+
+    if (self.meService.arrByUser.count > 0) {
+        
+        meEntity = [self.meService.arrByUser objectAtIndex:0];
+        
+    }
     
-    Attention.navTitle = @"我关注的";
+    Attention.userId = meEntity.userId;
+
+    Attention.navTitle = @"关注的人";
+    
     
     [self.navigationController pushViewController:Attention animated:YES];
 }
@@ -494,7 +557,7 @@
     
     Attention.userId = meEntity.userId;
     
-    Attention.navTitle = @"关注我的";
+    Attention.navTitle = @"粉丝";
     
     [self.navigationController pushViewController:Attention animated:YES];
 }
@@ -535,7 +598,6 @@
         
         meEntity = [self.meService.arrByUser objectAtIndex:0];
     }
-    
     
     [pageService loadqueryUnFollowUser:[meEntity.userId integerValue] completion:^(BOOL isSuccess, BOOL isCache) {
         

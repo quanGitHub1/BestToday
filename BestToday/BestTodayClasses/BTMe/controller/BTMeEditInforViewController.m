@@ -8,13 +8,18 @@
 
 #import "BTMeEditInforViewController.h"
 #import "BTMeEditInforService.h"
+#import "SQButtonTagView.h"
+#import "BTPhotoService.h"
+#import "BTPhotoEntity.h"
 
-@interface BTMeEditInforViewController ()<UINavigationControllerDelegate,UIImagePickerControllerDelegate>
+@interface BTMeEditInforViewController ()<UINavigationControllerDelegate,UIImagePickerControllerDelegate, UITextFieldDelegate, UITextViewDelegate>
 
 
 @property (nonatomic, strong) UILabel *labName;
 
 @property (nonatomic, strong) UILabel *labProduct;
+
+@property (nonatomic, strong) UILabel *labTag;
 
 @property (nonatomic, strong) UITextField *textViewName;
 
@@ -24,6 +29,14 @@
 
 @property (nonatomic, strong)  BTMeEditInforService *editService;
 
+@property (nonatomic, strong) SQButtonTagView * classTagView;
+
+@property (nonatomic, strong) SQButtonTagView * subClassTagView;
+
+@property (nonatomic, strong) BTPhotoService * photoService;
+
+@property (nonatomic, strong) NSMutableArray * categoryArray;// 一级列表分类
+@property (nonatomic, strong) NSMutableArray * tagsArray;
 
 @end
 
@@ -34,9 +47,14 @@
     
     [self setNavgationBar];
     
+    _categoryArray = [NSMutableArray array];
+    _tagsArray = [NSMutableArray array];
+    
     UIView *viewHeader = [self createView:CGRectMake(0, 64, FULL_WIDTH, FULL_HEIGHT - NAVBAR_HEIGHT)];
     
     [self.view addSubview:viewHeader];
+    
+    [self setUpDataForTagView];
 }
 
 -(void)setNavgationBar{
@@ -112,6 +130,19 @@
     
     labChange.textAlignment = NSTextAlignmentCenter;
     
+    labChange.userInteractionEnabled = YES;
+    /**
+     *  添加手势：也就是当用户点击头像了之后，对这个操作进行反应
+     */
+    //允许用户交互
+    _imageView.userInteractionEnabled = YES;
+    //初始化一个手势
+    UITapGestureRecognizer *labTap = [[UITapGestureRecognizer alloc]initWithTarget:self
+                                                                               action:@selector(alterHeadPortrait:)];
+    //给ImageView添加手势
+    [labChange addGestureRecognizer:labTap];
+    
+    
     _labName = [[UILabel alloc] initWithFrame:CGRectMake(15, labChange.bottom + 50, 40, 16)];
     
     _labName = [UILabel mlt_labelWithText:@"昵称" color:[UIColor mlt_colorWithHexString:@"#969696" alpha:1] align:NSTextAlignmentLeft font:[UIFont systemFontOfSize:15] bkColor:nil frame:CGRectMake(15, labChange.bottom + 50, 40, 16)];
@@ -119,6 +150,8 @@
     _labProduct = [UILabel mlt_labelWithText:@"简介" color:[UIColor mlt_colorWithHexString:@"#969696" alpha:1] align:NSTextAlignmentLeft font:[UIFont systemFontOfSize:15] bkColor:nil frame:CGRectMake(15, _labName.bottom + 50, 40, 16)];
     
     _textViewName = [[UITextField alloc] initWithFrame:CGRectMake(_labName.right + 30, _labName.top - 8, FULL_WIDTH - _labName.right - 45, 40)];
+    
+    _textViewName.delegate = self;
     
     _textViewName.text = self.nikeName;
         
@@ -135,6 +168,7 @@
     
     _textProduct.font = [UIFont systemFontOfSize:15];
     
+    _textProduct.delegate = self;
 
     UIView *viewLine = [[UIView alloc] initWithFrame:CGRectMake(_labName.right + 15, _labName.bottom + 15, FULL_WIDTH - _labName.right - 30, 1)];
     
@@ -144,6 +178,9 @@
     UIView *viewLineTwo = [[UIView alloc] initWithFrame:CGRectMake(_labProduct.right + 15, _textProduct.bottom + 1, FULL_WIDTH - _labProduct.right - 30, 1)];
     
     viewLineTwo.backgroundColor = [UIColor colorWithHexString:@"#eeeeee"];
+    
+    _labTag = [UILabel mlt_labelWithText:@"标签" color:[UIColor mlt_colorWithHexString:@"#969696" alpha:1] align:NSTextAlignmentLeft font:[UIFont systemFontOfSize:15] bkColor:nil frame:CGRectMake(_labName.left, viewLineTwo.bottom + 30, _labProduct.width, _labProduct.height)];
+
     
     [view addSubview:viewLineTwo];
     
@@ -159,9 +196,93 @@
     [view addSubview:labChange];
     [view addSubview:_imageView];
     
+    [view addSubview:_labTag];
+    
     return view;
 }
 
+- (void)setUpClassView{
+    _classTagView = [[SQButtonTagView alloc] initWithTotalTagsNum:self.categoryArray.count viewWidth:screenWidth - 30 - _labTag.right eachNum:0 Hmargin:10 Vmargin:10 tagHeight:30 tagTextFont:[UIFont systemFontOfSize:14.f] tagTextColor:[[UIColor redColor] colorWithAlphaComponent:0.5] selectedTagTextColor:[UIColor whiteColor] selectedBackgroundColor:[[UIColor redColor] colorWithAlphaComponent:0.5]];
+    _classTagView.frame = CGRectMake(_labTag.right + 20, _labTag.bottom + 40, screenWidth - _labTag.right - 30, 200);
+    _classTagView.maxSelectNum = 1;
+    __weak __typeof(self)weakSelf = self;
+    _classTagView.selectBlock = ^(SQButtonTagView * _Nonnull tagView, NSArray * _Nonnull selectArray) {
+        int index = [selectArray[0] intValue];
+        BTPhotoEntity *entity = weakSelf.photoService.categoryArray[index];
+        weakSelf.uploadCategoryId = entity.categoryId;
+        [weakSelf setUpDataForCatogryTagViewWithCategoryid:weakSelf.uploadCategoryId categoryName:entity.categoryName];
+    };
+    
+    [self.view addSubview:_classTagView];
+}
+
+- (void)setUpClassViewFrame{
+    CGFloat height = [SQButtonTagView returnViewHeightWithTagTexts:_categoryArray viewWidth:screenWidth - 30 - _labTag.right eachNum:0 Hmargin:10 Vmargin:10 tagHeight:30 tagTextFont:[UIFont systemFontOfSize:14.f]];
+    CGRect frame = self.classTagView.frame;
+    frame.size.height = height;
+    self.classTagView.frame = frame;
+}
+
+- (void)setUpSubClassViewFrame{
+    CGFloat height = [SQButtonTagView returnViewHeightWithTagTexts:_tagsArray viewWidth:screenWidth - 30 - _labTag.right eachNum:0 Hmargin:10 Vmargin:10 tagHeight:30 tagTextFont:[UIFont systemFontOfSize:14.f]];
+    CGRect frame = self.subClassTagView.frame;
+    frame.size.height = height;
+    self.subClassTagView.frame = frame;
+}
+
+- (void)setUpDataForTagView{
+    // 一级分类
+    __weak __typeof(self)weakSelf = self;
+    [self.photoService getUploadPictureTagscompletion:^(BOOL isSuccess, NSString *message) {
+        if (isSuccess) {
+            for (int i = 0 ; i<weakSelf.photoService.categoryArray.count; i++) {
+                BTPhotoEntity *entity = weakSelf.photoService.categoryArray[i];
+                [_categoryArray addObject:entity.categoryName];
+            }
+            [weakSelf setUpClassView];
+            weakSelf.classTagView.tagTexts = _categoryArray;
+            [weakSelf setUpClassViewFrame];
+        }else{
+            NSLog(@"%@",message);
+        }
+    }];
+}
+
+- (void)setUpDataForCatogryTagViewWithCategoryid:(NSString *)categoryid categoryName:(NSString *)categoryName{
+    // 二级分类
+    __weak __typeof(self)weakSelf = self;
+    [self.photoService getUploadPictureTagsByCategoryId:categoryid categoryName:categoryName Cacompletion:^(BOOL isSuccess, NSString *message) {
+        if (isSuccess) {
+            for (int i = 0 ; i<weakSelf.photoService.tagsArray.count; i++) {
+                BTPhotoEntity *entity = weakSelf.photoService.tagsArray[i];
+                [_tagsArray addObject:entity.tagName];
+            }
+            [weakSelf setUpSubClassTagView];
+            weakSelf.subClassTagView.tagTexts = _tagsArray;
+            [weakSelf setUpSubClassViewFrame];
+        }else{
+            NSLog(@"%@",message);
+        }
+    }];
+    
+}
+
+- (void)setUpSubClassTagView{
+    if (!_subClassTagView) {
+        CGFloat height = [SQButtonTagView returnViewHeightWithTagTexts:_categoryArray viewWidth:screenWidth - 30 - _labTag.right eachNum:0 Hmargin:10 Vmargin:10 tagHeight:30 tagTextFont:[UIFont systemFontOfSize:14.f]];
+        _subClassTagView = [[SQButtonTagView alloc] initWithTotalTagsNum:_tagsArray.count viewWidth:screenWidth-20 eachNum:0 Hmargin:10 Vmargin:10 tagHeight:30 tagTextFont:[UIFont systemFontOfSize:14.f] tagTextColor:[[UIColor redColor] colorWithAlphaComponent:0.5] selectedTagTextColor:[UIColor whiteColor] selectedBackgroundColor:[[UIColor redColor] colorWithAlphaComponent:0.5]];
+        _subClassTagView.frame = CGRectMake(_labTag.right + 20, _labTag.top + 62 + height, screenWidth - 30 - _labTag.right, 200);
+        _subClassTagView.maxSelectNum = 1;
+        __weak __typeof(self)weakSelf = self;
+        _subClassTagView.selectBlock = ^(SQButtonTagView * _Nonnull tagView, NSArray * _Nonnull selectArray) {
+            int index = [selectArray[0] intValue];
+            BTPhotoEntity *entity = weakSelf.photoService.tagsArray[index];
+            weakSelf.uploadtagId = entity.tagId;
+            weakSelf.uploadtagName = entity.tagName;
+        };
+        [self.view addSubview:_subClassTagView];
+    }
+}
 
 
 - (void)loadData{
@@ -248,10 +369,42 @@
         self.updateInforBlock(_textViewName.text, _textProduct.text, _imageView.image);
         
         [self.navigationController popViewControllerAnimated:YES];
-
         
     }];
 }
+
+- (BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string{
+
+    NSString * toBeString = [textField.text stringByReplacingCharactersInRange:range withString:string];
+    
+    if (self.textViewName == textField) {
+        if ([toBeString length] > 10) { //如果输入框内容大于10则弹出警告
+            textField.text = [toBeString substringToIndex:10];
+            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:nil message:@"超过最大字数不能输入了" delegate:nil cancelButtonTitle:@"Ok" otherButtonTitles:nil, nil];
+            [alert show];
+            return NO;
+        }
+    }
+    return YES;
+}
+
+
+- (BOOL)textView:(UITextView *)textView shouldChangeTextInRange:(NSRange)range replacementText:(NSString *)text{
+    NSString * toBeString = [textView.text stringByReplacingCharactersInRange:range withString:text];
+    
+    if (self.textProduct == textView) {
+        if ([toBeString length] > 200) { //如果输入框内容大于10则弹出警告
+            textView.text = [toBeString substringToIndex:200];
+            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:nil message:@"超过最大字数不能输入了" delegate:nil cancelButtonTitle:@"Ok" otherButtonTitles:nil, nil];
+            [alert show];
+            return NO;
+        }
+    }
+    return YES;
+
+}
+
+
 
 #pragma mark - lazy
 - (BTMeEditInforService *)editService {
@@ -259,6 +412,14 @@
         _editService = [[BTMeEditInforService alloc] init];
     }
     return _editService;
+}
+
+
+- (BTPhotoService *)photoService {
+    if (!_photoService) {
+        _photoService = [[BTPhotoService alloc] init];
+    }
+    return _photoService;
 }
 
 

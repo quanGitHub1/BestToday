@@ -27,7 +27,7 @@ static NSString *const headerId = @"headerId";
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    self.navigationBar.title = @"今日最佳";
+    self.navigationBar.title = @"图片";
     
     [self.navigationBar setLeftBarButton:[UIButton mlt_rightBarButtonWithImage:[UIImage imageNamed:@"info_backs"] highlightedImage:nil target:self action:@selector(navigationBackButtonClicked:) forControlEvents:UIControlEventTouchUpInside]];
 

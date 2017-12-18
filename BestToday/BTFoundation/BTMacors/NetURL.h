@@ -29,6 +29,9 @@
 // 关注接口
 #define BTqueryFollowUser   @"http://zuijia365.com/todayHot/app/user/followUser.json"
 
+// 佳人推荐接口
+#define BTqueryRecommendUsers   @"http://zuijia365.com/todayHot/app/user/recommendUsers.json?"
+
 // 详情页随便看看
 #define BTqueryRecommendResourceByPage   @"http://zuijia365.com/todayHot/app/recommend/recommendResourceByPage.json"
 
@@ -64,6 +67,9 @@
 
 // 编辑用户信息接口
 #define BTqueryUpdateUser  @"http://zuijia365.com/todayHot/app/user/updateUser.json"
+
+// 获取分享图片
+#define BTqueryGetSharePic  @"http://zuijia365.com/todayHot/app/resource/getSharePic.json"
 
 // 发现
 #define BTqueryDiscoverResourceByPage   @"http://zuijia365.com/todayHot/app/resource/queryForDetection.json"

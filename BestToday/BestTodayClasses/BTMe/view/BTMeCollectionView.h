@@ -10,4 +10,9 @@
 
 @interface BTMeCollectionView : UIView
 
+@property (nonatomic, strong)NSString *userId;
+
+- (void)loadData;
+
+
 @end

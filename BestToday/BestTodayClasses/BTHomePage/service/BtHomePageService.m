@@ -13,9 +13,9 @@
 
 @implementation BtHomePageService
 
-- (void)loadqueryMyFollowedUsers:(NSInteger)tag completion:(void(^)(BOOL isSuccess, BOOL isCache))completion{
+- (void)loadqueryMyFollowedUsers:(NSInteger)tag userId:(NSInteger)userId completion:(void(^)(BOOL isSuccess, BOOL isCache))completion{
 
-    NSString *urlString = [NSString stringWithFormat:@"%@?appType=%ld",BTQueryMyFollowedUsers,tag];
+    NSString *urlString = [NSString stringWithFormat:@"%@?callFrom=%ld&userId=%ld",BTQueryMyFollowedUsers,tag, userId];
     
     [NetworkHelper GET:urlString parameters:nil responseCache:^(id responseCache) {
         
@@ -36,18 +36,18 @@
 - (void)loadqueryFollowedResource:(NSInteger)pageIndex pageAssistParam:(NSString *)pageAssistParam completion:(void(^)(BOOL isSuccess, BOOL isCache, NSString *pageAssistParam, NSString *nextPage))completion{
 
     NSString *urlString = [NSString stringWithFormat:@"%@?pageIndex=%ld&pageAssistParam=%@",BTqueryFollowedResource,pageIndex,pageAssistParam];
+    
+    if ([pageAssistParam isEqualToString:@""]) {
+        
+        [_arrFollowedResource removeAllObjects];
+        
+    }
 
     [NetworkHelper GET:urlString parameters:nil responseCache:^(id responseCache) {
         
         
     } success:^(id responseObject) {
-        
-        if ([pageAssistParam isEqualToString:@""]) {
-            
-            [_arrFollowedResource removeAllObjects];
-            
-        }
-        
+                
         [self handleFollowedResourceListData:responseObject];
         
         completion(YES,NO, _pageAssistParam, _nextPage);
@@ -126,6 +126,28 @@
 }
 
 
+/** 佳人推荐 */
+- (void)loadqueryRecommendUsers:(NSInteger)userID completion:(void(^)(BOOL isSuccess, BOOL isCache))completion{
+    
+    NSString *urlString = [NSString stringWithFormat:@"%@?userId=%ld",BTqueryRecommendUsers,userID];
+    
+    [NetworkHelper GET:urlString parameters:nil responseCache:^(id responseCache) {
+        
+    } success:^(id responseObject) {
+        
+        [self handleRecommendListData:responseObject];
+        
+        completion(YES,NO);
+        
+    } failure:^(NSError *error) {
+        
+        completion(NO,NO);
+        
+    }];
+    
+}
+
+
 /** 查询我的关注用户列表数据 */
 - (BOOL)handleListData:(id)respones {
     
@@ -133,7 +155,9 @@
         if (!([respones[@"code"] integerValue] == 0)) {
             return NO;
         }
+        
         [self.arrFollowedUsers removeAllObjects];
+        
         NSDictionary *dicData = respones[@"data"];
         
         if (dicData && [dicData isKindOfClass:[NSDictionary class]]) {
@@ -149,6 +173,44 @@
                 BTHomeUserEntity *userEntity = [BTHomeUserEntity yy_modelWithDictionary:dic];
                 
                 [self.arrFollowedUsers addObject:userEntity];
+            }
+            
+            return YES;
+            
+        }
+    }
+    
+    return NO;
+    
+}
+
+
+
+/** 佳人推荐列表数据 */
+- (BOOL)handleRecommendListData:(id)respones {
+    
+    if (respones && [respones isKindOfClass:[NSDictionary class]]) {
+        if (!([respones[@"code"] integerValue] == 0)) {
+            return NO;
+        }
+        
+        [self.arrRecommendUsers removeAllObjects];
+        
+        NSDictionary *dicData = respones[@"data"];
+        
+        if (dicData && [dicData isKindOfClass:[NSDictionary class]]) {
+            
+            NSArray *datas = dicData[@"followedUsers"];
+            
+            if ([datas isKindOfClass:[NSNull class]]) {
+                return NO;
+            }
+            
+            for (NSDictionary *dic in datas) {
+                
+                BTHomeUserEntity *userEntity = [BTHomeUserEntity yy_modelWithDictionary:dic];
+                
+                [self.arrRecommendUsers addObject:userEntity];
             }
             
             return YES;
@@ -211,6 +273,13 @@
         _arrFollowedResource = [[NSMutableArray alloc]init];
     }
     return _arrFollowedResource;
+}
+
+- (NSMutableArray *) arrRecommendUsers{
+    if (!_arrRecommendUsers) {
+        _arrRecommendUsers = [[NSMutableArray alloc]init];
+    }
+    return _arrRecommendUsers;
 }
 
 @end

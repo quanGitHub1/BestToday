@@ -10,6 +10,8 @@
 
 @interface BTMeLikeCollectionView : UIView
 
+@property (nonatomic, strong)NSString *userId;
+
 - (void)loadData;
 
 

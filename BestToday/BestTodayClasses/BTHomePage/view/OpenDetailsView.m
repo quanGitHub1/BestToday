@@ -12,7 +12,7 @@
 #import "CoreText/CoreText.h"
 #import "BTHomeOpenHander.h"
 #import "BTHomeComment.h"
-
+#import "BTMessageViewController.h"
 
 @interface OpenDetailsView()
 @property (nonatomic, assign) CGRect detaFrame;
@@ -49,7 +49,7 @@
 
 - (void)frame:(CGRect)frame text:(NSString *)text font:(int)font numberOfRow:(int)row indexpath:(NSInteger)indexpath{
     
-        CGFloat height = [text heightWithText:text font:font width:screenWidth - 20];
+        CGFloat height = [text heightWithText:text font:font width:screenWidth - 35];
         if (height > font * row) {
             height = font * row;
         }
@@ -77,12 +77,12 @@
                 str = [str substringToIndex:number - 8];
 
             }
+
             
             NSString *showStr1 = [NSString stringWithFormat:@"%@...",str];
             
             CGSize detailSize = [showStr1 sizeWithFont:[UIFont systemFontOfSize:15] constrainedToSize:CGSizeMake(FULL_WIDTH - 80, MAXFLOAT) lineBreakMode:UILineBreakModeWordWrap];
 
-            
 //            CGFloat width = showStr1.length * 15;
             
             _width = detailSize.width;
@@ -106,7 +106,6 @@
             setString = [[NSMutableAttributedString alloc] initWithString:textLabel.text];
             
             [setString  addAttribute:NSParagraphStyleAttributeName value:paragraphStyle range:NSMakeRange(0, textLabel.text.length)];
-            
         }
         
         textLabel.attributedText = setString;
@@ -141,9 +140,11 @@
     if (_textArr.count > 3) {
         
         UIButton *openBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-        openBtn.frame = CGRectMake(_width + 20, font * 3 + 12, screenWidth - _width - 20, font);
+        openBtn.frame = CGRectMake(_width, font * 3 + 12, screenWidth - _width - 3, font);
         
         openBtn.contentHorizontalAlignment = UIControlContentHorizontalAlignmentLeft;
+        
+        openBtn.backgroundColor = [UIColor whiteColor];
         
         [openBtn setTitle:@"更多" forState:0];
         
@@ -174,7 +175,7 @@
     CTFramesetterRef frameSetter = CTFramesetterCreateWithAttributedString((__bridge CFAttributedStringRef)attStr);
     
     CGMutablePathRef path = CGPathCreateMutable();
-    CGPathAddRect(path, NULL, CGRectMake(0,0,rect.size.width,100000));
+    CGPathAddRect(path, NULL, CGRectMake(0,0,rect.size.width - 35,100000));
     
     CTFrameRef frame = CTFramesetterCreateFrame(frameSetter, CFRangeMake(0, 0), path, NULL);
     
@@ -186,6 +187,8 @@
         CFRange lineRange = CTLineGetStringRange(lineRef);
         NSRange range = NSMakeRange(lineRange.location, lineRange.length);
         NSString *lineString = [text substringWithRange:range];
+        lineString = [lineString stringByReplacingOccurrencesOfString:@"\n" withString:@""];
+
         [linesArray addObject:lineString];
     }
     return linesArray;
@@ -200,7 +203,15 @@
        viewLine = [[UIView alloc] initWithFrame:CGRectMake(0,  _textLabel.bottom , FULL_WIDTH - 20, 0.6)];
 
     }else {
-        viewLine = [[UIView alloc] initWithFrame:CGRectMake(0,  _textLabel.bottom + 13, FULL_WIDTH - 20, 0.6)];
+        if (_textArr.count == 1) {
+            
+            viewLine = [[UIView alloc] initWithFrame:CGRectMake(0, _textLabel.bottom , FULL_WIDTH - 20, 0.6)];
+
+        }else {
+            
+            viewLine = [[UIView alloc] initWithFrame:CGRectMake(0,  _textLabel.bottom + 13, FULL_WIDTH - 20, 0.6)];
+
+        }
 
     }
     
@@ -250,18 +261,23 @@
         [setString addAttribute:NSForegroundColorAttributeName value:[UIColor colorWithHexString:@"#212121"] range:range];
         
         [setString addAttribute:NSFontAttributeName value:[UIFont boldSystemFontOfSize:15] range:range];
-
-
         
         labComment.attributedText = setString;
         
-        labComment.numberOfLines = 3;
+        labComment.numberOfLines = 0;
         
         [labComment sizeToFit];
         
-        heightLab += labComment.height + 10;
-        
-        _heightLabTwo = labComment.bottom;
+        if (labComment.height > 35) {
+            
+            _heightLabTwo = labComment.bottom + 5;
+            
+        }else {
+            
+            heightLab += labComment.height + 10;
+            
+            _heightLabTwo = labComment.bottom;
+        }
         
         if ([isAdd isEqualToString:@"YES"]) {
             
@@ -273,6 +289,8 @@
     UIButton *btnComment = [[UIButton alloc] initWithFrame:CGRectMake(0, _heightLabTwo + 4, FULL_WIDTH - 20, 20)];
     
     [btnComment setTitle:_totalCommentMsg forState:UIControlStateNormal];
+    
+    [btnComment addTarget:self action:@selector(onclickBtnComment:) forControlEvents:UIControlEventTouchUpInside];
     
     [btnComment setTitleColor:[UIColor colorWithHexString:@"#969696"] forState:UIControlStateNormal];
     
@@ -297,32 +315,41 @@
         [[BTHomeOpenHander shareHomeOpenHander].arrydata addObject:[NSString stringWithFormat:@"%ld",_indexpath]];
     }
     
-    // 设置label的行间距
-    NSMutableParagraphStyle  *paragraphStyle = [[NSMutableParagraphStyle alloc] init];
-
-    [paragraphStyle  setLineSpacing:8];
-
-    NSMutableAttributedString  *setString;
-
-    setString = [[NSMutableAttributedString alloc] initWithString:_textStr];
-
-    [setString  addAttribute:NSParagraphStyleAttributeName value:paragraphStyle range:NSMakeRange(0, _textStr.length)];
-
-    _textLabel.attributedText = setString;
-    
-    [_textLabel sizeToFit];
-    
-    _heightLabTwo = _textLabel.bottom;
-    
-    [self creatLabData:@"NO"];
-    
-    sender.hidden = YES;
-    
-    if (self.sendHeightBlock) {
+        // 设置label的行间距
+        NSMutableParagraphStyle  *paragraphStyle = [[NSMutableParagraphStyle alloc] init];
         
-        self.sendHeightBlock(_heightLabTwo, _indexpath);
+        [paragraphStyle  setLineSpacing:8];
         
-    }
+        NSMutableAttributedString  *setString;
+        
+        setString = [[NSMutableAttributedString alloc] initWithString:_textStr];
+        
+        [setString  addAttribute:NSParagraphStyleAttributeName value:paragraphStyle range:NSMakeRange(0, _textStr.length)];
+        
+        _textLabel.attributedText = setString;
+        
+        [_textLabel sizeToFit];
+        
+        _heightLabTwo = _textLabel.bottom;
+        
+        [self creatLabData:@"NO"];
+        
+        sender.hidden = YES;
+        
+        if (self.sendHeightBlock) {
+            
+            self.sendHeightBlock(_heightLabTwo, _indexpath);
+            
+        }
+}
+
+- (void)onclickBtnComment:(UIButton *)btn{
+
+    BTMessageViewController *messageVC = [[BTMessageViewController alloc] init];
+    messageVC.isComment = YES;
+    messageVC.resourceId = _resourceId;
+    [[self viewController].navigationController pushViewController:messageVC animated:YES];
+    
 }
 
 @end

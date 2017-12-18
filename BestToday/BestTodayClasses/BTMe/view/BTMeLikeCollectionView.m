@@ -42,9 +42,13 @@
         
         self.backgroundColor = [UIColor whiteColor];
         
+        _nextPage = 1;
+        
+        _pageAssistParam = @"";
+
         [self creatTableview];
         
-        [self loadData];
+//        [self loadData];
         
     }
     
@@ -107,7 +111,7 @@
 
 - (void)requestqueryMyResourceByPage{
     
-    [self.meService loadqueryCommentResourceByPage:_nextPage pageAssistParam:_pageAssistParam completion:^(BOOL isSuccess, BOOL isCache, NSString *pageAssistParam, NSString *nextPage) {
+    [self.meService loadqueryCommentResourceByPage:_nextPage pageAssistParam:_pageAssistParam userId:[_userId integerValue]completion:^(BOOL isSuccess, BOOL isCache, NSString *pageAssistParam, NSString *nextPage) {
         
         [self.collectionView stop];
         

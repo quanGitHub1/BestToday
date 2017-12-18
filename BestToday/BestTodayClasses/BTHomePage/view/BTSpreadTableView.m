@@ -9,6 +9,7 @@
 #import "BTSpreadTableView.h"
 #import "BTRecomendUserTableViewCell.h"
 #import "BTMeViewController.h"
+#import "BTGoodRecommentViewController.h"
 
 @interface BTSpreadTableView()<UITableViewDataSource,UITableViewDelegate, UIGestureRecognizerDelegate>
 {
@@ -168,13 +169,26 @@
         
         BTHomeUserEntity *userEntity = [_dataArr objectAtIndex:indexPath.row];
         
-        BTMeViewController *meView = [[BTMeViewController alloc] init];
+        if ([userEntity.jumpType isEqualToString:@"2"]) {
+            
+            BTGoodRecommentViewController *recomment = [[BTGoodRecommentViewController alloc] init];
+            
+            recomment.userId = userEntity.userId;
+            
+            [[self viewController].navigationController pushViewController:recomment animated:YES];
+
+            
+        }else {
         
-        meView.userId = userEntity.userId;
+            BTMeViewController *meView = [[BTMeViewController alloc] init];
+            
+            meView.userId = userEntity.userId;
+            
+            meView.otherId = YES;
+            
+            [[self viewController].navigationController pushViewController:meView animated:YES];
+        }
         
-        meView.otherId = YES;
-        
-        [[self viewController].navigationController pushViewController:meView animated:YES];
         
     }
     
