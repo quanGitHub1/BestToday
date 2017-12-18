@@ -240,6 +240,7 @@
 		CB670E0A1FC817DF004BDCEA /* BTMessageEntity.m in Sources */ = {isa = PBXBuildFile; fileRef = CB670E091FC817DF004BDCEA /* BTMessageEntity.m */; };
 		CB670E0D1FC81821004BDCEA /* BTMessageUserEntity.m in Sources */ = {isa = PBXBuildFile; fileRef = CB670E0C1FC81821004BDCEA /* BTMessageUserEntity.m */; };
 		CB8A55D61FDFD73A008EC03C /* XXTextView.m in Sources */ = {isa = PBXBuildFile; fileRef = CB8A55D41FDFD73A008EC03C /* XXTextView.m */; };
+		CB8A55DB1FE0D19E008EC03C /* UIImage+Compression.m in Sources */ = {isa = PBXBuildFile; fileRef = CB8A55D91FE0D19E008EC03C /* UIImage+Compression.m */; };
 		CB8AEEAD1FDEC6CA00D70B0E /* BTHomeCommentEntity.m in Sources */ = {isa = PBXBuildFile; fileRef = CB8AEEAC1FDEC6CA00D70B0E /* BTHomeCommentEntity.m */; };
 		CB926A481FCEAA27003AB4D5 /* SQButtonTagView.m in Sources */ = {isa = PBXBuildFile; fileRef = CB926A461FCEAA27003AB4D5 /* SQButtonTagView.m */; };
 		CBCD2EA91FB4657100994037 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CBCD2E9A1FB4657100994037 /* Assets.xcassets */; };
@@ -747,6 +748,8 @@
 		CB670E0C1FC81821004BDCEA /* BTMessageUserEntity.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BTMessageUserEntity.m; sourceTree = "<group>"; };
 		CB8A55D41FDFD73A008EC03C /* XXTextView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XXTextView.m; sourceTree = "<group>"; };
 		CB8A55D51FDFD73A008EC03C /* XXTextView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XXTextView.h; sourceTree = "<group>"; };
+		CB8A55D91FE0D19E008EC03C /* UIImage+Compression.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+Compression.m"; sourceTree = "<group>"; };
+		CB8A55DA1FE0D19E008EC03C /* UIImage+Compression.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+Compression.h"; sourceTree = "<group>"; };
 		CB8AEEAB1FDEC6CA00D70B0E /* BTHomeCommentEntity.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BTHomeCommentEntity.h; sourceTree = "<group>"; };
 		CB8AEEAC1FDEC6CA00D70B0E /* BTHomeCommentEntity.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BTHomeCommentEntity.m; sourceTree = "<group>"; };
 		CB926A461FCEAA27003AB4D5 /* SQButtonTagView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SQButtonTagView.m; sourceTree = "<group>"; };
@@ -1061,6 +1064,8 @@
 				7AA2BCE91FAAC66700864753 /* BTPhotoViewController.m */,
 				CBF6C7191FCD588C00289208 /* BTPublishViewController.h */,
 				CBF6C71A1FCD588C00289208 /* BTPublishViewController.m */,
+				CB8A55DA1FE0D19E008EC03C /* UIImage+Compression.h */,
+				CB8A55D91FE0D19E008EC03C /* UIImage+Compression.m */,
 			);
 			path = controller;
 			sourceTree = "<group>";
@@ -2464,6 +2469,7 @@
 				7A16B9ED1FB5A8C200E7EC3A /* BTMeEditInforViewController.m in Sources */,
 				7A16B9F31FBAE2D100E7EC3A /* BTHomeDetailCollectionView.m in Sources */,
 				7AA2BD271FAAFEFD00864753 /* BTMessageService.m in Sources */,
+				CB8A55DB1FE0D19E008EC03C /* UIImage+Compression.m in Sources */,
 				7AA2BCB71FAAC07400864753 /* NSDateFormatter+MLTKit.m in Sources */,
 				7AA2BD4E1FAB003E00864753 /* BTPhotoViewModel.m in Sources */,
 				7AA2BD601FB005B300864753 /* BTRecomendUserTableViewCell.m in Sources */,

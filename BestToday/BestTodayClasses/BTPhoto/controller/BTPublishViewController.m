@@ -11,6 +11,7 @@
 #import "BTPhotoService.h"
 #import "BTPhotoEntity.h"
 #import "XXTextView.h"
+#import "UIImage+Compression.h"
 
 @interface BTPublishViewController ()
 
@@ -68,11 +69,13 @@
 }
 
 - (void)setUpUI{
-    _submitImageView = [[UIImageView alloc] initWithFrame:CGRectMake(20, 100, 80, 80)];
-    _submitImageView.image = _imageSource;
+    _submitImageView = [[UIImageView alloc] initWithFrame:CGRectMake(10, 90, 120, 100)];
+    UIImage * newImage =[UIImage imageCompressed:_imageSource withdefineWidth:240];
+    _submitImageView.image = newImage;
+    _submitImageView.contentMode = UIViewContentModeScaleAspectFit;
     [self.view addSubview:_submitImageView];
     
-    _contentTextView = [[XXTextView alloc] initWithFrame:CGRectMake(120, 80, screenWidth-140, 120)];
+    _contentTextView = [[XXTextView alloc] initWithFrame:CGRectMake(140, 80, screenWidth-160, 120)];
     _contentTextView.xx_placeholder = @"添加照片说明";
     [self.view addSubview:_contentTextView];
    
