@@ -345,6 +345,17 @@ __strong __typeof__(VAR) VAR = metamacro_concat(VAR, _weak_);
 
 #define AMColorBackground               [UIColor whiteColor]
 
+
+#define kColorRGBA(c,a) [UIColor colorWithRed:((c>>16)&0xFF)/255.0    \
+green:((c>>8)&0xFF)/255.0    \
+blue:(c&0xFF)/255.0         \
+alpha:a]
+#define kColorRGB(c)    [UIColor colorWithRed:((c>>16)&0xFF)/255.0    \
+green:((c>>8)&0xFF)/255.0    \
+blue:(c&0xFF)/255.0         \
+alpha:1.0]
+
+
 // 导航栏字体颜色
 #define NAVBAR_TITLE_COLOR    [UIColor colorWithHexString:@"#0d0d0d" alpha:1]
 

@@ -10,4 +10,7 @@
 
 @interface BTCollectionViewController : BTViewController
 
+
+- (void)notificationIsAlert:(NSString *)notiInfo;
+
 @end

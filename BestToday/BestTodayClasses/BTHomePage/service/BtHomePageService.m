@@ -47,7 +47,7 @@
         
         
     } success:^(id responseObject) {
-                
+        NSLog(@"%@",responseObject[@"msg"]);
         [self handleFollowedResourceListData:responseObject];
         
         completion(YES,NO, _pageAssistParam, _nextPage);

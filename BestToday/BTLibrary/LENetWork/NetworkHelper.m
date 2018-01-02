@@ -14,6 +14,7 @@
 #import <AFNetworking/AFNetworkActivityIndicatorManager.h>
 
 #import <AFNetworking/AFNetworking.h>
+#import "AppDelegate.h"
 
 @implementation NetworkHelper
 
@@ -142,15 +143,15 @@ static AFHTTPSessionManager *_sessionManager;
                 parameters:(id)parameters
                    success:(HttpRequestSuccess)success
                    failure:(HttpRequestFailed)failure {
-    
-    
     NSString *version = [[[NSBundle mainBundle] infoDictionary] objectForKey:@"CFBundleShortVersionString"];
     [parameters setValue:@"2" forKey:@"appType"];
     [parameters setValue:version forKey:@"appVersion"];
     [parameters setValue:version forKey:@"osVersion"];
     [parameters setValue:[BTMeEntity shareSingleton].csessionId forKey:@"cSessionId"];
     [parameters setValue:[MLTUtils getCurrentDevicePlatform] forKey:@"phoneModel"];
-    
+    AppDelegate *appdelegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
+    [parameters setValue:appdelegate.deviceToken forKey:@"deviceToken"];
+
     //读取缓存
     NSURLSessionTask *sessionTask = [_sessionManager POST:URL parameters:parameters progress:^(NSProgress * _Nonnull uploadProgress) {
         
@@ -175,14 +176,14 @@ static AFHTTPSessionManager *_sessionManager;
                   failure:(HttpRequestFailed)failure {
     //读取缓存
     if (!parameters) {
-        
+        AppDelegate *appdelegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
         parameters = [NSMutableDictionary dictionaryWithCapacity:10];
         NSString *version = [[[NSBundle mainBundle] infoDictionary] objectForKey:@"CFBundleShortVersionString"];
         [parameters setValue:@"2" forKey:@"appType"];
         [parameters setValue:version forKey:@"appVersion"];
         [parameters setValue:version forKey:@"osVersion"];
         [parameters setValue:[BTMeEntity shareSingleton].csessionId forKey:@"cSessionId"];
-
+        [parameters setValue:appdelegate.deviceToken forKey:@"deviceToken"];
         [parameters setValue:[MLTUtils getCurrentDevicePlatform] forKey:@"phoneModel"];
     }
     

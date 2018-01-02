@@ -7,22 +7,24 @@
 //
 
 #import "BTPublishViewController.h"
-#import "SQButtonTagView.h"
+#import "TTTagView.h"
 #import "BTPhotoService.h"
 #import "BTPhotoEntity.h"
 #import "XXTextView.h"
 #import "UIImage+Compression.h"
 
-@interface BTPublishViewController ()
-
+@interface BTPublishViewController ()<TTTagViewDelegate>
+{
+    UIButton *rightBarButton;
+}
 @property (nonatomic, strong) NSString *uploadCategoryId;
 @property (nonatomic, strong) NSString *uploadtagId;
 @property (nonatomic, strong) NSString *uploadtagName;
 
 @property (nonatomic, strong) UIImageView *submitImageView;
 @property (nonatomic, strong) XXTextView *contentTextView;
-@property (nonatomic, strong) SQButtonTagView * classTagView;
-@property (nonatomic, strong) SQButtonTagView * subClassTagView;
+@property (nonatomic, strong) TTTagView * classTagView;
+@property (nonatomic, strong) TTTagView * subClassTagView;
 @property (nonatomic, strong) BTPhotoService * photoService;
 @property (nonatomic, strong) NSMutableArray * categoryArray;// 一级列表分类
 @property (nonatomic, strong) NSMutableArray * tagsArray;
@@ -34,7 +36,7 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     [self.navigationBar setLeftBarButton:[UIButton mlt_leftBarButtonWithImage:[UIImage imageNamed:@"info_backs"] highlightedImage:nil target:self action:@selector(navigationBackButtonClicked) forControlEvents:UIControlEventTouchUpInside]];
-    UIButton *rightBarButton = [UIButton mlt_buttonWithTitle:@"发布" image:nil highlightedImage:nil backgroundImage:nil highlightedBackgroundImage:nil target:self action:@selector(submitAction) forControlEvents:UIControlEventTouchUpInside];
+    rightBarButton = [UIButton mlt_buttonWithTitle:@"发布" image:nil highlightedImage:nil backgroundImage:nil highlightedBackgroundImage:nil target:self action:@selector(submitAction) forControlEvents:UIControlEventTouchUpInside];
     [rightBarButton setTitleColor:[UIColor colorWithHexString:@"#fd8671"] forState:UIControlStateNormal];
     [self.navigationBar setRightBarButton:rightBarButton];
     
@@ -42,6 +44,17 @@
     _tagsArray = [NSMutableArray array];
     [self setUpUI];
     [self setUpDataForTagView];
+}
+
+-(void)viewDidAppear:(BOOL)animated{
+    [super viewDidAppear:animated];
+    self.navigationController.interactivePopGestureRecognizer.enabled = NO;
+}
+
+-(void)viewWillDisappear:(BOOL)animated
+{
+    self.navigationController.interactivePopGestureRecognizer.enabled = YES;
+    [super viewWillDisappear:animated];
 }
 
 - (void)navigationBackButtonClicked {
@@ -53,13 +66,18 @@
 
 
 - (void)submitAction{
-    
+    rightBarButton.enabled = NO;
     if ([_contentTextView.text isEqualToString:@"添加照片说明"]) {
+        [SVProgressHUD showErrorWithStatus:@"请添加照片说明"];
         return;
     }
 
     __weak __typeof(self)weakSelf = self;
+
+    [SVProgressHUD showWithStatus:@"正在上传!"];
     [self.photoService uploadImage:_imageSource text:_contentTextView.text categoryId:_uploadCategoryId tagIdList:self.uploadtagId tagName:self.uploadtagName completion:^(BOOL isSuccess, NSString *message) {
+        [SVProgressHUD dismiss];
+        rightBarButton.enabled = YES;
         if (isSuccess) {
             [weakSelf navigationBackButtonClicked];
         }else{
@@ -82,50 +100,37 @@
 }
 
 - (void)setUpClassView{
-    _classTagView = [[SQButtonTagView alloc] initWithTotalTagsNum:self.categoryArray.count viewWidth:screenWidth-20 eachNum:0 Hmargin:10 Vmargin:10 tagHeight:30 tagTextFont:[UIFont systemFontOfSize:14.f] tagTextColor:[[UIColor redColor] colorWithAlphaComponent:0.5] selectedTagTextColor:[UIColor whiteColor] selectedBackgroundColor:[[UIColor redColor] colorWithAlphaComponent:0.5]];
-    _classTagView.frame = CGRectMake(10, 210, screenWidth-20, 200);
-    _classTagView.maxSelectNum = 1;
-    __weak __typeof(self)weakSelf = self;
-    _classTagView.selectBlock = ^(SQButtonTagView * _Nonnull tagView, NSArray * _Nonnull selectArray) {
-        int index = [selectArray[0] intValue];
-        BTPhotoEntity *entity = weakSelf.photoService.categoryArray[index];
-        weakSelf.uploadCategoryId = entity.categoryId;
-        [weakSelf setUpDataForCatogryTagViewWithCategoryid:weakSelf.uploadCategoryId categoryName:entity.categoryName];
-    };
+    _classTagView = [[TTTagView alloc] initWithFrame:CGRectMake(0, 220,self.view.width ,200)];
+    _classTagView.translatesAutoresizingMaskIntoConstraints=YES;
+    _classTagView.delegate = self;
+    _classTagView.selBgColor = HEX(@"fd8670");
+    _classTagView.selTextColor = [UIColor whiteColor];
+    _classTagView.selBorderColor = HEX(@"fd8670");
+    _classTagView.bgColor = [UIColor whiteColor];
+    _classTagView.textColor = HEX(@"fd8670");
+    _classTagView.borderColor = HEX(@"fd8670");
+    _classTagView.type = TTTagView_Type_Selected;
     
     [self.view addSubview:_classTagView];
 }
 
 - (void)setUpSubClassTagView{
     if (!_subClassTagView) {
-        CGFloat height = [SQButtonTagView returnViewHeightWithTagTexts:_categoryArray viewWidth:screenWidth-20 eachNum:0 Hmargin:10 Vmargin:10 tagHeight:30 tagTextFont:[UIFont systemFontOfSize:14.f]];
-        _subClassTagView = [[SQButtonTagView alloc] initWithTotalTagsNum:_tagsArray.count viewWidth:screenWidth-20 eachNum:0 Hmargin:10 Vmargin:10 tagHeight:30 tagTextFont:[UIFont systemFontOfSize:14.f] tagTextColor:[[UIColor redColor] colorWithAlphaComponent:0.5] selectedTagTextColor:[UIColor whiteColor] selectedBackgroundColor:[[UIColor redColor] colorWithAlphaComponent:0.5]];
-        _subClassTagView.frame = CGRectMake(10, 220+height, screenWidth-20, 200);
-        _subClassTagView.maxSelectNum = 1;
-        __weak __typeof(self)weakSelf = self;
-        _subClassTagView.selectBlock = ^(SQButtonTagView * _Nonnull tagView, NSArray * _Nonnull selectArray) {
-            int index = [selectArray[0] intValue];
-            BTPhotoEntity *entity = weakSelf.photoService.tagsArray[index];
-            weakSelf.uploadtagId = entity.tagId;
-            weakSelf.uploadtagName = entity.tagName;
-        };
+        _subClassTagView = [[TTTagView alloc] initWithFrame:CGRectMake(0, _classTagView.changeHeight +220,self.view.width ,200)];
+        _subClassTagView.translatesAutoresizingMaskIntoConstraints=YES;
+        _subClassTagView.delegate = self;
+        _subClassTagView.bgColor = HEX(@"f5f5f5");
+        _subClassTagView.textColor = HEX(@"666666");
+        _subClassTagView.borderColor = HEX(@"f5f5f5");
+        _subClassTagView.selBgColor = HEX(@"fd8670");
+        _subClassTagView.selTextColor = [UIColor whiteColor];
+        _subClassTagView.selBorderColor = HEX(@"fd8670");
+        _subClassTagView.type = TTTagView_Type_Selected;
+        
         [self.view addSubview:_subClassTagView];
     }
 }
 
-- (void)setUpClassViewFrame{
-    CGFloat height = [SQButtonTagView returnViewHeightWithTagTexts:_categoryArray viewWidth:screenWidth-20 eachNum:0 Hmargin:10 Vmargin:10 tagHeight:30 tagTextFont:[UIFont systemFontOfSize:14.f]];
-    CGRect frame = self.classTagView.frame;
-    frame.size.height = height;
-    self.classTagView.frame = frame;
-}
-
-- (void)setUpSubClassViewFrame{
-    CGFloat height = [SQButtonTagView returnViewHeightWithTagTexts:_tagsArray viewWidth:screenWidth-20 eachNum:0 Hmargin:10 Vmargin:10 tagHeight:30 tagTextFont:[UIFont systemFontOfSize:14.f]];
-    CGRect frame = self.subClassTagView.frame;
-    frame.size.height = height;
-    self.subClassTagView.frame = frame;
-}
 
 - (void)setUpDataForTagView{
     // 一级分类
@@ -137,8 +142,8 @@
                 [_categoryArray addObject:entity.categoryName];
             }
             [weakSelf setUpClassView];
-            weakSelf.classTagView.tagTexts = _categoryArray;
-            [weakSelf setUpClassViewFrame];
+            [weakSelf.classTagView addTags:_categoryArray];
+            [weakSelf setUpSubClassTagView];
         }else{
             NSLog(@"%@",message);
         }
@@ -150,18 +155,36 @@
     __weak __typeof(self)weakSelf = self;
     [self.photoService getUploadPictureTagsByCategoryId:categoryid categoryName:categoryName Cacompletion:^(BOOL isSuccess, NSString *message) {
         if (isSuccess) {
+            [_tagsArray removeAllObjects];
             for (int i = 0 ; i<weakSelf.photoService.tagsArray.count; i++) {
                 BTPhotoEntity *entity = weakSelf.photoService.tagsArray[i];
                 [_tagsArray addObject:entity.tagName];
             }
-            [weakSelf setUpSubClassTagView];
-            weakSelf.subClassTagView.tagTexts = _tagsArray;
-            [weakSelf setUpSubClassViewFrame];
+            if (_tagsArray.count > 0) {
+                [weakSelf.subClassTagView addTags:_tagsArray];
+            }
         }else{
+            [_tagsArray removeAllObjects];
             NSLog(@"%@",message);
         }
     }];
     
+}
+
+- (void)selectButtonWith:(id)tagView Title:(NSString *)string{
+    if (tagView == _classTagView) {
+        BTPhotoEntity *entity = [self.photoService getEntityWithTitle:string];
+        self.uploadCategoryId = entity.categoryId;
+        if (_tagsArray.count > 0) {
+            [self.subClassTagView removeTags:_tagsArray];
+        }
+        [self setUpDataForCatogryTagViewWithCategoryid:self.uploadCategoryId categoryName:entity.categoryName];
+    }else{
+        BTPhotoEntity *entity = [self.photoService getTagCatgoryEntityWithTitle:string];
+        self.uploadtagId = entity.tagId;
+        self.uploadtagName = entity.tagName;
+    }
+   
 }
 
 

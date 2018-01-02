@@ -31,12 +31,11 @@
 
 @property (nonatomic, strong) SQButtonTagView * classTagView;
 
-@property (nonatomic, strong) SQButtonTagView * subClassTagView;
-
 @property (nonatomic, strong) BTPhotoService * photoService;
 
 @property (nonatomic, strong) NSMutableArray * categoryArray;// 一级列表分类
-@property (nonatomic, strong) NSMutableArray * tagsArray;
+
+@property (nonatomic, strong) NSArray * uploadArray;
 
 @end
 
@@ -48,8 +47,7 @@
     [self setNavgationBar];
     
     _categoryArray = [NSMutableArray array];
-    _tagsArray = [NSMutableArray array];
-    
+    _uploadArray = [NSArray array];
     UIView *viewHeader = [self createView:CGRectMake(0, 64, FULL_WIDTH, FULL_HEIGHT - NAVBAR_HEIGHT)];
     
     [self.view addSubview:viewHeader];
@@ -152,7 +150,6 @@
     _textViewName = [[UITextField alloc] initWithFrame:CGRectMake(_labName.right + 30, _labName.top - 8, FULL_WIDTH - _labName.right - 45, 40)];
     
     _textViewName.delegate = self;
-    
     _textViewName.text = self.nikeName;
         
     _textViewName.font = [UIFont systemFontOfSize:15];
@@ -202,87 +199,41 @@
 }
 
 - (void)setUpClassView{
-    _classTagView = [[SQButtonTagView alloc] initWithTotalTagsNum:self.categoryArray.count viewWidth:screenWidth - 30 - _labTag.right eachNum:0 Hmargin:10 Vmargin:10 tagHeight:30 tagTextFont:[UIFont systemFontOfSize:14.f] tagTextColor:[[UIColor redColor] colorWithAlphaComponent:0.5] selectedTagTextColor:[UIColor whiteColor] selectedBackgroundColor:[[UIColor redColor] colorWithAlphaComponent:0.5]];
-    _classTagView.frame = CGRectMake(_labTag.right + 20, _labTag.bottom + 40, screenWidth - _labTag.right - 30, 200);
-    _classTagView.maxSelectNum = 1;
-    __weak __typeof(self)weakSelf = self;
-    _classTagView.selectBlock = ^(SQButtonTagView * _Nonnull tagView, NSArray * _Nonnull selectArray) {
-        int index = [selectArray[0] intValue];
-        BTPhotoEntity *entity = weakSelf.photoService.categoryArray[index];
-        weakSelf.uploadCategoryId = entity.categoryId;
-        [weakSelf setUpDataForCatogryTagViewWithCategoryid:weakSelf.uploadCategoryId categoryName:entity.categoryName];
-    };
     
+    _classTagView = [[SQButtonTagView alloc]initWithTotalTagsNum:self.photoService.categoryArray.count
+                                                  viewWidth:kSCREEN_WIDTH-50
+                                                    eachNum:0
+                                                    Hmargin:10
+                                                    Vmargin:10
+                                                  tagHeight:30
+                                                tagTextFont:[UIFont systemFontOfSize:14.f]
+                                               tagTextColor:[[UIColor redColor] colorWithAlphaComponent:0.5]
+                                       selectedTagTextColor:[UIColor whiteColor]
+                                    selectedBackgroundColor:[[UIColor redColor] colorWithAlphaComponent:0.5]];
+    _classTagView.frame = CGRectMake(_labTag.left + _labProduct.width+10, _labTag.bottom + 50, kSCREEN_WIDTH-50, 200);
+    _classTagView.maxSelectNum = 5;
+    _classTagView.selectBlock = ^(SQButtonTagView * _Nonnull tagView, NSArray * _Nonnull selectArray) {
+        NSLog(@"%@",selectArray);
+        _uploadArray = selectArray;
+    };
     [self.view addSubview:_classTagView];
 }
 
-- (void)setUpClassViewFrame{
-    CGFloat height = [SQButtonTagView returnViewHeightWithTagTexts:_categoryArray viewWidth:screenWidth - 30 - _labTag.right eachNum:0 Hmargin:10 Vmargin:10 tagHeight:30 tagTextFont:[UIFont systemFontOfSize:14.f]];
-    CGRect frame = self.classTagView.frame;
-    frame.size.height = height;
-    self.classTagView.frame = frame;
-}
-
-- (void)setUpSubClassViewFrame{
-    CGFloat height = [SQButtonTagView returnViewHeightWithTagTexts:_tagsArray viewWidth:screenWidth - 30 - _labTag.right eachNum:0 Hmargin:10 Vmargin:10 tagHeight:30 tagTextFont:[UIFont systemFontOfSize:14.f]];
-    CGRect frame = self.subClassTagView.frame;
-    frame.size.height = height;
-    self.subClassTagView.frame = frame;
-}
 
 - (void)setUpDataForTagView{
     // 一级分类
     __weak __typeof(self)weakSelf = self;
     [self.photoService getUploadPictureTagscompletion:^(BOOL isSuccess, NSString *message) {
         if (isSuccess) {
-            for (int i = 0 ; i<weakSelf.photoService.categoryArray.count; i++) {
-                BTPhotoEntity *entity = weakSelf.photoService.categoryArray[i];
-                [_categoryArray addObject:entity.categoryName];
-            }
             [weakSelf setUpClassView];
-            weakSelf.classTagView.tagTexts = _categoryArray;
-            [weakSelf setUpClassViewFrame];
+            weakSelf.classTagView.tagTexts = weakSelf.photoService.categoryArray;
+            [weakSelf.classTagView refreshViewWith:weakSelf.selectArray];
         }else{
             NSLog(@"%@",message);
         }
     }];
 }
 
-- (void)setUpDataForCatogryTagViewWithCategoryid:(NSString *)categoryid categoryName:(NSString *)categoryName{
-    // 二级分类
-    __weak __typeof(self)weakSelf = self;
-    [self.photoService getUploadPictureTagsByCategoryId:categoryid categoryName:categoryName Cacompletion:^(BOOL isSuccess, NSString *message) {
-        if (isSuccess) {
-            for (int i = 0 ; i<weakSelf.photoService.tagsArray.count; i++) {
-                BTPhotoEntity *entity = weakSelf.photoService.tagsArray[i];
-                [_tagsArray addObject:entity.tagName];
-            }
-            [weakSelf setUpSubClassTagView];
-            weakSelf.subClassTagView.tagTexts = _tagsArray;
-            [weakSelf setUpSubClassViewFrame];
-        }else{
-            NSLog(@"%@",message);
-        }
-    }];
-    
-}
-
-- (void)setUpSubClassTagView{
-    if (!_subClassTagView) {
-        CGFloat height = [SQButtonTagView returnViewHeightWithTagTexts:_categoryArray viewWidth:screenWidth - 30 - _labTag.right eachNum:0 Hmargin:10 Vmargin:10 tagHeight:30 tagTextFont:[UIFont systemFontOfSize:14.f]];
-        _subClassTagView = [[SQButtonTagView alloc] initWithTotalTagsNum:_tagsArray.count viewWidth:screenWidth-20 eachNum:0 Hmargin:10 Vmargin:10 tagHeight:30 tagTextFont:[UIFont systemFontOfSize:14.f] tagTextColor:[[UIColor redColor] colorWithAlphaComponent:0.5] selectedTagTextColor:[UIColor whiteColor] selectedBackgroundColor:[[UIColor redColor] colorWithAlphaComponent:0.5]];
-        _subClassTagView.frame = CGRectMake(_labTag.right + 20, _labTag.top + 62 + height, screenWidth - 30 - _labTag.right, 200);
-        _subClassTagView.maxSelectNum = 1;
-        __weak __typeof(self)weakSelf = self;
-        _subClassTagView.selectBlock = ^(SQButtonTagView * _Nonnull tagView, NSArray * _Nonnull selectArray) {
-            int index = [selectArray[0] intValue];
-            BTPhotoEntity *entity = weakSelf.photoService.tagsArray[index];
-            weakSelf.uploadtagId = entity.tagId;
-            weakSelf.uploadtagName = entity.tagName;
-        };
-        [self.view addSubview:_subClassTagView];
-    }
-}
 
 
 - (void)loadData{
@@ -361,8 +312,12 @@
 }
 
 - (void)onclickBtnSure:(UIButton *)btn{
-    
-    NSArray *arr = @[@"美术"];
+    NSMutableArray *arr = [NSMutableArray array];
+    if (_uploadArray.count > 0) {
+        for (BTPhotoEntity *entity in _uploadArray) {
+            [arr addObject:entity.categoryId];
+        }
+    }
     
     [self.editService loadqueryUpdateUserwithName:_textViewName.text introduction:_textProduct.text personalTags:arr completion:^(BOOL isSuccess, BOOL isCache) {
             
@@ -393,6 +348,7 @@
     NSString * toBeString = [textView.text stringByReplacingCharactersInRange:range withString:text];
     
     if (self.textProduct == textView) {
+        NSLog(@"textView : %@",textView.text);
         if ([toBeString length] > 200) { //如果输入框内容大于10则弹出警告
             textView.text = [toBeString substringToIndex:200];
             UIAlertView *alert = [[UIAlertView alloc] initWithTitle:nil message:@"超过最大字数不能输入了" delegate:nil cancelButtonTitle:@"Ok" otherButtonTitles:nil, nil];

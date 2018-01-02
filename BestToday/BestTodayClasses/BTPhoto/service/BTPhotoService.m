@@ -92,7 +92,7 @@
 }
 
 - (void)getUploadPictureTagsByCategoryId:(NSString *)categoryId categoryName:(NSString *)categoryName Cacompletion:(void(^)(BOOL isSuccess, NSString *message))completion{
-    
+    [self.tagsArray removeAllObjects];
     NSString *urlString = [NSString stringWithFormat:@"%@",BTGetTagsCategory];
     
     [NetworkHelper GET:urlString parameters:@{@"categoryId":categoryId,@"categoryName":categoryName} responseCache:^(id responseCache) {
@@ -123,6 +123,25 @@
     }];
     
 }
+
+- (BTPhotoEntity *)getEntityWithTitle:(NSString *)title{
+    for (BTPhotoEntity *entity in self.categoryArray) {
+        if ([entity.categoryName isEqualToString:title]) {
+            return entity;
+        }
+    }
+    return nil;
+}
+
+- (BTPhotoEntity *)getTagCatgoryEntityWithTitle:(NSString *)title{
+    for (BTPhotoEntity *entity in self.tagsArray) {
+        if ([entity.tagName isEqualToString:title]) {
+            return entity;
+        }
+    }
+    return nil;
+}
+
 
 - (NSMutableArray *)tagsArray{
     if (!_tagsArray) {

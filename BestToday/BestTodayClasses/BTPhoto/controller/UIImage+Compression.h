@@ -21,4 +21,6 @@
 
 
 + (UIImage *) imageCompressForSize:(UIImage *)sourceImage targetSize:(CGSize)size;
+
+
 @end

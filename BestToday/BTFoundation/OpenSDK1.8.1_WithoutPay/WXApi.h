@@ -190,4 +190,5 @@
  *  @param 
  */
 + (void)stopLog;
+
 @end

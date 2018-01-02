@@ -21,8 +21,10 @@ typedef void(^updateInforBlock)(NSString *nikeName, NSString *introduction, UIIm
 @property (nonatomic, copy) updateInforBlock updateInforBlock;
 
 @property (nonatomic, strong) NSString *uploadCategoryId;
+@property (nonatomic, strong) NSString *uploadCategoryName;
 @property (nonatomic, strong) NSString *uploadtagId;
 @property (nonatomic, strong) NSString *uploadtagName;
 
+@property (nonatomic, strong) NSArray *selectArray;
 
 @end

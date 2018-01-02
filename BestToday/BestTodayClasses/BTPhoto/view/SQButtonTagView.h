@@ -12,7 +12,6 @@
 
 @interface SQButtonTagView : UIView
 
-NS_ASSUME_NONNULL_BEGIN
 
 @property (nonatomic, strong) NSArray *tagTexts;
 @property (assign, nonatomic) NSInteger eachNum;
@@ -57,7 +56,9 @@ NS_ASSUME_NONNULL_BEGIN
 //点击回调
 - (void)selectAction:(void(^)(SQButtonTagView *tagView, NSArray *selectArray))block;
 
+// 刷新选择数据界面
+- (void)refreshViewWith:(NSArray *)dataArray;
 
-NS_ASSUME_NONNULL_END
+
 
 @end

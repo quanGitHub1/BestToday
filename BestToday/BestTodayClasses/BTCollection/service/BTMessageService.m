@@ -86,9 +86,12 @@
 - (void)feedBackInfoWithContent:(NSString *)content Completion:(void(^)(BOOL isSuccess, NSString *message))completion{
     NSString *contentEncode = [content stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
 
-    NSString *urlString = [NSString stringWithFormat:@"%@",BTFeedBackInfo];
+    NSString *urlString = [NSString stringWithFormat:@"%@?content=%@",BTFeedBackInfo,contentEncode];
 
-    [NetworkHelper GET:urlString parameters:@{@"content":contentEncode} success:^(id responseObject) {
+    [NetworkHelper GET:urlString parameters:nil responseCache:^(id responseCache) {
+        
+        
+    }success:^(id responseObject) {
         if ([responseObject[@"code"] integerValue] == 0) {
             completion(YES,responseObject[@"msg"]);
         }else{

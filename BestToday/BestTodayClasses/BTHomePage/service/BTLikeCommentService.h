@@ -21,7 +21,7 @@
 - (void)loadqueryCancelSaveLikeResource:(NSString*)resourceId completion:(void(^)(BOOL isSuccess, BOOL isCache))completion;
 
 // 评论列表
-- (void)loadqueryCommentListResource:(NSString*)resourceId pageindex:(NSString *)index completion:(void(^)(BOOL isSuccess, BOOL isCache))completion;
+- (void)loadqueryCommentListResource:(NSString*)resourceId pageindex:(int)index completion:(void(^)(BOOL isSuccess, BOOL isCache))completion;
 
 // 上传评论
 - (void)upLoadCommentResource:(NSString*)resourceId content:(NSString *)content completion:(void(^)(BOOL isSuccess, BOOL isCache))completion;

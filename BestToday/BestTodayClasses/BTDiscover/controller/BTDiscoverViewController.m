@@ -18,6 +18,7 @@
 {
     NSString *_pageAssistParam;
     int page;
+    BOOL isLoadMoreData;
 }
 @property (nonatomic, strong) BTDiscoverCollectionView *collectionView;
 
@@ -37,6 +38,7 @@ static NSString *const headerId = @"headerId";
     [super viewDidLoad];
     self.view.backgroundColor = [UIColor yellowColor];
     self.navigationBar.title = @"发现";
+    isLoadMoreData = YES;
     // Do any additional setup after loading the view.
     [self setUpCollectionView];
 }
@@ -50,6 +52,7 @@ static NSString *const headerId = @"headerId";
     _collectionView = [[BTDiscoverCollectionView alloc] initWithFrame:CGRectMake(0, kNavigationBarHight, SCREEN_WIDTH, SCREEN_HEIGHT-TAB_HEIGHT-kNavigationBarHight)];
     [_collectionView.collectionView registerClass:[BTDiscoverHeaderView class] forSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:headerId];
     _collectionView.discoverCVDelegate = self;
+    
     [self.view addSubview:_collectionView];
     
     _discoverHeaderView = [[BTDiscoverHeaderView alloc] initWithFrame:CGRectMake(0, 0, screenWidth, 120)];
@@ -88,10 +91,18 @@ static NSString *const headerId = @"headerId";
             [_collectionView setDataForCollectionView:weakSelf.discoverService.arrDiscoverResource];
             _pageAssistParam = pageAssistParam;
             [weakSelf.collectionView.collectionView reloadData];
+            isLoadMoreData = YES;
         }
     }];
 }
 
+- (void)scrollViewDidScroll:(UIScrollView *)scrollView{
+    if (isLoadMoreData && scrollView.contentSize.height - scrollView.contentOffset.y <= 700.0) {
+        isLoadMoreData = NO;
+        [self requestMoreDataSource];
+        NSLog(@"开始加载数据!!!!");
+    }
+}
 
 // 和UITableView类似，UICollectionView也可设置段头段尾
 - (UICollectionReusableView *)collectionView:(UICollectionView *)collectionView viewForSupplementaryElementOfKind:(NSString *)kind atIndexPath:(NSIndexPath *)indexPath

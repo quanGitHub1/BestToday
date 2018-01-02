@@ -12,6 +12,7 @@
 
 @interface BTMeMessageCell : UITableViewCell
 
+
 - (void)setDataForCell:(BTMessageEntity *)entity;
 
 

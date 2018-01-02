@@ -17,7 +17,7 @@
 #import "BTMeEntity.h"
 #import "BtHomePageService.h"
 #import "BTGoodRecommentViewController.h"
-
+#import "BTPhotoEntity.h"
 
 @interface BTMeViewController ()<MLTTouchLabelDelegate>
 
@@ -53,6 +53,8 @@
 
 @property (nonatomic, strong)BTMeService *meService;
 
+@property (nonatomic, strong)NSMutableArray *selectTagArray;
+
 @end
 
 @implementation BTMeViewController
@@ -64,7 +66,6 @@
     self.view.backgroundColor = [UIColor whiteColor];
     
     [self setNavgationBar];
-    
    UIView *headView = [self creatHeaderView:CGRectMake(0, NAVBAR_HEIGHT, FULL_WIDTH, 270)];
     
    [self.view addSubview:headView];
@@ -74,7 +75,8 @@
 -(void)viewWillAppear:(BOOL)animated{
 
     [super viewWillAppear:animated];
-    
+    _selectTagArray = [NSMutableArray array];
+
     [self loadData];
 
 }
@@ -189,8 +191,8 @@
     _labDes.attributedText = setString;
     
     _labDes.numberOfLines = 0;
-    
-    _labTag = [UILabel mlt_labelWithText:@"#电影  美食  设计  摄影  旅行  食物派" color:[UIColor mlt_colorWithHexString:@"#969696" alpha:1] align:NSTextAlignmentLeft font:[UIFont systemFontOfSize:14] bkColor:nil frame:CGRectMake(_imageAvtar.left, _labDes.bottom + 16, FULL_WIDTH - 30, 0)];
+//    @"#电影  美食  设计  摄影  旅行  食物派"
+    _labTag = [UILabel mlt_labelWithText:@"" color:[UIColor mlt_colorWithHexString:@"#969696" alpha:1] align:NSTextAlignmentLeft font:[UIFont systemFontOfSize:14] bkColor:nil frame:CGRectMake(_imageAvtar.left, _labDes.bottom + 16, FULL_WIDTH - 30, 0)];
     
     [_labTag sizeToFit];
     
@@ -410,10 +412,20 @@
     
     _labTag.frame = CGRectMake(_imageAvtar.left, _labDes.bottom + 16, FULL_WIDTH - 30, 0);
     
+    for (NSDictionary *dic in meEntity.personalTags) {
+        BTPhotoEntity *entity = [BTPhotoEntity yy_modelWithJSON:dic];
+        [_selectTagArray addObject:entity];
+    }
+    
+    
+    _labTag.text = @"";
     for (int i = 0; i < meEntity.personalTags.count; i++) {
-        
-        _labTag.text = [NSString stringWithFormat:@"%@ %@",_labTag.text, meEntity.personalTags[i]];
-        
+        NSDictionary *dic = meEntity.personalTags[i];
+        if (i == 0) {
+            _labTag.text = [NSString stringWithFormat:@"#%@", dic[@"categoryName"]];
+        }else{
+            _labTag.text = [NSString stringWithFormat:@"%@ %@",_labTag.text, dic[@"categoryName"]];
+        }
     }
     
     [_labTag sizeToFit];
@@ -461,7 +473,7 @@
     editInfor.introduction = meEntity.introduction;
     
     editInfor.picAvtar = _imageAvtar.image;
-    
+    editInfor.selectArray = _selectTagArray;
     // block 值回掉
     editInfor.updateInforBlock = ^(NSString *nikeName, NSString *introduction, UIImage *picAvtar) {
         

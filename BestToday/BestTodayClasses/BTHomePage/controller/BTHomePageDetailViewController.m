@@ -30,6 +30,7 @@ static NSString *const headerId = @"headerId";
     self.navigationBar.title = @"图片";
     
     [self.navigationBar setLeftBarButton:[UIButton mlt_rightBarButtonWithImage:[UIImage imageNamed:@"info_backs"] highlightedImage:nil target:self action:@selector(navigationBackButtonClicked:) forControlEvents:UIControlEventTouchUpInside]];
+    [self.navigationBar setRightBarButton:[UIButton mlt_rightBarButtonWithImage:[UIImage imageNamed:@"backhome"] highlightedImage:nil target:self action:@selector(navigationBackHomeButtonClicked:) forControlEvents:UIControlEventTouchUpInside]];
 
     [self setUpCollectionView];
     
@@ -40,6 +41,13 @@ static NSString *const headerId = @"headerId";
     [self.navigationController popViewControllerAnimated:YES];
 }
 
+- (void)navigationBackHomeButtonClicked:(UIButton *)button{
+    [self.navigationController popToRootViewControllerAnimated:NO];
+    UINavigationController *navC = (UINavigationController *)AppWindow.rootViewController;
+    MLTTabBarController *tabBarVC = navC.viewControllers[0];
+    [tabBarVC selectAtIndex:0];
+
+}
 
 - (void)setUpCollectionView{
     

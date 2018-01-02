@@ -7,7 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
-
+@class BTPhotoEntity;
 @interface BTPhotoService : NSObject
 
 @property (nonatomic, strong) NSMutableArray *tagsArray;  // 我的消息
@@ -21,5 +21,9 @@
 - (void)getUploadPictureTagscompletion:(void(^)(BOOL isSuccess, NSString *message))completion;
 
 - (void)getUploadPictureTagsByCategoryId:(NSString *)categoryId categoryName:(NSString *)categoryName Cacompletion:(void(^)(BOOL isSuccess, NSString *message))completion;
+
+- (BTPhotoEntity *)getEntityWithTitle:(NSString *)title;
+
+- (BTPhotoEntity *)getTagCatgoryEntityWithTitle:(NSString *)title;
 
 @end

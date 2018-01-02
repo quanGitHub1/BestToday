@@ -40,6 +40,14 @@
 
 @property (nonatomic, strong) NSString *picHeight;  // 图片高度
 
+@property (nonatomic, copy) NSString *msgContent;
+
+
+@property (nonatomic, assign) BOOL isOpening;
+@property (nonatomic, assign, readonly) BOOL shouldShowMoreButton;
+
+@property (nonatomic, assign) CGFloat cellHeight;
+
 
 @end
 

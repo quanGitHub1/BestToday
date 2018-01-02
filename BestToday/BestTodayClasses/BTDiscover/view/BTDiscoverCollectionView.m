@@ -45,6 +45,7 @@ static NSString *const cellId = @"cellId";
     _collectionView.delegate = self;
     _collectionView.dataDelegate = self;
     [_collectionView autoRefreshLoad];
+    [_collectionView hiddenFreshFooter];
     [self addSubview:_collectionView];
     
     [_collectionView registerClass:[BTDiscoverCell class] forCellWithReuseIdentifier:cellId];
@@ -125,6 +126,15 @@ static NSString *const cellId = @"cellId";
     }else{
        return (CGSize){0,0};
     }
+}
+
+- (void)scrollViewDidScroll:(UIScrollView *)scrollView{
+   
+    if (_discoverCVDelegate && [_discoverCVDelegate respondsToSelector:@selector(scrollViewDidScroll:)]) {
+        [_discoverCVDelegate scrollViewDidScroll:scrollView];
+    }
+    
+    
 }
 
 #pragma mark ---- UICollectionViewDelegate

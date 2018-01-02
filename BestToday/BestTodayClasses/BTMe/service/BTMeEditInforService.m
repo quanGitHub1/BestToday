@@ -16,9 +16,10 @@
 - (void)loadqueryUpdateUserwithName:(NSString *)mName introduction:(NSString *)introduction personalTags:(NSArray *)personalTags  completion:(void (^)(BOOL isSuccess, BOOL isCache))completion{
     
     NSMutableDictionary  *parameters = [NSMutableDictionary dictionary];
-    [parameters setValue:(mName.length > 0 ? mName : @"") forKey:@"nickName"];
-    [parameters setValue:introduction.length > 0 ? introduction : @"" forKey:@"introduction"];
-    //[parameters setValue:personalTags forKey:@"personalTags"];
+    [parameters setValue:(mName.length > 0 ? mName : @" ") forKey:@"nickName"];
+    [parameters setValue:introduction.length > 0 ? introduction : @" " forKey:@"introduction"];
+    NSData *jsonData = [NSJSONSerialization dataWithJSONObject:personalTags options:NSJSONWritingPrettyPrinted error:nil];
+    [parameters setValue:[[NSString alloc]initWithData:jsonData encoding:NSUTF8StringEncoding] forKey:@"personalTags"];
     
     [NetworkHelper POST:BTqueryUpdateUser parameters:parameters success:^(id responseObject) {
         

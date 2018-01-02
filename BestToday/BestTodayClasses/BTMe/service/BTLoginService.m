@@ -7,6 +7,7 @@
 //
 
 #import "BTLoginService.h"
+#import "BTUserEntity.h"
 
 @implementation BTLoginService
 
@@ -25,11 +26,16 @@
                 NSDictionary *dicData = responseObject[@"data"];
                 
                 if (dicData && [dicData isKindOfClass:[NSDictionary class]]) {
-                                        
-                    BTMeEntity *userEntity = [BTMeEntity yy_modelWithJSON:dicData];
+                    
+                    NSMutableDictionary *allDic = [NSMutableDictionary dictionaryWithDictionary:dicData[@"appUserDetailVo"]];
+                    [allDic setValuesForKeysWithDictionary:dicData];
+                    
+                    NSUserDefaults *defaults =[NSUserDefaults standardUserDefaults];
+                    [defaults setObject:allDic[@"avatarUrl"] forKey:@"bt_userAvatarUrl"];
+                    [defaults synchronize];//用synchronize方法把数据持久化到standardUserDefaults数据库
+                    BTMeEntity *userEntity = [BTMeEntity yy_modelWithJSON:allDic];
                     
                     [BTLoginService keyedArchiver:userEntity key:@"SaveUserEntity" path:kSaveUserEntityPath];
-                    
                     [[BTMeEntity shareSingleton] manageLoginData];
                     
                     completion(YES);

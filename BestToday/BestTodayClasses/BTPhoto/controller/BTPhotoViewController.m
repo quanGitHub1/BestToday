@@ -24,6 +24,17 @@
    
 }
 
+-(void)viewDidAppear:(BOOL)animated{
+    [super viewDidAppear:animated];
+    self.navigationController.interactivePopGestureRecognizer.enabled = NO;
+}
+
+-(void)viewWillDisappear:(BOOL)animated
+{
+    self.navigationController.interactivePopGestureRecognizer.enabled = YES;
+    [super viewWillDisappear:animated];
+}
+
 - (void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
     FusumaViewController *fusumaViewController = [[FusumaViewController alloc] init];
@@ -33,7 +44,10 @@
 }
 
 - (void)fusumaImageSelected:(UIImage *)image source:(enum FusumaMode)source{
-    
+    if (image == nil) {
+        [SVProgressHUD showInfoWithStatus:@"请选择需要上传的图片"];
+        return;
+    }
     BTPublishViewController *publishVC = [[BTPublishViewController alloc] init];
     publishVC.imageSource = image;
     [self.navigationController pushViewController:publishVC animated:YES];

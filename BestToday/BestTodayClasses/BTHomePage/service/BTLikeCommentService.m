@@ -62,9 +62,12 @@
     }];
 }
 
-- (void)loadqueryCommentListResource:(NSString*)resourceId pageindex:(NSString *)index completion:(void(^)(BOOL isSuccess, BOOL isCache))completion{
-    NSString *urlString = [NSString stringWithFormat:@"%@?resourceId=%@&pageIndex=%@",BTqueryCommentList,resourceId,index];
-    
+- (void)loadqueryCommentListResource:(NSString*)resourceId pageindex:(int)index completion:(void(^)(BOOL isSuccess, BOOL isCache))completion{
+    if (index == 1) {
+        [self.arrCommentList removeAllObjects];
+    }
+    NSString *urlString = [NSString stringWithFormat:@"%@?resourceId=%@&pageIndex=%d",BTqueryCommentList,resourceId,index];
+    NSLog(@"%@",urlString);
     [NetworkHelper GET:urlString parameters:nil responseCache:^(id responseCache) {
         
     } success:^(id responseObject) {
@@ -75,7 +78,12 @@
                     NSArray *resDetailVoList = dicData[@"commentVoList"];
                     
                     if ([resDetailVoList isKindOfClass:[NSNull class]]) {
+                        completion(YES,NO);
                         return ;
+                    }
+                    if (resDetailVoList.count <= 0) {
+                        completion(NO,NO);
+                        return;
                     }
                     for (NSDictionary *dic in resDetailVoList) {
                         BTHomeCommentEntity *pageEntity = [BTHomeCommentEntity yy_modelWithDictionary:dic];

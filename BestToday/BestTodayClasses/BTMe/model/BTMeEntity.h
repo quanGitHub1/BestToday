@@ -7,6 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "BTUserEntity.h"
 
 /**
  用户状态更新
@@ -52,6 +53,10 @@ typedef enum {
 @property (nonatomic, strong) NSString *followCount;  // 关注数量
 
 @property (nonatomic, strong) NSString *publishCount;  // 发表数量
+
+@property (nonatomic, strong) BTUserEntity *userEntity;  // 发表数量
+
+@property (nonatomic, strong) NSDictionary *appUserDetailVo;  //
 
 
 + (BTMeEntity *)shareSingleton;

@@ -8,6 +8,7 @@
 
 #import "SQButtonTagView.h"
 
+#import "BTPhotoEntity.h"
 
 @interface SQButtonTagView ()
 
@@ -24,6 +25,7 @@
 
 @property (strong, nonatomic) NSMutableArray *selectArray;
 
+@property (strong, nonatomic) NSArray *dataArray;
 
 @end
 
@@ -42,6 +44,13 @@
         _selectArray = @[].mutableCopy;
     }
     return _selectArray;
+}
+
+- (NSArray *)dataArray{
+    if (!_dataArray) {
+        _dataArray = [NSArray array];
+    }
+    return _dataArray;
 }
 
 - (id)initWithTotalTagsNum:(NSInteger)totalTagsNum
@@ -67,7 +76,7 @@
         self.tagTextColor = tagTextColor;
         self.selectedTagTextColor = selectedTagTextColor;
         self.selectedBackgroundColor = selectedBackgroundColor;
-
+       
         for (NSInteger i=0; i<totalTagsNum; i++) {
             
             UIButton *button = [UIButton buttonWithType:UIButtonTypeCustom];
@@ -120,6 +129,7 @@
 
 
 - (void)setTagTexts:(NSArray *)tagTexts{
+    self.dataArray = tagTexts;
     if (self.eachNum>0) {
         
         CGFloat with = (self.viewWidth-(self.eachNum-1)*self.hmargin)/self.eachNum;
@@ -128,12 +138,13 @@
         for (NSInteger i=0; i<self.buttonTags.count; i++) {
             UIButton *button = self.buttonTags[i];
             if (i<tagTexts.count) {
+                BTPhotoEntity *entity = tagTexts[i];
                 [button setTitle:tagTexts[i] forState:UIControlStateNormal];
                 NSInteger a = i/self.eachNum;
                 NSInteger b = i%self.eachNum;
                 button.frame = (CGRect){b*(with+self.hmargin),a*(self.tagHeight+self.vmargin),with,self.tagHeight};
                 [button setHidden:NO];
-                [button setTitle:tagTexts[i] forState:UIControlStateNormal];
+                [button setTitle:entity.categoryName forState:UIControlStateNormal];
                 
                 
             }else{
@@ -145,11 +156,10 @@
         __block CGFloat totalWidth = 0;
         __block NSInteger row = 0;
         [self.buttonTags enumerateObjectsUsingBlock:^(UIButton *button, NSUInteger idx, BOOL * _Nonnull stop) {
-            
             if (idx<tagTexts.count) {
-                NSString *tempString = tagTexts[idx];
-                [button setTitle:tempString forState:UIControlStateNormal];
-                CGFloat itemWidth = [self sizeForText:tempString Font:self.tagTextFont size:CGSizeMake(MAXFLOAT, self.tagHeight) mode:NSLineBreakByWordWrapping].width+20;
+                BTPhotoEntity *entity = tagTexts[idx];
+                [button setTitle:entity.categoryName forState:UIControlStateNormal];
+                CGFloat itemWidth = [self sizeForText:entity.categoryName Font:self.tagTextFont size:CGSizeMake(MAXFLOAT, self.tagHeight) mode:NSLineBreakByWordWrapping].width+20;
               
                 totalWidth+=itemWidth+self.hmargin;
                 if (totalWidth-self.hmargin>self.viewWidth) {
@@ -160,7 +170,7 @@
                     button.frame = CGRectMake(totalWidth-itemWidth-self.hmargin, row*(self.tagHeight+self.vmargin), itemWidth, self.tagHeight);
                 }
                 [button setHidden:NO];
-                [button setTitle:tagTexts[idx] forState:UIControlStateNormal];
+                [button setTitle:entity.categoryName forState:UIControlStateNormal];
                 
             }else{
                 [button setHidden:YES];
@@ -180,14 +190,22 @@
     
    
     NSInteger tag = button.tag-101;
-    
-    if ([self.selectArray containsObject:@(tag)]) {
-        [self.selectArray removeObject:@(tag)];
+    BTPhotoEntity * entity = self.dataArray[tag];
+    BOOL isCancle = NO;
+    for (BTPhotoEntity *enty in self.selectArray) {
+        if ([enty.categoryName isEqualToString:entity.categoryName]) {
+            [self.selectArray removeObject:enty];
+            isCancle = YES;
+            break;
+        }
+    }
+    if (isCancle) {
+        [self.selectArray removeObject:entity];
     }else{
         if (self.selectArray.count==self.maxSelectNum&&self.maxSelectNum>0) {
             NSLog(@"最多选择%@",[NSString stringWithFormat:@"%ld个",self.maxSelectNum]);
         }else{
-            [self.selectArray addObject:@(tag)];
+            [self.selectArray addObject:entity];
         }
     }
     
@@ -207,7 +225,15 @@
 - (void)refreshView{
     
     for (UIButton *buttonTag in self.buttonTags) {
-        if ([self.selectArray containsObject:@(buttonTag.tag-101)]) {
+         BTPhotoEntity * entity = self.dataArray[buttonTag.tag-101];
+        BOOL isExist = NO;
+        for (BTPhotoEntity *enty in self.selectArray) {
+            if ([enty.categoryName isEqualToString:entity.categoryName]) {
+                isExist = YES;
+                break;
+            }
+        }
+        if (isExist) {
             [buttonTag setBackgroundColor:self.selectedBackgroundColor];
             [buttonTag setTitleColor:self.selectedTagTextColor forState:UIControlStateNormal];
             buttonTag.layer.borderColor = self.selectedBackgroundColor.CGColor;
@@ -216,6 +242,33 @@
             [buttonTag setTitleColor:self.tagTextColor forState:UIControlStateNormal];
             buttonTag.layer.borderColor = self.tagTextColor.CGColor;
         }
+    }
+}
+
+- (void)refreshViewWith:(NSArray *)dataArray{
+    if (dataArray.count <= 0) {
+        return;
+    }
+    NSMutableArray *tagsArray = [NSMutableArray array];
+    for (int i = 0; i<dataArray.count; i++) {
+        BTPhotoEntity * entity = dataArray[i];
+        [self.selectArray addObject:entity];
+        for (int j = 0; j<self.dataArray.count; j++) {
+            BTPhotoEntity *allEntity = self.dataArray[j];
+            if ([entity.categoryName isEqualToString:allEntity.categoryName]) {
+                [tagsArray addObject:@(j)];
+                break;
+            }
+        }
+    }
+    NSLog(@"%@",tagsArray);
+    for (int index = 0; index < tagsArray.count; index ++) {
+        NSInteger tag = [tagsArray[index] integerValue];
+        UIButton *button = self.buttonTags[tag];
+        [button setBackgroundColor:self.selectedBackgroundColor];
+        [button setTitleColor:self.selectedTagTextColor forState:UIControlStateNormal];
+        button.layer.borderColor = self.selectedBackgroundColor.CGColor;
+        
     }
 }
 

@@ -406,11 +406,15 @@
         _btnAtten.layer.borderColor = [UIColor colorWithHexString:@"#fd8671"].CGColor;
 
         
-    }else {
+    }else if ([userEntity.isFollowed integerValue] == 1){
         [_btnAtten setTitle:@"已关注" forState:UIControlStateNormal];
         _btnAtten.layer.borderColor = [UIColor colorWithHexString:@"#bdbdbd"].CGColor;
         [_btnAtten setTitleColor:[UIColor colorWithHexString:@"#616161"] forState:UIControlStateNormal];
 
+    }else{
+        [_btnAtten setTitle:@"" forState:UIControlStateNormal];
+        _btnAtten.layer.borderColor = [UIColor whiteColor].CGColor;
+        [_btnAtten setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
     }
     
     _labTime.text = homePage.createTime;

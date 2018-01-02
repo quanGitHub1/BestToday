@@ -155,7 +155,8 @@ static NSInteger const maxCount = 10000;
     self.mj_header = [MJRefreshNormalHeader headerWithRefreshingTarget:self refreshingAction:@selector(headerRereshing)];
     self.mj_header.automaticallyChangeAlpha = YES;
     //2.上拉加载更多
-    self.mj_footer = [MJRefreshBackNormalFooter footerWithRefreshingTarget:self refreshingAction:@selector(footerRereshing)];
+//    self.mj_footer = [MJRefreshBackNormalFooter footerWithRefreshingTarget:self refreshingAction:@selector(footerRereshing)];
+     self.mj_footer = [MJRefreshAutoFooter footerWithRefreshingTarget:self refreshingAction:@selector(footerRereshing)];
 }
 #pragma mark 自动刷新
 - (void)autoRefreshLoad {

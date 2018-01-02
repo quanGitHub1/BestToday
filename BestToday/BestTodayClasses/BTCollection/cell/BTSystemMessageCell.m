@@ -50,6 +50,7 @@
 - (void)setDataForCell:(BTMessageEntity *)entity{
     [_avatarImageView sd_setImageWithURL:[NSURL URLWithString:entity.userEntity.avatarUrl]];
     _detailLabel.text = entity.content;
+    _titleLabel.text = entity.userEntity.nickName;
 }
 
 

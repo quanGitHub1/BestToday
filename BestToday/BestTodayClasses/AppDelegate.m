@@ -23,9 +23,18 @@
 
 #import "BTMeService.h"
 #import "BTMeEntity.h"
+#import "UMessage.h"
+#import "UMMobClick/MobClick.h"
+#import "MLTTabBarController.h"
 
-@interface AppDelegate ()
+#ifdef NSFoundationVersionNumber_iOS_9_x_Max
+#import <UserNotifications/UserNotifications.h>
+#endif
 
+@interface AppDelegate ()<UNUserNotificationCenterDelegate,UIAlertViewDelegate>
+{
+    NSDictionary * messageDic;
+}
 @end
 
 @implementation AppDelegate
@@ -33,12 +42,38 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     // Override point for customization after application launch.
-    
-    [self requestqueryUserById];
-
-    
+    messageDic = [NSDictionary dictionary];
+//    [self requestqueryUserById];
     [self shareSDKConfiguration];
+    // 友盟统计
+    UMConfigInstance.appKey = @"5a2ff4eeb27b0a39e7000513";
+    UMConfigInstance.channelId = @"App Store";
+    [MobClick startWithConfigure:UMConfigInstance];
+    NSString *version = [[[NSBundle mainBundle] infoDictionary] objectForKey:@"CFBundleShortVersionString"];
+    [MobClick setAppVersion:version];
+    
+    // 友盟推送
+    [UMessage startWithAppkey:@"5a2ff4eeb27b0a39e7000513" launchOptions:launchOptions httpsEnable:YES];
+    [UMessage registerForRemoteNotifications];
+    if ([[[UIDevice currentDevice] systemVersion]intValue]>=10) {
+        //iOS10必须加下面这段代码。
+        UNUserNotificationCenter *center = [UNUserNotificationCenter currentNotificationCenter];
+        center.delegate=self;
+        UNAuthorizationOptions types10=UNAuthorizationOptionBadge|  UNAuthorizationOptionAlert|UNAuthorizationOptionSound;
+        [center requestAuthorizationWithOptions:types10     completionHandler:^(BOOL granted, NSError * _Nullable error) {
+            if (granted) {
+                //点击允许
+                //这里可以添加一些自己的逻辑
+            } else {
+                //点击不允许
+                //这里可以添加一些自己的逻辑
+            }
+        }];
+        
+    }
+    [UMessage setLogEnabled:YES];
 
+   
 //    //向微信注册
     [WXApi registerApp:@"wx8910bc5d166f699a" enableMTA:YES];
 //
@@ -57,24 +92,28 @@
     [self configUSharePlatforms];
     
     
+    
+    [MLTUISkeletonModule shareInstance];
+
+    
     return YES;
 }
 
-- (void)requestqueryUserById{
-    
-    BTMeService *meService = [BTMeService new];
-    
-     [meService loadqueryUserById:[[BTMeEntity shareSingleton].userId integerValue] completion:^
-       (BOOL isSuccess, BOOL isCache){
-           
-           // APP入口
-           [MLTUISkeletonModule shareInstance];
+//- (void)requestqueryUserById{
+//
+//    BTMeService *meService = [BTMeService new];
+//
+//     [meService loadqueryUserById:[[BTMeEntity shareSingleton].userId integerValue] completion:^
+//       (BOOL isSuccess, BOOL isCache){
+//
+//           // APP入口
+//           [MLTUISkeletonModule shareInstance];
+//
+//
+//    }];
+//
+//}
 
-           
-    }];
-            
-}
-    
 
 - (void)configUSharePlatforms
 {
@@ -158,32 +197,108 @@
 
 }
 
+// 获得Device Token
+- (void)application:(UIApplication *)application
+didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken {
+    NSLog(@"%@",[[[[deviceToken description] stringByReplacingOccurrencesOfString: @"<" withString: @""]
+                  stringByReplacingOccurrencesOfString: @">" withString: @""]
+                 stringByReplacingOccurrencesOfString: @" " withString: @""]);
+    self.deviceToken = [NSString stringWithFormat:@"%@",[[[[deviceToken description] stringByReplacingOccurrencesOfString: @"<" withString: @""]
+                                                          stringByReplacingOccurrencesOfString: @">" withString: @""]
+                                                         stringByReplacingOccurrencesOfString: @" " withString: @""]];
 
-- (void)applicationWillResignActive:(UIApplication *)application {
-    // Sent when the application is about to move from active to inactive state. This can occur for certain types of temporary interruptions (such as an incoming phone call or SMS message) or when the user quits the application and it begins the transition to the background state.
-    // Use this method to pause ongoing tasks, disable timers, and invalidate graphics rendering callbacks. Games should use this method to pause the game.
+}
+// 获得Device Token失败
+- (void)application:(UIApplication *)application
+didFailToRegisterForRemoteNotificationsWithError:(NSError *)error {
+    self.deviceToken = @"";
+    NSLog(@"did Fail To Register For Remote Notifications With Error: %@", error);
+}
+
+- (void)application:(UIApplication *)application didReceiveRemoteNotification:(NSDictionary *)userInfo
+{
+    NSLog(@"%@",userInfo);
+    [UMessage setAutoAlert:NO];
+
+    [UMessage didReceiveRemoteNotification:userInfo];
+    [self alertNotificationMessage:userInfo];
+    //关闭U-Push自带的弹出框
+        //定制自定的的弹出框
+    
 }
 
 
-- (void)applicationDidEnterBackground:(UIApplication *)application {
-    // Use this method to release shared resources, save user data, invalidate timers, and store enough application state information to restore your application to its current state in case it is terminated later.
-    // If your application supports background execution, this method is called instead of applicationWillTerminate: when the user quits.
+- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex{
+    if (buttonIndex == 0) {
+        UINavigationController *navC = (UINavigationController *)AppWindow.rootViewController;
+        MLTTabBarController *tabBarVC = navC.viewControllers[0];
+        [tabBarVC selectAtIndex:3];
+        [[MLTUISkeletonModule shareInstance].collectionViewController notificationIsAlert:messageDic[@"jumpUrl"]];
+    }
 }
 
 
-- (void)applicationWillEnterForeground:(UIApplication *)application {
-    // Called as part of the transition from the background to the active state; here you can undo many of the changes made on entering the background.
+- (void)alertNotificationMessage:(NSDictionary *)userInfo{
+    NSDictionary * dic = userInfo[@"payload"];
+    NSDictionary *alertDic = dic[@"aps"];
+    NSString * alertString = alertDic[@"alert"];
+    messageDic = dic[@"customData"];
+    if([UIApplication sharedApplication].applicationState == UIApplicationStateActive)
+    {
+        UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"通知"
+                                                            message:alertString
+                                                           delegate:self
+                                                  cancelButtonTitle:@"确定"
+                                                  otherButtonTitles:nil];
+        
+        [alertView show];
+    }else{
+        UINavigationController *navC = (UINavigationController *)AppWindow.rootViewController;
+        MLTTabBarController *tabBarVC = navC.viewControllers[0];
+        [tabBarVC selectAtIndex:3];
+        [[MLTUISkeletonModule shareInstance].collectionViewController notificationIsAlert:messageDic[@"jumpUrl"]];
+
+    }
 }
 
 
-- (void)applicationDidBecomeActive:(UIApplication *)application {
-    // Restart any tasks that were paused (or not yet started) while the application was inactive. If the application was previously in the background, optionally refresh the user interface.
+//iOS10新增：处理前台收到通知的代理方法
+-(void)userNotificationCenter:(UNUserNotificationCenter *)center willPresentNotification:(UNNotification *)notification withCompletionHandler:(void (^)(UNNotificationPresentationOptions))completionHandler{
+    NSDictionary * userInfo = notification.request.content.userInfo;
+    if([notification.request.trigger isKindOfClass:[UNPushNotificationTrigger class]]) {
+        [UMessage setAutoAlert:NO];
+        //应用处于前台时的远程推送接受
+        //必须加这句代码
+        [UMessage didReceiveRemoteNotification:userInfo];
+        [self alertNotificationMessage:userInfo];
+
+        NSUserDefaults *ud = [NSUserDefaults standardUserDefaults];
+        [ud setObject:[NSString stringWithFormat:@"%@",userInfo] forKey:@"UMPuserInfoNotification"];
+        
+    }else{
+        //应用处于前台时的本地推送接受
+    }
+    completionHandler(UNNotificationPresentationOptionSound|UNNotificationPresentationOptionBadge|UNNotificationPresentationOptionAlert);
 }
 
+//iOS10新增：处理后台点击通知的代理方法
+-(void)userNotificationCenter:(UNUserNotificationCenter *)center didReceiveNotificationResponse:(UNNotificationResponse *)response withCompletionHandler:(void (^)())completionHandler{
+    NSDictionary * userInfo = response.notification.request.content.userInfo;
+    if([response.notification.request.trigger isKindOfClass:[UNPushNotificationTrigger class]]) {
+        //应用处于后台时的远程推送接受
+        //必须加这句代码
+        [UMessage didReceiveRemoteNotification:userInfo];
+        [self alertNotificationMessage:userInfo];
 
-- (void)applicationWillTerminate:(UIApplication *)application {
-    // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
+        NSUserDefaults *ud = [NSUserDefaults standardUserDefaults];
+        [ud setObject:[NSString stringWithFormat:@"%@",userInfo] forKey:@"UMPuserInfoNotification"];
+        
+    }else{
+        //应用处于后台时的本地推送接受
+    }
+    
 }
+
 
 
 @end

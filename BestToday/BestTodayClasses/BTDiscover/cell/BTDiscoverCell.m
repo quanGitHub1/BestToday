@@ -22,6 +22,13 @@
     if (self) {
         _imageView = [[UIImageView alloc]initWithFrame:CGRectMake(0, 0, frame.size.width, frame.size.height)];
         _imageView.backgroundColor =[UIColor clearColor];
+        _imageView.contentMode = UIViewContentModeScaleAspectFill;
+        
+        _imageView.userInteractionEnabled = YES;
+        
+        _imageView.backgroundColor = [UIColor colorWithHexString:@"#ECECEC"];
+        
+        _imageView.clipsToBounds = YES;
         [self addSubview:_imageView];
     }
     return self;

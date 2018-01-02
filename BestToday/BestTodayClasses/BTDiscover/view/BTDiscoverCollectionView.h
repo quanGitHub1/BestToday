@@ -26,6 +26,8 @@
 //collectionView header  size
 - (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout referenceSizeForHeaderInSection:(NSInteger)section;
 
+- (void)scrollViewDidScroll:(UIScrollView *)scrollView;
+
 @end
 
 @interface BTDiscoverCollectionView : UIView

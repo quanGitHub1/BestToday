@@ -15,7 +15,7 @@
 #import "UIColor+AM.h"
 #import "UIView+MLTKit.h"
 #import "UIButton+MLTKit.h"
-#import <MJRefresh.h>
+#import "MJRefresh.h"
 #import "MLTTableView.h"
 #import "MLTCollectionView.h"
 #import "MLTPageControl.h"

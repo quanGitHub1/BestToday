@@ -13,6 +13,7 @@
 #import "BTHomePageEntity.h"
 #import "BTLikeCommentService.h"
 
+#import "BTCellCommentTableView.h"
 
 @protocol BTHomepageViewDelegate <NSObject>
 
@@ -34,6 +35,7 @@ typedef void (^updateCellAttention)(NSInteger indexpathRow);
 
 @property(nonatomic, weak) id <BTHomepageViewDelegate>delegate;
 
+
 @property (nonatomic, strong) UIImageView *imageAvtar; // 头像
 
 @property (nonatomic, strong) UILabel *labName;  // 姓名
@@ -52,7 +54,9 @@ typedef void (^updateCellAttention)(NSInteger indexpathRow);
 
 @property (nonatomic, strong) UIButton *btnShare; // 分享
 
-@property (nonatomic, strong) OpenDetailsView *labDescrp; //描述
+@property (nonatomic, strong) BTCellCommentTableView *commentTableView; // 分享
+
+@property (nonatomic, strong) UILabel *labDescrp; //描述
 
 @property (nonatomic, strong) UILabel *labTextInfor; //描述
 
@@ -77,8 +81,14 @@ typedef void (^updateCellAttention)(NSInteger indexpathRow);
 
 @property (nonatomic, assign) UMSocialPlatformType platform;
 
+@property (nonatomic, assign) CGFloat lastCellHeight;
+
+@property (nonatomic, assign, readonly) BOOL shouldShowMoreButton;
+
+@property (nonatomic, assign) BOOL isOpening;
 
 - (void)makeDatacellData:(BTHomePageEntity *)homePage index:(NSInteger)indexpath;
 
+- (CGFloat)getHeightForCell;
 
 @end

@@ -33,17 +33,14 @@
         BTMeEntity *userModel = [BTMeEntity keyedUnarchiver:@"SaveUserEntity"  path:kSaveUserEntityPath];
         
         self.nickName = !userModel.nickName ? @"":userModel.nickName;
-        
         self.csessionId = !userModel.csessionId ? @"":userModel.csessionId;
 
         self.userId = !userModel.userId ? @"":userModel.userId;
         
         self.gender = !userModel.gender ? @"":userModel.gender;
-        
         self.introduction = !userModel.introduction?@"":userModel.introduction;
         
         self.avatarUrl = !userModel.avatarUrl ? @"":userModel.avatarUrl;
-        
         self.country = !userModel.country ? @"":userModel.country;
         
         self.isLogin = userModel.userId.length > 0 ? 1 : 0;

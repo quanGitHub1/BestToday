@@ -93,7 +93,9 @@
     [_imageAvtar sd_setImageWithURL:[NSURL URLWithString:meEntity.avatarUrl] placeholderImage:nil];
     
     if ([meEntity.isFollowed integerValue] == 0) {
-        
+        [_btnAttention setTitleColor:[UIColor colorWithHexString:@"#fd8671"] forState:UIControlStateNormal];
+        _btnAttention.layer.borderColor = [UIColor colorWithHexString:@"#fd8671"].CGColor;
+
         [_btnAttention setTitle:@"+关注" forState:UIControlStateNormal];
 
     }else {

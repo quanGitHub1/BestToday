@@ -18,7 +18,9 @@
 #import "BTHomeUserEntity.h"
 
 @interface BTHomePageViewController ()<LEBaseTableViewDelegate,UITableViewDataSource, UITableViewDelegate, BTSpreadTableViewDelegate, BTHomepageViewDelegate>
-
+{
+    BOOL isLoadMoreData;
+}
 @property (nonatomic, strong)BTTableview *tableView;
 
 @property (nonatomic, strong) BTSpreadTableView *spreadTableView;
@@ -35,17 +37,23 @@
 
 @implementation BTHomePageViewController
 
+static NSString * const cellID = @"mindCell";
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.view.backgroundColor = [UIColor whiteColor];
     self.navigationBar.title = @"今日最佳";
     self.nextPage = 1;
     self.pageAssistParam = @"";
+    isLoadMoreData = YES;
+    self.automaticallyAdjustsScrollViewInsets = NO;
+    self.edgesForExtendedLayout = UIRectEdgeNone;
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(notificationIsLike:) name:@"BTHomePageNSNotificationIsLike" object:nil];
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(notificationIsFollow:) name:@"BTHomePageNSNotificationIsFollow" object:nil];
 
+     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(moreButtonClick:) name:@"LZMoreButtonClickedNotification" object:nil];
     _dicCell = [[NSMutableDictionary alloc] init];
     
     if ([BTMeEntity shareSingleton].isLogin) {
@@ -76,6 +84,17 @@
            
        };
     }
+}
+
+- (void)moreButtonClick:(NSNotification *)note{
+    NSString *indexString = note.userInfo[@"LZMoreButtonClickedNotificationKey"];
+    NSLog(@"%@",indexString);
+    BTHomePageEntity *entity = self.homePageService.arrFollowedResource[[indexString integerValue]];
+    entity.isOpening = !entity.isOpening;
+    
+    NSIndexPath *indexPath = [NSIndexPath indexPathForRow:[indexString integerValue] inSection:0];
+    [self.tableView reloadRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationNone];
+    [self.tableView scrollToRowAtIndexPath:indexPath atScrollPosition:UITableViewScrollPositionMiddle animated:NO];
 }
 
 /** 修改点赞方法 */
@@ -248,14 +267,16 @@
     self.tableView.delegate = self;
     self.tableView.dataSource = self;
     self.tableView.estimatedRowHeight = 200;
-    
+    [self.tableView registerClass:[BTHomePageTableViewCell class] forCellReuseIdentifier:cellID];
     self.tableView.dataDelegate = self;
-    
+    [self.tableView hiddenFreshFooter];
     self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
-    
+   
     [self.view addSubview:self.tableView];
     
     [self createTableViewHeaderView];
+    
+    
     
 //    [self.tableView autoRefreshLoad];
     
@@ -307,8 +328,9 @@
 - (void)requestMoreDataSource{
     
     if (self.homePageService.arrFollowedResource.count % 10  != 0) {
+        isLoadMoreData = NO;
         [self.tableView noDataFooterEndRefreshing];
-        
+
     }else{
         [self loadData];
     }
@@ -353,9 +375,8 @@
         _nextPage = [nextPage integerValue];
         
         if (isSuccess) {
-            
-          [self.tableView reloadData];
-            
+           [self.tableView reloadData];
+            isLoadMoreData = YES;
         }
     }];
 }
@@ -368,20 +389,28 @@
 
 #pragma mark - BTHomepageViewDelegate
 
-- (void)reloadTableView:(NSInteger)indexpath height:(CGFloat)height {
-    
-    BTHomePageTableViewCell *announcementCell = [_dicCell objectForKey:[NSString stringWithFormat:@"indexPath%ld", indexpath]];
-
-    announcementCell.heightCell = height;
-    
-    NSIndexPath *indexPath = [NSIndexPath indexPathForRow:indexpath inSection:0];
-    
-    [self.tableView reloadRowsAtIndexPaths:[NSArray arrayWithObjects:indexPath,nil] withRowAnimation:UITableViewRowAnimationNone];
-    
-}
+//- (void)reloadTableView:(NSInteger)indexpath height:(CGFloat)height {
+//
+//    BTHomePageTableViewCell *announcementCell = [_dicCell objectForKey:[NSString stringWithFormat:@"indexPath%ld", indexpath]];
+//
+//    announcementCell.heightCell = height;
+//
+//    NSIndexPath *indexPath = [NSIndexPath indexPathForRow:indexpath inSection:0];
+//
+//    [self.tableView reloadRowsAtIndexPaths:[NSArray arrayWithObjects:indexPath,nil] withRowAnimation:UITableViewRowAnimationNone];
+//
+//}
 
 
 #pragma mark - tableViewDelegate
+
+- (void)scrollViewDidScroll:(UIScrollView *)scrollView{
+    
+    if (isLoadMoreData && scrollView.contentSize.height - scrollView.contentOffset.y < kSCREEN_HEIGHT) {
+        isLoadMoreData = NO;
+        [self requestMoreDataSource];
+    }
+}
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     
@@ -390,50 +419,47 @@
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
     
-    if (_dicCell.count > indexPath.row) {
-        
-        BTHomePageTableViewCell *announcementCell = [_dicCell objectForKey:[NSString stringWithFormat:@"indexPath%ld", indexPath.row]];
-        
-        if (announcementCell.heightCell > 0) {
-            return announcementCell.heightCell;
-
-        }
-        
-        return 800;
-        
-    }
-    
-    return 0;
+    BTHomePageEntity *entity = self.homePageService.arrFollowedResource[indexPath.row];
+    return entity.cellHeight;
+//    if (_dicCell.count > indexPath.row) {
+//        BTHomePageTableViewCell *announcementCell = [_dicCell objectForKey:[NSString stringWithFormat:@"indexPath%ld", indexPath.row]];
+//        NSLog(@"%f",announcementCell.heightCell);
+//        if (announcementCell.heightCell > 0) {
+//            return announcementCell.heightCell;
+//        }
+//        return 800;
+//
+//    }
+//
+//    return 0;
 }
 
     
-- (CGFloat)tableView:(UITableView *)tableView estimatedHeightForRowAtIndexPath:(NSIndexPath *)indexPath{
-
-    if (_dicCell.count > indexPath.row) {
-        
-        BTHomePageTableViewCell *announcementCell = [_dicCell objectForKey:[NSString stringWithFormat:@"indexPath%ld", indexPath.row]];
-        
-        if (announcementCell.heightCell > 0) {
-            return announcementCell.heightCell;
-            
-        }
-        
-        return 800;
-        
-    }
-    
-    return 0;
-}
+//- (CGFloat)tableView:(UITableView *)tableView estimatedHeightForRowAtIndexPath:(NSIndexPath *)indexPath{
+//
+//    if (_dicCell.count > indexPath.row) {
+//
+//        BTHomePageTableViewCell *announcementCell = [_dicCell objectForKey:[NSString stringWithFormat:@"indexPath%ld", indexPath.row]];
+//        NSLog(@"%f",announcementCell.heightCell);
+//        if (announcementCell.heightCell > 0) {
+//            return announcementCell.heightCell;
+//
+//        }
+//
+//        return 800;
+//
+//    }
+//
+//    return 0;
+//}
 
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     
     
-    static NSString * const cellID = @"mindCell";
-    
-    BTHomePageTableViewCell *cell = [tableView cellForRowAtIndexPath:indexPath]; //根据indexPath准确地取出一行，而不是从cell重用队列中取出
-        
-    cell = [[BTHomePageTableViewCell alloc]initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:cellID];
+//    BTHomePageTableViewCell *cell = [tableView cellForRowAtIndexPath:indexPath]; //根据indexPath准确地取出一行，而不是从cell重用队列中取出
+    BTHomePageTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellID forIndexPath:indexPath];
+//    cell = [[BTHomePageTableViewCell alloc]initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:cellID];
     
     cell.delegate = self;
 
@@ -445,34 +471,29 @@
     
     [cell makeDatacellData:[self.homePageService.arrFollowedResource objectAtIndex:indexPath.row] index:indexPath.row];
     
-    cell.updateCellAttention = ^(NSInteger indexpathRow) {
-        
-        
-    };
+//    cell.updateCellAttention = ^(NSInteger indexpathRow) {
+//
+//
+//    };
     
-    if (![[_dicCell allKeys] containsObject:[NSString stringWithFormat:@"indexPath%ld", indexPath.row]]) {
-        
-        [_dicCell setObject: cell forKey:[NSString stringWithFormat:@"indexPath%ld", indexPath.row]];
-        
-    }
+//    if (![[_dicCell allKeys] containsObject:[NSString stringWithFormat:@"indexPath%ld", indexPath.row]]) {
+//
+//        [_dicCell setObject: cell forKey:[NSString stringWithFormat:@"indexPath%ld", indexPath.row]];
+//
+//    }
     
-    cell.updateCellBlock = ^(NSInteger indexpathRow) {
-        
-        [self.tableView reloadData];
-    };
+//    cell.updateCellBlock = ^(NSInteger indexpathRow) {
+//
+//        [self.tableView reloadData];
+//    };
     
     return cell;
-}
-
-
-- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
-
 }
 
 - (void)onclickBtnAtten:(UIButton *)btn{
 
     if ([btn.titleLabel.text isEqualToString:@"..."]) {
-        UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"今日最佳APP" message:@"" preferredStyle:UIAlertControllerStyleAlert];
+        UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"请选择操作" message:@"" preferredStyle:UIAlertControllerStyleAlert];
         
         UIAlertAction *canAction = [UIAlertAction actionWithTitle:@"取消关注" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
             

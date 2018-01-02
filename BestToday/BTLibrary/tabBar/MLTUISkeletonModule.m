@@ -15,7 +15,6 @@
 #import "BTMeViewController.h"
 #import "BTDiscoverViewController.h"
 #import "BTPhotoViewController.h"
-#import "BTCollectionViewController.h"
 
 #import "BTViewController.h"
 #import "BTHomePageViewController.h"
@@ -60,11 +59,11 @@
     
     BTPhotoViewController *photoViewController = [[BTPhotoViewController alloc] init];
     
-    BTCollectionViewController *collectionViewController= [[BTCollectionViewController alloc] init];
+    _collectionViewController = [[BTCollectionViewController alloc] init];
     
     BTMeViewController *meViewController = [[BTMeViewController alloc] init];
     
-    NSArray *viewControllers = @[HomepageViewController,diCcoverViewController,photoViewController,collectionViewController, meViewController];
+    NSArray *viewControllers = @[HomepageViewController,diCcoverViewController,photoViewController,_collectionViewController, meViewController];
     
 
     //tabBar控制器

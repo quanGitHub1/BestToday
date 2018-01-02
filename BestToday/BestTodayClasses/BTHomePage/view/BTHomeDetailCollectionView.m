@@ -239,11 +239,11 @@ static NSString *const headerId = @"headerId";
 {
 
     BTHomePageDetailViewController *homePagedetail = [[BTHomePageDetailViewController alloc] init];
-    
+
     BTHomePageEntity *PageEntity = [_detailService.arrDetailResourceByPage objectAtIndex:indexPath.row];
-    
+
     homePagedetail.resourceId = PageEntity.resourceId;
-    
+
     [[self viewController].navigationController pushViewController:homePagedetail animated:YES];
 }
 

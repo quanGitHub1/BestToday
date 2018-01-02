@@ -6,7 +6,7 @@
 //  Copyright © 2016年 MLT. All rights reserved.
 //
 
-#import <MJRefresh/MJRefresh.h>
+#import "MJRefresh.h"
 
 /**
  *  该类必须被子类化

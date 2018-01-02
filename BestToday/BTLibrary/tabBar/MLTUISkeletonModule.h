@@ -11,9 +11,14 @@
  */
 
 #import <Foundation/Foundation.h>
+#import "BTCollectionViewController.h"
 
 @interface MLTUISkeletonModule : NSObject
 
+@property (nonatomic, strong) BTCollectionViewController *collectionViewController;
+
 + (instancetype)shareInstance;
+
+
 
 @end

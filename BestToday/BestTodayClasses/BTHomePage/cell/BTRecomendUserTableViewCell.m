@@ -37,12 +37,8 @@
             [self.contentView addSubview:_labName];
             
             self.contentView.backgroundColor = [UIColor colorWithHexString:@"#f5f5f5"];
-
-            
-            
         }
         return self;
-        
     }
     return self;
 }
