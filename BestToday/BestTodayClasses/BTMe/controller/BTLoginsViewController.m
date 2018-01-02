@@ -20,11 +20,12 @@ static NSString *kAuthState = @"今日最佳";
 
 @property (nonatomic, strong) BTLoginService *loginService;
 
-@end
-
-@interface BTLoginsViewController ()
-
 @property (weak, nonatomic) IBOutlet UIImageView *loginImage;
+
+@property (strong, nonatomic) IBOutlet UITextField *nickNameTF;
+
+@property (strong, nonatomic) IBOutlet UITextField *passwordTF;
+
 
 @end
 
@@ -50,16 +51,56 @@ static NSString *kAuthState = @"今日最佳";
     
     [WXApiManager sharedManager].delegate = self;
 
-    
-
+    [self loadAppLoginTypes];
     // Do any additional setup after loading the view from its nib.
 }
+
+- (void)loadAppLoginTypes{
+    
+    __weak __typeof(self)weakSelf = self;
+    [self.loginService getLoadAppLoginTypesCompletion:^(BOOL isSuccess,NSString * status) {
+        if (isSuccess) {
+            if ([status isEqualToString:@"0"]) {
+                weakSelf.nickNameTF.hidden = NO;
+                weakSelf.passwordTF.hidden = NO;
+                weakSelf.sureButton.hidden = NO;
+            }else{
+                weakSelf.nickNameTF.hidden = YES;
+                weakSelf.passwordTF.hidden = YES;
+                weakSelf.sureButton.hidden = YES;
+            }
+        }
+    }];
+    
+}
+
+
+- (IBAction)loginAction:(id)sender {
+    if ([_nickNameTF.text isEqualToString:@""]) {
+        [SVProgressHUD showInfoWithStatus:@"请输入用户名"];
+        return;
+    }
+    if (_passwordTF.text.length < 6) {
+        [SVProgressHUD showInfoWithStatus:@"密码必须大于6位"];
+        return;
+    }
+    
+    __weak __typeof(self)weakSelf = self;
+    [self.loginService loginWithUserName:_nickNameTF.text password:_passwordTF.text completion:^(BOOL isSuccess) {
+        
+        [self dismissViewControllerAnimated:YES completion:^{
+            weakSelf.loginCallBack(@"1111");
+        }];
+    }];
+    
+    
+}
+
+
 
 //成功登录
 - (void)onAuthFinish:(int)errCode AuthCode:(NSString *)authCode
 {
-    NSLog(@"onAuthFinish");
-    
     UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"onAuthFinish"
                                                     message:[NSString stringWithFormat:@"authCode:%@ errCode:%d", authCode, errCode]
                                                    delegate:self
@@ -69,12 +110,15 @@ static NSString *kAuthState = @"今日最佳";
 }
 
 - (void)tapView:(UITapGestureRecognizer*)gesTap{
-
-    [WXApiRequestHandler sendAuthRequestScope: kAuthScope
-                                        State:kAuthState
-                                       OpenID:kAuthOpenID
-                             InViewController:self];
-    
+    //取得所点击的点的坐标
+    CGPoint point = [gesTap locationInView:_loginImage];
+    // 判断该点在不在区域内
+    if (CGRectContainsPoint(CGRectMake(0,screenHight/2, screenWidth, screenHight/2), point)){
+        [WXApiRequestHandler sendAuthRequestScope: kAuthScope
+                                            State:kAuthState
+                                           OpenID:kAuthOpenID
+                                 InViewController:self];
+    }
 }
 
 

@@ -3152,7 +3152,7 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer: JiaJian Jiang (28EB4JSXK8)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = "";
+				DEVELOPMENT_TEAM = EX2P3FAGBZ;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/BestToday/BTFoundation/ShareSDK",
@@ -3250,7 +3250,7 @@
 				CODE_SIGN_IDENTITY = "iPhone Distribution: Beijing Jiangxinhuiyan Science and Technology Ltd. (EX2P3FAGBZ)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = "";
+				DEVELOPMENT_TEAM = EX2P3FAGBZ;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/BestToday/BTFoundation/ShareSDK",

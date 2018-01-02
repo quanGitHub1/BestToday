@@ -14,6 +14,11 @@
 // 用户登录
 #define BTUserLogin   @"http://zuijia365.com/todayHot/app/user/wxAppUserLogin.json"
 
+//帐号密码登录
+#define BTUserLoginWithShen  @"http://zuijia365.com/todayHot/app/user/appUserLogin.json"
+
+#define BTAppLoginTypes   @"http://zuijia365.com/todayHot/app/user/getAppAuditStatus.json"
+
 // 推荐用户
 #define BTQueryMyFollowedUsers   @"http://zuijia365.com/todayHot/app/user/queryMyFollowedUsers.json"
 

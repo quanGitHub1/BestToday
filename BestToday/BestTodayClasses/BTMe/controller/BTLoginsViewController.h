@@ -10,10 +10,10 @@
 
 typedef  void(^callBackLoginIn)(NSString *fromViewController);
 
-
 @interface BTLoginsViewController : BTViewController
 
 @property (nonatomic, copy) callBackLoginIn loginCallBack;
 
+@property (strong, nonatomic) IBOutlet UIButton *sureButton;
 
 @end

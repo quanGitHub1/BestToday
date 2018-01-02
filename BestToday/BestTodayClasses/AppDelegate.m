@@ -51,7 +51,6 @@
     [MobClick startWithConfigure:UMConfigInstance];
     NSString *version = [[[NSBundle mainBundle] infoDictionary] objectForKey:@"CFBundleShortVersionString"];
     [MobClick setAppVersion:version];
-    
     // 友盟推送
     [UMessage startWithAppkey:@"5a2ff4eeb27b0a39e7000513" launchOptions:launchOptions httpsEnable:YES];
     [UMessage registerForRemoteNotifications];
@@ -72,16 +71,12 @@
         
     }
     [UMessage setLogEnabled:YES];
-
-   
 //    //向微信注册
     [WXApi registerApp:@"wx8910bc5d166f699a" enableMTA:YES];
-//
     //向微信注册支持的文件类型
     UInt64 typeFlag = MMAPP_SUPPORT_TEXT | MMAPP_SUPPORT_PICTURE | MMAPP_SUPPORT_LOCATION | MMAPP_SUPPORT_VIDEO |MMAPP_SUPPORT_AUDIO | MMAPP_SUPPORT_WEBPAGE | MMAPP_SUPPORT_DOC | MMAPP_SUPPORT_DOCX | MMAPP_SUPPORT_PPT | MMAPP_SUPPORT_PPTX | MMAPP_SUPPORT_XLS | MMAPP_SUPPORT_XLSX | MMAPP_SUPPORT_PDF;
     
     [WXApi registerAppSupportContentFlag:typeFlag];
-    
     
     /* 打开调试日志 */
     [[UMSocialManager defaultManager] openLog:YES];
@@ -91,11 +86,8 @@
 
     [self configUSharePlatforms];
     
-    
-    
     [MLTUISkeletonModule shareInstance];
 
-    
     return YES;
 }
 

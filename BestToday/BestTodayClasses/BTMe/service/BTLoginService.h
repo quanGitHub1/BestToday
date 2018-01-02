@@ -13,5 +13,8 @@
 /** 第三方登录 */
 - (void)thirdPartyLogin:(NSDictionary *)dicUser completion:(void (^)(BOOL isSuccess))completion;
 
+- (void)loginWithUserName:(NSString *)username password:(NSString *)password completion:(void (^)(BOOL isSuccess))completion;
+
+- (void)getLoadAppLoginTypesCompletion:(void (^)(BOOL isSuccess,NSString * status))completion;
 
 @end

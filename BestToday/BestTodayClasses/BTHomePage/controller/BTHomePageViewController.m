@@ -56,32 +56,33 @@ static NSString * const cellID = @"mindCell";
      [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(moreButtonClick:) name:@"LZMoreButtonClickedNotification" object:nil];
     _dicCell = [[NSMutableDictionary alloc] init];
     
+
     if ([BTMeEntity shareSingleton].isLogin) {
-        
+
         [[BTHomeOpenHander shareHomeOpenHander] initDataArry];
-        
+
         [self setupTableView];
-        
+
         [self loadData];
     }else {
-    
+
         BTLoginsViewController *loginvc = [[BTLoginsViewController alloc] init];
-    
+
         MGJNavigationController *navigationController = [[MGJNavigationController alloc] initWithRootViewController:loginvc];
-    
+
         [self presentViewController:navigationController animated:YES completion:^{
-    
-    
+
+
         }];
-    
+
        loginvc.loginCallBack = ^(NSString *fromViewController) {
-    
+
            [[BTHomeOpenHander shareHomeOpenHander] initDataArry];
-    
+
            [self setupTableView];
-           
+
            [self loadData];
-           
+
        };
     }
 }
