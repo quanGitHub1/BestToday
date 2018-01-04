@@ -179,6 +179,13 @@
 
                 
                 _labFabulous.text = [NSString stringWithFormat:@"%ld赞",[_labFabulous.text integerValue] - 1];
+                
+                if (_homePageEntity.likeCount.integerValue == 0) {
+                    _labFabulous.hidden = YES;
+                }else {
+                    _labFabulous.hidden = NO;
+                    
+                }
                                 
             }else {
                 
@@ -199,6 +206,13 @@
                 _homePageEntity.likeCount = [NSString stringWithFormat:@"%ld",[_labFabulous.text integerValue] + 1];
 
                 _labFabulous.text = [NSString stringWithFormat:@"%ld赞",[_labFabulous.text integerValue] + 1];
+                
+                if (_homePageEntity.likeCount.integerValue == 0) {
+                    _labFabulous.hidden = YES;
+                }else {
+                    _labFabulous.hidden = NO;
+                    
+                }
                 
             }else {
                 
