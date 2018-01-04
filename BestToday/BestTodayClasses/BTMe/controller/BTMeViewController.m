@@ -237,16 +237,12 @@
     _segementView.titleSelectedColor = [UIColor mlt_colorWithHexString:@"#212121" alpha:1];
     
     _segementView.backgroundColor = [UIColor whiteColor];
-    
-    
   
     
     if (_otherId) {
         
         _collectionView = [[BTMeCollectionView alloc] initWithFrame:CGRectMake(0, _segementView.bottom, FULL_WIDTH, FULL_HEIGHT - _segementView.bottom )];
-        
-        
-        
+                
         _collectionViewTwo = [[BTMeLikeCollectionView alloc] initWithFrame:CGRectMake(0, _segementView.bottom, FULL_WIDTH, FULL_HEIGHT - _segementView.bottom)];
         _collectionView.userId = _userId;
         
@@ -392,10 +388,9 @@
     
     titleSizeTwo.width += 20;
     
-    _btnFans.frame = CGRectMake(_btnPublish.right + 40, 61, titleSizeTwo.width, titleSizeTwo.height);
+    _btnFans.frame = CGRectMake(_btnPublish.right + ScaleWidth(38), 61, titleSizeTwo.width, titleSizeTwo.height);
     
     [_btnfollow setTitle:[NSString stringWithFormat:@"关注  %@", meEntity.followCount] forState:UIControlStateNormal];
-    
     
     CGSize titleSizeThree = [_btnfollow.titleLabel.text sizeWithAttributes:@{NSFontAttributeName: [UIFont fontWithName:_btnfollow.titleLabel.font.fontName size:_btnfollow.titleLabel.font.pointSize]}];
     
@@ -403,7 +398,7 @@
     
     titleSizeThree.width += 20;
     
-    _btnfollow.frame = CGRectMake(_btnFans.right + 40, 61, titleSizeThree.width, titleSizeThree.height);
+    _btnfollow.frame = CGRectMake(_btnFans.right + ScaleWidth(38), 61, titleSizeThree.width, titleSizeThree.height);
     
     
     _labDes.text = meEntity.introduction;
@@ -433,6 +428,8 @@
     _viewLine.frame = CGRectMake(0, _labTag.bottom + 16, FULL_WIDTH, 1);
     
     _heightHeader = _viewLine.bottom + NAVBAR_HEIGHT;
+    
+    [_segementView removeFromSuperview];
     
     _segementView.frame = CGRectMake(0, _heightHeader, FULL_WIDTH, 50);
     

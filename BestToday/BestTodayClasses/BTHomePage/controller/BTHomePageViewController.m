@@ -92,10 +92,11 @@ static NSString * const cellID = @"mindCell";
     NSLog(@"%@",indexString);
     BTHomePageEntity *entity = self.homePageService.arrFollowedResource[[indexString integerValue]];
     entity.isOpening = !entity.isOpening;
+//    NSIndexPath *indexPath = [NSIndexPath indexPathForRow:[indexString integerValue] inSection:0];
+//    [self.tableView reloadRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationTop];
+//    [self.tableView scrollToRowAtIndexPath:indexPath atScrollPosition:UITableViewScrollPositionMiddle animated:YES];
     
-    NSIndexPath *indexPath = [NSIndexPath indexPathForRow:[indexString integerValue] inSection:0];
-    [self.tableView reloadRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationNone];
-    [self.tableView scrollToRowAtIndexPath:indexPath atScrollPosition:UITableViewScrollPositionMiddle animated:NO];
+    [self.tableView reloadData];
 }
 
 /** 修改点赞方法 */

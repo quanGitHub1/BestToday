@@ -543,16 +543,16 @@
             _moreButton.hidden = NO;
             if (self.homePageEntity.isOpening) {
                 [_moreButton setTitle:@"收起" forState:UIControlStateNormal];
-                _contentLabel.frame = CGRectMake(_imageAvtar.left, _labTime.bottom +5, textSize.width,textSize.height);
+                _contentLabel.frame = CGRectMake(_imageAvtar.left, _labTime.bottom +5, FULL_WIDTH - 30,textSize.height);
             } else {
                 [_moreButton setTitle:@"全文" forState:UIControlStateNormal];
-                _contentLabel.frame = CGRectMake(_imageAvtar.left, _labTime.bottom +5, textSize.width, 60);
+                _contentLabel.frame = CGRectMake(_imageAvtar.left, _labTime.bottom +5, FULL_WIDTH - 30, 60);
             }
             _moreButton.frame = CGRectMake(_imageAvtar.left, _contentLabel.bottom +5, 30, 15);;
             _commentTableView.frame = CGRectMake(_imageAvtar.left, _contentLabel.bottom +25, commentViewSize.width, commentViewSize.height +30);
         }else {  // 没有超过60
             _moreButton.hidden = YES;
-            _contentLabel.frame = CGRectMake(_imageAvtar.left, _labTime.bottom +10, textSize.width, textSize.height);
+            _contentLabel.frame = CGRectMake(_imageAvtar.left, _labTime.bottom +10, FULL_WIDTH - 30, textSize.height);
             _commentTableView.frame = CGRectMake(_imageAvtar.left, _contentLabel.bottom +10, commentViewSize.width, commentViewSize.height +30);
         }
         
