@@ -255,10 +255,10 @@ public class FusumaViewController: UIViewController {
                     result, info in
 
                     DispatchQueue.main.async(execute: {
-                        self.delegate?.fusumaImageSelected(result!, source: self.mode)
+                        self.delegate?.fusumaImageSelected(result!, source: .library)
 
                         self.dismiss(animated: true, completion: {
-                            self.delegate?.fusumaDismissedWithImage(result!, source: self.mode)
+                            self.delegate?.fusumaDismissedWithImage(result!, source: .library)
                         })
 
                         let metaData = ImageMetadata(
@@ -272,17 +272,17 @@ public class FusumaViewController: UIViewController {
                             isFavourite: self.albumView.phAsset.isFavorite,
                             isHidden: self.albumView.phAsset.isHidden)
 
-                        self.delegate?.fusumaImageSelected(result!, source: self.mode, metaData: metaData)
+                        self.delegate?.fusumaImageSelected(result!, source: .library, metaData: metaData)
 
                     })
                 }
             })
         } else {
             print("no image crop ")
-            delegate?.fusumaImageSelected((view?.image)!, source: mode)
+            delegate?.fusumaImageSelected((view?.image)!, source: .library)
             
             self.dismiss(animated: true, completion: {
-                self.delegate?.fusumaDismissedWithImage((view?.image)!, source: self.mode)
+                self.delegate?.fusumaDismissedWithImage((view?.image)!, source: .library)
             })
         }
     }
@@ -296,10 +296,8 @@ extension FusumaViewController: FSAlbumViewDelegate, FSCameraViewDelegate, FSVid
     
     // MARK: FSCameraViewDelegate
     func cameraShotFinished(_ image: UIImage) {
-        
-        delegate?.fusumaImageSelected(image, source: mode)
+        self.delegate?.fusumaImageSelected(image, source: self.mode)
         self.dismiss(animated: true, completion: {
-            
             self.delegate?.fusumaDismissedWithImage(image, source: self.mode)
         })
     }
@@ -359,7 +357,8 @@ private extension FusumaViewController {
         switch mode {
         case .library:
             titleLabel.text = NSLocalizedString(fusumaCameraRollTitle, comment: fusumaCameraRollTitle)
-            
+            doneButton.isHidden = false
+
             highlightButton(libraryButton)
             self.view.bringSubview(toFront: photoLibraryViewerContainer)
         case .camera:
@@ -367,12 +366,12 @@ private extension FusumaViewController {
             
             highlightButton(cameraButton)
             self.view.bringSubview(toFront: cameraShotContainer)
+            doneButton.isHidden = true
             cameraView.startCamera()
         case .video:
             titleLabel.text = fusumaVideoTitle
 
         }
-        doneButton.isHidden = !hasGalleryPermission
         self.view.bringSubview(toFront: menuView)
     }
     

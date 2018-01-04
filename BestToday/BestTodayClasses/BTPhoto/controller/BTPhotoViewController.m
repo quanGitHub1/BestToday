@@ -10,6 +10,7 @@
 
 #import "BestToday-Swift.h"
 #import "BTPublishViewController.h"
+#import "BTGPUIImageViewController.h"
 
 @interface BTPhotoViewController ()<FusumaDelegate>
 
@@ -48,9 +49,17 @@
         [SVProgressHUD showInfoWithStatus:@"请选择需要上传的图片"];
         return;
     }
-    BTPublishViewController *publishVC = [[BTPublishViewController alloc] init];
-    publishVC.imageSource = image;
-    [self.navigationController pushViewController:publishVC animated:YES];
+    if (source == FusumaModeCamera ) {
+        BTGPUIImageViewController *gpuiImageVC = [[BTGPUIImageViewController alloc] init];
+        gpuiImageVC.photoImage = image;
+        [self.navigationController pushViewController:gpuiImageVC animated:YES];
+    }else{
+        BTPublishViewController *publishVC = [[BTPublishViewController alloc] init];
+        publishVC.imageSource = image;
+        [self.navigationController pushViewController:publishVC animated:YES];
+    }
+    
+   
 }
 
 - (void)fusumaWillClosed{
