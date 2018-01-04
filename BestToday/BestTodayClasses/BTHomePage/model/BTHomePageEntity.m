@@ -11,7 +11,7 @@
 #import "BTHomeComment.h"
 #import "MLLinkLabel.h"
 
-CGFloat maxContentLabelHeight = 60;
+CGFloat maxContentLabelHeight = 75;
 
 @implementation BTHomePageEntity
 {

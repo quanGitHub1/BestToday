@@ -548,7 +548,7 @@
                 [_moreButton setTitle:@"全文" forState:UIControlStateNormal];
                 _contentLabel.frame = CGRectMake(_imageAvtar.left, _labTime.bottom +5, FULL_WIDTH - 30, 60);
             }
-            _moreButton.frame = CGRectMake(_imageAvtar.left, _contentLabel.bottom +5, 30, 15);;
+            _moreButton.frame = CGRectMake(_imageAvtar.left, _contentLabel.bottom +5, 50, 15);;
             _commentTableView.frame = CGRectMake(_imageAvtar.left, _contentLabel.bottom +25, commentViewSize.width, commentViewSize.height +30);
         }else {  // 没有超过60
             _moreButton.hidden = YES;
