@@ -285,6 +285,33 @@
 		CB8A56421FEE74F9008EC03C /* UMMobClick.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CB8A56411FEE74F9008EC03C /* UMMobClick.framework */; };
 		CB8AEEAD1FDEC6CA00D70B0E /* BTHomeCommentEntity.m in Sources */ = {isa = PBXBuildFile; fileRef = CB8AEEAC1FDEC6CA00D70B0E /* BTHomeCommentEntity.m */; };
 		CB926A481FCEAA27003AB4D5 /* SQButtonTagView.m in Sources */ = {isa = PBXBuildFile; fileRef = CB926A461FCEAA27003AB4D5 /* SQButtonTagView.m */; };
+		CBCBC8961FFDFAE600580DEB /* BTGPUIImageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CBCBC8951FFDFAE600580DEB /* BTGPUIImageViewController.m */; };
+		CBCBC8CF1FFDFB1900580DEB /* AlbumFilterUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = CBCBC8991FFDFB1900580DEB /* AlbumFilterUtil.m */; };
+		CBCBC8D01FFDFB1900580DEB /* AlbumFiterModel.m in Sources */ = {isa = PBXBuildFile; fileRef = CBCBC89B1FFDFB1900580DEB /* AlbumFiterModel.m */; };
+		CBCBC8D11FFDFB1900580DEB /* AlbumFiterViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = CBCBC89D1FFDFB1900580DEB /* AlbumFiterViewCell.m */; };
+		CBCBC8D21FFDFB1900580DEB /* GPUImage.InstagramFilter.bundle in Resources */ = {isa = PBXBuildFile; fileRef = CBCBC8A11FFDFB1900580DEB /* GPUImage.InstagramFilter.bundle */; };
+		CBCBC8D31FFDFB1900580DEB /* IF1977Filter.m in Sources */ = {isa = PBXBuildFile; fileRef = CBCBC8A31FFDFB1900580DEB /* IF1977Filter.m */; };
+		CBCBC8D41FFDFB1900580DEB /* IFAmaroFilter.m in Sources */ = {isa = PBXBuildFile; fileRef = CBCBC8A51FFDFB1900580DEB /* IFAmaroFilter.m */; };
+		CBCBC8D51FFDFB1900580DEB /* IFBrannanFilter.m in Sources */ = {isa = PBXBuildFile; fileRef = CBCBC8A71FFDFB1900580DEB /* IFBrannanFilter.m */; };
+		CBCBC8D61FFDFB1900580DEB /* IFEarlybirdFilter.m in Sources */ = {isa = PBXBuildFile; fileRef = CBCBC8A91FFDFB1900580DEB /* IFEarlybirdFilter.m */; };
+		CBCBC8D71FFDFB1900580DEB /* IFHefeFilter.m in Sources */ = {isa = PBXBuildFile; fileRef = CBCBC8AB1FFDFB1900580DEB /* IFHefeFilter.m */; };
+		CBCBC8D81FFDFB1900580DEB /* IFHudsonFilter.m in Sources */ = {isa = PBXBuildFile; fileRef = CBCBC8AD1FFDFB1900580DEB /* IFHudsonFilter.m */; };
+		CBCBC8D91FFDFB1900580DEB /* IFImageFilter.m in Sources */ = {isa = PBXBuildFile; fileRef = CBCBC8AF1FFDFB1900580DEB /* IFImageFilter.m */; };
+		CBCBC8DA1FFDFB1900580DEB /* IFInkwellFilter.m in Sources */ = {isa = PBXBuildFile; fileRef = CBCBC8B11FFDFB1900580DEB /* IFInkwellFilter.m */; };
+		CBCBC8DB1FFDFB1900580DEB /* IFLomofiFilter.m in Sources */ = {isa = PBXBuildFile; fileRef = CBCBC8B31FFDFB1900580DEB /* IFLomofiFilter.m */; };
+		CBCBC8DC1FFDFB1900580DEB /* IFLordKelvinFilter.m in Sources */ = {isa = PBXBuildFile; fileRef = CBCBC8B51FFDFB1900580DEB /* IFLordKelvinFilter.m */; };
+		CBCBC8DD1FFDFB1900580DEB /* IFNashvilleFilter.m in Sources */ = {isa = PBXBuildFile; fileRef = CBCBC8B71FFDFB1900580DEB /* IFNashvilleFilter.m */; };
+		CBCBC8DE1FFDFB1900580DEB /* IFNormalFilter.m in Sources */ = {isa = PBXBuildFile; fileRef = CBCBC8B91FFDFB1900580DEB /* IFNormalFilter.m */; };
+		CBCBC8DF1FFDFB1900580DEB /* IFRiseFilter.m in Sources */ = {isa = PBXBuildFile; fileRef = CBCBC8BB1FFDFB1900580DEB /* IFRiseFilter.m */; };
+		CBCBC8E01FFDFB1900580DEB /* IFSierraFilter.m in Sources */ = {isa = PBXBuildFile; fileRef = CBCBC8BD1FFDFB1900580DEB /* IFSierraFilter.m */; };
+		CBCBC8E11FFDFB1900580DEB /* IFSutroFilter.m in Sources */ = {isa = PBXBuildFile; fileRef = CBCBC8BF1FFDFB1900580DEB /* IFSutroFilter.m */; };
+		CBCBC8E21FFDFB1900580DEB /* IFToasterFilter.m in Sources */ = {isa = PBXBuildFile; fileRef = CBCBC8C11FFDFB1900580DEB /* IFToasterFilter.m */; };
+		CBCBC8E31FFDFB1900580DEB /* IFValenciaFilter.m in Sources */ = {isa = PBXBuildFile; fileRef = CBCBC8C31FFDFB1900580DEB /* IFValenciaFilter.m */; };
+		CBCBC8E41FFDFB1900580DEB /* IFWaldenFilter.m in Sources */ = {isa = PBXBuildFile; fileRef = CBCBC8C51FFDFB1900580DEB /* IFWaldenFilter.m */; };
+		CBCBC8E51FFDFB1900580DEB /* IFXproIIFilter.m in Sources */ = {isa = PBXBuildFile; fileRef = CBCBC8C71FFDFB1900580DEB /* IFXproIIFilter.m */; };
+		CBCBC8E61FFDFB1900580DEB /* GPUImageFiveInputFilter.m in Sources */ = {isa = PBXBuildFile; fileRef = CBCBC8CA1FFDFB1900580DEB /* GPUImageFiveInputFilter.m */; };
+		CBCBC8E71FFDFB1900580DEB /* GPUImageFourInputFilter.m in Sources */ = {isa = PBXBuildFile; fileRef = CBCBC8CC1FFDFB1900580DEB /* GPUImageFourInputFilter.m */; };
+		CBCBC8E81FFDFB1900580DEB /* GPUImageSixInputFilter.m in Sources */ = {isa = PBXBuildFile; fileRef = CBCBC8CE1FFDFB1900580DEB /* GPUImageSixInputFilter.m */; };
 		CBCD2EA91FB4657100994037 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CBCD2E9A1FB4657100994037 /* Assets.xcassets */; };
 		CBCD2EAA1FB4657100994037 /* FSAlbumView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBCD2E9B1FB4657100994037 /* FSAlbumView.swift */; };
 		CBCD2EAB1FB4657100994037 /* FSAlbumView.xib in Resources */ = {isa = PBXBuildFile; fileRef = CBCD2E9C1FB4657100994037 /* FSAlbumView.xib */; };
@@ -894,6 +921,61 @@
 		CB926A461FCEAA27003AB4D5 /* SQButtonTagView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SQButtonTagView.m; sourceTree = "<group>"; };
 		CB926A471FCEAA27003AB4D5 /* SQButtonTagView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SQButtonTagView.h; sourceTree = "<group>"; };
 		CB926A491FCEAE8F003AB4D5 /* BestToday-Bridging-Header.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "BestToday-Bridging-Header.h"; sourceTree = "<group>"; };
+		CBCBC8941FFDFAE600580DEB /* BTGPUIImageViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BTGPUIImageViewController.h; sourceTree = "<group>"; };
+		CBCBC8951FFDFAE600580DEB /* BTGPUIImageViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BTGPUIImageViewController.m; sourceTree = "<group>"; };
+		CBCBC8981FFDFB1900580DEB /* AlbumFilterUtil.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AlbumFilterUtil.h; sourceTree = "<group>"; };
+		CBCBC8991FFDFB1900580DEB /* AlbumFilterUtil.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AlbumFilterUtil.m; sourceTree = "<group>"; };
+		CBCBC89A1FFDFB1900580DEB /* AlbumFiterModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AlbumFiterModel.h; sourceTree = "<group>"; };
+		CBCBC89B1FFDFB1900580DEB /* AlbumFiterModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AlbumFiterModel.m; sourceTree = "<group>"; };
+		CBCBC89C1FFDFB1900580DEB /* AlbumFiterViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AlbumFiterViewCell.h; sourceTree = "<group>"; };
+		CBCBC89D1FFDFB1900580DEB /* AlbumFiterViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AlbumFiterViewCell.m; sourceTree = "<group>"; };
+		CBCBC89E1FFDFB1900580DEB /* ColorConstant.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ColorConstant.h; sourceTree = "<group>"; };
+		CBCBC8A11FFDFB1900580DEB /* GPUImage.InstagramFilter.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = GPUImage.InstagramFilter.bundle; sourceTree = "<group>"; };
+		CBCBC8A21FFDFB1900580DEB /* IF1977Filter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IF1977Filter.h; sourceTree = "<group>"; };
+		CBCBC8A31FFDFB1900580DEB /* IF1977Filter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IF1977Filter.m; sourceTree = "<group>"; };
+		CBCBC8A41FFDFB1900580DEB /* IFAmaroFilter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IFAmaroFilter.h; sourceTree = "<group>"; };
+		CBCBC8A51FFDFB1900580DEB /* IFAmaroFilter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IFAmaroFilter.m; sourceTree = "<group>"; };
+		CBCBC8A61FFDFB1900580DEB /* IFBrannanFilter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IFBrannanFilter.h; sourceTree = "<group>"; };
+		CBCBC8A71FFDFB1900580DEB /* IFBrannanFilter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IFBrannanFilter.m; sourceTree = "<group>"; };
+		CBCBC8A81FFDFB1900580DEB /* IFEarlybirdFilter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IFEarlybirdFilter.h; sourceTree = "<group>"; };
+		CBCBC8A91FFDFB1900580DEB /* IFEarlybirdFilter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IFEarlybirdFilter.m; sourceTree = "<group>"; };
+		CBCBC8AA1FFDFB1900580DEB /* IFHefeFilter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IFHefeFilter.h; sourceTree = "<group>"; };
+		CBCBC8AB1FFDFB1900580DEB /* IFHefeFilter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IFHefeFilter.m; sourceTree = "<group>"; };
+		CBCBC8AC1FFDFB1900580DEB /* IFHudsonFilter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IFHudsonFilter.h; sourceTree = "<group>"; };
+		CBCBC8AD1FFDFB1900580DEB /* IFHudsonFilter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IFHudsonFilter.m; sourceTree = "<group>"; };
+		CBCBC8AE1FFDFB1900580DEB /* IFImageFilter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IFImageFilter.h; sourceTree = "<group>"; };
+		CBCBC8AF1FFDFB1900580DEB /* IFImageFilter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IFImageFilter.m; sourceTree = "<group>"; };
+		CBCBC8B01FFDFB1900580DEB /* IFInkwellFilter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IFInkwellFilter.h; sourceTree = "<group>"; };
+		CBCBC8B11FFDFB1900580DEB /* IFInkwellFilter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IFInkwellFilter.m; sourceTree = "<group>"; };
+		CBCBC8B21FFDFB1900580DEB /* IFLomofiFilter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IFLomofiFilter.h; sourceTree = "<group>"; };
+		CBCBC8B31FFDFB1900580DEB /* IFLomofiFilter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IFLomofiFilter.m; sourceTree = "<group>"; };
+		CBCBC8B41FFDFB1900580DEB /* IFLordKelvinFilter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IFLordKelvinFilter.h; sourceTree = "<group>"; };
+		CBCBC8B51FFDFB1900580DEB /* IFLordKelvinFilter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IFLordKelvinFilter.m; sourceTree = "<group>"; };
+		CBCBC8B61FFDFB1900580DEB /* IFNashvilleFilter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IFNashvilleFilter.h; sourceTree = "<group>"; };
+		CBCBC8B71FFDFB1900580DEB /* IFNashvilleFilter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IFNashvilleFilter.m; sourceTree = "<group>"; };
+		CBCBC8B81FFDFB1900580DEB /* IFNormalFilter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IFNormalFilter.h; sourceTree = "<group>"; };
+		CBCBC8B91FFDFB1900580DEB /* IFNormalFilter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IFNormalFilter.m; sourceTree = "<group>"; };
+		CBCBC8BA1FFDFB1900580DEB /* IFRiseFilter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IFRiseFilter.h; sourceTree = "<group>"; };
+		CBCBC8BB1FFDFB1900580DEB /* IFRiseFilter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IFRiseFilter.m; sourceTree = "<group>"; };
+		CBCBC8BC1FFDFB1900580DEB /* IFSierraFilter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IFSierraFilter.h; sourceTree = "<group>"; };
+		CBCBC8BD1FFDFB1900580DEB /* IFSierraFilter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IFSierraFilter.m; sourceTree = "<group>"; };
+		CBCBC8BE1FFDFB1900580DEB /* IFSutroFilter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IFSutroFilter.h; sourceTree = "<group>"; };
+		CBCBC8BF1FFDFB1900580DEB /* IFSutroFilter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IFSutroFilter.m; sourceTree = "<group>"; };
+		CBCBC8C01FFDFB1900580DEB /* IFToasterFilter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IFToasterFilter.h; sourceTree = "<group>"; };
+		CBCBC8C11FFDFB1900580DEB /* IFToasterFilter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IFToasterFilter.m; sourceTree = "<group>"; };
+		CBCBC8C21FFDFB1900580DEB /* IFValenciaFilter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IFValenciaFilter.h; sourceTree = "<group>"; };
+		CBCBC8C31FFDFB1900580DEB /* IFValenciaFilter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IFValenciaFilter.m; sourceTree = "<group>"; };
+		CBCBC8C41FFDFB1900580DEB /* IFWaldenFilter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IFWaldenFilter.h; sourceTree = "<group>"; };
+		CBCBC8C51FFDFB1900580DEB /* IFWaldenFilter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IFWaldenFilter.m; sourceTree = "<group>"; };
+		CBCBC8C61FFDFB1900580DEB /* IFXproIIFilter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IFXproIIFilter.h; sourceTree = "<group>"; };
+		CBCBC8C71FFDFB1900580DEB /* IFXproIIFilter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IFXproIIFilter.m; sourceTree = "<group>"; };
+		CBCBC8C81FFDFB1900580DEB /* InstaFilters.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InstaFilters.h; sourceTree = "<group>"; };
+		CBCBC8C91FFDFB1900580DEB /* GPUImageFiveInputFilter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GPUImageFiveInputFilter.h; sourceTree = "<group>"; };
+		CBCBC8CA1FFDFB1900580DEB /* GPUImageFiveInputFilter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GPUImageFiveInputFilter.m; sourceTree = "<group>"; };
+		CBCBC8CB1FFDFB1900580DEB /* GPUImageFourInputFilter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GPUImageFourInputFilter.h; sourceTree = "<group>"; };
+		CBCBC8CC1FFDFB1900580DEB /* GPUImageFourInputFilter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GPUImageFourInputFilter.m; sourceTree = "<group>"; };
+		CBCBC8CD1FFDFB1900580DEB /* GPUImageSixInputFilter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GPUImageSixInputFilter.h; sourceTree = "<group>"; };
+		CBCBC8CE1FFDFB1900580DEB /* GPUImageSixInputFilter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GPUImageSixInputFilter.m; sourceTree = "<group>"; };
 		CBCD2E9A1FB4657100994037 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		CBCD2E9B1FB4657100994037 /* FSAlbumView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FSAlbumView.swift; sourceTree = "<group>"; };
 		CBCD2E9C1FB4657100994037 /* FSAlbumView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = FSAlbumView.xib; sourceTree = "<group>"; };
@@ -1207,9 +1289,12 @@
 		7AA2BB861FAAB2D400864753 /* controller */ = {
 			isa = PBXGroup;
 			children = (
+				CBCBC8971FFDFB1900580DEB /* GPUImageFilter */,
 				CBCD2E991FB4657100994037 /* BTPhoto */,
 				7AA2BCE81FAAC66700864753 /* BTPhotoViewController.h */,
 				7AA2BCE91FAAC66700864753 /* BTPhotoViewController.m */,
+				CBCBC8941FFDFAE600580DEB /* BTGPUIImageViewController.h */,
+				CBCBC8951FFDFAE600580DEB /* BTGPUIImageViewController.m */,
 				CBF6C7191FCD588C00289208 /* BTPublishViewController.h */,
 				CBF6C71A1FCD588C00289208 /* BTPublishViewController.m */,
 				CB8A55DA1FE0D19E008EC03C /* UIImage+Compression.h */,
@@ -2510,6 +2595,82 @@
 			path = UMessage_Sdk_1.5.0a;
 			sourceTree = "<group>";
 		};
+		CBCBC8971FFDFB1900580DEB /* GPUImageFilter */ = {
+			isa = PBXGroup;
+			children = (
+				CBCBC8981FFDFB1900580DEB /* AlbumFilterUtil.h */,
+				CBCBC8991FFDFB1900580DEB /* AlbumFilterUtil.m */,
+				CBCBC89A1FFDFB1900580DEB /* AlbumFiterModel.h */,
+				CBCBC89B1FFDFB1900580DEB /* AlbumFiterModel.m */,
+				CBCBC89C1FFDFB1900580DEB /* AlbumFiterViewCell.h */,
+				CBCBC89D1FFDFB1900580DEB /* AlbumFiterViewCell.m */,
+				CBCBC89E1FFDFB1900580DEB /* ColorConstant.h */,
+				CBCBC89F1FFDFB1900580DEB /* GPUImageFilters */,
+			);
+			path = GPUImageFilter;
+			sourceTree = "<group>";
+		};
+		CBCBC89F1FFDFB1900580DEB /* GPUImageFilters */ = {
+			isa = PBXGroup;
+			children = (
+				CBCBC8A01FFDFB1900580DEB /* Filters */,
+				CBCBC8C91FFDFB1900580DEB /* GPUImageFiveInputFilter.h */,
+				CBCBC8CA1FFDFB1900580DEB /* GPUImageFiveInputFilter.m */,
+				CBCBC8CB1FFDFB1900580DEB /* GPUImageFourInputFilter.h */,
+				CBCBC8CC1FFDFB1900580DEB /* GPUImageFourInputFilter.m */,
+				CBCBC8CD1FFDFB1900580DEB /* GPUImageSixInputFilter.h */,
+				CBCBC8CE1FFDFB1900580DEB /* GPUImageSixInputFilter.m */,
+			);
+			path = GPUImageFilters;
+			sourceTree = "<group>";
+		};
+		CBCBC8A01FFDFB1900580DEB /* Filters */ = {
+			isa = PBXGroup;
+			children = (
+				CBCBC8A11FFDFB1900580DEB /* GPUImage.InstagramFilter.bundle */,
+				CBCBC8A21FFDFB1900580DEB /* IF1977Filter.h */,
+				CBCBC8A31FFDFB1900580DEB /* IF1977Filter.m */,
+				CBCBC8A41FFDFB1900580DEB /* IFAmaroFilter.h */,
+				CBCBC8A51FFDFB1900580DEB /* IFAmaroFilter.m */,
+				CBCBC8A61FFDFB1900580DEB /* IFBrannanFilter.h */,
+				CBCBC8A71FFDFB1900580DEB /* IFBrannanFilter.m */,
+				CBCBC8A81FFDFB1900580DEB /* IFEarlybirdFilter.h */,
+				CBCBC8A91FFDFB1900580DEB /* IFEarlybirdFilter.m */,
+				CBCBC8AA1FFDFB1900580DEB /* IFHefeFilter.h */,
+				CBCBC8AB1FFDFB1900580DEB /* IFHefeFilter.m */,
+				CBCBC8AC1FFDFB1900580DEB /* IFHudsonFilter.h */,
+				CBCBC8AD1FFDFB1900580DEB /* IFHudsonFilter.m */,
+				CBCBC8AE1FFDFB1900580DEB /* IFImageFilter.h */,
+				CBCBC8AF1FFDFB1900580DEB /* IFImageFilter.m */,
+				CBCBC8B01FFDFB1900580DEB /* IFInkwellFilter.h */,
+				CBCBC8B11FFDFB1900580DEB /* IFInkwellFilter.m */,
+				CBCBC8B21FFDFB1900580DEB /* IFLomofiFilter.h */,
+				CBCBC8B31FFDFB1900580DEB /* IFLomofiFilter.m */,
+				CBCBC8B41FFDFB1900580DEB /* IFLordKelvinFilter.h */,
+				CBCBC8B51FFDFB1900580DEB /* IFLordKelvinFilter.m */,
+				CBCBC8B61FFDFB1900580DEB /* IFNashvilleFilter.h */,
+				CBCBC8B71FFDFB1900580DEB /* IFNashvilleFilter.m */,
+				CBCBC8B81FFDFB1900580DEB /* IFNormalFilter.h */,
+				CBCBC8B91FFDFB1900580DEB /* IFNormalFilter.m */,
+				CBCBC8BA1FFDFB1900580DEB /* IFRiseFilter.h */,
+				CBCBC8BB1FFDFB1900580DEB /* IFRiseFilter.m */,
+				CBCBC8BC1FFDFB1900580DEB /* IFSierraFilter.h */,
+				CBCBC8BD1FFDFB1900580DEB /* IFSierraFilter.m */,
+				CBCBC8BE1FFDFB1900580DEB /* IFSutroFilter.h */,
+				CBCBC8BF1FFDFB1900580DEB /* IFSutroFilter.m */,
+				CBCBC8C01FFDFB1900580DEB /* IFToasterFilter.h */,
+				CBCBC8C11FFDFB1900580DEB /* IFToasterFilter.m */,
+				CBCBC8C21FFDFB1900580DEB /* IFValenciaFilter.h */,
+				CBCBC8C31FFDFB1900580DEB /* IFValenciaFilter.m */,
+				CBCBC8C41FFDFB1900580DEB /* IFWaldenFilter.h */,
+				CBCBC8C51FFDFB1900580DEB /* IFWaldenFilter.m */,
+				CBCBC8C61FFDFB1900580DEB /* IFXproIIFilter.h */,
+				CBCBC8C71FFDFB1900580DEB /* IFXproIIFilter.m */,
+				CBCBC8C81FFDFB1900580DEB /* InstaFilters.h */,
+			);
+			path = Filters;
+			sourceTree = "<group>";
+		};
 		CBCD2E991FB4657100994037 /* BTPhoto */ = {
 			isa = PBXGroup;
 			children = (
@@ -2660,6 +2821,7 @@
 				7AA2BB771FAAAFB100864753 /* Main.storyboard in Resources */,
 				7AA2BB751FAAAFB100864753 /* Assets.xcassets in Resources */,
 				CBCD2EAD1FB4657100994037 /* FSAlbumViewCell.xib in Resources */,
+				CBCBC8D21FFDFB1900580DEB /* GPUImage.InstagramFilter.bundle in Resources */,
 				CBCD2EA91FB4657100994037 /* Assets.xcassets in Resources */,
 				7AF06E2C1FCFDFE80002D659 /* TencentOpenApi_IOS_Bundle.bundle in Resources */,
 				CBCD2EAF1FB4657100994037 /* FSCameraView.xib in Resources */,
@@ -2735,6 +2897,11 @@
 			);
 			inputPaths = (
 				"${SRCROOT}/Pods/Target Support Files/Pods-BestToday/Pods-BestToday-resources.sh",
+				"${PODS_ROOT}/GPUImage/framework/Resources/lookup.png",
+				"${PODS_ROOT}/GPUImage/framework/Resources/lookup_amatorka.png",
+				"${PODS_ROOT}/GPUImage/framework/Resources/lookup_miss_etikate.png",
+				"${PODS_ROOT}/GPUImage/framework/Resources/lookup_soft_elegance_1.png",
+				"${PODS_ROOT}/GPUImage/framework/Resources/lookup_soft_elegance_2.png",
 				"${PODS_ROOT}/UMengUShare/UShareSDK/UMSocialSDK/UMSocialSDKPromptResources.bundle",
 				"${PODS_ROOT}/UMengUShare/UShareSDK/UMSocialUI/UMSocialSDKResources.bundle",
 			);
@@ -2767,13 +2934,16 @@
 				7AA2BCE71FAAC65200864753 /* BTCollectionViewController.m in Sources */,
 				7AA2BD331FAAFF4D00864753 /* BTPhotoService.m in Sources */,
 				7AA2BB6D1FAAAF5600864753 /* AppDelegate.m in Sources */,
+				CBCBC8E31FFDFB1900580DEB /* IFValenciaFilter.m in Sources */,
 				CB4D88AB1FF228CB00190463 /* NSAttributedString+MLLabel.m in Sources */,
 				7A16B9F01FBADE4600E7EC3A /* BTHomePageDetailViewController.m in Sources */,
 				7AA2BD4B1FAB002D00864753 /* BTCollectionViewModel.m in Sources */,
+				CBCBC8D71FFDFB1900580DEB /* IFHefeFilter.m in Sources */,
 				CB670E0A1FC817DF004BDCEA /* BTMessageEntity.m in Sources */,
 				CB670DE11FC2DFC0004BDCEA /* EMSDWebImageCompat.m in Sources */,
 				7AA2BCED1FAAC67700864753 /* BTMeViewController.m in Sources */,
 				7AA2BC3A1FAAB4CC00864753 /* UIView+DDAddition.m in Sources */,
+				CBCBC8D51FFDFB1900580DEB /* IFBrannanFilter.m in Sources */,
 				CB670DE01FC2DFC0004BDCEA /* EMSDImageCache.m in Sources */,
 				7AA2BC1F1FAAB4CC00864753 /* ChineseToPinyin.m in Sources */,
 				CB670DE71FC2DFC0004BDCEA /* MKAnnotationView+EMWebCache.m in Sources */,
@@ -2786,6 +2956,8 @@
 				CB670DE91FC2DFC0004BDCEA /* UIButton+EMWebCache.m in Sources */,
 				CB4D88AC1FF228CB00190463 /* NSMutableAttributedString+MLLabel.m in Sources */,
 				7AA2BB351FAAAE5500864753 /* main.m in Sources */,
+				CBCBC8D31FFDFB1900580DEB /* IF1977Filter.m in Sources */,
+				CBCBC8E81FFDFB1900580DEB /* GPUImageSixInputFilter.m in Sources */,
 				7AA2BCC11FAAC07400864753 /* CFileUtil.m in Sources */,
 				7AF06DF81FCFB2030002D659 /* WYShareView.m in Sources */,
 				CB4D88861FF0DF9A00190463 /* MJRefreshNormalHeader.m in Sources */,
@@ -2800,6 +2972,7 @@
 				CB4D88801FF0DF9A00190463 /* MJRefreshAutoNormalFooter.m in Sources */,
 				7AA2BC2A1FAAB4CC00864753 /* MLTLoadingFooter.m in Sources */,
 				7A16B9FC1FBC3E4F00E7EC3A /* BTAttentionTableViewCell.m in Sources */,
+				CBCBC8E21FFDFB1900580DEB /* IFToasterFilter.m in Sources */,
 				7AA2BCAE1FAAC07400864753 /* MLTTabBarController.m in Sources */,
 				CBCD2EB21FB4657100994037 /* FSVideoCameraView.swift in Sources */,
 				7AA2BCB01FAAC07400864753 /* MLTTabBarManager.m in Sources */,
@@ -2807,6 +2980,7 @@
 				7AA2BCEA1FAAC66700864753 /* BTPhotoViewController.m in Sources */,
 				CB4D88811FF0DF9A00190463 /* MJRefreshAutoStateFooter.m in Sources */,
 				7AA2BCBB1FAAC07400864753 /* NSMutableSet+MLTKit.m in Sources */,
+				CBCBC8D61FFDFB1900580DEB /* IFEarlybirdFilter.m in Sources */,
 				CB4D88AF1FF228CB00190463 /* MLTextAttachment.m in Sources */,
 				7A16B9F91FBC3CF400E7EC3A /* BTAttentionMeViewController.m in Sources */,
 				CB4D88AE1FF228CB00190463 /* MLExpressionManager.m in Sources */,
@@ -2815,6 +2989,7 @@
 				7A6576531FDA93540049D856 /* BTMeAttentionViewController.m in Sources */,
 				CB4D887F1FF0DF9A00190463 /* MJRefreshAutoGifFooter.m in Sources */,
 				7AA2BCDD1FAAC31F00864753 /* NetworkHelper.m in Sources */,
+				CBCBC8E41FFDFB1900580DEB /* IFWaldenFilter.m in Sources */,
 				CB4D888B1FF0DF9A00190463 /* UIScrollView+MJExtension.m in Sources */,
 				CB670E001FC4039A004BDCEA /* EaseMessageModel.m in Sources */,
 				7AA2BCB61FAAC07400864753 /* NSDate+YU.m in Sources */,
@@ -2824,6 +2999,7 @@
 				7A1509E21FD68286000A3BEC /* BTUserEntity.m in Sources */,
 				7AA2BD571FAFFD3900864753 /* BTSpreadTableView.m in Sources */,
 				CBCD2EAA1FB4657100994037 /* FSAlbumView.swift in Sources */,
+				CBCBC8D41FFDFB1900580DEB /* IFAmaroFilter.m in Sources */,
 				CB4D88B01FF228CB00190463 /* NSAttributedString+MLExpression.m in Sources */,
 				7AA2BDC51FB2D88E00864753 /* BTHomeComment.m in Sources */,
 				CBCD2EBD1FB4658F00994037 /* BTDiscoverHeaderView.m in Sources */,
@@ -2843,6 +3019,7 @@
 				CB4D888C1FF0DF9A00190463 /* UIScrollView+MJRefresh.m in Sources */,
 				CBCD2EAC1FB4657100994037 /* FSAlbumViewCell.swift in Sources */,
 				7AA2BC351FAAB4CC00864753 /* MLTCollectionView.m in Sources */,
+				CBCBC8D11FFDFB1900580DEB /* AlbumFiterViewCell.m in Sources */,
 				7AA2BD0F1FAAFE3C00864753 /* BtHomePageService.m in Sources */,
 				7AA2BC2C1FAAB4CC00864753 /* MLTIndicatorView.m in Sources */,
 				CB8A56161FEDFAD6008EC03C /* TTGroupTagView.m in Sources */,
@@ -2860,6 +3037,7 @@
 				7A2429B71FC66B1800EE7948 /* SVRadialGradientLayer.m in Sources */,
 				7AA2BD1B1FAAFE9B00864753 /* BTDiscoverService.m in Sources */,
 				7AA2BD5A1FAFFDEE00864753 /* UILabel+MLTKit.m in Sources */,
+				CBCBC8DF1FFDFB1900580DEB /* IFRiseFilter.m in Sources */,
 				CB4D88B41FF228CB00190463 /* MLLinkLabel.m in Sources */,
 				CB670DFA1FC2E0BD004BDCEA /* EaseEmojiEmoticons.m in Sources */,
 				7AA2BCB51FAAC07400864753 /* NSCalendar+YU.m in Sources */,
@@ -2881,6 +3059,7 @@
 				CB670DBA1FC2C6BA004BDCEA /* EaseBubbleView.m in Sources */,
 				7AA2BCE11FAAC62900864753 /* BTHomePageViewController.m in Sources */,
 				CB4D88B11FF228CB00190463 /* NSString+MLExpression.m in Sources */,
+				CBCBC8D81FFDFB1900580DEB /* IFHudsonFilter.m in Sources */,
 				7AA2BCA51FAAC07400864753 /* NSObject+LEEntity.m in Sources */,
 				7AA2BC1D1FAAB4CC00864753 /* UIView+MLTMasonry.m in Sources */,
 				7AA2BCAC1FAAC07400864753 /* MGJNavigationBar.m in Sources */,
@@ -2894,6 +3073,7 @@
 				7AA2BC201FAAB4CC00864753 /* MBSort.m in Sources */,
 				7A16BA851FC574EA00E7EC3A /* BTHomedetailCollectionViewCell.m in Sources */,
 				7AA2BCB31FAAC07400864753 /* NSMutableArray+MLTKit.m in Sources */,
+				CBCBC8DA1FFDFB1900580DEB /* IFInkwellFilter.m in Sources */,
 				7AA2BD121FAAFE5600864753 /* BTHomePageView.m in Sources */,
 				CB670DF91FC2E0BD004BDCEA /* EaseEmoji.m in Sources */,
 				7AA2BC141FAAB4CC00864753 /* NSObject+MGJKit.m in Sources */,
@@ -2903,6 +3083,8 @@
 				CB4D88BC1FF23B1600190463 /* UIButton+Extension.m in Sources */,
 				7AA2BD1E1FAAFEB100864753 /* BTDiscoverView.m in Sources */,
 				7AA2BCA41FAAC07400864753 /* LEEntity.m in Sources */,
+				CBCBC8D91FFDFB1900580DEB /* IFImageFilter.m in Sources */,
+				CBCBC8DC1FFDFB1900580DEB /* IFLordKelvinFilter.m in Sources */,
 				7AA2BC0F1FAAB4CC00864753 /* BTTableViewController.m in Sources */,
 				CB4D88821FF0DF9A00190463 /* MJRefreshBackGifFooter.m in Sources */,
 				CB670DE21FC2DFC0004BDCEA /* EMSDWebImageDecoder.m in Sources */,
@@ -2912,6 +3094,7 @@
 				7AA2BDAB1FB15C4E00864753 /* UIAlertView+WX.m in Sources */,
 				7AA2BCA91FAAC07400864753 /* MGJNavigationControllerPopShrinkOutAnimation.m in Sources */,
 				7A16BA821FC5715D00E7EC3A /* BTHomeDetailService.m in Sources */,
+				CBCBC8D01FFDFB1900580DEB /* AlbumFiterModel.m in Sources */,
 				7AA2BCA81FAAC07400864753 /* MGJNavigationController.m in Sources */,
 				7AA2BD3F1FAAFF9600864753 /* BTMeService.m in Sources */,
 				7A16B9E11FB5899900E7EC3A /* MLTSegementView.m in Sources */,
@@ -2927,10 +3110,12 @@
 				CB4D888A1FF0DF9A00190463 /* NSBundle+MJRefresh.m in Sources */,
 				7AA2BCDE1FAAC31F00864753 /* NetworkImageHelper.m in Sources */,
 				7AA2BCAD1FAAC07400864753 /* MLTTabBar.m in Sources */,
+				CBCBC8E11FFDFB1900580DEB /* IFSutroFilter.m in Sources */,
 				7AA2BC361FAAB4CC00864753 /* MLTTableView.m in Sources */,
 				7AA2BC311FAAB4CC00864753 /* LECollectionView.m in Sources */,
 				CB4D88891FF0DF9A00190463 /* MJRefreshConst.m in Sources */,
 				7AA2BCC01FAAC07400864753 /* ShareURL.m in Sources */,
+				CBCBC8E71FFDFB1900580DEB /* GPUImageFourInputFilter.m in Sources */,
 				7AA2BDB71FB162F300864753 /* BTLoginService.m in Sources */,
 				7AA2BD091FAAFE1300864753 /* BTHomePageTableViewCell.m in Sources */,
 				CB670DE61FC2DFC0004BDCEA /* EMSDWebImagePrefetcher.m in Sources */,
@@ -2941,6 +3126,7 @@
 				7AA2BC181FAAB4CC00864753 /* UIImage+Image.m in Sources */,
 				7AA2BC121FAAB4CC00864753 /* NSCalendar+YU.m in Sources */,
 				7AA2BC341FAAB4CC00864753 /* MLTBaseRefreshHeader.m in Sources */,
+				CBCBC8DB1FFDFB1900580DEB /* IFLomofiFilter.m in Sources */,
 				7AA2BCE41FAAC63D00864753 /* BTDiscoverViewController.m in Sources */,
 				7A16B9F61FBAEEF000E7EC3A /* BTHomedetailHeaderView.m in Sources */,
 				CB670DAF1FC2C6BA004BDCEA /* EaseBaseMessageCell.m in Sources */,
@@ -2954,6 +3140,7 @@
 				7AA2BC271FAAB4CC00864753 /* MLTTableView+MLTBrokenNetwork.m in Sources */,
 				CB4D88B71FF2291F00190463 /* BTCellCommentCell.m in Sources */,
 				7AA2BCBC1FAAC07400864753 /* NSThread+MLTKit.m in Sources */,
+				CBCBC8DD1FFDFB1900580DEB /* IFNashvilleFilter.m in Sources */,
 				7A2429B31FC66B1800EE7948 /* SVIndefiniteAnimatedView.m in Sources */,
 				7AA2BC261FAAB4CC00864753 /* MLTCollectionView+MLTBrokenNetwork.m in Sources */,
 				7AA2BD481FAB001700864753 /* BTDiscoverViewModel.m in Sources */,
@@ -2963,13 +3150,16 @@
 				7AA2BDCE1FB3015900864753 /* BTHomeCommentView.m in Sources */,
 				7A16BA7C1FC4304800E7EC3A /* BTHomeUserEntity.m in Sources */,
 				CB670E0D1FC81821004BDCEA /* BTMessageUserEntity.m in Sources */,
+				CBCBC8961FFDFAE600580DEB /* BTGPUIImageViewController.m in Sources */,
 				CB4D88BD1FF23B1600190463 /* UILabel+Extension.m in Sources */,
 				7AA2BC381FAAB4CC00864753 /* MLTSliderView.m in Sources */,
 				CB4D888D1FF0DF9A00190463 /* UIView+MJExtension.m in Sources */,
 				7AA2BC2D1FAAB4CC00864753 /* MLTLoadingView.m in Sources */,
 				7A16BA021FBD310F00E7EC3A /* BTLoginsViewController.m in Sources */,
 				7AB5120B1FD5504F008C0D17 /* WXApiManager.m in Sources */,
+				CBCBC8E01FFDFB1900580DEB /* IFSierraFilter.m in Sources */,
 				7AA2BCDB1FAAC31F00864753 /* LEHttpRequestManager.m in Sources */,
+				CBCBC8CF1FFDFB1900580DEB /* AlbumFilterUtil.m in Sources */,
 				CB670DEE1FC2DFC0004BDCEA /* UIImageView+EMWebCache.m in Sources */,
 				7A37B8461FE2624200F2E8D3 /* BTGoodRecommentViewController.m in Sources */,
 				7AA2BC221FAAB4CC00864753 /* MLTDotBadgeView.m in Sources */,
@@ -2977,6 +3167,7 @@
 				7AA2BD451FAB000100864753 /* BTHomePageViewModel.m in Sources */,
 				7AA2BCA61FAAC07400864753 /* FBKVOController.m in Sources */,
 				7AA2BC101FAAB4CC00864753 /* BTViewController.m in Sources */,
+				CBCBC8E51FFDFB1900580DEB /* IFXproIIFilter.m in Sources */,
 				CB670E071FC6B9FD004BDCEA /* BTDiscoverCell.m in Sources */,
 				7AA2BCAB1FAAC07400864753 /* MGJPercentDrivenShrinkPopInteractiveController.m in Sources */,
 				7AA2BC301FAAB4CC00864753 /* UIScrollView+MLTPager.m in Sources */,
@@ -2989,9 +3180,11 @@
 				7AA2BD2A1FAAFF0E00864753 /* BTCollectionView.m in Sources */,
 				7AA2BC281FAAB4CC00864753 /* UIView+MLTBrokenNetwork.m in Sources */,
 				CB670DFC1FC2E0BD004BDCEA /* EaseEmotionManager.m in Sources */,
+				CBCBC8E61FFDFB1900580DEB /* GPUImageFiveInputFilter.m in Sources */,
 				7AA2BC231FAAB4CC00864753 /* MLTImageBadgeView.m in Sources */,
 				7AA2BCA71FAAC07400864753 /* AMTTabbarIconManager.m in Sources */,
 				CB8AEEAD1FDEC6CA00D70B0E /* BTHomeCommentEntity.m in Sources */,
+				CBCBC8DE1FFDFB1900580DEB /* IFNormalFilter.m in Sources */,
 				7A2429C31FCBC0F900EE7948 /* BTMeLikeCollectionView.m in Sources */,
 				CB670D941FC28E78004BDCEA /* EaseTextView.m in Sources */,
 				CB670DE51FC2DFC0004BDCEA /* EMSDWebImageManager.m in Sources */,

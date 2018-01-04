@@ -72,12 +72,13 @@
         size = image.size;
     }
     
-    button.frame = CGRectMake(0.0f, 0.0f, size.width > 44.0f ? size.width : 44.0f, size.height > 44.0f ? size.height : 44.0f);
+    button.frame = CGRectMake(0.0f, 0.0f, size.width > 44.0f ? size.width : 64.0f, size.height > 44.0f ? size.height : 44.0f);
     [button setTitle:title forState:UIControlStateNormal];
     [button setImage:image forState:UIControlStateNormal];
     [button setImage:highlightedImage forState:UIControlStateHighlighted];
     [button setBackgroundImage:backgroundImage forState:UIControlStateNormal];
     [button setBackgroundImage:highlightedBackgroundImage forState:UIControlStateHighlighted];
+    button.titleLabel.font = [UIFont systemFontOfSize:14];
     [button addTarget:target action:action forControlEvents:controlEvents];
     [button setExclusiveTouch:YES];
     return button;
