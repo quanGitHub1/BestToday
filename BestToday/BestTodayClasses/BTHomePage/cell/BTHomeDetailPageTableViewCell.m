@@ -176,6 +176,12 @@
                 
                 [[NSNotificationCenter defaultCenter] postNotificationName:@"BTHomePageNSNotificationIsLike" object:nil userInfo:@{@"isLiked":@"0",@"resourceId" : _homePageEntity.resourceId}];
 
+                if (_homePageEntity.likeCount.integerValue == 0) {
+                    _labFabulous.hidden = YES;
+                }else {
+                    _labFabulous.hidden = NO;
+                    
+                }
                 
             }else {
                 
@@ -198,6 +204,13 @@
                 _labFabulous.text = [NSString stringWithFormat:@"%ld赞",[_labFabulous.text integerValue] + 1];
                 
                    [[NSNotificationCenter defaultCenter] postNotificationName:@"BTHomePageNSNotificationIsLike" object:nil userInfo:@{@"isLiked":@"1",@"resourceId" : _homePageEntity.resourceId}];
+                
+                if (_homePageEntity.likeCount.integerValue == 0) {
+                    _labFabulous.hidden = YES;
+                }else {
+                    _labFabulous.hidden = NO;
+                    
+                }
                 
             }else {
                 
@@ -610,6 +623,11 @@
 
     }
     
+    if ([_homePageEntity.likeCount isEqualToString:@"0"]) {
+        _labFabulous.text = @"";
+    }else{
+        _labFabulous.text = [NSString stringWithFormat:@"%@赞",_homePageEntity.likeCount];
+    }
     
     UIImage *iamgeshare = [UIImage imageNamed:@"share"];
     
