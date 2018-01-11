@@ -287,7 +287,7 @@ static NSString * const cellID = @"mindCell";
 - (void)createTableViewHeaderView{
     
     UIView *headerView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, FULL_WIDTH, ScaleHeight(120))];
-    headerView.backgroundColor = kCardBackColor;
+//    headerView.backgroundColor = kCardBackColor;
     
     // 调用tableView
     if (!_spreadTableView) {
@@ -497,23 +497,78 @@ static NSString * const cellID = @"mindCell";
     if ([btn.titleLabel.text isEqualToString:@"..."]) {
         UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"请选择操作" message:@"" preferredStyle:UIAlertControllerStyleAlert];
         
-        UIAlertAction *canAction = [UIAlertAction actionWithTitle:@"取消关注" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
-            
-            [self requestUnFollowUser:btn.tag];
-            
-        }];
-        
         UIAlertAction *destructiveAction = [UIAlertAction actionWithTitle:@"置顶该用户" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
             
             [self requestSetTopUser:btn.tag isTopped:1];
             
         }];
         
+        
+        UIAlertAction *canAction = [UIAlertAction actionWithTitle:@"取消关注" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+            
+            [self requestUnFollowUser:btn.tag];
+            
+        }];
+        
+        
+        UIAlertAction *ComplaintAction = [UIAlertAction actionWithTitle:@"投诉用户" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+            
+            
+            UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"请选择原因" message:@"" preferredStyle:UIAlertControllerStyleAlert];
+            
+            UIAlertAction *destructiveAction = [UIAlertAction actionWithTitle:@"发布低俗内容" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+                
+                [self requestComplaint:11 resourceId:btn.tag];
+                
+            }];
+            
+            
+            UIAlertAction *canAction = [UIAlertAction actionWithTitle:@"发布违法内容" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+                
+                [self requestComplaint:12 resourceId:btn.tag];
+
+            }];
+            
+            
+            UIAlertAction *ComplaintAction = [UIAlertAction actionWithTitle:@"侵犯知识产权" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+                
+                [self requestComplaint:13 resourceId:btn.tag];
+
+                
+            }];
+            
+            
+            UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:@"取消投诉" style:UIAlertActionStyleCancel handler:nil];
+            
+            
+            [alertController addAction:destructiveAction];
+            
+            [alertController addAction:canAction];
+            
+            [alertController addAction:ComplaintAction];
+            
+            [alertController addAction:cancelAction];
+            
+            
+            [self presentViewController:alertController animated:YES completion:nil];
+            
+            
+        }];
+       
+        
+        
         UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleCancel handler:nil];
         
-        [alertController addAction:canAction];
+        
         [alertController addAction:destructiveAction];
+        
+        [alertController addAction:canAction];
+
+        [alertController addAction:ComplaintAction];
+        
         [alertController addAction:cancelAction];
+        
+        
         [self presentViewController:alertController animated:YES completion:nil];
     }else {
     
@@ -608,6 +663,21 @@ static NSString * const cellID = @"mindCell";
         [self requestAnnouncementData];
         
     }];
+}
+
+// 投诉接口
+- (void)requestComplaint:(NSInteger)index resourceId:(NSInteger)resourceId{
+    
+    BTHomePageEntity *pageEntity = [_homePageService.arrFollowedResource objectAtIndex:resourceId - 10000];
+    [self.homePageService loadComplaintUser:[pageEntity.resourceId integerValue] feedbackType:index completion:^(BOOL isSuccess, BOOL isCache) {
+        
+        [SVProgressHUD showWithStatus:@"投诉成功"];
+        
+        [SVProgressHUD dismissWithDelay:0.3f];
+
+
+    }];
+    
 }
 
 
