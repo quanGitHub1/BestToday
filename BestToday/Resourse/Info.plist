@@ -96,9 +96,10 @@
 		<true/>
 	</dict>
 	<key>NSCameraUsageDescription</key>
-	<string>是否允许今日最佳V访问摄像头</string>
+	<string>您可以拍摄并分享照片、将照片保存。
+您可以分享相册中的图片和照片</string>
 	<key>NSPhotoLibraryUsageDescription</key>
-	<string>是否允许今日最佳V访问相册</string>
+	<string>您可以分享相册中的图片和照片。</string>
 	<key>UIMainStoryboardFile</key>
 	<string>Main</string>
 	<key>UIRequiredDeviceCapabilities</key>
