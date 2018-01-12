@@ -58,7 +58,7 @@
 }
 
 - (void)navigationBackButtonClicked {
-    [self.navigationController popViewControllerAnimated:YES];
+    [self.navigationController popToRootViewControllerAnimated:YES];
     UINavigationController *navC = (UINavigationController *)AppWindow.rootViewController;
     MLTTabBarController *tabBarVC = navC.viewControllers[0];
     [tabBarVC selectAtIndex:0];
