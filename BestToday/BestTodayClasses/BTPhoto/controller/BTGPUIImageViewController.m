@@ -40,7 +40,6 @@ static NSString * const reuseIdentifier = @"AlbumFiterViewCellIdentifier";
 }
 
 - (void)navigationBackButtonClicked {
-    
     [self.navigationController popViewControllerAnimated:YES];
 }
 
