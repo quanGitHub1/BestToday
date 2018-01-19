@@ -40,7 +40,6 @@ static NSString * const reuseIdentifier = @"AlbumFiterViewCellIdentifier";
 }
 
 - (void)navigationBackButtonClicked {
-    
     [self.navigationController popViewControllerAnimated:YES];
 }
 
@@ -96,6 +95,15 @@ static NSString * const reuseIdentifier = @"AlbumFiterViewCellIdentifier";
         fiter.thumbnailImage = tempThumbnailImage;
         [self.albumFiterImages addObject:fiter];
         [self.collectionView reloadData];
+        
+//        dispatch_async(dispatch_get_global_queue(0, 0), ^{
+//            UIImage *tempThumbnailImage = [[AlbumFilterUtil sharedInstance] imageByFilteringImage:thumbnailImage filterType:filterType];
+//            dispatch_async(dispatch_get_main_queue(), ^{
+//                fiter.thumbnailImage = tempThumbnailImage;
+//                [self.albumFiterImages addObject:fiter];
+//                [self.collectionView reloadData];
+//            });
+//        });
     }
 }
 
