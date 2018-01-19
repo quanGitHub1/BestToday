@@ -19,6 +19,8 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
+     [self.navigationBar setLeftBarButton:[UIButton mlt_rightBarButtonWithImage:[UIImage imageNamed:@"info_backs"] highlightedImage:nil target:self action:@selector(navigationBackButtonClicked:) forControlEvents:UIControlEventTouchUpInside]];
+    
     _webView = [[UIWebView alloc] initWithFrame:CGRectMake(0, 64, FULL_WIDTH, FULL_HEIGHT - 64)];
     
     _webView.delegate = self;
@@ -29,6 +31,10 @@
     
     [self.view addSubview:_webView];
     
+}
+
+- (void)navigationBackButtonClicked:(UIButton *)btn {
+    [self.navigationController popViewControllerAnimated:YES];
 }
 
 - (void)didReceiveMemoryWarning {
