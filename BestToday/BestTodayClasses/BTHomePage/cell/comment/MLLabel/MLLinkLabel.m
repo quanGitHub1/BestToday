@@ -152,6 +152,7 @@ REGULAREXPRESSION(HashtagRegularExpression, @"#([\\u4e00-\\u9fa5\\w\\-]+)")
 {
     [super commonInit];
     
+    
     self.exclusiveTouch = YES;
     self.userInteractionEnabled = YES;
     

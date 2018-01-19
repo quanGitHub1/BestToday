@@ -16,6 +16,7 @@
 #import "BtHomePageService.h"
 #import "BTHomePageEntity.h"
 #import "BTHomeUserEntity.h"
+#import "BTAttention.h"
 
 @interface BTHomePageViewController ()<LEBaseTableViewDelegate,UITableViewDataSource, UITableViewDelegate, BTSpreadTableViewDelegate, BTHomepageViewDelegate>
 {
@@ -473,22 +474,6 @@ static NSString * const cellID = @"mindCell";
     
     [cell makeDatacellData:[self.homePageService.arrFollowedResource objectAtIndex:indexPath.row] index:indexPath.row];
     
-//    cell.updateCellAttention = ^(NSInteger indexpathRow) {
-//
-//
-//    };
-    
-//    if (![[_dicCell allKeys] containsObject:[NSString stringWithFormat:@"indexPath%ld", indexPath.row]]) {
-//
-//        [_dicCell setObject: cell forKey:[NSString stringWithFormat:@"indexPath%ld", indexPath.row]];
-//
-//    }
-    
-//    cell.updateCellBlock = ^(NSInteger indexpathRow) {
-//
-//        [self.tableView reloadData];
-//    };
-    
     return cell;
 }
 
@@ -511,7 +496,7 @@ static NSString * const cellID = @"mindCell";
         }];
         
         
-        UIAlertAction *ComplaintAction = [UIAlertAction actionWithTitle:@"投诉用户" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+        UIAlertAction *ComplaintAction = [UIAlertAction actionWithTitle:@"举报..." style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
             
             
             UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"请选择原因" message:@"" preferredStyle:UIAlertControllerStyleAlert];
@@ -577,6 +562,7 @@ static NSString * const cellID = @"mindCell";
    
 }
 
+
 // 置顶用户/取消置顶接口
 - (void)requestSetTopUser:(NSInteger)index isTopped:(NSInteger)isTopped{
     
@@ -624,7 +610,7 @@ static NSString * const cellID = @"mindCell";
         [btnAtten setTitleColor:[UIColor colorWithHexString:@"#fd8671"] forState:UIControlStateNormal];
         
         [SVProgressHUD dismissWithDelay:0.3f];
-                
+        
         [self requestAnnouncementData];
         
     }];
@@ -669,7 +655,7 @@ static NSString * const cellID = @"mindCell";
 - (void)requestComplaint:(NSInteger)index resourceId:(NSInteger)resourceId{
     
     BTHomePageEntity *pageEntity = [_homePageService.arrFollowedResource objectAtIndex:resourceId - 10000];
-    [self.homePageService loadComplaintUser:[pageEntity.resourceId integerValue] feedbackType:index completion:^(BOOL isSuccess, BOOL isCache) {
+    [self.homePageService loadComplaintUser:[pageEntity.resourceId integerValue] userId:0  feedbackType:index completion:^(BOOL isSuccess, BOOL isCache) {
         
         [SVProgressHUD showWithStatus:@"投诉成功"];
         

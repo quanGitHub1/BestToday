@@ -45,7 +45,7 @@
 - (void)loadqueryRecommendUsers:(NSInteger)userID completion:(void(^)(BOOL isSuccess, BOOL isCache))completion;
 
 // 投诉该用户
-- (void)loadComplaintUser:(NSInteger)resourceId feedbackType:(NSInteger)feedbackType completion:(void(^)(BOOL isSuccess, BOOL isCache))completion;
+- (void)loadComplaintUser:(NSInteger)resourceId userId:(NSInteger)userId feedbackType:(NSInteger)feedbackType completion:(void(^)(BOOL isSuccess, BOOL isCache))completion;
 
 
 @end

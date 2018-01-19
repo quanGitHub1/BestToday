@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="12120" systemVersion="16E195" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12088"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
@@ -25,6 +25,8 @@
             <subviews>
                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="BTLogin.jpg" translatesAutoresizingMaskIntoConstraints="NO" id="ZyF-dP-xSn">
                     <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                    <color key="backgroundColor" red="1" green="0.99098798190000004" blue="0.98161180920000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    <color key="tintColor" cocoaTouchSystemColor="tableCellGroupedBackgroundColor"/>
                 </imageView>
                 <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="用户名" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="jEP-gZ-MF6">
                     <rect key="frame" x="50" y="200" width="275" height="44"/>
@@ -59,6 +61,14 @@
                         <action selector="loginAction:" destination="-1" eventType="touchUpInside" id="wHe-Rf-G75"/>
                     </connections>
                 </button>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="PQb-VR-kGu">
+                    <rect key="frame" x="95" y="600" width="184" height="27"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                    <state key="normal" title="使用前请阅读用户协议和隐私条款"/>
+                    <connections>
+                        <action selector="onClickAgreement:" destination="-1" eventType="touchUpInside" id="QTj-gx-Ybn"/>
+                    </connections>
+                </button>
             </subviews>
             <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
             <constraints>
@@ -71,8 +81,10 @@
                 <constraint firstAttribute="bottom" secondItem="ZyF-dP-xSn" secondAttribute="bottom" id="eXd-nV-2OQ"/>
                 <constraint firstItem="Ypy-2x-Rtg" firstAttribute="top" secondItem="afE-kY-goG" secondAttribute="bottom" constant="40" id="evP-RB-r3L"/>
                 <constraint firstItem="Ypy-2x-Rtg" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="50" id="fju-Yb-F9X"/>
+                <constraint firstItem="PQb-VR-kGu" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="lKj-r8-tvl"/>
                 <constraint firstAttribute="trailing" secondItem="Ypy-2x-Rtg" secondAttribute="trailing" constant="50" id="m05-5f-vdU"/>
                 <constraint firstItem="ZyF-dP-xSn" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="nwg-IR-WC5"/>
+                <constraint firstAttribute="bottom" secondItem="PQb-VR-kGu" secondAttribute="bottom" constant="40" id="s9v-zg-7Cp"/>
                 <constraint firstItem="jEP-gZ-MF6" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="50" id="x5M-2g-e8T"/>
                 <constraint firstItem="afE-kY-goG" firstAttribute="top" secondItem="jEP-gZ-MF6" secondAttribute="bottom" constant="20" id="xzx-HQ-rxb"/>
             </constraints>

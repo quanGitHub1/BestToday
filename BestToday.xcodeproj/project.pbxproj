@@ -10,6 +10,7 @@
 		4FF0E10CAF40BC06CA5E3585 /* libPods-BestToday.a in Frameworks */ = {isa = PBXBuildFile; fileRef = F2068EBEC2B2F928846BAA88 /* libPods-BestToday.a */; };
 		744DF52E1FB09EA700CF8796 /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 744DF52D1FB09EA700CF8796 /* Info.plist */; };
 		745581071FD3BAFF0062B561 /* BTHomeDetailPageTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 745581061FD3BAFF0062B561 /* BTHomeDetailPageTableViewCell.m */; };
+		74558149201203800062B561 /* BTAgreeMentWebViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 74558148201203800062B561 /* BTAgreeMentWebViewController.m */; };
 		7A1509E21FD68286000A3BEC /* BTUserEntity.m in Sources */ = {isa = PBXBuildFile; fileRef = 7A1509E11FD68286000A3BEC /* BTUserEntity.m */; };
 		7A16B9E11FB5899900E7EC3A /* MLTSegementView.m in Sources */ = {isa = PBXBuildFile; fileRef = 7A16B9E01FB5899900E7EC3A /* MLTSegementView.m */; };
 		7A16B9E41FB5979500E7EC3A /* MLTWaterflowLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = 7A16B9E31FB5979500E7EC3A /* MLTWaterflowLayout.m */; };
@@ -367,6 +368,8 @@
 		744DF52D1FB09EA700CF8796 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		745581051FD3BAFF0062B561 /* BTHomeDetailPageTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BTHomeDetailPageTableViewCell.h; sourceTree = "<group>"; };
 		745581061FD3BAFF0062B561 /* BTHomeDetailPageTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BTHomeDetailPageTableViewCell.m; sourceTree = "<group>"; };
+		74558147201203800062B561 /* BTAgreeMentWebViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BTAgreeMentWebViewController.h; sourceTree = "<group>"; };
+		74558148201203800062B561 /* BTAgreeMentWebViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BTAgreeMentWebViewController.m; sourceTree = "<group>"; };
 		7A1509E01FD68286000A3BEC /* BTUserEntity.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BTUserEntity.h; sourceTree = "<group>"; };
 		7A1509E11FD68286000A3BEC /* BTUserEntity.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BTUserEntity.m; sourceTree = "<group>"; };
 		7A16B9DF1FB5899900E7EC3A /* MLTSegementView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MLTSegementView.h; sourceTree = "<group>"; };
@@ -1282,6 +1285,8 @@
 				7A6576521FDA93540049D856 /* BTMeAttentionViewController.m */,
 				7A37B8441FE2624200F2E8D3 /* BTGoodRecommentViewController.h */,
 				7A37B8451FE2624200F2E8D3 /* BTGoodRecommentViewController.m */,
+				74558147201203800062B561 /* BTAgreeMentWebViewController.h */,
+				74558148201203800062B561 /* BTAgreeMentWebViewController.m */,
 			);
 			path = controller;
 			sourceTree = "<group>";
@@ -3124,6 +3129,7 @@
 				7AA2BC131FAAB4CC00864753 /* NSObject+CallMethod.m in Sources */,
 				7AA2BC2F1FAAB4CC00864753 /* MLTRefreshIndicatorView.m in Sources */,
 				7AA2BC181FAAB4CC00864753 /* UIImage+Image.m in Sources */,
+				74558149201203800062B561 /* BTAgreeMentWebViewController.m in Sources */,
 				7AA2BC121FAAB4CC00864753 /* NSCalendar+YU.m in Sources */,
 				7AA2BC341FAAB4CC00864753 /* MLTBaseRefreshHeader.m in Sources */,
 				CBCBC8DB1FFDFB1900580DEB /* IFLomofiFilter.m in Sources */,

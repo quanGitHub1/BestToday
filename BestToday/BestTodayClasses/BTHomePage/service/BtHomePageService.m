@@ -126,9 +126,9 @@
 }
 
 
-- (void)loadComplaintUser:(NSInteger)resourceId feedbackType:(NSInteger)feedbackType completion:(void(^)(BOOL isSuccess, BOOL isCache))completion{
+- (void)loadComplaintUser:(NSInteger)resourceId userId:(NSInteger)userId feedbackType:(NSInteger)feedbackType completion:(void(^)(BOOL isSuccess, BOOL isCache))completion{
     
-    NSString *urlString = [NSString stringWithFormat:@"%@?resourceId=%ld&feedbackType=%ld",BTqueryComplaintUser, resourceId, feedbackType];
+    NSString *urlString = [NSString stringWithFormat:@"%@?resourceId=%ld&feedbackType=%ld&userId=%ld",BTqueryComplaintUser, resourceId, feedbackType, userId];
     
     NSMutableDictionary *dictionary = [NSMutableDictionary dictionary];
     
