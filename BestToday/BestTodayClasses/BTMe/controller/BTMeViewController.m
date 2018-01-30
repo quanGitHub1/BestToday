@@ -51,6 +51,8 @@
 
 @property (nonatomic, strong) UIButton *btnAtten;  // 点击关注
 
+@property (nonatomic, strong) UIButton *btnAttenOne;  // 点击关注
+
 @property (nonatomic, strong)BTMeService *meService;
 
 @property (nonatomic, strong)NSMutableArray *selectTagArray;
@@ -84,12 +86,32 @@
 -(void)setNavgationBar{
 
     self.navigationBar.title = @"个人中心";
-    // 添加右上角按钮
-    [self.navigationBar setRightBarButton:[UIButton mlt_rightBarButtonWithImage:[UIImage imageNamed:@"addFriend"] highlightedImage:nil target:self action:@selector(addFriend:)forControlEvents:UIControlEventTouchUpInside]];
     
     if (_otherId == YES) {
         
+        
+        
+        _btnAttenOne = [[UIButton alloc] initWithFrame:CGRectMake(FULL_WIDTH - 55, 33, 50, 24)];
+        
+        _btnAttenOne.backgroundColor = [UIColor whiteColor];
+        
+        [_btnAttenOne setTitleColor:[UIColor colorWithHexString:@"#616161"] forState:UIControlStateNormal];
+        
+        _btnAttenOne.titleLabel.font = [UIFont systemFontOfSize:13];
+        
+        [_btnAttenOne addTarget:self action:@selector(onclickBtnAttenOne:) forControlEvents:UIControlEventTouchUpInside];
+
+        
+        [_btnAttenOne setTitle:@"..." forState:UIControlStateNormal];
+
         [self.navigationBar setLeftBarButton:[UIButton mlt_rightBarButtonWithImage:[UIImage imageNamed:@"info_backs"] highlightedImage:nil target:self action:@selector(navigationBackButtonClicked:) forControlEvents:UIControlEventTouchUpInside]];
+        
+        [self.navigationBar addSubview:_btnAttenOne];
+        
+    }else {
+        // 添加右上角按钮
+        [self.navigationBar setRightBarButton:[UIButton mlt_rightBarButtonWithImage:[UIImage imageNamed:@"addFriend"] highlightedImage:nil target:self action:@selector(addFriend:)forControlEvents:UIControlEventTouchUpInside]];
+
     }
     
 }
@@ -221,6 +243,86 @@
     [viewHeaer addSubview:_viewLine];
     
     return viewHeaer;
+}
+
+- (void)onclickBtnAttenOne:(UIButton *)btn{
+    
+    UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"请选择操作" message:@"" preferredStyle:UIAlertControllerStyleAlert];
+    UIAlertAction *ComplaintAction = [UIAlertAction actionWithTitle:@"举报..." style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+        
+        
+        UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"请选择原因" message:@"" preferredStyle:UIAlertControllerStyleAlert];
+        
+        UIAlertAction *destructiveAction = [UIAlertAction actionWithTitle:@"发布低俗内容" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+            
+            [self requestComplaint:11 resourceId:btn.tag];
+            
+        }];
+        
+        
+        UIAlertAction *canAction = [UIAlertAction actionWithTitle:@"发布违法内容" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+            
+            [self requestComplaint:12 resourceId:btn.tag];
+            
+        }];
+        
+        
+        UIAlertAction *ComplaintAction = [UIAlertAction actionWithTitle:@"侵犯知识产权" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+            
+            [self requestComplaint:13 resourceId:btn.tag];
+            
+            
+        }];
+        
+        
+        UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:@"取消投诉" style:UIAlertActionStyleCancel handler:nil];
+        
+        
+        [alertController addAction:destructiveAction];
+        
+        [alertController addAction:canAction];
+        
+        [alertController addAction:ComplaintAction];
+        
+        [alertController addAction:cancelAction];
+        
+        
+        [self presentViewController:alertController animated:YES completion:nil];
+        
+        
+    }];
+    
+    UIAlertAction *destructiveAction = [UIAlertAction actionWithTitle:@"拉黑该用户" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+        
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"拉黑该用户后，您将不再关注TA，并屏蔽TA的文章" message:@"" delegate:self cancelButtonTitle:@"取消" otherButtonTitles:@"确定", nil];
+        
+        [alert show];
+        
+    }];
+    
+    UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleCancel handler:nil];
+    
+    [alertController addAction:ComplaintAction];
+    [alertController addAction:destructiveAction];
+    [alertController addAction:cancelAction];
+    
+    [self presentViewController:alertController animated:YES completion:nil];
+    
+}
+
+// 投诉接口
+- (void)requestComplaint:(NSInteger)index resourceId:(NSInteger)resourceId{
+    
+    BtHomePageService *homePageService = [BtHomePageService new];
+    
+    [homePageService loadComplaintUser:0 userId:[_userId integerValue]  feedbackType:index completion:^(BOOL isSuccess, BOOL isCache) {
+        
+        [SVProgressHUD showWithStatus:@"拉黑成功"];
+        
+        [SVProgressHUD dismissWithDelay:0.3f];
+        
+    }];
+    
 }
 
 

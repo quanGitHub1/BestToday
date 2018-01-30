@@ -25,10 +25,11 @@
         _commentLabel.linkTextAttributes = @{NSForegroundColorAttributeName : [UIColor blackColor]};
         _commentLabel.activeLinkTextAttributes = @{NSForegroundColorAttributeName:HEX(@"616161"),NSBackgroundColorAttributeName:kDefaultActiveLinkBackgroundColorForMLLinkLabel};
         _commentLabel.font = [UIFont systemFontOfSize:15];
-        _commentLabel.numberOfLines = 0;
+        _commentLabel.numberOfLines = 3;
         _commentLabel.textColor = HEX(@"616161");
         _commentLabel.lineHeightMultiple = 1.1f;
         [self.contentView addSubview:_commentLabel];
+        
         [_commentLabel mas_makeConstraints:^(MASConstraintMaker *make) {
             make.left.right.bottom.top.equalTo(self.contentView);
         }];

@@ -126,6 +126,54 @@
 }
 
 
+- (void)loadComplaintUser:(NSInteger)resourceId userId:(NSInteger)userId feedbackType:(NSInteger)feedbackType completion:(void(^)(BOOL isSuccess, BOOL isCache))completion{
+    
+    NSString *urlString = [NSString stringWithFormat:@"%@?resourceId=%ld&feedbackType=%ld&userId=%ld",BTqueryComplaintUser, resourceId, feedbackType, userId];
+    
+    NSMutableDictionary *dictionary = [NSMutableDictionary dictionary];
+    
+    [dictionary setValue:[NSString stringWithFormat:@"%ld",resourceId]forKey:@"resourceId"];
+    
+    [dictionary setValue:[NSString stringWithFormat:@"%ld",feedbackType] forKey:@"feedbackType"];
+
+    
+    [NetworkHelper POST:urlString parameters:dictionary success:^(id responseObject) {
+        
+        if (([responseObject[@"code"] integerValue] == 0)) {
+            
+            completion(YES,NO);
+            
+        }else {
+            completion(NO,NO);
+        }
+
+        
+    } failure:^(NSError *error) {
+        
+        completion(NO,NO);
+
+        
+    }];
+    
+//    [NetworkHelper POST:urlString parameters:nil responseCache:^(id responseCache) {
+//        
+//        
+//    } success:^(id responseObject) {
+//        
+//        if (([responseObject[@"code"] integerValue] == 0)) {
+//            
+//            completion(YES,NO);
+//            
+//        }else {
+//            completion(NO,NO);
+//        }
+//        
+//    } failure:^(NSError *error) {
+//        completion(NO,NO);
+//    }];
+
+}
+
 /** 佳人推荐 */
 - (void)loadqueryRecommendUsers:(NSInteger)userID completion:(void(^)(BOOL isSuccess, BOOL isCache))completion{
     

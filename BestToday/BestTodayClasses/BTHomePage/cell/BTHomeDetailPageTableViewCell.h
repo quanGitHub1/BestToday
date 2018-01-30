@@ -37,6 +37,8 @@
 
 @property (nonatomic, strong) UIButton *btnAtten;  // 点击关注
 
+@property (nonatomic, strong) UIButton *btnAttenOne;  // 点击关注
+
 @property (nonatomic, strong) UIImageView *imagePic; // 图片
 
 @property (nonatomic, strong) UILabel *labTime; // 时间

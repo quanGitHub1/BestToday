@@ -508,6 +508,7 @@
         _btnComment.frame = CGRectMake(_btnCollection.right + ScaleWidth(21), _imagePic.bottom + 12, iamgeCollection.size.width, iamgeCollection.size.height);
         
         _btnComment.frame = CGRectMake(_btnCollection.right + ScaleWidth(21), _imagePic.bottom + 12, 22, 22);
+    
         
         [_btnShare setImage:iamgeshare forState:UIControlStateNormal];
         
@@ -594,18 +595,22 @@
             NSMutableAttributedString *text = [[NSMutableAttributedString alloc] initWithAttributedString:[self generateAttributedStringWithCommentItemModel:model]];
             MLLinkLabel *label = [MLLinkLabel new];
             label.attributedText = text;
-            label.numberOfLines = 0;
+            label.numberOfLines = 3;
             label.lineHeightMultiple = 1.1f;
             label.font = [UIFont systemFontOfSize:14];
             UIColor *highLightColor = [UIColor blueColor];
             label.linkTextAttributes = @{NSForegroundColorAttributeName : highLightColor};
             label.activeLinkTextAttributes = @{NSForegroundColorAttributeName:[UIColor blueColor],NSBackgroundColorAttributeName:kDefaultActiveLinkBackgroundColorForMLLinkLabel};
             CGFloat h = [label preferredSizeWithMaxWidth:contentW].height;
+            
+            if (h > 55) {
+                h = 61;
+            }
             label = nil;
             tableViewHeight += h;
         }
     }
-    return CGSizeMake(contentW, tableViewHeight);
+    return CGSizeMake(FULL_WIDTH - 30, tableViewHeight);
 }
 
 #pragma mark - private actions

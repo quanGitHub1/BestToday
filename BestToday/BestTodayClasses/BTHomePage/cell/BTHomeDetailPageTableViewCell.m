@@ -49,7 +49,7 @@
             [_imageAvtar addGestureRecognizer:tap];
 
             
-            _labName = [UILabel mlt_labelWithText:@"" color:[UIColor mlt_colorWithHexString:@"#212121" alpha:1] align:NSTextAlignmentLeft font:[UIFont systemFontOfSize:16] bkColor:nil frame:CGRectMake(_imageAvtar.right + 10, _imageAvtar.top + (_imageAvtar.height - 18)/2, 200, 18)];
+            _labName = [UILabel mlt_labelWithText:@"" color:[UIColor mlt_colorWithHexString:@"#212121" alpha:1] align:NSTextAlignmentLeft font:[UIFont systemFontOfSize:16] bkColor:nil frame:CGRectMake(_imageAvtar.right + 10, _imageAvtar.top + (_imageAvtar.height - 18)/2, 100, 18)];
             
             _labName.userInteractionEnabled = YES;
             
@@ -61,7 +61,19 @@
             
             [_labName addGestureRecognizer:tapLab];
             
-            _btnAtten = [[UIButton alloc] initWithFrame:CGRectMake(FULL_WIDTH - ScaleWidth(50) - 15, 10, ScaleWidth(50), ScaleWidth(25))];
+            
+            _btnAttenOne = [[UIButton alloc] initWithFrame:CGRectMake(FULL_WIDTH - 42, 13, 40, 25)];
+            
+            _btnAttenOne.backgroundColor = [UIColor whiteColor];
+            
+            [_btnAttenOne setTitleColor:[UIColor colorWithHexString:@"#616161"] forState:UIControlStateNormal];
+            
+            _btnAttenOne.titleLabel.font = [UIFont systemFontOfSize:13];
+            
+            [_btnAttenOne setTitle:@"..." forState:UIControlStateNormal];
+            
+            
+            _btnAtten = [[UIButton alloc] initWithFrame:CGRectMake(_labName.right + 5, 10, ScaleWidth(50), ScaleWidth(25))];
             
             [_btnAtten setTitle:@"已关注" forState:UIControlStateNormal];
             
@@ -111,6 +123,8 @@
             [_btnShare addTarget:self action:@selector(onclickBtnShare:) forControlEvents:UIControlEventTouchUpInside];
             
             [self.contentView addSubview:_imageAvtar];
+            
+            [self.contentView addSubview:_btnAttenOne];
             
             [self.contentView addSubview:_labName];
             
@@ -408,9 +422,12 @@
     
     _labName.text = userEntity.nickName;
     
+    [_labName sizeToFit];
+    
     [_imageAvtar sd_setImageWithURL:[NSURL URLWithString:userEntity.avatarUrl] placeholderImage:nil];
     
-    
+    _btnAtten.frame = CGRectMake(_labName.right + 5, 12, ScaleWidth(50), ScaleWidth(25));
+
     if ([userEntity.isFollowed integerValue] == 0) {
         
         [_btnAtten setTitle:@"+关注" forState:UIControlStateNormal];

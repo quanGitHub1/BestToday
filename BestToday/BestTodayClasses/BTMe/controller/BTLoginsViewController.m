@@ -11,6 +11,7 @@
 #import "WechatAuthSDK.h"
 #import "WXApiRequestHandler.h"
 #import "WXApiManager.h"
+#import "BTAgreeMentWebViewController.h"
 
 static NSString *kAuthScope = @"snsapi_message,snsapi_userinfo,snsapi_friend,snsapi_contact";
 static NSString *kAuthOpenID = @"wx8910bc5d166f699a";
@@ -96,6 +97,12 @@ static NSString *kAuthState = @"今日最佳";
     
 }
 
+- (IBAction)onClickAgreement:(id)sender {
+    
+    BTAgreeMentWebViewController *web = [[BTAgreeMentWebViewController alloc] init];
+    
+    [self.navigationController pushViewController:web animated:YES];
+}
 
 
 //成功登录

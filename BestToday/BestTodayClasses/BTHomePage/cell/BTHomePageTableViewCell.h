@@ -60,7 +60,6 @@ typedef void (^updateCellAttention)(NSInteger indexpathRow);
 
 @property (nonatomic, strong) UILabel *labTextInfor; //描述
 
-
 @property (nonatomic, strong) UIView *viewLine; //线
 
 @property (nonatomic, strong) BTHomeCommentView *homeCommentView;
