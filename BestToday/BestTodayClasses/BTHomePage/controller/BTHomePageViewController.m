@@ -43,7 +43,7 @@ static NSString * const cellID = @"mindCell";
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.view.backgroundColor = [UIColor whiteColor];
-    self.navigationBar.title = @"今日最佳";
+    self.navigationBar.title = @"关注";
     self.nextPage = 1;
     self.pageAssistParam = @"";
     isLoadMoreData = YES;
