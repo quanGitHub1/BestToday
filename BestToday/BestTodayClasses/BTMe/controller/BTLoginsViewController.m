@@ -61,15 +61,15 @@ static NSString *kAuthState = @"今日最佳";
     __weak __typeof(self)weakSelf = self;
     [self.loginService getLoadAppLoginTypesCompletion:^(BOOL isSuccess,NSString * status) {
         if (isSuccess) {
-//            if ([status isEqualToString:@"0"]) {
+            if ([status isEqualToString:@"0"]) {
                 weakSelf.nickNameTF.hidden = NO;
                 weakSelf.passwordTF.hidden = NO;
                 weakSelf.sureButton.hidden = NO;
-//            }else{
-//                weakSelf.nickNameTF.hidden = YES;
-//                weakSelf.passwordTF.hidden = YES;
-//                weakSelf.sureButton.hidden = YES;
-//            }
+            }else{
+                weakSelf.nickNameTF.hidden = YES;
+                weakSelf.passwordTF.hidden = YES;
+                weakSelf.sureButton.hidden = YES;
+            }
         }
     }];
     
